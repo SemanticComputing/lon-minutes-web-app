@@ -1,0 +1,294 @@
+{
+    "id": "places",
+    "endpoint": {
+        "url": "http://localhost:3030/leona/sparql",
+        "useAuth": false,
+        "prefixesFile": "SparqlQueriesPrefixes.js"
+    },
+    "sparqlQueriesFile": "SparqlQueriesPlaces.js",
+    "baseURI": "http://ldf.fi/coco",
+    "URITemplate": "<BASE_URI>/places/<LOCAL_ID>",
+    "facetClass": "crm:E53_Place",
+    "frontPageImage": "main_page/places_kirjesampo.jpg",
+    "searchMode": "faceted-search",
+    "enableDynamicLanguageChange": true,
+    "defaultActiveFacets": [
+        "prefLabel"
+    ],
+    "defaultTab": "table",
+    "defaultInstancePageTab": "table",
+    "resultClasses": {
+        "places": {
+            "paginatedResultsConfig": {
+                "tabID": 0,
+                "component": "ResultTable",
+                "tabPath": "table",
+                "tabIcon": "CalendarViewDay",
+                "propertiesQueryBlock": "placePropertiesFacetResults",
+                "pagesize": 30,
+                "paginatedResultsAlwaysExpandRows": true,
+                "paginatedResultsRowContentMaxHeight": 150,
+                "sortBy": "number_of_events",
+                "sortDirection": "desc"
+            },
+            "instanceConfig": {
+                "propertiesQueryBlock": "placePropertiesInstancePage",
+                "instancePageResultClasses": {
+                    "instancePageTable": {
+                        "tabID": 0,
+                        "component": "InstancePageTable",
+                        "tabPath": "table",
+                        "tabIcon": "CalendarViewDay"
+                    },
+                    "placeInstancePageLetters": {
+                        "tabID": 1,
+                        "component": "InstancePageTable",
+                        "tabPath": "letters-and-actors",
+                        "tabIcon": "MailOutline",
+                        "fetchResultsWhenMounted": true,
+                        "sparqlQuery": "placeLettersInstancePageQuery",
+                        "properties": [
+                            {
+                                "id": "from",
+                                "valueType": "object",
+                                "makeLink": true,
+                                "externalLink": false,
+                                "sortValues": false,
+                                "numberedList": true,
+                                "onlyOnInstancePage": true,
+                                "expandedOnInstancePage": true
+                            },
+                            {
+                                "id": "mentioningletter",
+                                "valueType": "object",
+                                "makeLink": true,
+                                "externalLink": false,
+                                "sortValues": false,
+                                "numberedList": true,
+                                "onlyOnInstancePage": true,
+                                "expandedOnInstancePage": true
+                            },
+                            {
+                                "id": "related",
+                                "valueType": "object",
+                                "makeLink": true,
+                                "externalLink": false,
+                                "sortValues": false,
+                                "numberedList": true,
+                                "onlyOnInstancePage": true,
+                                "expandedOnInstancePage": true
+                            },
+                            {
+                                "id": "born",
+                                "valueType": "object",
+                                "makeLink": true,
+                                "externalLink": false,
+                                "sortValues": true,
+                                "numberedList": true,
+                                "onlyOnInstancePage": true,
+                                "expandedOnInstancePage": true
+                            },
+                            {
+                                "id": "deceased",
+                                "valueType": "object",
+                                "makeLink": true,
+                                "externalLink": false,
+                                "sortValues": true,
+                                "numberedList": true,
+                                "onlyOnInstancePage": true,
+                                "expandedOnInstancePage": true
+                            }
+                        ]
+                    },
+                    "lettersByYear": {
+                        "tabID": 2,
+                        "component": "ApexCharts",
+                        "tabPath": "letters-by-year",
+                        "tabIcon": "ShowChart",
+                        "sparqlQuery": "sentReceivedByPlaceQuery",
+                        "facetClass": "places",
+                        "filterTarget": "instance",
+                        "resultMapper": "mapLineChart",
+                        "resultMapperConfig": {
+                            "fillEmptyValues": false
+                        },
+                        "createChartData": "createSingleLineChartData",
+                        "title": "Letters by year",
+                        "xaxisTitle": "Year",
+                        "xaxisType": "category",
+                        "xaxisTickAmount": 20,
+                        "yaxisTitle": "Number of letters",
+                        "seriesTitle": "Number of letters",
+                        "stroke": {
+                            "curve": "straight",
+                            "width": 2
+                        }
+                    },
+                    "instancePageExport": {
+                        "tabID": 3,
+                        "component": "Export",
+                        "tabPath": "export",
+                        "tabIcon": "CloudDownload",
+                        "pageType": "instancePage"
+                    }
+                }
+            }
+        },
+        "csvPlaces": {
+            "tabID": 2,
+            "component": "ExportCSV",
+            "tabPath": "csv",
+            "tabIcon": "CloudDownload",
+            "resultClass": "places",
+            "facetClass": "places",
+            "sparqlQuery": "csvQueryPlaces",
+            "filterTarget": "id"
+        },
+        "export": {
+            "tabID": 3,
+            "component": "Export",
+            "tabPath": "sparql",
+            "tabIcon": "ArrowForward",
+            "resultClass": "places",
+            "facetClass": "places"
+        },
+        "share": {
+            "tabID": 4,
+            "component": "ExportLink",
+            "tabPath": "share",
+            "tabIcon": "IosShare",
+            "resultClass": "places",
+            "facetClass": "places"
+        }
+    },
+    "properties": [
+        {
+            "id": "image",
+            "valueType": "image",
+            "previewImageHeight": 160,
+            "makeLink": false,
+            "externalLink": true,
+            "sortValues": true,
+            "numberedList": false,
+            "hideHeader": true
+        },
+        {
+            "id": "prefLabel",
+            "valueType": "object",
+            "makeLink": true,
+            "externalLink": false,
+            "sortValues": true,
+            "numberedList": false,
+            "expandedOnInstancePage": true
+        },
+        {
+            "id": "altLabel",
+            "valueType": "string",
+            "renderAsHTML": false,
+            "makeLink": false,
+            "externalLink": false,
+            "sortValues": false,
+            "numberedList": false,
+            "onlyOnInstancePage": true,
+            "expandedOnInstancePage": true
+        },
+        {
+            "id": "location",
+            "valueType": "string",
+            "makeLink": false,
+            "externalLink": false,
+            "sortValues": false,
+            "numberedList": false,
+            "onlyOnInstancePage": true
+        },
+        {
+            "id": "country",
+            "valueType": "object",
+            "makeLink": true,
+            "externalLink": false,
+            "sortValues": false,
+            "numberedList": false
+        },
+        {
+            "id": "broader",
+            "valueType": "object",
+            "makeLink": true,
+            "externalLink": false,
+            "sortValues": false,
+            "numberedList": false
+        },
+        {
+            "id": "number_of_events",
+            "valueType": "string",
+            "makeLink": false,
+            "externalLink": false,
+            "sortValues": false,
+            "numberedList": false
+        },
+        {
+            "id": "narrower",
+            "valueType": "object",
+            "makeLink": true,
+            "externalLink": false,
+            "sortValues": false,
+            "numberedList": false,
+            "onlyOnInstancePage": true,
+            "expandedOnInstancePage": true
+        },
+        {
+            "id": "external",
+            "valueType": "object",
+            "makeLink": true,
+            "externalLink": true,
+            "sortValues": true,
+            "numberedList": false,
+            "onlyOnInstancePage": true,
+            "expandedOnInstancePage": true
+        },
+        {
+            "id": "uri",
+            "valueType": "object",
+            "makeLink": true,
+            "externalLink": true,
+            "sortValues": true,
+            "numberedList": false,
+            "onlyOnInstancePage": true
+        }
+    ],
+    "facets": {
+        "prefLabel": {
+            "containerClass": "one",
+            "facetType": "text",
+            "filterType": "textFilter",
+            "sortByPredicate": "skos:prefLabel",
+            "textQueryProperty": "skos:prefLabel"
+        },
+        "country": {
+            "containerClass": "ten",
+            "facetType": "list",
+            "filterType": "uriFilter",
+            "predicate": ":country",
+            "sortBy": "instanceCount",
+            "sortDirection": "desc",
+            "searchField": true,
+            "sortButton": true,
+            "facetLabelFilter": "FILTER(LANG(?prefLabel_) = '<LANG>')",
+            "sortByPredicate": ":country/skos:prefLabel"
+        },
+        "broader": {
+            "containerClass": "ten",
+            "facetType": "list",
+            "filterType": "uriFilter",
+            "predicate": "skos:broader",
+            "sortBy": "instanceCount",
+            "sortDirection": "desc",
+            "searchField": true,
+            "sortButton": true,
+            "facetLabelFilter": "FILTER(LANG(?prefLabel_) = '<LANG>')",
+            "sortByPredicate": "skos:broader/skos:prefLabel"
+        },
+        "number_of_events": {
+            "sortByPattern": "{ SELECT ?id ?orderBy WHERE { VALUES ?facetClass { <FACET_CLASS> } ?id a ?facetClass . OPTIONAL { ?id :number_of_events ?num } BIND (COALESCE(?num, 0) AS ?orderBy) }}"
+        }
+    }
+}

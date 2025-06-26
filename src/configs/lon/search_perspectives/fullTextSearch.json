@@ -1,0 +1,62 @@
+{
+    "id": "fullTextSearch",
+    "endpoint": {
+        "url": "http://localhost:3030/leona/sparql",
+        "useAuth": true,
+        "prefixesFile": "SparqlQueriesPrefixes.js"
+    },
+    "sparqlQueriesFile": "SparqlQueriesFullText.js",
+    "propertiesQueryBlock": "fullTextSearchProperties",
+    "hideCardOnFrontPage": true,
+    "hideTopPerspectiveButton": true,
+    "searchMode": "full-text-search",
+    "properties": [
+        {
+            "id": "prefLabel",
+            "valueType": "object",
+            "makeLink": true,
+            "externalLink": false,
+            "sortValues": false,
+            "numberedList": false,
+            "minWidth": 400
+        },
+        {
+            "id": "type",
+            "valueType": "object",
+            "makeLink": false,
+            "externalLink": false,
+            "sortValues": false,
+            "numberedList": false,
+            "minWidth": 70
+        },
+        {
+            "id": "image",
+            "valueType": "image",
+            "previewImageHeight": 160,
+            "makeLink": false,
+            "externalLink": true,
+            "sortValues": true,
+            "numberedList": false,
+            "hideHeader": true,
+            "minWidth": 60
+        },
+        {
+            "id": "number_of_activities",
+            "valueType": "string",
+            "makeLink": false,
+            "externalLink": false,
+            "sortValues": false,
+            "numberedList": false,
+            "minWidth": 200
+        },
+        {
+            "id": "maxScore",
+            "valueType": "string",
+            "makeLink": false,
+            "externalLink": false,
+            "sortValues": false,
+            "numberedList": false,
+            "minWidth": 200
+        }
+    ]
+}
