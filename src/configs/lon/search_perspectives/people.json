@@ -5,7 +5,7 @@
         "useAuth": false,
         "prefixesFile": "SparqlQueriesPrefixes.js"
     },
-    "sparqlQueriesFile": "SparqlQueriesPlaces.js",
+    "sparqlQueriesFile": "SparqlQueriesPeople.js",
     "baseURI": "http://ldf.fi/lon",
     "URITemplate": "<BASE_URI>/people/<LOCAL_ID>",
     "facetClass": "crm:E21_Person",
@@ -24,11 +24,10 @@
                 "component": "ResultTable",
                 "tabPath": "table",
                 "tabIcon": "CalendarViewDay",
-                "propertiesQueryBlock": "placePropertiesFacetResults",
+                "propertiesQueryBlock": "personPropertiesFacetResults",
                 "pagesize": 30,
                 "paginatedResultsAlwaysExpandRows": true,
                 "paginatedResultsRowContentMaxHeight": 150,
-                "sortBy": "number_of_events",
                 "sortDirection": "desc"
             },
             "instanceConfig": {
@@ -193,44 +192,61 @@
             "expandedOnInstancePage": true
         },
         {
-            "id": "location",
+            "id": "gender",
             "valueType": "string",
             "makeLink": false,
             "externalLink": false,
-            "sortValues": false,
+            "sortValues": true,
             "numberedList": false,
-            "onlyOnInstancePage": true
+            "minWidth": 70,
+            "priority": 5
         },
         {
-            "id": "country",
-            "valueType": "object",
-            "makeLink": true,
-            "externalLink": false,
-            "sortValues": false,
-            "numberedList": false
-        },
-        {
-            "id": "broader",
-            "valueType": "object",
-            "makeLink": true,
-            "externalLink": false,
-            "sortValues": false,
-            "numberedList": false
-        },
-        {
-            "id": "number_of_events",
+            "id": "birthDate",
             "valueType": "string",
             "makeLink": false,
             "externalLink": false,
-            "sortValues": false,
-            "numberedList": false
+            "sortValues": true,
+            "numberedList": false,
+            "showSource": true,
+            "sourceExternalLink": false,
+            "minWidth": 90
         },
         {
-            "id": "narrower",
+            "id": "deathDate",
+            "valueType": "string",
+            "makeLink": false,
+            "externalLink": false,
+            "sortValues": true,
+            "numberedList": false,
+            "showSource": true,
+            "sourceExternalLink": false,
+            "minWidth": 90
+        },
+        {
+            "id": "birthPlace",
             "valueType": "object",
             "makeLink": true,
             "externalLink": false,
-            "sortValues": false,
+            "sortValues": true,
+            "numberedList": false,
+            "onlyOnInstancePage": false
+        },
+        {
+            "id": "deathPlace",
+            "valueType": "object",
+            "makeLink": true,
+            "externalLink": false,
+            "sortValues": true,
+            "numberedList": false,
+            "onlyOnInstancePage": false
+        },
+        {
+            "id": "occupation",
+            "valueType": "object",
+            "makeLink": true,
+            "externalLink": false,
+            "sortValues": true,
             "numberedList": false,
             "onlyOnInstancePage": true,
             "expandedOnInstancePage": true
@@ -263,32 +279,75 @@
             "sortByPredicate": "skos:prefLabel",
             "textQueryProperty": "skos:prefLabel"
         },
-        "country": {
-            "containerClass": "ten",
+        "gender": {
+            "containerClass": "five",
             "facetType": "list",
+            "predicate": "biocrm:has_gender",
             "filterType": "uriFilter",
-            "predicate": ":country",
             "sortBy": "instanceCount",
             "sortDirection": "desc",
-            "searchField": true,
-            "sortButton": true,
-            "facetLabelFilter": "FILTER(LANG(?prefLabel_) = '<LANG>')",
-            "sortByPredicate": ":country/skos:prefLabel"
+            "sortByPredicate": "biocrm:has_gender/skos:prefLabel",
+            "hideUnknownValue": true
         },
-        "broader": {
-            "containerClass": "ten",
+        "birthDateTimespan": {
+            "containerClass": "four",
+            "facetType": "timespan",
+            "filterType": "timespanFilter",
+            "dataType": "xsd:date",
+            "max": null,
+            "min": null,
+            "predicate": "crm:P98i_was_born/crm:P4_has_time-span",
+            "startProperty": "crm:P82a_begin_of_the_begin",
+            "endProperty": "crm:P82b_end_of_the_end",
+            "sortByAscPredicate": "crm:P98i_was_born/crm:P4_has_time-span/crm:P82a_begin_of_the_begin",
+            "sortByDescPredicate": "crm:P98i_was_born/crm:P4_has_time-span/crm:P82b_end_of_the_end"
+        },
+        "birthPlace": {
+            "containerClass": "seven",
             "facetType": "list",
             "filterType": "uriFilter",
-            "predicate": "skos:broader",
+            "predicate": "crm:P98i_was_born/crm:P7_took_place_at",
+            "searchField": true,
             "sortBy": "instanceCount",
             "sortDirection": "desc",
-            "searchField": true,
             "sortButton": true,
-            "facetLabelFilter": "FILTER(LANG(?prefLabel_) = '<LANG>')",
-            "sortByPredicate": "skos:broader/skos:prefLabel"
+            "barChartButton": true,
+            "sortByPredicate": "crm:P98i_was_born/crm:P7_took_place_at/skos:prefLabel"
         },
-        "number_of_events": {
-            "sortByPattern": "{ SELECT ?id ?orderBy WHERE { VALUES ?facetClass { <FACET_CLASS> } ?id a ?facetClass . OPTIONAL { ?id :number_of_events ?num } BIND (COALESCE(?num, 0) AS ?orderBy) }}"
+        "deathDateTimespan": {
+            "containerClass": "four",
+            "facetType": "timespan",
+            "filterType": "timespanFilter",
+            "dataType": "xsd:date",
+            "max": null,
+            "min": null,
+            "predicate": "crm:P100i_died_in/crm:P4_has_time-span",
+            "startProperty": "crm:P82a_begin_of_the_begin",
+            "endProperty": "crm:P82b_end_of_the_end",
+            "sortByAscPredicate": "crm:P100i_died_in/crm:P4_has_time-span/crm:P82a_begin_of_the_begin",
+            "sortByDescPredicate": "crm:P100i_died_in/crm:P4_has_time-span/crm:P82b_end_of_the_end"
+        },
+        "deathPlace": {
+            "containerClass": "seven",
+            "facetType": "list",
+            "filterType": "uriFilter",
+            "predicate": "crm:P100i_died_in/crm:P7_took_place_at",
+            "searchField": true,
+            "sortBy": "instanceCount",
+            "sortDirection": "desc",
+            "sortButton": true,
+            "barChartButton": true,
+            "sortByPredicate": "crm:P100i_died_in/crm:P7_took_place_at/skos:prefLabel"
+        },
+        "occupation": {
+            "containerClass": "ten",
+            "facetType": "list",
+            "predicate": "biocrm:has_occupation",
+            "filterType": "uriFilter",
+            "sortBy": "instanceCount",
+            "sortDirection": "desc",
+            "sortByPredicate": "biocrm:has_occupation/skos:prefLabel",
+            "hideUnknownValue": true
         }
     }
 }

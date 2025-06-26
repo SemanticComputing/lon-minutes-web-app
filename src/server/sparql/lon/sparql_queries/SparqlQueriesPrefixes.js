@@ -1,5 +1,5 @@
 export const prefixes = `
-PREFIX bioc: <http://ldf.fi/schema/bioc/>
+PREFIX biocrm: <http://ldf.fi/schema/bioc/>
 PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
 PREFIX dct: <http://purl.org/dc/terms/>
 PREFIX dc: <http://purl.org/dc/elements/1.1/>

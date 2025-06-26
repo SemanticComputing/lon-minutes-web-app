@@ -1,64 +1,53 @@
 const perspectiveID = 'people'
 
 export const personPropertiesFacetResults = `
-  BIND (?id as ?uri__id)
-  BIND (?id as ?uri__dataProviderUrl)
-  BIND (?id as ?uri__prefLabel)
-
+    BIND(?id as ?uri__id)
+  BIND(?id as ?uri__prefLabel)
+  BIND(?id as ?uri__dataProviderUrl)
+  
   {
-    ?id skos:prefLabel ?label__id .
-    BIND (?label__id as ?label__prefLabel)
-    BIND (CONCAT("/people/page/", REPLACE(STR(?id), "^.*\\\\/(.+)", "$1")) AS ?label__dataProviderUrl)
+    ?id skos:prefLabel ?prefLabel__id .
+    FILTER (LANG(?prefLabel__id)='en')
+    BIND (?prefLabel__id as ?prefLabel__prefLabel)
+    BIND(CONCAT("/places/page/", REPLACE(STR(?id), "^.*\\\\/(.+)", "$1")) AS ?prefLabel__dataProviderUrl)
   }
   UNION
   {
-    ?id bioc:has_gender/skos:prefLabel ?gender
-    FILTER (LANG(?gender) = '<LANG>')
+    ?id biocrm:has_gender/skos:prefLabel ?gender 
   }
   UNION
-    { ?id foaf:page ?external__id . 
-      OPTIONAL { 
-        ?external__id a/skos:prefLabel ?external__classlabel 
-        FILTER (LANG(?external__classlabel) = '<LANG>')
-      }
-      OPTIONAL { ?external__id skos:prefLabel ?external__label }
-      BIND (COALESCE(?external__label, ?external__classlabel, ?external__id) AS ?external__prefLabel)
-      BIND (?external__id AS ?external__dataProviderUrl)
-    }
+  {
+    ?id crm:P98i_was_born/crm:P4_has_time-span/skos:prefLabel ?birthDate
+  }
   UNION
   {
-    ?prx :proxy_for ?id .
-    {
-      ?prx a/skos:prefLabel ?type 
-      FILTER (LANG(?type)="<LANG>")
-    }
-    UNION
-    {
-      ?prx :birthDate ?birthDateTimespan__id .
-      ?birthDateTimespan__id skos:prefLabel ?birthDateTimespan__prefLabel .
-      OPTIONAL { ?birthDateTimespan__id crm:P82a_begin_of_the_begin ?birthDateTimespan__start }
-      OPTIONAL { ?birthDateTimespan__id crm:P82b_end_of_the_end ?birthDateTimespan__end }
-    }
-    UNION
-    { 
-      ?prx :deathDate ?deathDateTimespan__id .
-      ?deathDateTimespan__id skos:prefLabel ?deathDateTimespan__prefLabel .
-      OPTIONAL { ?deathDateTimespan__id crm:P82a_begin_of_the_begin ?deathDateTimespan__start }
-      OPTIONAL { ?deathDateTimespan__id crm:P82b_end_of_the_end ?deathDateTimespan__end }
-    }
-    UNION
-    {
-      ?prx sch:image ?image__id ;
-        skos:prefLabel ?image__description ;
-        skos:prefLabel ?image__title .
-      BIND (CONCAT(REPLACE(STR(?image__id), "https*:", ""), "?width=300") as ?image__url)
-    }
-    UNION
-    {
-      ?prx :original_data_provider/skos:prefLabel ?data_provider
-      FILTER (LANG(?data_provider)="<LANG>")
-    }
-}
+    ?id crm:P98i_was_born/crm:P7_took_place_at ?birthPlace__id .
+    ?birthPlace__id skos:prefLabel ?birthPlace__prefLabel .
+    BIND (CONCAT("/places/page/", REPLACE(STR(?birthPlace__id), "^.*\\\\/(.+)", "$1")) AS ?birthPlace__dataProviderUrl)
+  }
+  UNION
+  {
+    ?id crm:P100i_died_in/crm:P4_has_time-span/skos:prefLabel ?deathDate
+  }
+  UNION
+  {
+    ?id crm:P100i_died_in/crm:P7_took_place_at ?deathPlace__id .
+    ?deathPlace__id skos:prefLabel ?deathPlace__prefLabel .
+    BIND (CONCAT("/places/page/", REPLACE(STR(?deathPlace__id), "^.*\\\\/(.+)", "$1")) AS ?deathPlace__dataProviderUrl)
+  }
+  UNION
+  {
+    ?id biocrm:has_occupation ?occupation__id .
+    ?occupation__id skos:prefLabel ?occupation__prefLabel .
+    BIND (CONCAT("/occupations/page/", REPLACE(STR(?occupation__id), "^.*\\\\/(.+)", "$1")) AS ?occupation__dataProviderUrl)
+  }
+  UNION
+  {
+    ?id sch:image ?image__id ;
+      skos:prefLabel ?image__description ;
+      skos:prefLabel ?image__title .
+    BIND(CONCAT(REPLACE(STR(?image__id), "https*:", ""), "?width=600") as ?image__url)
+  }
 `
 
 export const personPropertiesInstancePage = `
