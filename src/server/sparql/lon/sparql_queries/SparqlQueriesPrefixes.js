@@ -22,8 +22,5 @@ PREFIX : <http://ldf.fi/schema/lon/>
 PREFIX actors: <http://ldf.fi/lon/actors/> 
 PREFiX letters: <http://ldf.fi/lon/letters/>
 PREFIX places: <http://ldf.fi/lon/places/>
-PREFIX snellman: <http://ldf.fi/snellman/>
 PREFIX sources: <http://ldf.fi/lon/source/>
-PREFIX sns: <http://ldf.fi/schema/snellman/> 
-PREFIX tmp: <http://ldf.fi/lon/tmp/>
 `

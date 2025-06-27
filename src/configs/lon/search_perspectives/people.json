@@ -7,7 +7,7 @@
     },
     "sparqlQueriesFile": "SparqlQueriesPeople.js",
     "baseURI": "http://ldf.fi/lon",
-    "URITemplate": "<BASE_URI>/people/<LOCAL_ID>",
+    "URITemplate": "<BASE_URI>/actors/<LOCAL_ID>",
     "facetClass": "crm:E21_Person",
     "frontPageImage": "main_page/people_kirjesampo.jpg",
     "searchMode": "faceted-search",
@@ -31,7 +31,7 @@
                 "sortDirection": "desc"
             },
             "instanceConfig": {
-                "propertiesQueryBlock": "placePropertiesInstancePage",
+                "propertiesQueryBlock": "personPropertiesInstancePage",
                 "instancePageResultClasses": {
                     "instancePageTable": {
                         "tabID": 0,
@@ -202,44 +202,14 @@
             "priority": 5
         },
         {
-            "id": "birthDate",
-            "valueType": "string",
-            "makeLink": false,
-            "externalLink": false,
-            "sortValues": true,
-            "numberedList": false,
-            "showSource": true,
-            "sourceExternalLink": false,
-            "minWidth": 90
-        },
-        {
-            "id": "deathDate",
-            "valueType": "string",
-            "makeLink": false,
-            "externalLink": false,
-            "sortValues": true,
-            "numberedList": false,
-            "showSource": true,
-            "sourceExternalLink": false,
-            "minWidth": 90
-        },
-        {
-            "id": "birthPlace",
+            "id": "nationality",
             "valueType": "object",
             "makeLink": true,
             "externalLink": false,
             "sortValues": true,
             "numberedList": false,
-            "onlyOnInstancePage": false
-        },
-        {
-            "id": "deathPlace",
-            "valueType": "object",
-            "makeLink": true,
-            "externalLink": false,
-            "sortValues": true,
-            "numberedList": false,
-            "onlyOnInstancePage": false
+            "onlyOnInstancePage": false,
+            "expandedOnInstancePage": true
         },
         {
             "id": "occupation",
@@ -249,6 +219,50 @@
             "sortValues": true,
             "numberedList": false,
             "onlyOnInstancePage": true,
+            "expandedOnInstancePage": true
+        },
+        {
+            "id": "birthDate",
+            "valueType": "string",
+            "makeLink": false,
+            "externalLink": false,
+            "sortValues": true,
+            "numberedList": true,
+            "showSource": false,
+            "sourceExternalLink": false,
+            "minWidth": 90,
+            "expandedOnInstancePage": true
+        },
+        {
+            "id": "deathDate",
+            "valueType": "string",
+            "makeLink": false,
+            "externalLink": false,
+            "sortValues": true,
+            "numberedList": false,
+            "showSource": false,
+            "sourceExternalLink": false,
+            "minWidth": 90,
+            "expandedOnInstancePage": true
+        },
+        {
+            "id": "birthPlace",
+            "valueType": "object",
+            "makeLink": true,
+            "externalLink": false,
+            "sortValues": true,
+            "numberedList": false,
+            "onlyOnInstancePage": false,
+            "expandedOnInstancePage": true
+        },
+        {
+            "id": "deathPlace",
+            "valueType": "object",
+            "makeLink": true,
+            "externalLink": false,
+            "sortValues": true,
+            "numberedList": false,
+            "onlyOnInstancePage": false,
             "expandedOnInstancePage": true
         },
         {
@@ -339,6 +353,16 @@
             "barChartButton": true,
             "sortByPredicate": "crm:P100i_died_in/crm:P7_took_place_at/skos:prefLabel"
         },
+        "nationality": {
+            "containerClass": "ten",
+            "facetType": "list",
+            "predicate": "sch:nationality",
+            "filterType": "uriFilter",
+            "sortBy": "instanceCount",
+            "sortDirection": "desc",
+            "sortByPredicate": "sch:nationality/skos:prefLabel",
+            "hideUnknownValue": true
+        },
         "occupation": {
             "containerClass": "ten",
             "facetType": "list",
@@ -348,6 +372,22 @@
             "sortDirection": "desc",
             "sortByPredicate": "biocrm:has_occupation/skos:prefLabel",
             "hideUnknownValue": true
+        },
+        "external": {
+            "containerClass": "six",
+            "facetType": "list",
+            "predicate": "(owl:sameAs|foaf:page)/a",
+            "filterType": "uriFilter",
+            "sortBy": "instanceCount",
+            "sortDirection": "desc",
+            "sortByPredicate": "(owl:sameAs|foaf:page)/a/skos:prefLabel",
+            "hideUnknownValue": true
+        },
+        "birthDate": {
+            "sortByPattern": "{ SELECT ?id ?orderBy WHERE { VALUES ?facetClass { <FACET_CLASS> } ?id a ?facetClass ; crm:P98i_was_born/crm:P4_has_time-span/skos:prefLabel ?orderBy }}"
+        },
+        "deathDate": {
+            "sortByPattern": "{ SELECT ?id ?orderBy WHERE { VALUES ?facetClass { <FACET_CLASS> } ?id a ?facetClass ; crm:P100i_died_in/crm:P4_has_time-span/skos:prefLabel ?orderBy }}"
         }
     }
 }
