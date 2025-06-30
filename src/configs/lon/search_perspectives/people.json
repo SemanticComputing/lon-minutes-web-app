@@ -447,6 +447,7 @@
             "containerClass": "ten",
             "facetType": "list",
             "predicate": "sch:nationality",
+            "searchField": true,
             "filterType": "uriFilter",
             "sortBy": "instanceCount",
             "sortDirection": "desc",

@@ -6,7 +6,7 @@
     "prefixesFile": "SparqlQueriesPrefixes.js"
   },
   "sparqlQueriesFile": "SparqlQueriesOccupations.js",
-  "baseURI": "http://ldf.fi/coco",
+  "baseURI": "http://ldf.fi/lon",
   "URITemplate": "<BASE_URI>/occupations/<LOCAL_ID>",
   "resultClasses": {
     "occupations": {

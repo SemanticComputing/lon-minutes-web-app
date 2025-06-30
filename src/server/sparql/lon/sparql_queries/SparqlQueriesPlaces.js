@@ -151,9 +151,8 @@ WHERE {
   {
     SELECT DISTINCT ?id ?related__id
     (CONCAT(?_label, ' (', STR(COUNT(DISTINCT ?_sent)), ')') AS ?related__prefLabel)
-    (CONCAT("/actors/page/", REPLACE(STR(?related__id), "^.*\\\\/(.+)", "$1")) AS ?related__dataProviderUrl)
+    (CONCAT("/people/page/", REPLACE(STR(?related__id), "^.*\\\\/(.+)", "$1")) AS ?related__dataProviderUrl)
     WHERE {
-
       ?id ^:was_sent_from ?_sent . ?_sent portal:sender ?related__id .
       ?related__id skos:prefLabel ?_label .
     }
@@ -163,16 +162,14 @@ WHERE {
   }
   UNION
   {
-    [] :was_born_in_location ?id ;
-       :proxy_for ?born__id .
-    ?born__id skos:prefLabel ?born__prefLabel .
-    BIND(CONCAT("/actors/page/", REPLACE(STR(?born__id), "^.*\\\\/(.+)", "$1")) AS ?born__dataProviderUrl)
+    ?born__id crm:P98i_was_born/crm:P7_took_place_at ?id ;
+      skos:prefLabel ?born__prefLabel .
+    BIND(CONCAT("/people/page/", REPLACE(STR(?born__id), "^.*\\\\/(.+)", "$1")) AS ?born__dataProviderUrl)
   }
   UNION{
-    [] :died_at_location ?id ;
-      :proxy_for ?deceased__id .
-    ?deceased__id skos:prefLabel ?deceased__prefLabel .
-    BIND(CONCAT("/actors/page/", REPLACE(STR(?deceased__id), "^.*\\\\/(.+)", "$1")) AS ?deceased__dataProviderUrl)
+    ?deceased__id crm:P100i_died_in/crm:P7_took_place_at ?id ;
+      skos:prefLabel ?deceased__prefLabel .
+    BIND(CONCAT("/people/page/", REPLACE(STR(?deceased__id), "^.*\\\\/(.+)", "$1")) AS ?deceased__dataProviderUrl)
   }
 }
 `
