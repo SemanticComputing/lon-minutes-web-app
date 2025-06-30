@@ -9,6 +9,7 @@
     "baseURI": "http://ldf.fi/lon",
     "URITemplate": "<BASE_URI>/actors/<LOCAL_ID>",
     "facetClass": "crm:E21_Person",
+    "defaultConstraint": "FILTER EXISTS { [] :refers_to <SUBJECT> }",
     "frontPageImage": "main_page/people_kirjesampo.jpg",
     "searchMode": "faceted-search",
     "enableDynamicLanguageChange": true,
@@ -17,6 +18,22 @@
     ],
     "defaultTab": "table",
     "defaultInstancePageTab": "table",
+    "maps": {
+        "placesActors": {
+            "center": [
+                22.43,
+                10.37
+            ],
+            "zoom": 2
+        },
+        "peopleMigrations": {
+            "center": [
+                60.43,
+                20.37
+            ],
+            "zoom": 3
+        }
+    },
     "resultClasses": {
         "people": {
             "paginatedResultsConfig": {
@@ -133,8 +150,48 @@
                 }
             }
         },
-        "csvPlaces": {
+        "placesActors": {
+            "tabID": 1,
+            "component": "LeafletMap",
+            "tabPath": "map",
+            "tabIcon": "AddLocation",
+            "sparqlQuery": "peopleEventPlacesQuery",
+            "facetClass": "people",
+            "filterTarget": "person",
+            "resultMapper": "mapPlaces",
+            "instanceConfig": {
+                "propertiesQueryBlock": "placePropertiesInfoWindow",
+                "relatedInstances": "peopleRelatedTo",
+                "createPopUpContent": "createPopUpContentLetterSampo"
+            }
+        },
+        "peopleMigrations": {
             "tabID": 2,
+            "component": "Deck",
+            "tabPath": "migrations",
+            "tabIcon": "Redo",
+            "sparqlQuery": "peopleMigrationsQuery",
+            "facetClass": "people",
+            "filterTarget": "person",
+            "layerType": "arcLayer",
+            "arcWidthVariable": "instanceCountScaled",
+            "instanceVariable": "person",
+            "showTooltips": true,
+            "postprocess": {
+                "func": "linearScale",
+                "config": {
+                    "variable": "instanceCount",
+                    "minAllowed": 3,
+                    "maxAllowed": 30
+                }
+            }
+        },
+        "peopleMigrationsDialog": {
+            "sparqlQuery": "peopleMigrationsDialogQuery",
+            "filterTarget": "id"
+        },
+        "csvPlaces": {
+            "tabID": 4,
             "component": "ExportCSV",
             "tabPath": "csv",
             "tabIcon": "CloudDownload",
@@ -144,7 +201,7 @@
             "filterTarget": "id"
         },
         "export": {
-            "tabID": 3,
+            "tabID": 5,
             "component": "Export",
             "tabPath": "sparql",
             "tabIcon": "ArrowForward",
@@ -152,7 +209,7 @@
             "facetClass": "places"
         },
         "share": {
-            "tabID": 4,
+            "tabID": 6,
             "component": "ExportLink",
             "tabPath": "share",
             "tabIcon": "IosShare",
@@ -200,6 +257,16 @@
             "numberedList": false,
             "minWidth": 70,
             "priority": 5
+        },
+        {
+            "id": "reference",
+            "valueType": "object",
+            "makeLink": true,
+            "externalLink": false,
+            "sortValues": true,
+            "numberedList": false,
+            "onlyOnInstancePage": false,
+            "expandedOnInstancePage": true
         },
         {
             "id": "nationality",

@@ -9,7 +9,7 @@ export const personPropertiesFacetResults = `
     ?id skos:prefLabel ?prefLabel__id .
     FILTER (LANG(?prefLabel__id)='en')
     BIND (?prefLabel__id as ?prefLabel__prefLabel)
-    BIND(CONCAT("/people/page/", REPLACE(STR(?id), "^.*\\\\/(.+)", "$1")) AS ?prefLabel__dataProviderUrl)
+    BIND(CONCAT("/${perspectiveID}/page/", REPLACE(STR(?id), "^.*\\\\/(.+)", "$1")) AS ?prefLabel__dataProviderUrl)
   }
   UNION
   {
@@ -65,11 +65,17 @@ export const personPropertiesInstancePage = `
     ?id skos:prefLabel ?prefLabel__id .
     FILTER (LANG(?prefLabel__id)='en')
     BIND (?prefLabel__id as ?prefLabel__prefLabel)
-    BIND(CONCAT("/people/page/", REPLACE(STR(?id), "^.*\\\\/(.+)", "$1")) AS ?prefLabel__dataProviderUrl)
+    BIND(CONCAT("/${perspectiveID}/page/", REPLACE(STR(?id), "^.*\\\\/(.+)", "$1")) AS ?prefLabel__dataProviderUrl)
   }
   UNION
   {
     ?id biocrm:has_gender/skos:prefLabel ?gender 
+  }
+  UNION
+  {
+    ?reference__id :refers_to ?id ;
+                   skos:prefLabel ?reference__prefLabel .
+    BIND(CONCAT("/references/page/", REPLACE(STR(?reference__id), "^.*\\\\/(.+)", "$1")) AS ?reference__dataProviderUrl)
   }
   UNION
   {
@@ -301,42 +307,33 @@ WHERE
 `
 
 export const peopleEventPlacesQuery = `
-SELECT DISTINCT ?id ?lat ?long 
-(COUNT(DISTINCT ?person) AS ?instanceCount)
+SELECT DISTINCT ?id ?lat ?long
+  (COUNT(DISTINCT ?person) AS ?instanceCount)
 WHERE {
   <FILTER>
+  { 
+    ?person crm:P98i_was_born/crm:P7_took_place_at ?id
+  }
+  UNION
   {
-    ?person portal:known_location ?id 
+    ?person crm:P100i_died_in/crm:P7_took_place_at ?id
   }
-  UNION
-  { 
-    [] :proxy_for ?person ;
-    :was_born_in_location ?id 
-  }
-  UNION
-  { 
-    [] :proxy_for ?person ;
-    :died_at_location ?id 
-  }
-  ?id a crm:E53_Place ; geo:lat ?lat ; geo:long ?long .
 
+  ?id a crm:E53_Place ; geo:lat ?lat ; geo:long ?long .
 } GROUP BY ?id ?lat ?long
 `
 
 export const peopleRelatedTo = `
   OPTIONAL {
     <FILTER>
-    { [] :proxy_for ?related__id .
-      ?related__id portal:known_location ?id 
+    { 
+      ?related__id crm:P98i_was_born/crm:P7_took_place_at ?id
     }
     UNION
-    { [] :proxy_for ?related__id ;
-      :was_born_in_location ?id 
+    {
+      ?related__id crm:P100i_died_in/crm:P7_took_place_at ?id
     }
-    UNION
-    { [] :proxy_for ?related__id ;
-      :died_at_location ?id 
-    }
+    FILTER EXISTS { [] :refers_to ?related__id }
     ?related__id skos:prefLabel ?related__prefLabel .
     BIND (CONCAT("/people/page/", REPLACE(STR(?related__id), "^.*\\\\/(.+)", "$1")) AS ?related__dataProviderUrl)
   } 
@@ -344,23 +341,53 @@ export const peopleRelatedTo = `
 
 export const placePropertiesInfoWindow = `
   OPTIONAL { 
-    ?id skos:prefLabel ?_label . 
-    FILTER (LANG(?_label)="<LANG>")
+    ?id skos:prefLabel ?_label 
   }
   BIND (COALESCE(?_label, "<place>") AS ?prefLabel__id)
   BIND (?prefLabel__id AS ?prefLabel__prefLabel)
   BIND (CONCAT("/places/page/", REPLACE(STR(?id), "^.*\\\\/(.+)", "$1")) AS ?prefLabel__dataProviderUrl)
 `
 
-//  TODO: add href to tie
-//  query on people facet page tab 'Network'
-export const networkLinksQuery_OLD = `
-SELECT DISTINCT (?actor as ?source) ?target ?weight (str(?weight) as ?prefLabel)
-  WHERE {
-    <FILTER>
-    ?_tie :actor1 ?actor ;
-      :actor2 ?target ;
-    :num_letters ?weight .
+//  facet perspective, migrarions tab
+export const peopleMigrationsQuery = `
+SELECT DISTINCT ?id 
+?from__id ?from__prefLabel ?from__lat ?from__long
+?to__id ?to__prefLabel ?to__lat ?to__long
+(CONCAT("/places/page/", REPLACE(STR(?from__id), "^.*\\\\/(.+)", "$1")) AS ?from__dataProviderUrl)
+(CONCAT("/places/page/", REPLACE(STR(?to__id), "^.*\\\\/(.+)", "$1")) AS ?to__dataProviderUrl)
+(COUNT(DISTINCT ?person) as ?instanceCount)
+WHERE {
+  <FILTER>
+  ?person a crm:E21_Person ;
+    crm:P98i_was_born/crm:P7_took_place_at ?from__id ;
+    crm:P100i_died_in/crm:P7_took_place_at ?to__id .
+  
+  FILTER(?from__id != ?to__id)
+
+  ?from__id skos:prefLabel ?from__prefLabel ;
+            geo:lat ?from__lat ;
+            geo:long ?from__long .
+  
+  ?to__id skos:prefLabel ?to__prefLabel ;
+          geo:lat ?to__lat ;
+          geo:long ?to__long .
+
+  BIND(IRI(CONCAT(STR(?from__id), "-", REPLACE(STR(?to__id), STR(places:), ""))) as ?id)  
+}
+GROUP BY ?id 
+?from__id ?from__prefLabel ?from__lat ?from__long
+?to__id ?to__prefLabel ?to__lat ?to__long
+ORDER BY desc(?instanceCount)
+`
+
+//  facet perspective, migrarions tab
+export const peopleMigrationsDialogQuery = `
+SELECT * {
+  <FILTER>
+  ?id crm:P100i_died_in/crm:P7_took_place_at <TO_ID> ;
+    crm:P98i_was_born/crm:P7_took_place_at <FROM_ID> ;
+      skos:prefLabel ?prefLabel .
+  BIND(CONCAT("/people/page/", REPLACE(STR(?id), "^.*\\\\/(.+)", "$1")) AS ?dataProviderUrl)
 }
 `
 

@@ -6,9 +6,10 @@
         "prefixesFile": "SparqlQueriesPrefixes.js"
     },
     "sparqlQueriesFile": "SparqlQueriesPlaces.js",
-    "baseURI": "http://ldf.fi/coco",
+    "baseURI": "http://ldf.fi/lon",
     "URITemplate": "<BASE_URI>/places/<LOCAL_ID>",
     "facetClass": "crm:E53_Place",
+    "defaultConstraint": "FILTER EXISTS { [] :refers_to <SUBJECT> }",
     "frontPageImage": "main_page/places_kirjesampo.jpg",
     "searchMode": "faceted-search",
     "enableDynamicLanguageChange": true,
@@ -27,9 +28,7 @@
                 "propertiesQueryBlock": "placePropertiesFacetResults",
                 "pagesize": 30,
                 "paginatedResultsAlwaysExpandRows": true,
-                "paginatedResultsRowContentMaxHeight": 150,
-                "sortBy": "number_of_events",
-                "sortDirection": "desc"
+                "paginatedResultsRowContentMaxHeight": 150
             },
             "instanceConfig": {
                 "propertiesQueryBlock": "placePropertiesInstancePage",
@@ -272,7 +271,6 @@
             "sortDirection": "desc",
             "searchField": true,
             "sortButton": true,
-            "facetLabelFilter": "FILTER(LANG(?prefLabel_) = '<LANG>')",
             "sortByPredicate": ":country/skos:prefLabel"
         },
         "broader": {
@@ -284,11 +282,17 @@
             "sortDirection": "desc",
             "searchField": true,
             "sortButton": true,
-            "facetLabelFilter": "FILTER(LANG(?prefLabel_) = '<LANG>')",
             "sortByPredicate": "skos:broader/skos:prefLabel"
         },
-        "number_of_events": {
-            "sortByPattern": "{ SELECT ?id ?orderBy WHERE { VALUES ?facetClass { <FACET_CLASS> } ?id a ?facetClass . OPTIONAL { ?id :number_of_events ?num } BIND (COALESCE(?num, 0) AS ?orderBy) }}"
+        "external": {
+            "containerClass": "six",
+            "facetType": "list",
+            "predicate": "(owl:sameAs|foaf:page)/a",
+            "filterType": "uriFilter",
+            "sortBy": "instanceCount",
+            "sortDirection": "desc",
+            "sortByPredicate": "(owl:sameAs|foaf:page)/a/skos:prefLabel",
+            "hideUnknownValue": true
         }
     }
 }

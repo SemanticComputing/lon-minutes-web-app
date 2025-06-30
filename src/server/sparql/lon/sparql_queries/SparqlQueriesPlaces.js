@@ -45,7 +45,6 @@ export const placePropertiesInstancePage = `
   BIND(?id as ?uri__dataProviderUrl)
   {
     ?id skos:prefLabel ?prefLabel__id .
-    FILTER (LANG(?prefLabel__id)='<LANG>')
     BIND (?prefLabel__id as ?prefLabel__prefLabel)
   }
   UNION
@@ -59,14 +58,12 @@ export const placePropertiesInstancePage = `
     ?id skos:broader ?broader__id .
     FILTER (?broader__id != ?id)
     ?broader__id skos:prefLabel ?broader__prefLabel .
-    FILTER (LANG(?broader__prefLabel)='<LANG>')
     BIND(CONCAT("/${perspectiveID}/page/", REPLACE(STR(?broader__id), "^.*\\\\/(.+)", "$1")) AS ?broader__dataProviderUrl)
   }
   UNION
   {
       ?id :country ?country__id .
       ?country__id skos:prefLabel ?country__prefLabel .
-      FILTER (LANG(?country__prefLabel)='<LANG>')
       BIND(CONCAT("/places/page/", REPLACE(STR(?country__id), "^.*\\\\/(.+)", "$1")) AS ?country__dataProviderUrl)
   }
   UNION
