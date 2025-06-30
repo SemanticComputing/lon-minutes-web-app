@@ -276,34 +276,27 @@ SELECT *
 }
 `
 
-//  outdated: https://api.triplydb.com/s/U-6MA_haY
-export const letterLinksQuery = `
-SELECT DISTINCT ?source ?target 
-  ?weight 
-  (STR(?weight) AS ?prefLabel)
-WHERE 
-{
-  { 
-    SELECT DISTINCT ?actor WHERE 
-      { 
-        { 
-          SELECT DISTINCT ?id2 WHERE { 
-            VALUES ?id { <ID> }
-            [] :actor1|:actor2 ?id ; :actor1|:actor2 ?id2 
-        }
-      }
-  	  [] :actor1|:actor2 ?id2 ; :actor1|:actor2 ?actor 
-    }
-  }
-    
-  ?tie (:actor1|:actor2) ?actor ;
-      :actor1 ?source ;
-      :actor2 ?target ;
-      :num_letters ?weight .
+export const ageQuery = `
+SELECT ?category (count(?born) AS ?Births) (count(?deceased) AS ?Deaths)
+WHERE {
+
+  <FILTER>
+
+  ?person__id a crm:E21_Person
   
-  # no self links
-  FILTER (?source!=?target && ?weight>0)
-} 
+  { 
+    ?person__id crm:P98i_was_born/crm:P4_has_time-span/crm:P82a_begin_of_the_begin ?time .
+    BIND (?person__id AS ?born)
+  }
+  UNION
+  {
+    ?person__id crm:P100i_died_in/crm:P4_has_time-span/crm:P82a_begin_of_the_begin ?time .
+    BIND (?person__id AS ?deceased)
+  }
+  
+  BIND (STR(year(?time)) AS ?category)
+  
+} GROUPBY ?category ORDER BY ?category
 `
 
 export const peopleEventPlacesQuery = `

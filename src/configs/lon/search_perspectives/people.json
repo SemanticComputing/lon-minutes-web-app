@@ -150,8 +150,31 @@
                 }
             }
         },
-        "placesActors": {
+        "personAges": {
             "tabID": 1,
+            "component": "ApexCharts",
+            "createChartData": "createMultipleLineChartData",
+            "stroke": {
+                "curve": "straight",
+                "width": 2
+            },
+            "title": " ",
+            "xaxisTitle": "Year",
+            "xaxisType": "category",
+            "xaxisTickAmount": 20,
+            "yaxisTitle": "Number of People",
+            "tabPath": "lifetimes",
+            "tabIcon": "ShowChart",
+            "sparqlQuery": "ageQuery",
+            "facetClass": "people",
+            "filterTarget": "person__id",
+            "resultMapper": "mapMultipleLineChart",
+            "resultMapperConfig": {
+                "fillEmptyValues": true
+            }
+        },
+        "placesActors": {
+            "tabID": 2,
             "component": "LeafletMap",
             "tabPath": "map",
             "tabIcon": "AddLocation",
@@ -166,7 +189,7 @@
             }
         },
         "peopleMigrations": {
-            "tabID": 2,
+            "tabID": 3,
             "component": "Deck",
             "tabPath": "migrations",
             "tabIcon": "Redo",
