@@ -6,14 +6,14 @@
         "prefixesFile": "SparqlQueriesPrefixes.js"
     },
     "sparqlQueriesFile": "SparqlQueriesMinutes.js",
-    "baseURI": "http://ldf.fi/coco",
+    "baseURI": "http://ldf.fi/lon",
     "URITemplate": "<BASE_URI>/minutes/<LOCAL_ID>",
-    "facetClass": ":minutes",
+    "facetClass": ":Minute",
     "frontPageImage": "main_page/minutes_kirjesampo.jpg",
     "searchMode": "faceted-search",
     "enableDynamicLanguageChange": true,
     "defaultActiveFacets": [
-        "minutes"
+        "prefLabel"
     ],
     "defaultTab": "table",
     "defaultInstancePageTab": "table",
@@ -37,11 +37,10 @@
                 "pagesize": 30,
                 "paginatedResultsAlwaysExpandRows": true,
                 "paginatedResultsRowContentMaxHeight": 150,
-                "sortBy": "number_of_letters",
                 "sortDirection": "desc"
             },
             "instanceConfig": {
-                "propertiesQueryBlock": "minutesPropertiesInstancePage",
+                "propertiesQueryBlock": "minutePropertiesInstancePage",
                 "instancePageResultClasses": {
                     "actorInstancePageTable": {
                         "tabID": 0,
@@ -132,87 +131,75 @@
             "externalLink": false,
             "sortValues": true,
             "numberedList": false,
-            "minWidth": 100
-        },
-        {
-            "id": "number_of_letters",
-            "valueType": "string",
-            "makeLink": false,
-            "externalLink": false,
-            "sortValues": false,
-            "numberedList": false,
-            "minWidth": 70,
-            "priority": 5,
-            "expandedOnInstancePage": false
-        },
-        {
-            "id": "creator",
-            "valueType": "object",
-            "makeLink": true,
-            "externalLink": false,
-            "sortValues": false,
-            "numberedList": true,
-            "minWidth": 120,
-            "priority": 5,
-            "onlyOnInstancePage": false,
             "expandedOnInstancePage": true
         },
         {
-            "id": "data_provider",
+            "id": "year",
             "valueType": "string",
             "makeLink": false,
             "externalLink": false,
             "sortValues": true,
             "numberedList": false,
-            "minWidth": 120
+            "minWidth": 100
         },
         {
-            "id": "related",
-            "valueType": "object",
-            "makeLink": true,
-            "externalLink": true,
-            "sortValues": false,
-            "numberedList": true,
-            "minWidth": 120,
-            "priority": 5,
-            "onlyOnInstancePage": true,
-            "expandedOnInstancePage": true
-        },
-        {
-            "id": "sender",
+            "id": "person",
             "valueType": "object",
             "makeLink": true,
             "externalLink": false,
-            "sortValues": false,
-            "numberedList": true,
-            "minWidth": 120,
-            "priority": 5,
+            "sortValues": true,
+            "numberedList": false,
             "onlyOnInstancePage": true,
             "expandedOnInstancePage": true
         },
         {
-            "id": "recipient",
+            "id": "organization",
             "valueType": "object",
             "makeLink": true,
             "externalLink": false,
-            "sortValues": false,
-            "numberedList": true,
-            "minWidth": 120,
-            "priority": 5,
+            "sortValues": true,
+            "numberedList": false,
             "onlyOnInstancePage": true,
             "expandedOnInstancePage": true
         },
         {
-            "id": "letter",
+            "id": "location",
             "valueType": "object",
             "makeLink": true,
             "externalLink": false,
-            "sortValues": false,
-            "numberedList": true,
-            "minWidth": 120,
-            "priority": 5,
+            "sortValues": true,
+            "numberedList": false,
             "onlyOnInstancePage": true,
             "expandedOnInstancePage": true
+        },
+        {
+            "id": "miscellaneous",
+            "valueType": "object",
+            "makeLink": true,
+            "externalLink": false,
+            "sortValues": true,
+            "numberedList": false,
+            "onlyOnInstancePage": true,
+            "expandedOnInstancePage": true
+        },
+        {
+            "id": "date",
+            "valueType": "object",
+            "makeLink": true,
+            "externalLink": false,
+            "sortValues": true,
+            "numberedList": false,
+            "onlyOnInstancePage": true,
+            "expandedOnInstancePage": true
+        },
+        {
+            "id": "content",
+            "valueType": "string",
+            "makeLink": false,
+            "externalLink": false,
+            "sortValues": true,
+            "numberedList": false,
+            "minWidth": 100
         },
         {
             "id": "uri",
@@ -225,100 +212,84 @@
         }
     ],
     "facets": {
-        "data_provider": {
-            "containerClass": "ten",
-            "facetType": "list",
-            "predicate": ":original_data_provider",
-            "facetLabelFilter": "FILTER(LANG(?prefLabel_) = '<LANG>')",
-            "filterType": "uriFilter",
-            "sortBy": "instanceCount",
-            "sortDirection": "desc",
-            "barChartButton": true,
-            "sortButton": true,
-            "hideUnknownValue": true,
-            "sortByPredicate": ":original_data_provider/skos:prefLabel"
+        "prefLabel": {
+            "containerClass": "one",
+            "facetType": "text",
+            "filterType": "textFilter",
+            "sortByPredicate": "skos:prefLabel",
+            "textQueryProperty": "skos:prefLabel"
         },
-        "minutes": {
+        "year": {
             "containerClass": "ten",
-            "facetType": "list",
-            "predicate": ":self_link",
-            "filterType": "uriFilter",
-            "sortBy": "instanceCount",
-            "sortDirection": "desc",
-            "searchField": true,
-            "sortButton": true,
-            "sortByPredicate": ":self_link/skos:prefLabel",
-            "facetLabelFilter": "FILTER(LANG(?prefLabel_) = '<LANG>')"
-        },
-        "digital_edition": {
-            "containerClass": "six",
             "facetType": "list",
             "filterType": "uriFilter",
             "barChartButton": true,
-            "predicate": "portal:digital_edition",
+            "predicate": ":year",
             "sortBy": "instanceCount",
             "sortDirection": "desc",
             "searchField": false,
             "sortButton": false,
-            "facetLabelFilter": "FILTER(LANG(?prefLabel_) = '<LANG>')",
-            "sortByPredicate": "portal:digital_edition/skos:prefLabel"
+            "sortByPredicate": ":year"
         },
-        "creator": {
-            "containerClass": "ten",
-            "facetType": "list",
-            "predicate": ":records_creator/:proxy_for",
-            "filterType": "uriFilter",
-            "sortBy": "instanceCount",
-            "sortDirection": "desc",
-            "barChartButton": true,
-            "searchField": true,
-            "sortButton": true,
-            "sortByPredicate": ":records_creator/:proxy_for/skos:prefLabel"
-        },
-        "creator_gender": {
+        "referenced_person": {
             "containerClass": "seven",
             "facetType": "list",
-            "predicate": "portal:gender",
             "filterType": "uriFilter",
-            "sortBy": "instanceCount",
-            "sortDirection": "desc",
-            "barChartButton": true,
-            "searchField": false,
-            "sortButton": true,
-            "sortByPredicate": "skos:prefLabel",
-            "facetLabelFilter": "FILTER(LANG(?prefLabel_) = '<LANG>')",
-            "hideUnknownValue": true
-        },
-        "creator_occupation": {
-            "containerClass": "eight",
-            "facetType": "list",
-            "predicate": "portal:occupation",
-            "filterType": "uriFilter",
-            "sortBy": "instanceCount",
-            "sortDirection": "desc",
-            "barChartButton": true,
+            "predicate": "linguistics:referenceToPerson/:refers_to",
             "searchField": true,
-            "sortButton": true,
-            "sortByPredicate": "skos:prefLabel",
-            "facetLabelFilter": "FILTER(LANG(?prefLabel_) = '<LANG>')"
-        },
-        "creator_external": {
-            "containerClass": "eight",
-            "facetType": "list",
-            "predicate": "portal:external",
-            "filterType": "uriFilter",
             "sortBy": "instanceCount",
             "sortDirection": "desc",
+            "sortButton": true,
             "barChartButton": true,
-            "sortButton": false,
-            "facetLabelFilter": "FILTER(LANG(?prefLabel_) = '<LANG>')",
-            "sortByPredicate": "skos:prefLabel"
+            "sortByPredicate": "linguistics:referenceToPerson/:refers_to/skos:prefLabel"
         },
-        "prefLabel": {
-            "sortByPattern": "{ SELECT ?id ?orderBy WHERE { VALUES ?facetClass { <FACET_CLASS> } ?id a ?facetClass ; skos:prefLabel ?orderBy }}"
+        "referenced_location": {
+            "containerClass": "seven",
+            "facetType": "list",
+            "filterType": "uriFilter",
+            "predicate": "linguistics:referenceToLocation/:refers_to",
+            "searchField": true,
+            "sortBy": "instanceCount",
+            "sortDirection": "desc",
+            "sortButton": true,
+            "barChartButton": true,
+            "sortByPredicate": "linguistics:referenceToLocation/:refers_to/skos:prefLabel"
         },
-        "number_of_letters": {
-            "sortByPattern": "{ SELECT ?id ?orderBy WHERE { VALUES ?facetClass { <FACET_CLASS> } ?id a ?facetClass . OPTIONAL { ?id :number_of_letters ?num } BIND (COALESCE(?num, 0) AS ?orderBy) }}"
+        "referenced_organization": {
+            "containerClass": "seven",
+            "facetType": "list",
+            "filterType": "uriFilter",
+            "predicate": "linguistics:referenceToOrganization/:refers_to",
+            "searchField": true,
+            "sortBy": "instanceCount",
+            "sortDirection": "desc",
+            "sortButton": true,
+            "barChartButton": true,
+            "sortByPredicate": "linguistics:referenceToOrganization/:refers_to/skos:prefLabel"
+        },
+        "referenced_date": {
+            "containerClass": "seven",
+            "facetType": "list",
+            "filterType": "uriFilter",
+            "predicate": "linguistics:referenceToDate/:refers_to",
+            "searchField": true,
+            "sortBy": "instanceCount",
+            "sortDirection": "desc",
+            "sortButton": true,
+            "barChartButton": true,
+            "sortByPredicate": "linguistics:referenceToDate/:refers_to/skos:prefLabel"
+        },
+        "referenced_miscellaneous": {
+            "containerClass": "seven",
+            "facetType": "list",
+            "filterType": "uriFilter",
+            "predicate": "linguistics:referenceToMiscellaneous",
+            "searchField": true,
+            "sortBy": "instanceCount",
+            "sortDirection": "desc",
+            "sortButton": true,
+            "barChartButton": true,
+            "sortByPredicate": "linguistics:referenceToMiscellaneous/skos:prefLabel"
         }
     }
 }

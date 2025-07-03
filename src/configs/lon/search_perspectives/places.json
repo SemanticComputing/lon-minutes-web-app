@@ -42,7 +42,7 @@
                     "placeInstancePageLetters": {
                         "tabID": 1,
                         "component": "InstancePageTable",
-                        "tabPath": "letters-and-actors",
+                        "tabPath": "minutes-and-references",
                         "tabIcon": "MailOutline",
                         "fetchResultsWhenMounted": true,
                         "sparqlQuery": "placeLettersInstancePageQuery",

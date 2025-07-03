@@ -56,30 +56,20 @@
                         "tabPath": "table",
                         "tabIcon": "CalendarViewDay"
                     },
-                    "placeInstancePageLetters": {
+                    "peopleInstancePageLetters": {
                         "tabID": 1,
                         "component": "InstancePageTable",
-                        "tabPath": "letters-and-actors",
+                        "tabPath": "minutes-and-references",
                         "tabIcon": "MailOutline",
                         "fetchResultsWhenMounted": true,
-                        "sparqlQuery": "placeLettersInstancePageQuery",
+                        "sparqlQuery": "peopleMinutesInstancePageQuery",
                         "properties": [
                             {
-                                "id": "from",
+                                "id": "minute",
                                 "valueType": "object",
                                 "makeLink": true,
                                 "externalLink": false,
-                                "sortValues": false,
-                                "numberedList": true,
-                                "onlyOnInstancePage": true,
-                                "expandedOnInstancePage": true
-                            },
-                            {
-                                "id": "mentioningletter",
-                                "valueType": "object",
-                                "makeLink": true,
-                                "externalLink": false,
-                                "sortValues": false,
+                                "sortValues": true,
                                 "numberedList": true,
                                 "onlyOnInstancePage": true,
                                 "expandedOnInstancePage": true
@@ -90,26 +80,6 @@
                                 "makeLink": true,
                                 "externalLink": false,
                                 "sortValues": false,
-                                "numberedList": true,
-                                "onlyOnInstancePage": true,
-                                "expandedOnInstancePage": true
-                            },
-                            {
-                                "id": "born",
-                                "valueType": "object",
-                                "makeLink": true,
-                                "externalLink": false,
-                                "sortValues": true,
-                                "numberedList": true,
-                                "onlyOnInstancePage": true,
-                                "expandedOnInstancePage": true
-                            },
-                            {
-                                "id": "deceased",
-                                "valueType": "object",
-                                "makeLink": true,
-                                "externalLink": false,
-                                "sortValues": true,
                                 "numberedList": true,
                                 "onlyOnInstancePage": true,
                                 "expandedOnInstancePage": true

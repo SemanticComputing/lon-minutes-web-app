@@ -95,7 +95,7 @@ export default {
     sentReceivedByTie: 'Timeline',
     tieNetwork: 'Network',
     letters: 'letters',
-    'letters-and-actors': 'letters and actors',
+    'minutes-and-references': 'minutes and references',
     heatmap: 'heatmap',
     statistics: 'statistics',
     download: 'download',
@@ -326,10 +326,22 @@ export default {
         Not applicable: family, organisation, association, society, company, magazine or other grouping or association.
         `
         },
-        known_location: {
-          label: 'Known location',
+        reference: {
+          label: 'Reference',
           description: `
-            Places of birth, death, sending, or receiving letters.
+            How this person is referenced in the minutes.
+          `
+        },
+        minute: {
+          label: 'Minute',
+          description: `
+            The minutes refering to this person.
+          `
+        },
+        related: {
+          label: 'Related',
+          description: `
+            The minutes refering to this person.
           `
         },
         image: {
@@ -900,7 +912,7 @@ export default {
     </ul>
       `,
       instancePage: {
-        label: 'Fonds and Collections',
+        label: 'Minutes',
         description: `
           <h6 class="MuiTypography-root MuiTypography-h6">
             Page tabs
@@ -922,129 +934,51 @@ export default {
           description: 'Link to the information of fonds and collections as linked open data'
         },
         prefLabel: {
-          label: 'Fonds',
-          description: 'The label of the Fonds'
+          label: 'Minute',
+          description: 'The label of the Minute'
         },
-        data_provider_facet: {
-          label: 'Cultural heritage organization',
+        year: {
+          label: 'Year',
           description: `
-            Limit your search to the collections of a specific archive, library or museum. 
-          `
-          
-        },
-        data_provider: {
-          label: 'Cultural heritage organization',
-          description: `
-            Organization holding the letter collection
-          `
-          
-        },
-        description: {
-          label: 'Description',
-          description: `
-          The description of the letter content.
+            The year of the minute. 
           `
         },
-        comment: {
-          label: 'Comment',
+        referenced_person: {
+          label: 'Referenced people',
           description: `
-          Comments marked with the letter.
+            People referenced in the content of the minute. 
           `
         },
-        fonds: {
-          label: 'Fonds',
+        referenced_location: {
+          label: 'Referenced location',
           description: `
-            List of letter collections included in the dataset
+            Locations referenced in the content of the minute. 
           `
         },
-        archival_organization: {
-          label: 'Archival organization',
+        referenced_location: {
+          label: 'Referenced location',
           description: `
-            Archival organization
+            Locations referenced in the content of the minute. 
           `
         },
-        digital_edition: {
-          label: 'Digital Edition',
+        referenced_organization: {
+          label: 'Referenced organization',
           description: `
-            Digital Edition
+            Organizations referenced in the content of the minute. 
           `
         },
-        fondsLabel: {
-          label: 'Fonds',
+        referenced_date: {
+          label: 'Referenced date',
           description: `
-            Fonds
+            Dates referenced in the content of the minute. 
           `
         },
-        number_of_letters: {
-          label: 'Number of Letters',
+        referenced_miscellaneous: {
+          label: 'miscellaneous references',
           description: `
-            Number of letters in this fonds.
+            Miscellaneous references extracted from the minute contents. 
           `
         },
-        creator: {
-          label: 'Records creator',
-          description: `
-            List of records creators mentioned in the source data. The number in brackets indicates the number of collections             in which the actor in question is a records creator.
-          `
-        },
-        creator_type: {
-          label: 'Records creator, type',
-          description: `
-            Type of the records creator.
-          `
-        },
-        creator_gender: {
-          label: 'Records creator, gender',
-          description: `
-            The gender of the actors has been automatically identified and there are still errors in the categorisation. 
-
-        Male: persons identified as male on the basis of their first name. If only the initial or initials of the first name      are known, the person is counted as male. This is based on a manually screened sample. 
-
-        Female: persons identified as female on the basis of their first name. 
-
-        Unknown: an actor whose gender is not identified at all (surname only; first name rare; in the source data 'unknown',         'unidentified', 'okänd', etc.). 
-
-        Female & male: for example married couples or siblings.
-
-        Not applicable: family, organisation, association, society, company, magazine or other grouping or association.
-          `
-        },
-        creator_occupation: {
-          label: 'Records creator, occupation',
-          description: `
-            Occupational data is only provided for actors for whom information is available in external sources                           (Wikidata, Biografiasampo, Akatemiasampo, etc.). A single actor may have several occupations. Please note, however             , that the visualisation shows the occupational coverage of the whole dataset and the co-occurrence of occupations             , not the number of actors associated with an occupation.
-          `
-        },
-        creator_external: {
-          label: 'Records creator, external database',
-          description: `
-            An external source of information that has been used to enrich the actor information in the dataset. The 'unknown'         group contains all actors for whom no information is available from external data sources.
-          `
-        },
-        related: {
-          label: 'External links',
-          description: `
-            External links providing more information about the letters in this fonds.
-          `
-        },
-        sender: {
-          label: 'Senders',
-          description: `
-          List of letter senders in this fonds. The number in parenthesis is the number of letters.
-          `
-        },
-        recipient: {
-          label: 'Recipients',
-          description: `
-          List of letter recipients in this fonds. The number in parenthesis is the number of letters.
-          `
-        },
-        letter: {
-          label: 'Letters',
-          description: `
-          Letters in this fonds.
-          `
-        }
       }
     },
     contributors: {
