@@ -83,6 +83,26 @@
                                 "numberedList": true,
                                 "onlyOnInstancePage": true,
                                 "expandedOnInstancePage": true
+                            },
+                            {
+                                "id": "location",
+                                "valueType": "object",
+                                "makeLink": true,
+                                "externalLink": false,
+                                "sortValues": false,
+                                "numberedList": true,
+                                "onlyOnInstancePage": true,
+                                "expandedOnInstancePage": true
+                            },
+                            {
+                                "id": "organization",
+                                "valueType": "object",
+                                "makeLink": true,
+                                "externalLink": false,
+                                "sortValues": false,
+                                "numberedList": true,
+                                "onlyOnInstancePage": true,
+                                "expandedOnInstancePage": true
                             }
                         ]
                     },

@@ -146,10 +146,36 @@ WHERE {
   }
   UNION
   {
-    [] linguistics:referenceToPerson/:refers_to ?id, ?related__id .
-    FILTER (?related__id != ?id)
-    ?related__id skos:prefLabel ?related__prefLabel .
-    BIND(CONCAT("/people/page/", REPLACE(STR(?related__id), "^.*\\\\/(.+)", "$1")) AS ?related__dataProviderUrl) 
+    SELECT DISTINCT ?id ?related__id 
+    (CONCAT(?_label, ' (', STR(COUNT(DISTINCT ?_minute)), ')') AS ?related__prefLabel)
+    (CONCAT("/people/page/", REPLACE(STR(?related__id), "^.*\\\\/(.+)", "$1")) AS ?related__dataProviderUrl) 
+    WHERE {
+      ?_minute linguistics:referenceToPerson/:refers_to ?id, ?related__id .
+      FILTER (?related__id != ?id)
+      ?related__id skos:prefLabel ?_label .
+    } GROUP BY ?id ?related__id ?_label ORDER BY DESC (COUNT(?_minute))
+  }
+  UNION
+  {
+    SELECT DISTINCT ?id ?location__id 
+    (CONCAT(?_label, ' (', STR(COUNT(DISTINCT ?_minute)), ')') AS ?location__prefLabel)
+    (CONCAT("/places/page/", REPLACE(STR(?location__id), "^.*\\\\/(.+)", "$1")) AS ?location__dataProviderUrl) 
+    WHERE {
+      ?_minute linguistics:referenceToPerson/:refers_to ?id;
+      linguistics:referenceToLocation/:refers_to ?location__id .
+      ?location__id skos:prefLabel ?_label .
+    } GROUP BY ?id ?location__id ?_label ORDER BY DESC (COUNT(?_minute))
+  }
+  UNION
+  {
+    SELECT DISTINCT ?id ?organization__id 
+    (CONCAT(?_label, ' (', STR(COUNT(DISTINCT ?_minute)), ')') AS ?organization__prefLabel)
+    (CONCAT("/organizations/page/", REPLACE(STR(?organization__id), "^.*\\\\/(.+)", "$1")) AS ?organization__dataProviderUrl) 
+    WHERE {
+      ?_minute linguistics:referenceToPerson/:refers_to ?id;
+      linguistics:referenceToOrganization/:refers_to ?organization__id .
+      ?organization__id skos:prefLabel ?_label .
+    } GROUP BY ?id ?organization__id ?_label ORDER BY DESC (COUNT(?_minute))
   }
 }
 `

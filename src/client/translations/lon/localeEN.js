@@ -267,14 +267,14 @@ export default {
           General information about the project is available at the <a href="https://seco.cs.aalto.fi/projects/coco/"  target="_blank" rel="noopener noreferrer">project blog</a>.
       `,
       instancePage: {
-        label: 'Person or Organization',
+        label: 'Person',
         description: `
           <h6 class="MuiTypography-root MuiTypography-h6">
             Page tabs
           </h6>
           <ul class="MuiTypography-root MuiTypography-body1">
             <li>
-              <strong>GENERAL INFORMATION</STRONG> page presents biographical information about the person. The information               has been enriched from external sources.
+              <strong>GENERAL INFORMATION</STRONG> page presents biographical information about the person. The information has been enriched from external sources.
             </li>
             <li>
               The <strong>LETTERS</strong> tab allows you to view the letters sent and received by the actor in more detail.                  Please note that not all actors mentioned in the dataset will have this information available (e.g. the                       persons mentioned in the letters). 
@@ -339,9 +339,21 @@ export default {
           `
         },
         related: {
-          label: 'Related',
+          label: 'Related people',
           description: `
-            The minutes refering to this person.
+            Other people referred in the same minutes.
+          `
+        },
+        location: {
+          label: 'Related locations',
+          description: `
+            Locations referred in the same minutes.
+          `
+        },
+        organization: {
+          label: 'Related organizations',
+          description: `
+            Organizations referred in the same minutes.
           `
         },
         image: {
@@ -955,12 +967,6 @@ export default {
             Locations referenced in the content of the minute. 
           `
         },
-        referenced_location: {
-          label: 'Referenced location',
-          description: `
-            Locations referenced in the content of the minute. 
-          `
-        },
         referenced_organization: {
           label: 'Referenced organization',
           description: `
@@ -974,7 +980,7 @@ export default {
           `
         },
         referenced_miscellaneous: {
-          label: 'miscellaneous references',
+          label: 'Miscellaneous references',
           description: `
             Miscellaneous references extracted from the minute contents. 
           `
@@ -1389,7 +1395,7 @@ export default {
           label: 'Provided resource',
           description: 'Same actor in all datasets.'
         },
-        people: {
+        person: {
           label: 'People',
           description: `
             People related to the occupation.

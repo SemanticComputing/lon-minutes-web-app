@@ -143,52 +143,52 @@
             "minWidth": 100
         },
         {
-            "id": "person",
+            "id": "referenced_person",
             "valueType": "object",
             "makeLink": true,
             "externalLink": false,
             "sortValues": true,
-            "numberedList": false,
+            "numberedList": true,
             "onlyOnInstancePage": true,
             "expandedOnInstancePage": true
         },
         {
-            "id": "organization",
+            "id": "referenced_organization",
             "valueType": "object",
             "makeLink": true,
             "externalLink": false,
             "sortValues": true,
-            "numberedList": false,
+            "numberedList": true,
             "onlyOnInstancePage": true,
             "expandedOnInstancePage": true
         },
         {
-            "id": "location",
+            "id": "referenced_location",
             "valueType": "object",
             "makeLink": true,
             "externalLink": false,
             "sortValues": true,
-            "numberedList": false,
+            "numberedList": true,
             "onlyOnInstancePage": true,
             "expandedOnInstancePage": true
         },
         {
-            "id": "miscellaneous",
+            "id": "referenced_miscellaneous",
             "valueType": "object",
             "makeLink": true,
             "externalLink": false,
             "sortValues": true,
-            "numberedList": false,
+            "numberedList": true,
             "onlyOnInstancePage": true,
             "expandedOnInstancePage": true
         },
         {
-            "id": "date",
+            "id": "referenced_date",
             "valueType": "object",
             "makeLink": true,
             "externalLink": false,
             "sortValues": true,
-            "numberedList": false,
+            "numberedList": true,
             "onlyOnInstancePage": true,
             "expandedOnInstancePage": true
         },
@@ -199,6 +199,8 @@
             "externalLink": false,
             "sortValues": true,
             "numberedList": false,
+            "renderAsHTML": true,
+            "HTMLParserTask": "createReactRouterLinks",
             "minWidth": 100
         },
         {

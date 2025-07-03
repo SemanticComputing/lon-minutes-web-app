@@ -17,9 +17,10 @@ export const occupationPropertiesInstancePage = `
   }
   UNION
   {
-    ?people__id biocrm:has_occupation ?id ;
-      skos:prefLabel ?people__prefLabel .
-    BIND(CONCAT("/people/page/", REPLACE(STR(?people__id), "^.*\\\\/(.+)", "$1")) AS ?people__dataProviderUrl) 
+    ?person__id biocrm:has_occupation ?id ;
+      skos:prefLabel ?person__prefLabel .
+    FILTER EXISTS { [] :refers_to ?person__id }
+    BIND(CONCAT("/people/page/", REPLACE(STR(?person__id), "^.*\\\\/(.+)", "$1")) AS ?person__dataProviderUrl) 
   }
   UNION
   { 
