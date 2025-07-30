@@ -1,0 +1,70 @@
+{
+  "id": "references",
+  "endpoint": {
+    "url": "http://localhost:3030/leona/sparql",
+    "useAuth": true,
+    "prefixesFile": "SparqlQueriesPrefixes.js"
+  },
+  "sparqlQueriesFile": "SparqlQueriesReferences.js",
+  "baseURI": "http://ldf.fi/lon",
+  "URITemplate": "<BASE_URI>/references/<LOCAL_ID>",
+  "resultClasses": {
+    "references": {
+      "instanceConfig": {
+        "propertiesQueryBlock": "referencePropertiesInstancePage",
+        "instancePageResultClasses": {
+          "instancePageTable": {
+            "tabID": 0,
+            "component": "InstancePageTable",
+            "tabPath": "table",
+            "tabIcon": "CalendarViewDay"
+          },
+          "instancePageExport": {
+            "tabID": 1,
+            "component": "Export",
+            "tabPath": "export",
+            "tabIcon": "CloudDownload",
+            "pageType": "instancePage"
+          }
+        }
+      }
+    }
+  },
+  "properties": [
+    {
+      "id": "prefLabel",
+      "valueType": "object",
+      "makeLink": true,
+      "externalLink": false,
+      "sortValues": true,
+      "numberedList": false
+    },
+    {
+      "id": "referenced",
+      "valueType": "object",
+      "makeLink": true,
+      "externalLink": false,
+      "sortValues": true,
+      "numberedList": true,
+      "expandedOnInstancePage": true
+    },
+    {
+      "id": "minute",
+      "valueType": "object",
+      "makeLink": true,
+      "externalLink": false,
+      "sortValues": false,
+      "numberedList": true,
+      "expandedOnInstancePage": true
+    },
+    {
+      "id": "external",
+      "valueType": "object",
+      "makeLink": true,
+      "externalLink": true,
+      "sortValues": true,
+      "numberedList": true,
+      "expandedOnInstancePage": true
+    }
+  ]
+}
