@@ -49,20 +49,20 @@
       "expandedOnInstancePage": true
     },
     {
+      "id": "type",
+      "valueType": "string",
+      "makeLink": false,
+      "externalLink": true,
+      "sortValues": true,
+      "numberedList": true,
+      "expandedOnInstancePage": true
+    },
+    {
       "id": "minute",
       "valueType": "object",
       "makeLink": true,
       "externalLink": false,
       "sortValues": false,
-      "numberedList": true,
-      "expandedOnInstancePage": true
-    },
-    {
-      "id": "external",
-      "valueType": "object",
-      "makeLink": true,
-      "externalLink": true,
-      "sortValues": true,
       "numberedList": true,
       "expandedOnInstancePage": true
     }

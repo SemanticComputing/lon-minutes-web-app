@@ -26,6 +26,8 @@ export const referencePropertiesInstancePage = `
                 skos:prefLabel ?minute__prefLabel .
     
     BIND(CONCAT("/minutes/page/", REPLACE(STR(?minute__id), "^.*\\\\/(.+)", "$1")) AS ?minute__dataProviderUrl)
+    
+    ?_prop skos:altLabel ?type .
   }
   UNION
   { 

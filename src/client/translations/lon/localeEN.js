@@ -987,9 +987,9 @@ export default {
         },
       }
     },
-    contributors: {
-      label: 'Contributors',
-      facetResultsType: 'contributors',
+    references: {
+      label: 'References',
+      facetResultsType: 'references',
       shortDescription: '',
       longDescription: `
       <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
@@ -1004,53 +1004,21 @@ export default {
           description: 'Link to the information of the contributor as linked open data'
         },
         prefLabel: {
-          label: 'Contributor',
-          description: 'The label of the contributing cultural heritage organization'
+          label: 'Reference',
+          description: 'The label of reference in the minutes'
         },
-        datasource: {
-          label: 'Data source',
+        referenced: {
+          label: 'Referenced entity',
+          description: 'The label of reference in the minutes'
+        },
+        type: {
+          label: 'Type',
           description: `
-            The data source of the letter.
+            Type of reference.
           `
         },
-        dataset_description: {
-          label: 'Dataset Description',
-          description: `
-          The description of the letter content.
-          `
-        },
-        comment: {
-          label: 'Comment',
-          description: `
-          Comments marked with the letter.
-          `
-        },
-        fonds: {
-          label: 'Fonds',
-          description: `
-            Fonds
-          `
-        },
-        image: {
-          label: 'Logo',
-          description: `
-            Possible logo of the organization.
-          `
-        },
-        letter: {
-          label: 'Letters',
-          description: `
-          Letters in this fonds.
-          `
-        },
-        location: {
-          label: 'Location',
-          description: `
-            Location of the cultural heritage organization.
-          `
-        },
-        external: {
-          label: 'Webpage',
+        minute: {
+          label: 'Minute',
           description: `
             Webpage of the cultural heritage organization.
           `
