@@ -114,7 +114,7 @@ export const placePropertiesInstancePage = `
     }
   `
 
-export const placeLettersInstancePageQuery = `
+export const placeLinksInstancePageQuery = `
 SELECT * 
 WHERE {
   BIND(<ID> as ?id)
@@ -128,45 +128,19 @@ WHERE {
   }
   UNION
   {
-    SELECT ?id ?from__id ?from__prefLabel 
-      (CONCAT(IF(?edition = <http://ldf.fi/schema/coco/not_in_editions>, "/letters/page/", "/digitaleditions/page/"), REPLACE(STR(?from__id), "^.*\\\\/(.+)", "$1")) AS ?from__dataProviderUrl)
-    	# (CONCAT("/letters/page/", REPLACE(STR(?from__id), "^.*\\\\/(.+)", "$1")) AS ?from__dataProviderUrl)
-    WHERE {
-	    ?id ^:was_sent_from ?from__id .
-    	?from__id skos:prefLabel ?from__prefLabel ;
-        :digital_edition ?edition .
-      OPTIONAL { ?from__id :has_time-span/crm:P82a_begin_of_the_begin ?_time }
-    } ORDER BY COALESCE(year(?_time), 9999)
-  } 
-  UNION
-  {
-    ?id ^:referenced_place ?mentioningletter__id .
-          ?mentioningletter__id a :Letter ;
-          skos:prefLabel ?mentioningletter__prefLabel ;
-          :digital_edition ?edition .
-    BIND(CONCAT(IF(?edition = <http://ldf.fi/schema/coco/not_in_editions>, "/letters/page/", "/digitaleditions/page/"), REPLACE(STR(?mentioningletter__id), "^.*\\\\/(.+)", "$1")) AS ?mentioningletter__dataProviderUrl)
-    # BIND(CONCAT("/letters/page/", REPLACE(STR(?mentioningletter__id), "^.*\\\\/(.+)", "$1")) AS ?mentioningletter__dataProviderUrl)
-  }
-  UNION
-  {
-    SELECT DISTINCT ?id ?related__id
-    (CONCAT(?_label, ' (', STR(COUNT(DISTINCT ?_sent)), ')') AS ?related__prefLabel)
-    (CONCAT("/people/page/", REPLACE(STR(?related__id), "^.*\\\\/(.+)", "$1")) AS ?related__dataProviderUrl)
-    WHERE {
-      ?id ^:was_sent_from ?_sent . ?_sent portal:sender ?related__id .
-      ?related__id skos:prefLabel ?_label .
-    }
+    ?minute__id linguistics:referenceToLocation/:refers_to ?id ;
+                skos:prefLabel ?minute__prefLabel .
     
-    GROUP BY ?id ?related__id ?_label
-    ORDER BY DESC(COUNT(DISTINCT ?_sent)) ?_label
-  }
+    BIND(CONCAT("/minutes/page/", REPLACE(STR(?minute__id), "^.*\\\\/(.+)", "$1")) AS ?minute__dataProviderUrl)
+  } 
   UNION
   {
     ?born__id crm:P98i_was_born/crm:P7_took_place_at ?id ;
       skos:prefLabel ?born__prefLabel .
     BIND(CONCAT("/people/page/", REPLACE(STR(?born__id), "^.*\\\\/(.+)", "$1")) AS ?born__dataProviderUrl)
   }
-  UNION{
+  UNION
+  {
     ?deceased__id crm:P100i_died_in/crm:P7_took_place_at ?id ;
       skos:prefLabel ?deceased__prefLabel .
     BIND(CONCAT("/people/page/", REPLACE(STR(?deceased__id), "^.*\\\\/(.+)", "$1")) AS ?deceased__dataProviderUrl)

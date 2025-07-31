@@ -45,30 +45,10 @@
                         "tabPath": "minutes-and-references",
                         "tabIcon": "MailOutline",
                         "fetchResultsWhenMounted": true,
-                        "sparqlQuery": "placeLettersInstancePageQuery",
+                        "sparqlQuery": "placeLinksInstancePageQuery",
                         "properties": [
                             {
-                                "id": "from",
-                                "valueType": "object",
-                                "makeLink": true,
-                                "externalLink": false,
-                                "sortValues": false,
-                                "numberedList": true,
-                                "onlyOnInstancePage": true,
-                                "expandedOnInstancePage": true
-                            },
-                            {
-                                "id": "mentioningletter",
-                                "valueType": "object",
-                                "makeLink": true,
-                                "externalLink": false,
-                                "sortValues": false,
-                                "numberedList": true,
-                                "onlyOnInstancePage": true,
-                                "expandedOnInstancePage": true
-                            },
-                            {
-                                "id": "related",
+                                "id": "minute",
                                 "valueType": "object",
                                 "makeLink": true,
                                 "externalLink": false,

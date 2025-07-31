@@ -985,6 +985,12 @@ export default {
             Miscellaneous references extracted from the minute contents. 
           `
         },
+        content: {
+          label: 'Content',
+          description: `
+            Content of the minute. 
+          `
+        }
       }
     },
     references: {
@@ -1163,10 +1169,10 @@ export default {
             The type of the specific place(s) associated with the event.
           `
         },
-        from: {
-          label: 'Sent letters',
+        minute: {
+          label: 'Minutes',
           description: `
-          Letters sent from this place.
+          Minutes refering to this place.
           `
         },
         to: {

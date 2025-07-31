@@ -401,6 +401,7 @@
             "facetType": "list",
             "filterType": "uriFilter",
             "predicate": "crm:P98i_was_born/crm:P7_took_place_at",
+            "facetLabelFilter": "FILTER(LANG(?prefLabel_) = 'en')",
             "searchField": true,
             "sortBy": "instanceCount",
             "sortDirection": "desc",
@@ -426,6 +427,7 @@
             "facetType": "list",
             "filterType": "uriFilter",
             "predicate": "crm:P100i_died_in/crm:P7_took_place_at",
+            "facetLabelFilter": "FILTER(LANG(?prefLabel_) = 'en')",
             "searchField": true,
             "sortBy": "instanceCount",
             "sortDirection": "desc",
@@ -442,6 +444,7 @@
             "sortBy": "instanceCount",
             "sortDirection": "desc",
             "sortByPredicate": "sch:nationality/skos:prefLabel",
+            "facetLabelFilter": "FILTER(LANG(?prefLabel_) = 'en')",
             "hideUnknownValue": true
         },
         "occupation": {

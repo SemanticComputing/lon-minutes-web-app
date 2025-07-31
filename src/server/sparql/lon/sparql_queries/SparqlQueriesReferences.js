@@ -11,7 +11,7 @@ export const referencePropertiesInstancePage = `
   UNION
   { 
     VALUES (?cls ?perspective) { 
-      (:ReferencedPerson "/actors/page/") 
+      (:ReferencedPerson "/people/page/")
       (:ReferencedLocation "/places/page/")
       (:ReferencedDate "/times/page/") }
     ?id :refers_to ?referenced__id ; 
