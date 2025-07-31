@@ -52,7 +52,7 @@
         "paginationToolbarHeight": 37,
         "tableFontSize": "0.8rem",
         "topBar": {
-            "logoImage": "logos/CoCo_brandmark_black.png",
+            "logoImage": "logos/Emblem_of_the_League_of_Nations_1939.png",
             "logoImageHeight": 64,
             "logoImageReducedHeight": 44,
             "logoTextTransform": "none",
@@ -78,7 +78,7 @@
             ]
         },
         "mainPage": {
-            "bannerImage": "main_page/simberg_banner.png",
+            "bannerImage": "main_page/lon_banner3.png",
             "bannerBackround": "linear-gradient( rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45) ), url(<BANNER_IMAGE_URL)",
             "bannerMobileHeight": 150,
             "bannerReducedHeight": 200,

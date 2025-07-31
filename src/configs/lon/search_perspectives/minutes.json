@@ -9,7 +9,7 @@
     "baseURI": "http://ldf.fi/lon",
     "URITemplate": "<BASE_URI>/minutes/<LOCAL_ID>",
     "facetClass": ":Minute",
-    "frontPageImage": "main_page/minutes_kirjesampo.jpg",
+    "frontPageImage": "main_page/minutes_lon.jpg",
     "searchMode": "faceted-search",
     "enableDynamicLanguageChange": true,
     "defaultActiveFacets": [

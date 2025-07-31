@@ -10,7 +10,7 @@
     "URITemplate": "<BASE_URI>/actors/<LOCAL_ID>",
     "facetClass": "crm:E21_Person",
     "defaultConstraint": "FILTER EXISTS { [] :refers_to <SUBJECT> }",
-    "frontPageImage": "main_page/people_kirjesampo.jpg",
+    "frontPageImage": "main_page/people_lon2.jpg",
     "searchMode": "faceted-search",
     "enableDynamicLanguageChange": true,
     "defaultActiveFacets": [
