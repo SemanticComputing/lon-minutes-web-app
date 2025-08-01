@@ -75,12 +75,6 @@ export const personPropertiesInstancePage = `
   }
   UNION
   {
-    ?reference__id :refers_to ?id ;
-                   skos:prefLabel ?reference__prefLabel .
-    BIND(CONCAT("/references/page/", REPLACE(STR(?reference__id), "^.*\\\\/(.+)", "$1")) AS ?reference__dataProviderUrl)
-  }
-  UNION
-  {
     ?id crm:P98i_was_born/crm:P4_has_time-span/skos:prefLabel ?birthDate
   }
   UNION
@@ -137,6 +131,12 @@ WHERE {
   {
     ?id skos:prefLabel ?label__id .
     BIND (?label__id as ?label__prefLabel)
+  }
+  UNION
+  {
+    ?reference__id :refers_to ?id ;
+    skos:prefLabel ?reference__prefLabel .
+    BIND(CONCAT("/references/page/", REPLACE(STR(?reference__id), "^.*\\\\/(.+)", "$1")) AS ?reference__dataProviderUrl)
   }
   UNION
   {

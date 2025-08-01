@@ -111,13 +111,13 @@ GROUP BY ?_from__label ?_to__label ?type ?year
 ORDER BY DESC(?count)
 `
 
-export const lettersByYearQuery = `
-SELECT DISTINCT ?category (COUNT(DISTINCT ?letter) AS ?count)
+export const minutesByYearQuery = `
+SELECT DISTINCT ?category (COUNT(DISTINCT ?minute) AS ?count)
 WHERE {
   <FILTER>
 
-  ?letter a :Letter ;
-    :estimated_year ?category .
+  ?minute a :Minute ;
+    :year ?category .
 } 
 GROUP BY ?category ORDER BY ?category
 `

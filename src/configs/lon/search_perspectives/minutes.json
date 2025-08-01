@@ -58,25 +58,25 @@
                 }
             }
         },
-        "lettersByYear": {
+        "minutesByYear": {
             "tabID": 1,
             "component": "ApexCharts",
             "tabPath": "by-year",
             "tabIcon": "ShowChart",
-            "sparqlQuery": "archiveByYearQuery",
+            "sparqlQuery": "minutesByYearQuery",
             "facetClass": "minutes",
-            "filterTarget": "minutes",
+            "filterTarget": "minute",
             "resultMapper": "mapLineChart",
             "resultMapperConfig": {
                 "fillEmptyValues": false
             },
             "createChartData": "createSingleLineChartData",
-            "title": "Letters by year",
+            "title": "Minutes by year",
             "xaxisTitle": "Year",
             "xaxisType": "category",
             "xaxisTickAmount": 20,
-            "yaxisTitle": "Number of letters",
-            "seriesTitle": "Number of letters",
+            "yaxisTitle": "Number of minutes",
+            "seriesTitle": "Number of minutes",
             "stroke": {
                 "curve": "straight",
                 "width": 2
@@ -222,15 +222,14 @@
             "textQueryProperty": "skos:prefLabel"
         },
         "year": {
-            "containerClass": "ten",
-            "facetType": "list",
-            "filterType": "uriFilter",
+            "containerClass": "six",
+            "facetType": "integer",
+            "filterType": "integerFilter",
             "barChartButton": true,
             "predicate": ":year",
-            "sortBy": "instanceCount",
-            "sortDirection": "desc",
+            "sortDirection": "asc",
             "searchField": false,
-            "sortButton": false,
+            "sortButton": true,
             "sortByPredicate": ":year"
         },
         "referenced_person": {

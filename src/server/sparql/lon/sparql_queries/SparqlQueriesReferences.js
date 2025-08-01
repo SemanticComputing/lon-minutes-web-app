@@ -21,7 +21,7 @@ export const referencePropertiesInstancePage = `
   }
   UNION
   {
-    VALUES ?_prop { linguistics:referenceToDate linguistics:referenceToLocation linguistics:referenceToOrganization linguistics:referenceToPerson }
+    VALUES ?_prop { linguistics:referenceToDate linguistics:referenceToLocation linguistics:referenceToOrganization linguistics:referenceToPerson linguistics:referenceToMiscellaneous }
     ?minute__id ?_prop ?id ;
                 skos:prefLabel ?minute__prefLabel .
     

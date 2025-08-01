@@ -65,6 +65,16 @@
                         "sparqlQuery": "peopleMinutesInstancePageQuery",
                         "properties": [
                             {
+                                "id": "reference",
+                                "valueType": "object",
+                                "makeLink": true,
+                                "externalLink": false,
+                                "sortValues": true,
+                                "numberedList": true,
+                                "onlyOnInstancePage": true,
+                                "expandedOnInstancePage": true
+                            },
+                            {
                                 "id": "minute",
                                 "valueType": "object",
                                 "makeLink": true,
