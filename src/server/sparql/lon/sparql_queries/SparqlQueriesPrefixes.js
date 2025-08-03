@@ -20,9 +20,8 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
 PREFIX : <http://ldf.fi/schema/lon/> 
 PREFIX actors: <http://ldf.fi/lon/actors/> 
-PREFiX letters: <http://ldf.fi/lon/letters/>
+PREFIX letters: <http://ldf.fi/lon/letters/>
+PREFIX linguistics: <http://ldf.fi/schema/semparl/linguistics/>
 PREFIX places: <http://ldf.fi/lon/places/>
 PREFIX sources: <http://ldf.fi/lon/source/>
-
-PREFIX linguistics: <http://ldf.fi/schema/semparl/linguistics/>
 `

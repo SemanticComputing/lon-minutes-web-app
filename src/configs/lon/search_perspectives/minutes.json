@@ -89,12 +89,12 @@
             "tabIcon": "AddLocation",
             "sparqlQuery": "archivePlacesQuery",
             "facetClass": "minutes",
-            "filterTarget": "minutes",
+            "filterTarget": "minute",
             "resultMapper": "mapPlaces",
             "instanceConfig": {
                 "propertiesQueryBlock": "placePropertiesInfoWindow",
                 "relatedInstances": "peopleRelatedTo",
-                "createPopUpContent": "createPopUpContentLetterSampo"
+                "createPopUpContent": "createPopUpContentLoN"
             }
         },
         "csvActors": {

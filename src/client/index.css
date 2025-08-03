@@ -137,3 +137,23 @@ a, a:visited, a:hover, a:active {
     height: 18px !important;
     padding-top: 0px !important;
 }
+
+.referenced_location {
+    background-color: #27ae6060;
+}
+
+.referenced_organization {
+    background-color: #3498db60;
+}
+
+.referenced_miscellaneous {
+    background-color: #95a5a660;
+}
+
+.referenced_person {
+    background-color: #f39c1260;
+}
+
+.referenced_date {
+    background-color: #8e44ad60;
+}

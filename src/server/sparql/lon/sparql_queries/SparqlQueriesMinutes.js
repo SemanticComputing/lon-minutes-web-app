@@ -16,7 +16,10 @@ UNION
 }
 UNION
 {
-  ?id :html ?content
+  SELECT DISTINCT ?id (CONCAT('<p>', ?_content, '</p>') AS ?content) 
+  WHERE {
+    ?id :html ?_content
+  }
 }
 `
 
@@ -33,7 +36,10 @@ UNION
 }
 UNION
 {
-  ?id :html ?content
+  SELECT DISTINCT ?id (CONCAT('<p>', ?_content, '</p>') AS ?content) 
+  WHERE {
+    ?id :html ?_content
+  }
 }
 UNION
 {
@@ -135,16 +141,14 @@ GROUP BY ?year
 ORDER BY ?year
 `
 
-export const sendingPlacesMapQuery = `
-SELECT DISTINCT ?id ?lat ?long 
-(COUNT(DISTINCT ?letter) AS ?instanceCount)
+export const archivePlacesQuery = `
+SELECT DISTINCT ?id ?lat ?long (COUNT(DISTINCT ?minute) AS ?instanceCount)
 WHERE {
   <FILTER>
-  
-  ?letter :was_sent_from|:was_sent_to ?id .
-  ?id a crm:E53_Place ; geo:lat ?lat ; geo:long ?long .
-
-} GROUP BY ?id ?lat ?long
+  ?minute linguistics:referenceToLocation/:refers_to ?id .
+  ?id geo:lat ?lat ; geo:long ?long .
+} 
+GROUP BY ?id ?lat ?long
 `
 
 export const placePropertiesInfoWindow = `
@@ -156,29 +160,21 @@ export const placePropertiesInfoWindow = `
 `
 
 export const peopleRelatedTo = `
-{ 
-  SELECT DISTINCT ?id ?referenced_person__id
-  (CONCAT(?_plabel, ' (', STR(COUNT(DISTINCT ?sent_letter)), '+', STR(COUNT(DISTINCT ?received_letter)), ')') AS ?referenced_person__prefLabel) 
-  (CONCAT("/actors/page/", REPLACE(STR(?referenced_person__id), "^.*\\\\/(.+)", "$1")) AS ?referenced_person__dataProviderUrl)
+{
+  SELECT DISTINCT ?id ?related__id
+  (CONCAT(?_plabel, ' (', STR(COUNT(DISTINCT ?sent_letter)), ')') AS ?related__prefLabel) 
+  (CONCAT("/minutes/page/", REPLACE(STR(?related__id), "^.*\\\\/(.+)", "$1")) AS ?related__dataProviderUrl)
   WHERE {
 
       BIND (<ID> as ?id)
-      <FILTER>
-	    
-      { 
-        ?letter_id :was_sent_from ?id ; portal:sender ?referenced_person__id .
-        BIND (?letter_id AS ?sent_letter)
-      }
-      UNION
-      { 
-        ?letter_id :was_sent_to ?id ; portal:recipient ?referenced_person__id .
-        BIND (?letter_id AS ?received_letter)
-      }
-     	
-      ?referenced_person__id skos:prefLabel ?_plabel
+      # no filters
       
-    } GROUP BY ?id ?referenced_person__id ?_plabel
-    ORDER BY DESC( COUNT(DISTINCT ?sent_letter)+ COUNT(DISTINCT ?received_letter))
+      ?related__id linguistics:referenceToLocation/:refers_to ?id ;
+                             skos:prefLabel ?_plabel .
+      BIND (?related__id AS ?sent_letter)
+      
+    } GROUP BY ?id ?related__id ?_plabel
+    ORDER BY DESC(COUNT(DISTINCT ?sent_letter))
   }
 `
 

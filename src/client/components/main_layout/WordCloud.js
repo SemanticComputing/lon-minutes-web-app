@@ -2,8 +2,8 @@ import React from 'react'
 import ReactWordcloud from 'react-wordcloud'
 import makeStyles from '@mui/styles/makeStyles';
 import Paper from '@mui/material/Paper'
-import 'tippy.js/dist/tippy.css'
-import 'tippy.js/animations/scale.css'
+// import 'tippy.js/dist/tippy.css'
+// import 'tippy.js/animations/scale.css'
 
 const options = {
   rotations: 0,

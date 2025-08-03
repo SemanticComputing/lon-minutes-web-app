@@ -78,6 +78,33 @@ export const createPopUpContentLetterSampo = ({ data, resultClass }) => {
   return container
 }
 
+export const createPopUpContentLoN = ({ data, resultClass }) => {
+  if (Array.isArray(data.prefLabel)) {
+    data.prefLabel = data.prefLabel[0]
+  }
+  const container = document.createElement('div')
+  const h3 = document.createElement('h3')
+  if (has(data.prefLabel, 'dataProviderUrl')) {
+    const link = document.createElement('a')
+    link.addEventListener('click', () => history.push(data.prefLabel.dataProviderUrl))
+    link.textContent = data.prefLabel.prefLabel
+    link.style.cssText = 'cursor: pointer; text-decoration: underline'
+    h3.appendChild(link)
+  } else {
+    h3.textContent = data.prefLabel.prefLabel
+  }
+  container.appendChild(h3)
+  console.log(data)
+  console.log(resultClass)
+  if (resultClass === 'activitiesByPlace') {
+    const p = document.createElement('p')
+    p.textContent = 'Minutes:'
+    container.appendChild(p)
+    container.appendChild(createInstanceListing(data.related))
+  }
+  return container
+}
+
 export const createPopUpContentSotasurmat = ({ data, resultClass }) => {
   if (Array.isArray(data.prefLabel)) {
     data.prefLabel = data.prefLabel[0]

@@ -88,6 +88,13 @@ export const placePropertiesInstancePage = `
     BIND(?external__id AS ?external__dataProviderUrl)
   }
   UNION
+  { ?id foaf:page ?external__id .
+    ?external__id a/skos:prefLabel ?external__classlabel .
+    OPTIONAL { ?external__id skos:prefLabel ?external__label }
+    BIND(COALESCE(?external__label, ?external__classlabel, ?external__id) AS ?external__prefLabel)
+    BIND(?external__id AS ?external__dataProviderUrl)
+  }
+  UNION
   {
     ?id skos:prefLabel ?altLabel 
     FILTER (LANG(?altLabel)!='<LANG>')
@@ -115,7 +122,7 @@ export const placePropertiesInstancePage = `
   `
 
 export const placeLinksInstancePageQuery = `
-SELECT * 
+SELECT *
 WHERE {
   BIND(<ID> as ?id)
   BIND(?id as ?uri__id)
@@ -128,9 +135,13 @@ WHERE {
   }
   UNION
   {
-    ?minute__id linguistics:referenceToLocation/:refers_to ?id ;
-                skos:prefLabel ?minute__prefLabel .
+    ?reference__id :refers_to ?id ;
+        skos:prefLabel ?reference__prefLabel .
     
+    ?minute__id linguistics:referenceToLocation ?reference__id ;
+        skos:prefLabel ?minute__prefLabel .
+    
+    BIND(CONCAT("/references/page/", REPLACE(STR(?reference__id), "^.*\\\\/(.+)", "$1")) AS ?reference__dataProviderUrl)
     BIND(CONCAT("/minutes/page/", REPLACE(STR(?minute__id), "^.*\\\\/(.+)", "$1")) AS ?minute__dataProviderUrl)
   } 
   UNION

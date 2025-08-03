@@ -465,6 +465,7 @@
             "sortBy": "instanceCount",
             "sortDirection": "desc",
             "sortByPredicate": "biocrm:has_occupation/skos:prefLabel",
+            "facetLabelFilter": "FILTER(LANG(?prefLabel_) = 'en')",
             "hideUnknownValue": true
         },
         "external": {

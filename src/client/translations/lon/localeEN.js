@@ -891,7 +891,12 @@ export default {
       longDescription: `
       <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
       
-      This perspective enables you to browse the portal's material organised by organization and letter collection. You can also view information about the records creators, such as their gender distribution across the whole dataset and by organization.<br>
+      This perspective enables you to browse the minutes in the data. The text content show the color coded named entities: 
+      <a href="#" class="referenced_person">people</a>, 
+      <a href="#" class="referenced_organization">organizations</a>,
+      <a href="#" class="referenced_location">locations</a>,
+      <a href="#" class="referenced_date">times</a>, and 
+      <a href="#" class="referenced_miscellaneous">miscellaneous entities</a>.
         
         You can browse metadata using the filters or facets on the left (above the results in the mobile version).<br>
             
@@ -1175,10 +1180,10 @@ export default {
           Minutes refering to this place.
           `
         },
-        to: {
-          label: 'Place: Receiving',
+        reference: {
+          label: 'Reference',
           description: `
-          Place where the letter was received.
+            How this place is referenced in the minutes.
           `
         },
         mentioningletter: {
