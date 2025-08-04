@@ -175,9 +175,7 @@ const Main = props => {
             return null
           })}
         </Grid>
-        <div>
-           <hr />
-        </div>
+        <div></div>
         <Box
           sx={theme => ({
             marginTop: theme.spacing(1),
@@ -185,9 +183,6 @@ const Main = props => {
             justifyContent: 'center'
           })}
         >
-        <Typography variant={descriptionVariant} align='center' color='textPrimary'>
-            {intl.get('selectEditionPerpective')}
-          </Typography>
           </Box>
           <Grid
           container spacing={screenSize === 'sm' ? 2 : 1}
@@ -210,20 +205,6 @@ const Main = props => {
             return null
           })}
         </Grid>
-        <div>
-           <hr />
-        </div>
-        <Box
-          sx={theme => ({
-            marginTop: theme.spacing(1),
-            display: 'flex',
-            justifyContent: 'center'
-          })}
-        >
-        <Typography variant={descriptionVariant} align='center' color='textPrimary'>
-            {intl.get('selectInformationPerspective')}
-          </Typography>
-          </Box>
           <Grid
           container spacing={screenSize === 'sm' ? 2 : 1}
           justifyContent='center'
