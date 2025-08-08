@@ -118,14 +118,6 @@ const Footer = props => {
           }
         })}
       >
-        <Box
-          component='img'
-          src={sksLogo}
-          alt='Finnish Literature Society logo'
-          sx={{
-            height: '100%'
-          }}
-        />
       </Box>
     </Paper>
   )

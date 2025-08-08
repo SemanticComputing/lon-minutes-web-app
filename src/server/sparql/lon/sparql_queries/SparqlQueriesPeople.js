@@ -57,6 +57,12 @@ export const personPropertiesFacetResults = `
       skos:prefLabel ?image__title .
     BIND(CONCAT(REPLACE(STR(?image__id), "https*:", ""), "?width=600") as ?image__url)
   }
+  UNION
+  {
+    ?reference__id :refers_to ?id ;
+    skos:prefLabel ?reference__prefLabel .
+    BIND(CONCAT("/references/page/", REPLACE(STR(?reference__id), "^.*\\\\/(.+)", "$1")) AS ?reference__dataProviderUrl)
+  }
 `
 
 export const personPropertiesInstancePage = `

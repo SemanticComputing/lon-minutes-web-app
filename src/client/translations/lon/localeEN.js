@@ -16,18 +16,22 @@ export default {
     long: 'League of Nations',
     mobile: '',
     subheading: `
-      Finnish Nineteenth-Century Letters on the Semantic Web
+      League of Nations minutes on the Semantic Web
     `
   },
   selectEditionPerpective: 'Digital editions',
-  selectPerspective: 'Choose a perspective to search for, browse and analyze letters using metadata',
+  selectPerspective: 'Choose a perspective to search for, browse and analyze the data',
   selectInformationPerspective: 'Information about the contributors and collections',
   mainPageImageLicence: 'Images used under license from Wikimedia Commons',
   backendErrorText: 'One of the backend services is currently unavailable. Please try again later.',
   mainPageLinkText: "Select example searches, visualizations, and linked information",
   mainPageLinks: [
       {
-        title: 'Letters of Akseli Gallen-Kallela',
+        title: 'TODO ...',
+        link: '/actors/page/p0000000000000000869/letters'
+      },
+      {
+        title: '... TODO',
         link: '/actors/page/p0000000000000000869/letters'
       }],
   mainPageDick: 'fehkufhekj',
@@ -940,6 +944,14 @@ export default {
             </li>
             <li>
               <strong>EXPORT</strong> view the SPARQL query used to generate the results, open the table view in the YASGUI query editor, and examine the letter data in the Saha editor.
+            </li>
+            <li>
+              The text content show the color coded named entities: 
+                <a href="#" class="referenced_person">people</a>, 
+                <a href="#" class="referenced_organization">organizations</a>,
+                <a href="#" class="referenced_location">locations</a>,
+                <a href="#" class="referenced_date">times</a>, and 
+                <a href="#" class="referenced_miscellaneous">miscellaneous entities</a>.
             </li>
           </ul>
           <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph"></p>

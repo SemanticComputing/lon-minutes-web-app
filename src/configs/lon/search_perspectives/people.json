@@ -282,16 +282,6 @@
             "priority": 5
         },
         {
-            "id": "reference",
-            "valueType": "object",
-            "makeLink": true,
-            "externalLink": false,
-            "sortValues": true,
-            "numberedList": false,
-            "onlyOnInstancePage": false,
-            "expandedOnInstancePage": true
-        },
-        {
             "id": "nationality",
             "valueType": "object",
             "makeLink": true,
@@ -347,6 +337,16 @@
         },
         {
             "id": "deathPlace",
+            "valueType": "object",
+            "makeLink": true,
+            "externalLink": false,
+            "sortValues": true,
+            "numberedList": false,
+            "onlyOnInstancePage": false,
+            "expandedOnInstancePage": true
+        },
+        {
+            "id": "reference",
             "valueType": "object",
             "makeLink": true,
             "externalLink": false,
@@ -471,11 +471,11 @@
         "external": {
             "containerClass": "six",
             "facetType": "list",
-            "predicate": "(owl:sameAs|foaf:page)/a",
+            "predicate": "foaf:page/a",
             "filterType": "uriFilter",
             "sortBy": "instanceCount",
             "sortDirection": "desc",
-            "sortByPredicate": "(owl:sameAs|foaf:page)/a/skos:prefLabel",
+            "sortByPredicate": "foaf:page/a/skos:prefLabel",
             "hideUnknownValue": true
         },
         "birthDate": {

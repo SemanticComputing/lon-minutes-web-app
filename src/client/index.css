@@ -139,21 +139,29 @@ a, a:visited, a:hover, a:active {
 }
 
 .referenced_location {
-    background-color: #27ae6060;
+    background-color: #27ae5f40;
+}
+
+.identified_location {
+    background-color: #27ae5fb0;
 }
 
 .referenced_organization {
-    background-color: #3498db60;
+    background-color: #3498db40;
 }
 
 .referenced_miscellaneous {
-    background-color: #95a5a660;
+    background-color: #95a5a640;
 }
 
 .referenced_person {
-    background-color: #f39c1260;
+    background-color: #f39c1240;
+}
+
+.identified_person {
+    background-color: #f39c12b0;
 }
 
 .referenced_date {
-    background-color: #8e44ad60;
+    background-color: #8e44ad40;
 }

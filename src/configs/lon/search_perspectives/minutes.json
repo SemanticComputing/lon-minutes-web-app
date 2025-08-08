@@ -143,6 +143,17 @@
             "minWidth": 100
         },
         {
+            "id": "content",
+            "valueType": "string",
+            "makeLink": false,
+            "externalLink": false,
+            "sortValues": true,
+            "numberedList": false,
+            "renderAsHTML": true,
+            "HTMLParserTask": "createReactRouterLinks",
+            "minWidth": 100
+        },
+        {
             "id": "referenced_person",
             "valueType": "object",
             "makeLink": true,
@@ -191,17 +202,6 @@
             "numberedList": true,
             "onlyOnInstancePage": true,
             "expandedOnInstancePage": true
-        },
-        {
-            "id": "content",
-            "valueType": "string",
-            "makeLink": false,
-            "externalLink": false,
-            "sortValues": true,
-            "numberedList": false,
-            "renderAsHTML": true,
-            "HTMLParserTask": "createReactRouterLinks",
-            "minWidth": 100
         },
         {
             "id": "uri",
