@@ -135,6 +135,17 @@ WHERE {
   }
   UNION
   {
+    SELECT DISTINCT ?id (CONCAT('<div>', ?_content, '</div>') AS ?sentence) 
+      WHERE {
+        VALUES ?_prop { linguistics:referenceToDate linguistics:referenceToLocation linguistics:referenceToOrganization linguistics:referenceToPerson linguistics:referenceToMiscellaneous }
+        ?reference__id :refers_to ?id .
+        [] ?_prop ?reference__id ;
+            a :Sentence ;
+            :html ?_content
+    }
+  }
+  UNION
+  {
     ?reference__id :refers_to ?id ;
         skos:prefLabel ?reference__prefLabel .
     

@@ -254,7 +254,8 @@
             "sortDirection": "desc",
             "sortButton": true,
             "barChartButton": true,
-            "sortByPredicate": "linguistics:referenceToLocation/:refers_to/skos:prefLabel"
+            "sortByPredicate": "linguistics:referenceToLocation/:refers_to/skos:prefLabel",
+            "facetLabelFilter": "FILTER(LANG(?prefLabel_) = 'en')"
         },
         "referenced_organization": {
             "containerClass": "seven",

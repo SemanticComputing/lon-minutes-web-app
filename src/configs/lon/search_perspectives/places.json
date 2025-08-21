@@ -58,6 +58,20 @@
                                 "expandedOnInstancePage": true
                             },
                             {
+                                "id": "sentence",
+                                "valueType": "string",
+                                "makeLink": false,
+                                "externalLink": false,
+                                "sortValues": true,
+                                "numberedList": true,
+                                "showSource": false,
+                                "sourceExternalLink": false,
+                                "renderAsHTML": true,
+                                "HTMLParserTask": "createReactRouterLinks",
+                                "minWidth": 90,
+                                "expandedOnInstancePage": true
+                            },
+                            {
                                 "id": "reference",
                                 "valueType": "object",
                                 "makeLink": true,
@@ -67,6 +81,7 @@
                                 "onlyOnInstancePage": true,
                                 "expandedOnInstancePage": true
                             },
+                            
                             {
                                 "id": "born",
                                 "valueType": "object",

@@ -140,9 +140,13 @@ WHERE {
   }
   UNION
   {
-    ?reference__id :refers_to ?id ;
-    skos:prefLabel ?reference__prefLabel .
-    BIND(CONCAT("/references/page/", REPLACE(STR(?reference__id), "^.*\\\\/(.+)", "$1")) AS ?reference__dataProviderUrl)
+    SELECT DISTINCT ?id (CONCAT('<p>', ?_sentence, '</p>') AS ?sentence) WHERE {
+    VALUES ?_prop { linguistics:referenceToDate linguistics:referenceToLocation linguistics:referenceToOrganization linguistics:referenceToPerson linguistics:referenceToMiscellaneous }
+    ?reference__id :refers_to ?id .
+    [] ?_prop ?reference__id ;
+          a :Sentence ;
+          :html ?_sentence
+    }
   }
   UNION
   {

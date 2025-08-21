@@ -30,6 +30,16 @@ export const referencePropertiesInstancePage = `
     ?_prop skos:altLabel ?type .
   }
   UNION
+  {
+    SELECT DISTINCT ?id (CONCAT('<div>', ?_content, '</div>') AS ?sentence) 
+    WHERE {
+      VALUES ?_prop { linguistics:referenceToDate linguistics:referenceToLocation linguistics:referenceToOrganization linguistics:referenceToPerson linguistics:referenceToMiscellaneous }
+      [] ?_prop ?id ;
+        a :Sentence ;
+        :html ?_content
+    }
+  }
+  UNION
   { 
     SELECT DISTINCT ?id 
     	?related__id 

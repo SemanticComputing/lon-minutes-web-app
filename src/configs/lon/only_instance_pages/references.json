@@ -66,6 +66,17 @@
       "sortValues": false,
       "numberedList": true,
       "expandedOnInstancePage": true
+    },
+    {
+      "id": "sentence",
+      "valueType": "string",
+      "makeLink": false,
+      "externalLink": false,
+      "sortValues": false,
+      "numberedList": true,
+      "renderAsHTML": true,
+      "HTMLParserTask": "createReactRouterLinks",
+      "expandedOnInstancePage": true
     }
   ]
 }

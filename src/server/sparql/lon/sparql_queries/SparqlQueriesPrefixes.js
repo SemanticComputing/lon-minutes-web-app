@@ -23,5 +23,6 @@ PREFIX actors: <http://ldf.fi/lon/actors/>
 PREFIX letters: <http://ldf.fi/lon/letters/>
 PREFIX linguistics: <http://ldf.fi/schema/semparl/linguistics/>
 PREFIX places: <http://ldf.fi/lon/places/>
+PREFIX sentences: <http://ldf.fi/lon/sentences/>
 PREFIX sources: <http://ldf.fi/lon/source/>
 `
