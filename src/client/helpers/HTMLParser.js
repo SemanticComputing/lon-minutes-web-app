@@ -12,6 +12,7 @@ export default class HTMLParser {
   }
 
   parseHTML (html) {
+    console.log(html)
     let transform
     let preprocessNodes
     switch (this.props.HTMLParserTask) {
@@ -26,7 +27,8 @@ export default class HTMLParser {
       default:
         transform = null
     }
-    return ReactHtmlParser(html, { transform, preprocessNodes })
+    const result = ReactHtmlParser(html, { transform, preprocessNodes })
+    return result.filter((ob) => ob != ",") // ReactHtmlParser(html, { transform, preprocessNodes })
   }
 
   preprocessNodes (nodes) {
