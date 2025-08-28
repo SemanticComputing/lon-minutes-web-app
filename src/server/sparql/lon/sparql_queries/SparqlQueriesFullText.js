@@ -5,7 +5,7 @@ VALUES (?type__id ?type__label ?pagetype ?value_prop)
   #(crm:E21_Person "Person" "/actors" :out_degree)
   #(crm:E74_Group "Group" "/actors" :out_degree)
   #(:Family "Family" "/actors" :out_degree)
-  (crm:E53_Place "Place" "/places" :number_of_events)
+  (crm:E53_Place "Place" "/places" :number_of_references)
   (:Fonds "Fonds" "/fonds" :number_of_letters)
 }
 

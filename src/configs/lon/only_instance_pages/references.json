@@ -50,6 +50,15 @@
       "expandedOnInstancePage": true
     },
     {
+      "id": "altLabel",
+      "valueType": "string",
+      "makeLink": false,
+      "externalLink": true,
+      "sortValues": true,
+      "numberedList": true,
+      "expandedOnInstancePage": true
+    },
+    {
       "id": "type",
       "valueType": "string",
       "makeLink": false,

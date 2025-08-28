@@ -47,7 +47,7 @@ export const occupationPropertiesInstancePage = `
     ?narrower__id skos:broader ?id ;
       skos:prefLabel ?_label .
     FILTER (?narrower__id != ?id)
-      OPTIONAL { ?narrower__id :number_of_events ?_num }
+      OPTIONAL { ?narrower__id :number_of_references ?_num }
     } ORDER BY DESC(COALESCE(?_num)) ?_label 
   }
   UNION

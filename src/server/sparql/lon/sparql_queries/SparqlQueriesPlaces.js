@@ -28,7 +28,7 @@ export const placePropertiesFacetResults = `
   }
   UNION
   {
-    ?id :number_of_events ?number_of_events
+    ?id :number_of_references ?number_of_references
   }
   UNION
   {
@@ -76,7 +76,7 @@ export const placePropertiesInstancePage = `
     {
       ?narrower__id skos:broader ?id ; skos:prefLabel ?_label .
       FILTER (?narrower__id != ?id && LANG(?_label)='<LANG>')
-      OPTIONAL { ?narrower__id :number_of_events ?_num }
+      OPTIONAL { ?narrower__id :number_of_references ?_num }
     } 
     ORDER BY DESC(COALESCE(?_num)) ?_label 
   }
@@ -110,7 +110,7 @@ export const placePropertiesInstancePage = `
   }
   UNION
   {
-    ?id :number_of_events ?number_of_events
+    ?id :number_of_references ?number_of_references
   }
   UNION
   {

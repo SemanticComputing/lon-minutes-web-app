@@ -28,7 +28,9 @@
                 "propertiesQueryBlock": "placePropertiesFacetResults",
                 "pagesize": 30,
                 "paginatedResultsAlwaysExpandRows": true,
-                "paginatedResultsRowContentMaxHeight": 150
+                "paginatedResultsRowContentMaxHeight": 150,
+                "sortBy": "number_of_references",
+                "sortDirection": "desc"
             },
             "instanceConfig": {
                 "propertiesQueryBlock": "placePropertiesInstancePage",
@@ -222,7 +224,7 @@
             "numberedList": false
         },
         {
-            "id": "number_of_events",
+            "id": "number_of_references",
             "valueType": "string",
             "makeLink": false,
             "externalLink": false,
@@ -260,6 +262,9 @@
         }
     ],
     "facets": {
+        "number_of_references": {
+            "sortByPattern": "{ SELECT ?id (COALESCE(?_orderBy,0) AS ?orderBy) WHERE { VALUES ?facetClass { <FACET_CLASS> } ?id a ?facetClass . OPTIONAL { ?id :number_of_references ?_orderBy }} }"
+        },
         "prefLabel": {
             "containerClass": "one",
             "facetType": "text",

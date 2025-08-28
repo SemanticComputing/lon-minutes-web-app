@@ -9,6 +9,10 @@ export const referencePropertiesInstancePage = `
     BIND (?prefLabel__id as ?prefLabel__prefLabel)
   }
   UNION
+  {
+    ?id skos:altLabel ?altLabel 
+  }
+  UNION
   { 
     VALUES (?cls ?perspective) { 
       (:ReferencedPerson "/people/page/")
@@ -64,7 +68,7 @@ export const referencePropertiesInstancePage = `
     ?narrower__id skos:broader ?id ;
       skos:prefLabel ?_label .
     FILTER (?narrower__id != ?id)
-      OPTIONAL { ?narrower__id :number_of_events ?_num }
+      OPTIONAL { ?narrower__id :number_of_references ?_num }
     } ORDER BY DESC(COALESCE(?_num)) ?_label 
   }
   UNION

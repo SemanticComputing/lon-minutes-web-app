@@ -366,6 +366,12 @@ export default {
             Organizations referred in the same minutes.
           `
         },
+        miscellaneous: {
+          label: 'Miscellaneous references',
+          description: `
+            Miscellaneous references mentioned in the same minutes.
+          `
+        },
         image: {
           label: 'Image',
           description: `
@@ -681,6 +687,12 @@ export default {
           description: `
             Content of the minute. 
           `
+        },
+        language: {
+          label: 'Language',
+          description: `
+            Language of the minute. 
+          `
         }
       }
     },
@@ -707,6 +719,9 @@ export default {
         referenced: {
           label: 'Referenced entity',
           description: 'The label of reference in the minutes'
+        },
+        altLabel: {
+          label: 'Alternative label'
         },
         type: {
           label: 'Type',
@@ -841,8 +856,8 @@ export default {
           Related actors, e.g. people or groups that have sent letters from this place.
           `
         },
-        number_of_events: {
-          label: 'Number of events',
+        number_of_references: {
+          label: 'Number of references',
           description: `
           Number of letter sendings and references related to this place. 
           A detailed list about the letters can be seen on the instance page tab "LETTERS AND ACTORS"

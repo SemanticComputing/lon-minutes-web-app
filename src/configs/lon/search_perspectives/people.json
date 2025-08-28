@@ -45,6 +45,7 @@
                 "pagesize": 30,
                 "paginatedResultsAlwaysExpandRows": true,
                 "paginatedResultsRowContentMaxHeight": 150,
+                "sortBy": "number_of_references",
                 "sortDirection": "desc"
             },
             "instanceConfig": {
@@ -120,6 +121,16 @@
                             },
                             {
                                 "id": "organization",
+                                "valueType": "object",
+                                "makeLink": true,
+                                "externalLink": false,
+                                "sortValues": false,
+                                "numberedList": true,
+                                "onlyOnInstancePage": true,
+                                "expandedOnInstancePage": true
+                            },
+                            {
+                                "id": "miscellaneous",
                                 "valueType": "object",
                                 "makeLink": true,
                                 "externalLink": false,
@@ -272,6 +283,7 @@
             "externalLink": false,
             "sortValues": true,
             "numberedList": false,
+            "minWidth": 200,
             "expandedOnInstancePage": true
         },
         {
@@ -347,6 +359,7 @@
             "sortValues": true,
             "numberedList": false,
             "onlyOnInstancePage": false,
+            "minWidth": 150,
             "expandedOnInstancePage": true
         },
         {
@@ -357,6 +370,7 @@
             "sortValues": true,
             "numberedList": false,
             "onlyOnInstancePage": false,
+            "minWidth": 150,
             "expandedOnInstancePage": true
         },
         {
@@ -390,6 +404,9 @@
         }
     ],
     "facets": {
+        "number_of_references": {
+            "sortByPattern": "{ SELECT ?id (COALESCE(?_orderBy,0) AS ?orderBy) WHERE { VALUES ?facetClass { <FACET_CLASS> } ?id a ?facetClass . OPTIONAL { ?id :number_of_references ?_orderBy }} }"
+        },
         "prefLabel": {
             "containerClass": "one",
             "facetType": "text",

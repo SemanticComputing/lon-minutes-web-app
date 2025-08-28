@@ -232,6 +232,19 @@
             "sortButton": true,
             "sortByPredicate": ":year"
         },
+        "language": {
+            "containerClass": "four",
+            "facetType": "list",
+            "filterType": "uriFilter",
+            "predicate": "dct:language",
+            "searchField": true,
+            "sortBy": "instanceCount",
+            "sortDirection": "desc",
+            "sortButton": true,
+            "barChartButton": true,
+            "sortByPredicate": "dct:language/skos:prefLabel",
+            "facetLabelFilter": "FILTER(LANG(?prefLabel_) = 'en')"
+        },
         "referenced_person": {
             "containerClass": "seven",
             "facetType": "list",

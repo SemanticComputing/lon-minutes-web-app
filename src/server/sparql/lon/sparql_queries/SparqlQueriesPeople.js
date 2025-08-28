@@ -187,6 +187,17 @@ WHERE {
       ?organization__id skos:prefLabel ?_label .
     } GROUP BY ?id ?organization__id ?_label ORDER BY DESC (COUNT(?_minute))
   }
+  UNION
+  {
+    SELECT DISTINCT ?id ?miscellaneous__id 
+    (CONCAT(?_label, ' (', STR(COUNT(DISTINCT ?_minute)), ')') AS ?miscellaneous__prefLabel)
+    (CONCAT("/references/page/", REPLACE(STR(?miscellaneous__id), "^.*\\\\/(.+)", "$1")) AS ?miscellaneous__dataProviderUrl)
+    WHERE {
+      ?_minute linguistics:referenceToPerson/:refers_to ?id;
+      linguistics:referenceToMiscellaneous ?miscellaneous__id .
+      ?miscellaneous__id skos:prefLabel ?_label .
+    } GROUP BY ?id ?miscellaneous__id ?_label ORDER BY DESC (COUNT(?_minute))
+  }
 }
 `
 
