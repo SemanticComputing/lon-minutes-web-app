@@ -166,7 +166,7 @@
                         }
                     },
                     "instancePageExport": {
-                        "tabID": 3,
+                        "tabID": 4,
                         "component": "Export",
                         "tabPath": "export",
                         "tabIcon": "CloudDownload",
@@ -198,8 +198,51 @@
                 "fillEmptyValues": true
             }
         },
-        "placesActors": {
+        "actorTops": {
             "tabID": 2,
+            "component": "ApexCharts",
+            "tabPath": "top-references",
+            "tabIcon": "Tune",
+            "title": "Top {} Correspondents",
+            "height": "100%",
+            "facetClass": "people",
+            "filterTarget": "id",
+            "sparqlQuery": "topCorrespondenceFacetPageQuery",
+            "resultMapper": "createCorrespondenceChartData",
+            "resultMapperConfig": {
+                "types": ["reference"],
+                "numberTopResults": 25,
+                "lastLabel": null
+            },
+            "createChartData": "createTopTimelineChartData",
+            "tooltip": { "x": { "format": "yyyy" } },
+            "fill": { "opacity": [0.7, 0.5] },
+            "markers": {
+                "strokeColors": "#777",
+                "strokeWidth": 1
+            },
+            "dataLabels": {
+                "enabled": false
+            },
+            "plotOptions": {
+                "bubble": {
+                    "zScaling": true,
+                    "minBubbleRadius": 2,
+                    "maxBubbleRadius": 20
+                }
+            },
+            "legend": { "position": "bottom" },
+            "grid": {
+                "row": {
+                    "colors": ["#d5d5d5", "transparent"], "opacity": 0.5
+                },
+                "column": { "colors": ["#a8a8a8", "transparent"] },
+                "xaxis": { "lines": { "show": true } },
+                "yaxis": { "lines": { "show": true } }
+            }
+        },
+        "placesActors": {
+            "tabID": 3,
             "component": "LeafletMap",
             "tabPath": "map",
             "tabIcon": "AddLocation",
@@ -214,7 +257,7 @@
             }
         },
         "peopleMigrations": {
-            "tabID": 3,
+            "tabID": 4,
             "component": "Deck",
             "tabPath": "migrations",
             "tabIcon": "Redo",
@@ -239,7 +282,7 @@
             "filterTarget": "id"
         },
         "csvPlaces": {
-            "tabID": 4,
+            "tabID": 5,
             "component": "ExportCSV",
             "tabPath": "csv",
             "tabIcon": "CloudDownload",
@@ -249,7 +292,7 @@
             "filterTarget": "id"
         },
         "export": {
-            "tabID": 5,
+            "tabID": 6,
             "component": "Export",
             "tabPath": "sparql",
             "tabIcon": "ArrowForward",
@@ -257,7 +300,7 @@
             "facetClass": "places"
         },
         "share": {
-            "tabID": 6,
+            "tabID": 7,
             "component": "ExportLink",
             "tabPath": "share",
             "tabIcon": "IosShare",

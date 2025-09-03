@@ -88,7 +88,7 @@ export default {
     'letter-network': 'network of letters',
     'social-signatures': 'social signatures',
     'top-correspondences': 'top correspondences',
-    'top-correspondents': 'top correspondents',
+    'top-references': 'top references',
     lifetimes: "Lifetimes",
     csv: 'csv',
     metadata: 'source data',

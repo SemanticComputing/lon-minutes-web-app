@@ -224,6 +224,31 @@ WHERE {
 } GROUPBY ?category ORDER BY ?category
 `
 
+export const topCorrespondenceFacetPageQuery = `
+SELECT DISTINCT ?id (COUNT(?minute) AS ?count) ?reference__label ("reference" AS ?type) ?year (CONCAT(STR(?year), '-01-01') AS ?date) WHERE {
+  <FILTER>
+
+  {SELECT DISTINCT ?id (REPLACE(STR(?_label), '^(.+) [0-9()–]+?$', '$1') AS ?reference__label) WHERE {
+      <FILTER>
+
+      ?minute a :Minute ;
+              linguistics:referenceToPerson/:refers_to ?id ;
+              :year ?year .
+      ?id a crm:E21_Person ;
+              skos:prefLabel ?_label .
+    }
+    GROUP BY ?id ?_label
+    ORDER BY DESC(COUNT(?minute))
+    LIMIT 25
+  }
+  ?minute a :Minute ;
+              linguistics:referenceToPerson/:refers_to ?id ;
+              :year ?year .
+}
+GROUP BY ?id ?year ?reference__label
+ORDER BY ?id ?year
+`
+
 export const peopleEventPlacesQuery = `
 SELECT DISTINCT ?id ?lat ?long
   (COUNT(DISTINCT ?person) AS ?instanceCount)
