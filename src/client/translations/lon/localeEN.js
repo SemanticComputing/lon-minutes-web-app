@@ -1,9 +1,4 @@
 import { constrainedMemory } from "process";
-import fig_num_letters_actors from '../../img/data_figures/num_letters_actors.png'
-import fig_letter_metadata from '../../img/data_figures/letter_metadata.png'
-import fig_letter_dates from '../../img/data_figures/letter_dates.png'
-import fig_actor_metadata from '../../img/data_figures/actor_metadata.png'
-import fig_shared_actors from '../../img/data_figures/shared_actors.png'
 
 export default {
   languageLabel: 'English',
@@ -1029,15 +1024,9 @@ export default {
 
   <p class=\"MuiTypography-root MuiTypography-body1 MuiTypography-paragraph\">The table below shows the number of letters and actors in each data source. The five largest data sources contribute to over 97% of the letters in the League of Nations Finland data. Actors can have type Person, Family or Organization. Most of the actors are letter senders and receivers. Some actors have also had the role of \"Records creator\", and in the case of Albert Edelfelt Letters and J. V. Snellman Letters actors mentioned in the letters have a \"Referenced in letter content\" role which explains the relatively high number of actors compared to the number of letters.</p>
 
-  <img src=${fig_num_letters_actors} style=\"max-width:100%\" alt=\"Number of letters and actors per data source\">
-
   <p class=\"MuiTypography-root MuiTypography-body1 MuiTypography-paragraph\">The figure below shows the proportion of letters in each data source that have information about date, language, sending and receiving place. Almost all letters have some estimate about the time of sending but the exact sending date is rarely known. Availability to the language of the letter differs from source to source. The place of sending is known better in the smaller data sources, and the place of receiving the letter is usually not known. The sending places vary from residence of the sender to country, but is usually a village, town or city.</p>
 
-  <img src=${fig_letter_metadata} style=\"max-width:100%\" alt=\"Available metadata fields in each data source.\">
-
   <p class=\"MuiTypography-root MuiTypography-body1 MuiTypography-paragraph\">The data has estimated sending years of the letters available, but the original descriptions of the sending dates vary a lot in terms of accuracy and formats and have to be extracted using e.g. regular expressions. The sending date is rarely completely missing. The sending date descriptions that do not fit other categories or are uncertain are included in the type \"OTHER\". The five largest data sources have mostly a year or a range of years assigned to the sending date. In the smaller data sources, the exact sending date is usually known with some exceptions.</p>
-
-  <img src=${fig_letter_dates} style=\"max-width:100%\" alt=\"The accuracy of the sending dates.\">
 
   <p class=\"MuiTypography-root MuiTypography-body1 MuiTypography-paragraph\">Each letter is assigned only to one data source. Because the information about the sending dates and places are lacking, it is difficult to say if there are possible duplicate letters between the data sources. There is possibly one shared letter between Albert Edelfelt Letters and Finnish National Gallery, and 18 between Elias Lönnrot Letters and J.V. Snellman Letters, where the sender and the receiver of the letter, and the sending date and place match.</p>
 
@@ -1045,11 +1034,7 @@ export default {
 
   <p class=\"MuiTypography-root MuiTypography-body1 MuiTypography-paragraph\">In the figure below, each row shows the percentage of Person type actors who have sent and/or received  at least a certain amount of letters and have the metadata corresponding to the column available. The gender is usually known, but as the number of letters grows actors are more likely to have links to external sources and more detailed metadata.</p>
 
-  <img src=${fig_actor_metadata} style=\"max-width:100%\" alt=\"Available metadata for Person type actors with respect to the number of letters an actor has.\">
-
   <p class=\"MuiTypography-root MuiTypography-body1 MuiTypography-paragraph\">In general, data sources have a quite big proportion of the actors unique to the source. For the Finnish National Gallery and larger data sources, over 70% of the actors are unique. There are a lot of actors who are associated with one or two letters and appear only in one source, whereas people who are associated with many letters are more likely shared between data sources. Especially letters the actor has sent might have ended up in different data sources. Figure below shows how actors are shared between data sources.</p>
-
-  <img src=${fig_shared_actors} style=\"max-width:100%\" alt=\"Shared actors between data sources.\">
   `,
   exportLink: {
     viewLabel: "Tab",
