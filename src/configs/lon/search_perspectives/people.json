@@ -203,7 +203,7 @@
             "component": "ApexCharts",
             "tabPath": "top-references",
             "tabIcon": "Tune",
-            "title": "Top {} Correspondents",
+            "title": "Top {} most referenced people",
             "height": "100%",
             "facetClass": "people",
             "filterTarget": "id",

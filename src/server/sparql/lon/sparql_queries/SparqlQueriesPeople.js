@@ -225,7 +225,7 @@ WHERE {
 `
 
 export const topCorrespondenceFacetPageQuery = `
-SELECT DISTINCT ?id (COUNT(?minute) AS ?count) ?reference__label ("reference" AS ?type) ?year (CONCAT(STR(?year), '-01-01') AS ?date) WHERE {
+SELECT DISTINCT (COUNT(?minute) AS ?count) ?reference__label ("reference" AS ?type) ?year (CONCAT(STR(?year), '-07-01') AS ?date) WHERE {
   <FILTER>
 
   {SELECT DISTINCT ?id (REPLACE(STR(?_label), '^(.+) [0-9()–]+?$', '$1') AS ?reference__label) WHERE {
@@ -245,8 +245,8 @@ SELECT DISTINCT ?id (COUNT(?minute) AS ?count) ?reference__label ("reference" AS
               linguistics:referenceToPerson/:refers_to ?id ;
               :year ?year .
 }
-GROUP BY ?id ?year ?reference__label
-ORDER BY ?id ?year
+GROUP BY ?year ?reference__label
+ORDER BY ?year
 `
 
 export const peopleEventPlacesQuery = `
