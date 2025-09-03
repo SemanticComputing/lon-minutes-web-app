@@ -2,7 +2,7 @@
     "id": "people",
     "endpoint": {
         "url": "http://localhost:3030/leona/sparql",
-        "useAuth": false,
+        "useAuth": true,
         "prefixesFile": "SparqlQueriesPrefixes.js"
     },
     "sparqlQueriesFile": "SparqlQueriesPeople.js",
@@ -65,16 +65,6 @@
                         "fetchResultsWhenMounted": true,
                         "sparqlQuery": "peopleMinutesInstancePageQuery",
                         "properties": [
-                            {
-                                "id": "reference",
-                                "valueType": "object",
-                                "makeLink": true,
-                                "externalLink": false,
-                                "sortValues": true,
-                                "numberedList": true,
-                                "onlyOnInstancePage": true,
-                                "expandedOnInstancePage": true
-                            },
                             {
                                 "id": "sentence",
                                 "valueType": "string",
@@ -463,6 +453,8 @@
             "predicate": "biocrm:has_gender",
             "filterType": "uriFilter",
             "sortBy": "instanceCount",
+            "pieChartButton": true,
+            "sortButton": true,
             "sortDirection": "desc",
             "sortByPredicate": "biocrm:has_gender/skos:prefLabel",
             "hideUnknownValue": true
@@ -491,7 +483,8 @@
             "sortDirection": "desc",
             "sortButton": true,
             "barChartButton": true,
-            "sortByPredicate": "crm:P98i_was_born/crm:P7_took_place_at/skos:prefLabel"
+            "sortByPredicate": "crm:P98i_was_born/crm:P7_took_place_at/skos:prefLabel",
+            "hideUnknownValue": true
         },
         "deathDateTimespan": {
             "containerClass": "four",
@@ -517,7 +510,8 @@
             "sortDirection": "desc",
             "sortButton": true,
             "barChartButton": true,
-            "sortByPredicate": "crm:P100i_died_in/crm:P7_took_place_at/skos:prefLabel"
+            "sortByPredicate": "crm:P100i_died_in/crm:P7_took_place_at/skos:prefLabel",
+            "hideUnknownValue": true
         },
         "nationality": {
             "containerClass": "ten",
@@ -526,6 +520,8 @@
             "searchField": true,
             "filterType": "uriFilter",
             "sortBy": "instanceCount",
+            "barChartButton": true,
+            "sortButton": true,
             "sortDirection": "desc",
             "sortByPredicate": "sch:nationality/skos:prefLabel",
             "facetLabelFilter": "FILTER(LANG(?prefLabel_) = 'en')",
@@ -536,6 +532,8 @@
             "facetType": "list",
             "predicate": "biocrm:has_occupation",
             "filterType": "uriFilter",
+            "barChartButton": true,
+            "sortButton": true,
             "sortBy": "instanceCount",
             "sortDirection": "desc",
             "sortByPredicate": "biocrm:has_occupation/skos:prefLabel",

@@ -238,9 +238,10 @@
             "filterType": "uriFilter",
             "predicate": "dct:language",
             "searchField": true,
+            "pieChartButton": true,
+            "sortButton": true,
             "sortBy": "instanceCount",
             "sortDirection": "desc",
-            "sortButton": true,
             "barChartButton": true,
             "sortByPredicate": "dct:language/skos:prefLabel",
             "facetLabelFilter": "FILTER(LANG(?prefLabel_) = 'en')"

@@ -281,7 +281,9 @@
             "sortDirection": "desc",
             "searchField": true,
             "sortButton": true,
-            "sortByPredicate": ":country/skos:prefLabel"
+            "barChartButton": true,
+            "sortByPredicate": ":country/skos:prefLabel",
+            "facetLabelFilter": "FILTER(LANG(?prefLabel_) = 'en')"
         },
         "broader": {
             "containerClass": "ten",
