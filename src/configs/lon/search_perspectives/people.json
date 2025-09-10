@@ -414,6 +414,7 @@
             "sortValues": true,
             "numberedList": false,
             "onlyOnInstancePage": false,
+            "minWidth": 150,
             "expandedOnInstancePage": true
         },
         {
@@ -423,7 +424,6 @@
             "externalLink": true,
             "sortValues": true,
             "numberedList": false,
-            "onlyOnInstancePage": true,
             "expandedOnInstancePage": true
         },
         {

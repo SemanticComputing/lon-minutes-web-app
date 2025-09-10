@@ -57,6 +57,12 @@ export const personPropertiesFacetResults = `
       skos:prefLabel ?image__title .
     BIND(CONCAT(REPLACE(STR(?image__id), "https*:", ""), "?width=600") as ?image__url)
   }
+  # UNION
+  # {
+  #  ?id foaf:page ?external__id .
+  #  ?external__id a/skos:prefLabel ?external__prefLabel .
+  #  BIND (?external__id AS ?external__dataProviderUrl)
+  #}
   UNION
   {
     ?reference__id :refers_to ?id ;
