@@ -85,6 +85,7 @@ export default {
     'top-correspondences': 'top correspondences',
     'top-references': 'top references',
     lifetimes: "Lifetimes",
+    pie_chart: "Charts",
     csv: 'csv',
     metadata: 'source data',
     view: 'digital edition view',
@@ -117,6 +118,28 @@ export default {
     sender1: 'Sender 1',
     sender2: 'Sender 2',
     both: 'Both'
+  },
+  "apexCharts": {
+    "grouping": "Sort by:",
+    "property": "Ominaisuus:",
+    "chartType": "Chart type:",
+    "pie": "Pie chart",
+    "bar": "Column chart",
+    "resultClasses": {
+      "speechesByParty": "puhujan puolue",
+      "speechesByGender": "puhujan sukupuoli",
+      "speechesByLanguage": "puheen kieli",
+      "speechesByType": "puheen tyyppi",
+      "peopleByGender": "Gender",
+      "peopleByNationality": "Nationality",
+      "peopleByOccupation": "Occupation",
+      "peopleByElectoralDistrict": "edustajat vaalipiireittäin",
+      "peopleByCommittee": "edustajat valiokunnittain",
+      "peopleByParliamentarygroup": "edustajat eduskuntaryhmittäin",
+      "peopleByParty": "edustajat puolueittain",
+      "ministersByElectoralterm": "ministerit vaalikausittain",
+      "ministersByGovernment": "ministerit hallituksittain"
+    }
   },
   exportToYasgui: 'open the result table query in LD browser',
   openInLinkedDataBrowser: 'open in linked data browser',

@@ -165,8 +165,75 @@
                 }
             }
         },
-        "personAges": {
+        "peopleByProperty": {
             "tabID": 1,
+            "component": "ApexCharts",
+            "doNotRenderOnMount": true,
+            "tabPath": "pie_chart",
+            "tabIcon": "PieChart",
+            "facetClass": "people",
+            "dropdownForResultClasses": true,
+            "sortBy": null,
+            "defaultResultClass": "peopleByGender",
+            "resultClasses": {
+                "peopleByGender": {
+                    "sparqlQuery": "peopleByGenderQuery",
+                    "targetClass": "crm:E21_Person",
+                    "filterTarget": "person__id",
+                    "resultMapper": "mapPieChart",
+                    "sliceVisibilityThreshold": 0.0,
+                    "dropdownForChartTypes": "true",
+                    "chartTypes": [
+                        {
+                            "id": "bar",
+                            "createChartData": "createApexBarChartData"
+                        },
+                        {
+                            "id": "pie",
+                            "createChartData": "createApexPieChartData"
+                        }
+                    ]
+                },
+                "peopleByNationality": {
+                    "sparqlQuery": "peopleByNationalityQuery",
+                    "targetClass": "crm:E21_Person",
+                    "filterTarget": "person__id",
+                    "resultMapper": "mapPieChart",
+                    "sliceVisibilityThreshold": 0.01,
+                    "dropdownForChartTypes": "true",
+                    "chartTypes": [
+                        {
+                            "id": "bar",
+                            "createChartData": "createApexBarChartData"
+                        },
+                        {
+                            "id": "pie",
+                            "createChartData": "createApexPieChartData"
+                        }
+                    ]
+                },
+                "peopleByOccupation": {
+                    "sparqlQuery": "peopleByOccupationQuery",
+                    "targetClass": "crm:E21_Person",
+                    "filterTarget": "person__id",
+                    "resultMapper": "mapPieChart",
+                    "sliceVisibilityThreshold": 0.01,
+                    "dropdownForChartTypes": "true",
+                    "chartTypes": [
+                        {
+                            "id": "bar",
+                            "createChartData": "createApexBarChartData"
+                        },
+                        {
+                            "id": "pie",
+                            "createChartData": "createApexPieChartData"
+                        }
+                    ]
+                }
+            }
+        },
+        "personAges": {
+            "tabID": 2,
             "component": "ApexCharts",
             "createChartData": "createMultipleLineChartData",
             "stroke": {
@@ -189,7 +256,7 @@
             }
         },
         "actorTops": {
-            "tabID": 2,
+            "tabID": 3,
             "component": "ApexCharts",
             "tabPath": "top-references",
             "tabIcon": "Tune",
@@ -232,7 +299,7 @@
             }
         },
         "placesActors": {
-            "tabID": 3,
+            "tabID": 4,
             "component": "LeafletMap",
             "tabPath": "map",
             "tabIcon": "AddLocation",
@@ -247,7 +314,7 @@
             }
         },
         "peopleMigrations": {
-            "tabID": 4,
+            "tabID": 5,
             "component": "Deck",
             "tabPath": "migrations",
             "tabIcon": "Redo",
@@ -272,7 +339,7 @@
             "filterTarget": "id"
         },
         "csvPlaces": {
-            "tabID": 5,
+            "tabID": 6,
             "component": "ExportCSV",
             "tabPath": "csv",
             "tabIcon": "CloudDownload",
@@ -282,7 +349,7 @@
             "filterTarget": "id"
         },
         "export": {
-            "tabID": 6,
+            "tabID": 7,
             "component": "Export",
             "tabPath": "sparql",
             "tabIcon": "ArrowForward",
@@ -290,7 +357,7 @@
             "facetClass": "places"
         },
         "share": {
-            "tabID": 7,
+            "tabID": 8,
             "component": "ExportLink",
             "tabPath": "share",
             "tabIcon": "IosShare",
@@ -531,6 +598,7 @@
             "containerClass": "ten",
             "facetType": "list",
             "predicate": "biocrm:has_occupation",
+            "searchField": true,
             "filterType": "uriFilter",
             "barChartButton": true,
             "sortButton": true,

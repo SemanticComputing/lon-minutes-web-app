@@ -110,12 +110,14 @@ export const personPropertiesInstancePage = `
     ?id sch:nationality ?nationality__id .
     ?nationality__id skos:prefLabel ?nationality__prefLabel .
     BIND (CONCAT("/places/page/", REPLACE(STR(?nationality__id), "^.*\\\\/(.+)", "$1")) AS ?nationality__dataProviderUrl)
+    FILTER(LANG(?nationality__prefLabel) = 'en')
   } 
   UNION
   {
     ?id biocrm:has_occupation ?occupation__id .
     ?occupation__id skos:prefLabel ?occupation__prefLabel .
     BIND (CONCAT("/occupations/page/", REPLACE(STR(?occupation__id), "^.*\\\\/(.+)", "$1")) AS ?occupation__dataProviderUrl)
+    FILTER(LANG(?occupation__prefLabel) = 'en')
   }
   UNION
   {
@@ -205,6 +207,43 @@ WHERE {
     } GROUP BY ?id ?miscellaneous__id ?_label ORDER BY DESC (COUNT(?_minute))
   }
 }
+`
+
+export const peopleByGenderQuery = `
+SELECT DISTINCT ?category ?prefLabel (COUNT(DISTINCT ?person__id) AS ?instanceCount)
+WHERE {
+  ?person__id a crm:E21_Person .
+  
+  <FILTER>
+  
+  ?person__id biocrm:has_gender ?category .
+  ?category skos:prefLabel ?prefLabel .
+} GROUPBY ?category ?prefLabel ORDERBY DESC(?instanceCount)
+`
+
+export const peopleByNationalityQuery = `
+SELECT DISTINCT ?category ?prefLabel (COUNT(DISTINCT ?person__id) AS ?instanceCount)
+WHERE {
+  ?person__id a crm:E21_Person .
+  
+  <FILTER>
+  
+  ?person__id sch:nationality ?category .
+  ?category skos:prefLabel ?prefLabel .
+  FILTER (LANG(?prefLabel) = "en")
+} GROUPBY ?category ?prefLabel ORDERBY DESC(?instanceCount)
+`
+export const peopleByOccupationQuery = `
+SELECT DISTINCT ?category ?prefLabel (COUNT(DISTINCT ?person__id) AS ?instanceCount)
+WHERE {
+  ?person__id a crm:E21_Person .
+  
+  <FILTER>
+  
+  ?person__id biocrm:has_occupation ?category .
+  ?category skos:prefLabel ?prefLabel .
+  FILTER (LANG(?prefLabel) = "en")
+} GROUPBY ?category ?prefLabel ORDERBY DESC(?instanceCount)
 `
 
 export const ageQuery = `
@@ -597,7 +636,7 @@ WHERE {
   }
   OPTIONAL
   {
-    ?id bioc:has_gender/skos:prefLabel ?gender
+    ?id biocrm:has_gender/skos:prefLabel ?gender
   }
   
   ?proxy :proxy_for ?id ; a/skos:prefLabel ?type
