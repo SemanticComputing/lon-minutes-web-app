@@ -22,11 +22,11 @@ export default {
   mainPageLinkText: "Select example searches, visualizations, and linked information",
   mainPageLinks: [
       {
-        title: 'TODO ...',
+        title: 'Example TBA ',
         link: '/actors/page/p0000000000000000869/letters'
       },
       {
-        title: '... TODO',
+        title: 'Example#2 TBA',
         link: '/actors/page/p0000000000000000869/letters'
       }],
   mainPageDick: 'fehkufhekj',

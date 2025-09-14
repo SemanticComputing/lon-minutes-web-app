@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import Box from '@mui/material/Box'
 import aaltoLogo from '../../../img/logos/Aalto_SCI_EN_13_BLACK_2_cropped.png'
 import hyLogo from '../../../img/logos/university-of-helsinki-logo-transparent-black.png'
+import CDHMlogo from '../../../img/logos/Geneva_CDHM.png'
 import heldigLogo from '../../../img/logos/heldig-logo-transparent-black.png'
 import sksLogo from '../../../img/logos/sks-logo.png'
 
@@ -74,8 +75,8 @@ const Footer = props => {
       >
         <Box
           component='img'
-          src={hyLogo}
-          alt='University of Helsinki logo'
+          src={CDHMlogo}
+          alt='Geneva Centre for Digital Humanities and Multilateralism logo'
           sx={{
             height: '100%'
           }}
