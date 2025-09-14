@@ -26,12 +26,19 @@
             ],
             "zoom": 2
         },
+        "placesActorsHeatmap": {
+            "center": [
+                22.43,
+                10.37
+            ],
+            "zoom": 1
+        },
         "peopleMigrations": {
             "center": [
-                60.43,
-                20.37
+                22.43,
+                10.37
             ],
-            "zoom": 3
+            "zoom": 1
         }
     },
     "resultClasses": {
@@ -313,8 +320,19 @@
                 "createPopUpContent": "createPopUpContentLetterSampo"
             }
         },
-        "peopleMigrations": {
+        "placesActorsHeatmap": {
             "tabID": 5,
+            "tabPath": "heatmap",
+            "tabIcon": "LocalFireDepartment",
+            "component": "Deck",
+            "layerType": "heatmapLayer",
+            "sparqlQuery": "peopleEventHeatmapQuery",
+            "facetClass": "people",
+            "filterTarget": "person",
+            "resultMapper": "mapPlaces"
+        },
+        "peopleMigrations": {
+            "tabID": 6,
             "component": "Deck",
             "tabPath": "migrations",
             "tabIcon": "Redo",
@@ -339,7 +357,7 @@
             "filterTarget": "id"
         },
         "csvPlaces": {
-            "tabID": 6,
+            "tabID": 7,
             "component": "ExportCSV",
             "tabPath": "csv",
             "tabIcon": "CloudDownload",
@@ -349,7 +367,7 @@
             "filterTarget": "id"
         },
         "export": {
-            "tabID": 7,
+            "tabID": 8,
             "component": "Export",
             "tabPath": "sparql",
             "tabIcon": "ArrowForward",
@@ -357,7 +375,7 @@
             "facetClass": "places"
         },
         "share": {
-            "tabID": 8,
+            "tabID": 9,
             "component": "ExportLink",
             "tabPath": "share",
             "tabIcon": "IosShare",

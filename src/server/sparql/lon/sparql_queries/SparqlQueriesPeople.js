@@ -311,6 +311,24 @@ WHERE {
 } GROUP BY ?id ?lat ?long
 `
 
+export const peopleEventHeatmapQuery = `
+SELECT DISTINCT ?id ?lat ?long 
+  (1 AS ?instanceCount)
+WHERE {
+  <FILTER>
+  {
+    ?person crm:P98i_was_born/crm:P7_took_place_at ?id
+  }
+  UNION
+  {
+    ?person crm:P100i_died_in/crm:P7_took_place_at ?id
+  }
+  UNION
+  { ?person crm:P74_has_current_or_former_residence ?id }
+
+  ?id a crm:E53_Place ; geo:lat ?lat ; geo:long ?long .
+} GROUP BY ?id ?lat ?long
+`
 export const peopleRelatedTo = `
   OPTIONAL {
     <FILTER>
