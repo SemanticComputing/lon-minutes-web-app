@@ -37,6 +37,7 @@
                 "pagesize": 30,
                 "paginatedResultsAlwaysExpandRows": true,
                 "paginatedResultsRowContentMaxHeight": 150,
+                "sortBy": "sort_by_url",
                 "sortDirection": "desc"
             },
             "instanceConfig": {
@@ -131,7 +132,8 @@
             "externalLink": false,
             "sortValues": true,
             "numberedList": false,
-            "expandedOnInstancePage": true
+            "expandedOnInstancePage": true,
+            "minWidth": 120
         },
         {
             "id": "year",
@@ -140,7 +142,7 @@
             "externalLink": false,
             "sortValues": true,
             "numberedList": false,
-            "minWidth": 100
+            "minWidth": 70
         },
         {
             "id": "content",
@@ -214,6 +216,9 @@
         }
     ],
     "facets": {
+        "sort_by_url": {
+            "sortByPattern": "{ SELECT ?id (COALESCE(?_orderBy,0) AS ?orderBy) WHERE { VALUES ?facetClass { <FACET_CLASS> } ?id a ?facetClass . BIND (STR(?url) AS ?_orderBy) } }"
+        },
         "prefLabel": {
             "containerClass": "one",
             "facetType": "text",
