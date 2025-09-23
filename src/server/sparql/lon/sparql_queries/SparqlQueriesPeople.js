@@ -42,12 +42,14 @@ export const personPropertiesFacetResults = `
   { 
     ?id sch:nationality ?nationality__id .
     ?nationality__id skos:prefLabel ?nationality__prefLabel .
+    FILTER(LANG(?nationality__prefLabel) = 'en')
     BIND (CONCAT("/places/page/", REPLACE(STR(?nationality__id), "^.*\\\\/(.+)", "$1")) AS ?nationality__dataProviderUrl)
   } 
   UNION
   {
     ?id biocrm:has_occupation ?occupation__id .
     ?occupation__id skos:prefLabel ?occupation__prefLabel .
+    FILTER(LANG(?occupation__prefLabel) = 'en')
     BIND (CONCAT("/occupations/page/", REPLACE(STR(?occupation__id), "^.*\\\\/(.+)", "$1")) AS ?occupation__dataProviderUrl)
   }
   UNION

@@ -52,7 +52,7 @@
         "paginationToolbarHeight": 37,
         "tableFontSize": "0.8rem",
         "topBar": {
-            "logoImage": "logos/Emblem_of_the_League_of_Nations_1939.png",
+            "logoImage": "logos/LNS-header.png",
             "logoImageHeight": 64,
             "logoImageReducedHeight": 44,
             "logoTextTransform": "none",

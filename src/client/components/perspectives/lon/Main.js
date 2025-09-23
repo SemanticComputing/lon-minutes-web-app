@@ -8,6 +8,7 @@ import has from 'lodash'
 import MainCard from './MainCard'
 import { getSpacing } from '../../../helpers/helpers'
 import Button from '@mui/material/Button'
+import bannerLogo from '../../../img/logos/LNS-header.png'
 
 /**
  * A component for generating a front page for a semantic portal.
@@ -111,6 +112,24 @@ const Main = props => {
               {intl.getHTML('appTitle.long')}
             </Typography>
           </Box>
+          {/* 
+            <Box
+              component='img'
+              src={bannerLogo}
+              alt={`${intl.get('appTitle.short')} logo`}
+              sx={theme => ({
+                height: '90px',
+                [theme.breakpoints.up('md')]: {
+                  height: '150px'
+                },
+                [theme.breakpoints.up('xl')]: {
+                  height: '240px'
+                },
+                marginBottom: theme.spacing(1),
+                justifyContent: 'center'
+              })}
+              />
+            */}
           <Box
             sx={theme => ({
               marginTop: theme.spacing(1.5),

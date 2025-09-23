@@ -6,6 +6,8 @@ import aaltoLogo from '../../../img/logos/Aalto_SCI_EN_13_BLACK_2_cropped.png'
 import hyLogo from '../../../img/logos/university-of-helsinki-logo-transparent-black.png'
 import CDHMlogo from '../../../img/logos/Geneva_CDHM.png'
 import heldigLogo from '../../../img/logos/heldig-logo-transparent-black.png'
+import dariahLogo from '../../../img/logos/DARIAH-FI.png'
+import chartesLogo from '../../../img/logos/chartes.png'
 import sksLogo from '../../../img/logos/sks-logo.png'
 
 /**
@@ -61,7 +63,7 @@ const Footer = props => {
       </Box>
       <Box
         component='a'
-        href='https://www.helsinki.fi/en'
+        href='https://www.graduateinstitute.ch/cdhm'
         target='_blank'
         rel='noopener noreferrer'
         sx={theme => ({
@@ -89,7 +91,7 @@ const Footer = props => {
         rel='noopener noreferrer'
         sx={theme => ({
           width: 118,
-          height: 30,
+          height: 40,
           [theme.breakpoints.up(props.layoutConfig.reducedHeightBreakpoint)]: {
             width: 130,
             height: 33
@@ -98,8 +100,8 @@ const Footer = props => {
       >
         <Box
           component='img'
-          src={heldigLogo}
-          alt='Helsinki Centre for Digital Humanities logo'
+          src={dariahLogo}
+          alt='DARIAH FI'
           sx={{
             height: '100%'
           }}
@@ -107,18 +109,26 @@ const Footer = props => {
       </Box>
       <Box
         component='a'
-        href='https://www.finlit.fi/en/'
+        href='https://www.chartes.psl.eu/'
         target='_blank'
         rel='noopener noreferrer'
         sx={theme => ({
-          width: 118,
+          width: 250,
           height: 30,
           [theme.breakpoints.up(props.layoutConfig.reducedHeightBreakpoint)]: {
-            width: 130,
-            height: 33
+            width: 168,
+            height: 30
           }
         })}
       >
+        <Box
+          component='img'
+          src={chartesLogo}
+          alt='Geneva Centre for Digital Humanities and Multilateralism logo'
+          sx={{
+            height: '100%'
+          }}
+        />
       </Box>
     </Paper>
   )

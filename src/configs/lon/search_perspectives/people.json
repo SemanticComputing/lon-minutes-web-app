@@ -492,23 +492,13 @@
             "expandedOnInstancePage": true
         },
         {
-            "id": "reference",
-            "valueType": "object",
-            "makeLink": true,
-            "externalLink": false,
-            "sortValues": true,
-            "numberedList": false,
-            "onlyOnInstancePage": false,
-            "minWidth": 150,
-            "expandedOnInstancePage": true
-        },
-        {
             "id": "external",
             "valueType": "object",
             "makeLink": true,
             "externalLink": true,
             "sortValues": true,
             "numberedList": false,
+            "onlyOnInstancePage": true,
             "expandedOnInstancePage": true
         },
         {
