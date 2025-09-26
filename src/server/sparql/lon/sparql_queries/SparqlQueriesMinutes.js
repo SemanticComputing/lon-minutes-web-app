@@ -128,7 +128,7 @@ WHERE {
 GROUP BY ?category ORDER BY ?category
 `
 
-export const yearlyLettersFacetPageQuery = `
+export const yearlyLettersFacetPageQuery_OLD = `
 SELECT DISTINCT (STR(?year) as ?category) (count(distinct ?id) AS ?letterCount)
 WHERE {
   <FILTER>
@@ -141,7 +141,7 @@ GROUP BY ?year
 ORDER BY ?year
 `
 
-export const archivePlacesQuery = `
+export const minutePlacesQuery = `
 SELECT DISTINCT ?id ?lat ?long (COUNT(DISTINCT ?minute) AS ?instanceCount)
 WHERE {
   <FILTER>
@@ -159,7 +159,7 @@ export const placePropertiesInfoWindow = `
   BIND(CONCAT("/places/page/", REPLACE(STR(?id), "^.*\\\\/(.+)", "$1")) AS ?prefLabel__dataProviderUrl)
 `
 
-export const peopleRelatedTo = `
+export const minutesRelatedTo = `
 {
   SELECT DISTINCT ?id ?related__id
   (CONCAT(?_plabel, ' (', STR(COUNT(DISTINCT ?sent_letter)), ')') AS ?related__prefLabel) 

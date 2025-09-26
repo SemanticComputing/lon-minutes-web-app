@@ -331,7 +331,7 @@ WHERE {
   ?id a crm:E53_Place ; geo:lat ?lat ; geo:long ?long .
 } GROUP BY ?id ?lat ?long
 `
-export const peopleRelatedTo = `
+export const minutesRelatedTo = `
   OPTIONAL {
     <FILTER>
     { 

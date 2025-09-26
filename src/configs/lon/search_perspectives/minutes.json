@@ -88,13 +88,13 @@
             "component": "LeafletMap",
             "tabPath": "map",
             "tabIcon": "AddLocation",
-            "sparqlQuery": "archivePlacesQuery",
+            "sparqlQuery": "minutePlacesQuery",
             "facetClass": "minutes",
             "filterTarget": "minute",
             "resultMapper": "mapPlaces",
             "instanceConfig": {
                 "propertiesQueryBlock": "placePropertiesInfoWindow",
-                "relatedInstances": "peopleRelatedTo",
+                "relatedInstances": "minutesRelatedTo",
                 "createPopUpContent": "createPopUpContentLoN"
             }
         },

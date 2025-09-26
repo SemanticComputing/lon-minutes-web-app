@@ -316,7 +316,7 @@
             "resultMapper": "mapPlaces",
             "instanceConfig": {
                 "propertiesQueryBlock": "placePropertiesInfoWindow",
-                "relatedInstances": "peopleRelatedTo",
+                "relatedInstances": "minutesRelatedTo",
                 "createPopUpContent": "createPopUpContentLetterSampo"
             }
         },
