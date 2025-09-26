@@ -1,7 +1,7 @@
 {
   "id": "references",
   "endpoint": {
-    "url": "http://localhost:3030/leona/sparql",
+    "url": "http://ldf.fi/lon/sparql",
     "useAuth": true,
     "prefixesFile": "SparqlQueriesPrefixes.js"
   },
