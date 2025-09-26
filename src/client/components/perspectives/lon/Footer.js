@@ -3,12 +3,9 @@ import Paper from '@mui/material/Paper'
 import PropTypes from 'prop-types'
 import Box from '@mui/material/Box'
 import aaltoLogo from '../../../img/logos/Aalto_SCI_EN_13_BLACK_2_cropped.png'
-import hyLogo from '../../../img/logos/university-of-helsinki-logo-transparent-black.png'
 import CDHMlogo from '../../../img/logos/Geneva_CDHM.png'
-import heldigLogo from '../../../img/logos/heldig-logo-transparent-black.png'
 import dariahLogo from '../../../img/logos/DARIAH-FI.png'
 import chartesLogo from '../../../img/logos/chartes.png'
-import sksLogo from '../../../img/logos/sks-logo.png'
 
 /**
  * A component for creating a footer. The logos are imported inside this component.
