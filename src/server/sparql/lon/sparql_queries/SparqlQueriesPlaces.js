@@ -146,14 +146,18 @@ WHERE {
   }
   UNION
   {
-    ?reference__id :refers_to ?id ;
-        skos:prefLabel ?reference__prefLabel .
-    
-    ?minute__id linguistics:referenceToLocation ?reference__id ;
-        skos:prefLabel ?minute__prefLabel .
-    
-    BIND(CONCAT("/references/page/", REPLACE(STR(?reference__id), "^.*\\\\/(.+)", "$1")) AS ?reference__dataProviderUrl)
-    BIND(CONCAT("/minutes/page/", REPLACE(STR(?minute__id), "^.*\\\\/(.+)", "$1")) AS ?minute__dataProviderUrl)
+    SELECT DISTINCT ?id 
+      ?reference__id ?reference__prefLabel
+      (CONCAT("/references/page/", REPLACE(STR(?reference__id), "^.*\\\\/(.+)", "$1")) AS ?reference__dataProviderUrl)
+      ?minute__id ?minute__prefLabel
+      (CONCAT("/minutes/page/", REPLACE(STR(?minute__id), "^.*\\\\/(.+)", "$1")) AS ?minute__dataProviderUrl)
+    WHERE {
+        ?reference__id :refers_to ?id ;
+            skos:prefLabel ?reference__prefLabel .
+        
+        ?minute__id linguistics:referenceToLocation ?reference__id ;
+            skos:prefLabel ?minute__prefLabel .
+    } ORDER BY STR(?minute__id)
   } 
   UNION
   {
