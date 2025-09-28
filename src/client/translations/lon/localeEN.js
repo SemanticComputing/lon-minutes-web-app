@@ -781,6 +781,66 @@ export default {
         }
       }
     },
+    organizations: {
+      label: 'Organizations',
+      facetResultsType: 'organizations',
+      shortDescription: 'Organization',
+      longDescription: `
+      <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+      In this view, you will find a summary of the organizations that have provided descriptive information on correspondence         .<br>         
+      
+      In the Dataset Description document, you will find a description of the organization's collection profile and their             letter collections, written by each organization itself. It also includes information produced by                             researchers at Aalto University and the University of Helsinki on the formats in which the material was obtained and              how it was processed and transformed into linked open data.
+      </p>
+      `,
+      instancePage: {
+        label: 'Organization',
+        description: `
+        <ul class="MuiTypography-root MuiTypography-body1">
+          <li>
+            <strong>TABLE</STRONG> view includes detailed imformation about each reference resource in the database.
+          </li>
+          <li>
+            <strong>LETTERS AND ACTORS</strong> contains lists of letters and actors related to this place.
+          </li>
+          <li>
+            <strong>TIMELINE OF LETTERS</strong> shows a time series with yearly amounts of letters.
+            Notice that also the hiearchy is considered, e.g., on the page of a country all the letters sent from places within are also included. 
+          </li>
+          <li>
+            <strong>EXPORT</strong> view the SPARQL query used to generate the result table view into YASGUI query editor and examine the letter data in the Saha editor.
+          </li>
+        </ul>
+        `
+      },
+      properties: {
+        uri: {
+          label: 'URI',
+          description: 'Link to the information of the contributor as linked open data'
+        },
+        prefLabel: {
+          label: 'Label'
+        },
+        altLabel: {
+          label: 'Alternative labels'
+        },
+        minute: {
+          label: 'Minutes',
+          description: `
+            The minutes refering to this organization.
+          `
+        },
+        sentence: {
+          label: 'Sentences',
+          description: `
+            The sentences refering to this organization.
+          `
+        },
+        close_match: {
+          label: 'Similar Organizations',
+          description: 'A list of organizations having similar labels'
+        },
+      }
+    },
     places: {
       label: 'Places',
       facetResultsType: 'Places',

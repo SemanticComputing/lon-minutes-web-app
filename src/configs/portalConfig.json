@@ -10,6 +10,7 @@
         ],
         "onlyInstancePages": [
             "occupations",
+            "organizations",
             "references"
         ]
     },
@@ -112,7 +113,7 @@
         "yasguiParams": {
             "contentTypeConstruct": "text/turtle",
             "contentTypeSelect": "application/sparql-results+json",
-            "endpoint": "http://ldf.fi/lon/sparql",
+            "endpoint": "http://localhost:3030/leona/sparql",
             "requestMethod": "POST",
             "tabTitle": "Exported query"
         }
