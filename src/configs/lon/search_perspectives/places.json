@@ -2,7 +2,7 @@
     "id": "places",
     "endpoint": {
         "url": "http://ldf.fi/lon/sparql",
-        "useAuth": false,
+        "useAuth": true,
         "prefixesFile": "SparqlQueriesPrefixes.js"
     },
     "sparqlQueriesFile": "SparqlQueriesPlaces.js",
