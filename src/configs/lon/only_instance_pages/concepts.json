@@ -1,17 +1,17 @@
 {
-  "id": "organizations",
+  "id": "concepts",
   "endpoint": {
     "url": "http://ldf.fi/lon/sparql",
     "useAuth": true,
     "prefixesFile": "SparqlQueriesPrefixes.js"
   },
-  "sparqlQueriesFile": "SparqlQueriesOrganizations.js",
+  "sparqlQueriesFile": "SparqlQueriesConcepts.js",
   "baseURI": "http://ldf.fi/lon",
-  "URITemplate": "<BASE_URI>/organizations/<LOCAL_ID>",
+  "URITemplate": "<BASE_URI>/concepts/<LOCAL_ID>",
   "resultClasses": {
-    "organizations": {
+    "concepts": {
       "instanceConfig": {
-        "propertiesQueryBlock": "organizationPropertiesInstancePage",
+        "propertiesQueryBlock": "conceptPropertiesInstancePage",
         "instancePageResultClasses": {
           "instancePageTable": {
             "tabID": 0,

@@ -134,6 +134,12 @@ export const personPropertiesInstancePage = `
     ?external__id a/skos:prefLabel ?external__prefLabel .
     BIND (?external__id AS ?external__dataProviderUrl)
   }
+  UNION
+  {
+    ?id skos:closeMatch ?close_match__id .
+    ?close_match__id skos:prefLabel ?close_match__prefLabel .
+    BIND(CONCAT("/people/page/", REPLACE(STR(?close_match__id), "^.*\\\\/(.+)", "$1")) AS ?close_match__dataProviderUrl)
+  }
 `
 
 export const peopleMinutesInstancePageQuery = `

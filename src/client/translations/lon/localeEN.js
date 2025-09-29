@@ -467,16 +467,10 @@ export default {
           description: `Personal relations to other people. 
           Data retrieved from external data sources like BiographySampo, AcademySampo, Wikidata, and ULAN, and only for                   relations included in the dataset.`
         },
-        rel: {
-          label: 'Related actors',
-          description: `
-            Related actors, e.g. parents, spouses, acquaintances.
-          `
-        },
-        similar: {
+        close_match: {
           label: 'Actors with similar names',
           description: `
-            A list of actors with a similar name but not automatically grouped into one or more actors. Linking the                       letter metadata to the actors is an automatic process, so errors in actor recognition may occur.
+            A list of people with a similar name but not automatically grouped into one or more actors. Linking the metadata to the people is an automatic process, so errors in deduplication may occur.
           `
         },
         metrics: {
@@ -838,6 +832,66 @@ export default {
         close_match: {
           label: 'Similar Organizations',
           description: 'A list of organizations having similar labels'
+        }
+      }
+    },
+    concepts: {
+      label: 'Concepts',
+      facetResultsType: 'Concepts',
+      shortDescription: 'Concept',
+      longDescription: `
+      <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+      In this view, you will find a summary of the organizations that have provided descriptive information on correspondence         .<br>         
+      
+      In the Dataset Description document, you will find a description of the organization's collection profile and their             letter collections, written by each organization itself. It also includes information produced by                             researchers at Aalto University and the University of Helsinki on the formats in which the material was obtained and              how it was processed and transformed into linked open data.
+      </p>
+      `,
+      instancePage: {
+        label: 'Concept',
+        description: `
+        <ul class="MuiTypography-root MuiTypography-body1">
+          <li>
+            <strong>TABLE</STRONG> view includes detailed imformation about each reference resource in the database.
+          </li>
+          <li>
+            <strong>LETTERS AND ACTORS</strong> contains lists of letters and actors related to this place.
+          </li>
+          <li>
+            <strong>TIMELINE OF LETTERS</strong> shows a time series with yearly amounts of letters.
+            Notice that also the hiearchy is considered, e.g., on the page of a country all the letters sent from places within are also included. 
+          </li>
+          <li>
+            <strong>EXPORT</strong> view the SPARQL query used to generate the result table view into YASGUI query editor and examine the letter data in the Saha editor.
+          </li>
+        </ul>
+        `
+      },
+      properties: {
+        uri: {
+          label: 'URI',
+          description: 'Link to the information of the contributor as linked open data'
+        },
+        prefLabel: {
+          label: 'Label'
+        },
+        altLabel: {
+          label: 'Alternative labels'
+        },
+        minute: {
+          label: 'Minutes',
+          description: `
+            The minutes refering to this concept.
+          `
+        },
+        sentence: {
+          label: 'Sentences',
+          description: `
+            The sentences refering to this concept.
+          `
+        },
+        close_match: {
+          label: 'Similar concepts',
+          description: 'A list of concepts having similar labels'
         },
       }
     },

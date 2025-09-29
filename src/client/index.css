@@ -146,11 +146,11 @@ a, a:visited, a:hover, a:active {
     background-color: #27ae5fb0;
 }
 
-.referenced_organization {
+.identified_organization, .referenced_organization {
     background-color: #3498db40;
 }
 
-.referenced_miscellaneous {
+.identified_miscellaneous, .referenced_miscellaneous {
     background-color: #95a5a640;
 }
 

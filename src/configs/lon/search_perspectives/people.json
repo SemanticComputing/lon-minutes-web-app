@@ -91,7 +91,7 @@
                                 "valueType": "object",
                                 "makeLink": true,
                                 "externalLink": false,
-                                "sortValues": true,
+                                "sortValues": false,
                                 "numberedList": true,
                                 "onlyOnInstancePage": true,
                                 "expandedOnInstancePage": true
@@ -509,6 +509,15 @@
             "sortValues": true,
             "numberedList": false,
             "onlyOnInstancePage": true
+        },
+        {
+        "id": "close_match",
+        "valueType": "object",
+        "makeLink": true,
+        "externalLink": false,
+        "sortValues": false,
+        "numberedList": true,
+        "expandedOnInstancePage": true
         }
     ],
     "facets": {
