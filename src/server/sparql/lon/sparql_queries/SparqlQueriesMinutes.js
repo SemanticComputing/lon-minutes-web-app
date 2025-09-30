@@ -146,7 +146,7 @@ SELECT DISTINCT ?id ?lat ?long (COUNT(DISTINCT ?minute) AS ?instanceCount)
 WHERE {
   <FILTER>
   ?minute linguistics:referenceToLocation/:refers_to ?id .
-  ?id geo:lat ?lat ; geo:long ?long .
+  ?id geo:lat ?lat ; geo:long ?long
 } 
 GROUP BY ?id ?lat ?long
 `
@@ -157,6 +157,16 @@ export const placePropertiesInfoWindow = `
   BIND(COALESCE(?_label, "<place>") AS ?prefLabel__id)
   BIND(?prefLabel__id AS ?prefLabel__prefLabel)
   BIND(CONCAT("/places/page/", REPLACE(STR(?id), "^.*\\\\/(.+)", "$1")) AS ?prefLabel__dataProviderUrl)
+`
+
+export const minutesHeatmapQuery = `
+SELECT DISTINCT ?id ?lat ?long 
+  (1 AS ?instanceCount)
+WHERE {
+  <FILTER>
+  ?minute linguistics:referenceToLocation/:refers_to ?id .
+  ?id geo:lat ?lat ; geo:long ?long
+} GROUP BY ?id ?lat ?long
 `
 
 export const minutesRelatedTo = `
@@ -218,15 +228,7 @@ export const csvQueryLetters = `
   }
   GROUP BY ?id ?label ?datasource ?fonds
   # ORDER BY ?label
-  LIMIT 50000`
-
-export const sendingPlacesHeatmapQuery = `
-  SELECT DISTINCT ?id ?lat ?long (1 as ?instanceCount) # for heatmap
-  WHERE {
-    <FILTER>
-
-    ?id :was_sent_from [ geo:lat ?lat ; geo:long ?long ]
-  }
+  LIMIT 50000
 `
 
 export const letterEmbedInstancePageQuery = `

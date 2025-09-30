@@ -24,6 +24,13 @@
                 10.37
             ],
             "zoom": 2
+        },
+        "minutesHeatmapQuery": {
+            "center": [
+                22.43,
+                10.37
+            ],
+            "zoom": 2
         }
     },
     "resultClasses": {
@@ -98,8 +105,19 @@
                 "createPopUpContent": "createPopUpContentLoN"
             }
         },
-        "csvActors": {
+        "placesMinutesHeatmap": {
             "tabID": 3,
+            "tabPath": "heatmap",
+            "tabIcon": "LocalFireDepartment",
+            "component": "Deck",
+            "layerType": "heatmapLayer",
+            "sparqlQuery": "minutesHeatmapQuery",
+            "facetClass": "minutes",
+            "filterTarget": "minute",
+            "resultMapper": "mapPlaces"
+        },
+        "csvActors": {
+            "tabID": 4,
             "component": "ExportCSV",
             "tabPath": "csv",
             "tabIcon": "CloudDownload",
@@ -108,7 +126,7 @@
             "filterTarget": "id"
         },
         "sparql": {
-            "tabID": 4,
+            "tabID": 5,
             "component": "Export",
             "tabPath": "sparql",
             "tabIcon": "ArrowForward",
@@ -116,7 +134,7 @@
             "facetClass": "perspective1"
         },
         "share": {
-            "tabID": 5,
+            "tabID": 6,
             "component": "ExportLink",
             "tabPath": "share",
             "tabIcon": "IosShare",
@@ -238,18 +256,19 @@
             "sortByPredicate": ":year"
         },
         "language": {
-            "containerClass": "four",
+            "containerClass": "three",
             "facetType": "list",
             "filterType": "uriFilter",
             "predicate": "dct:language",
-            "searchField": true,
+            "searchField": false,
             "pieChartButton": true,
             "sortButton": true,
             "sortBy": "instanceCount",
             "sortDirection": "desc",
             "barChartButton": true,
             "sortByPredicate": "dct:language/skos:prefLabel",
-            "facetLabelFilter": "FILTER(LANG(?prefLabel_) = 'en')"
+            "facetLabelFilter": "FILTER(LANG(?prefLabel_) = 'en')",
+            "hideUnknownValue": true
         },
         "referenced_person": {
             "containerClass": "seven",
