@@ -409,22 +409,41 @@ SELECT * {
 `
 
 export const networkLinksQuery = `
-SELECT DISTINCT ?source ?target ?weight (str(?weight) as ?prefLabel)
-  WHERE {
-    
-  { SELECT DISTINCT ?id WHERE {
-    
-    <FILTER>
-  
-   [] :actor1|:actor2 ?actor ;
-      :actor1|:actor2 ?id .
-    } LIMIT 5000 
+SELECT DISTINCT ?source ?target (COUNT(?minute) AS ?weight) (STR(?weight) AS ?prefLabel)
+WHERE {
+  { 
+    SELECT DISTINCT ?id ?minute
+    WHERE {
+      VALUES ?id { <ID> }
+      ?minute linguistics:referenceToPerson/:refers_to ?id .
+    }
   }
-   [] :actor1|:actor2 ?id ;
-      :actor2 ?source ;
-      :actor1 ?target ;
-    :num_letters ?weight .
-}`
+
+  ?minute linguistics:referenceToPerson/:refers_to ?source ;
+          linguistics:referenceToPerson/:refers_to ?target .
+  
+  ?source a crm:E21_Person .
+  ?target a crm:E21_Person .
+  
+  FILTER (STR(?source) < STR(?target))
+
+} GROUP BY ?source ?target ORDER BY DESC(?weight)
+`
+
+export const networkNodesQuery = `
+  SELECT DISTINCT ?id ?prefLabel ?href 
+    (COALESCE(?_num, 0) AS ?num_letters)
+  WHERE {
+  
+    VALUES ?id { <ID_SET> }
+    ?id skos:prefLabel ?_label .
+    
+    OPTIONAL { ?id :number_of_references ?_num }
+
+    BIND (REPLACE(?_label, '^(.+) [0-9()–-]+$', '$1')AS ?prefLabel)
+    BIND (CONCAT("../../page/", REPLACE(STR(?id), "^.*\\\\/(.+)", "$1"),"/person-network") AS ?href)
+  }
+`
 
 export const correspondenceTimelineQuery = `
 SELECT DISTINCT ?id ?source ?source__label ?target ?target__label ?date ?type ?year
@@ -473,22 +492,7 @@ WHERE
   ?target skos:prefLabel ?target__label .
   ?source skos:prefLabel ?source__label .
   ?letter :has_time-span/crm:P82a_begin_of_the_begin ?time_0 .
-} `
-
-export const networkNodesQuery = `
-  SELECT DISTINCT ?id ?prefLabel ?class ?href
-    (COALESCE(?_out, 0)+COALESCE(?_in, 0) AS ?num_letters)
-  WHERE {
-    VALUES ?class { :ProvidedActor }
-    VALUES ?id { <ID_SET> }
-    ?id a ?class ;
-      skos:prefLabel ?_label .
-    OPTIONAL { ?id :out_degree ?_out }
-    OPTIONAL { ?id :in_degree ?_in }
-
-    BIND (REPLACE(?_label, ',[^,A-ZÜÅÄÖ]+$', '')AS ?prefLabel)
-    BIND (CONCAT("../../page/", REPLACE(STR(?id), "^.*\\\\/(.+)", "$1"),"/letter-network") AS ?href)
-  }
+}
 `
 
 export const networkNodesFacetQuery = `

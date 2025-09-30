@@ -93,18 +93,18 @@ export const preprocessPagerank = elements => {
 }
 
 export const preprocessEgo = elements => {
-  const maxEdgeWidth = 8
+  const maxEdgeWidth = 3
 
   //  edges
   let arr = elements.edges.map(ele => ele.data.weight || 1)
 
   //  edge width
-  let res = (new ValueScaler(1.0, maxEdgeWidth)).fitTransform(arr)
+  let res = (new ValueScaler(0.25, maxEdgeWidth)).fitTransform(arr)
   elements.edges.forEach((ele, i) => { ele.data.weight = res[i] })
 
   //  edge color
   // https://www.w3schools.com/colors/colors_hsl.asp
-  res = (new ColorScaler('hsl(30, 64%, 85%)', 'hsl(30, 64%, 35%)')).fitTransform(arr)
+  res = (new ColorScaler('hsla(31, 40%, 77%, 1.00)', 'hsla(31, 12%, 48%, 1.00)')).fitTransform(arr)
   elements.edges.forEach((ele, i) => { ele.data.color = res[i] })
 
   // nodes

@@ -162,6 +162,70 @@
                             "width": 2
                         }
                     },
+                    "actorInstancePageNetwork": {
+                        "tabID": 3,
+                        "component": "Network",
+                        "tabPath": "person-network",
+                        "tabIcon": "BubbleChart",
+                        "pageType": "instancePage",
+                        "sparqlQuery": "networkLinksQuery",
+                        "sparqlQueryNodes": "networkNodesQuery",
+                        "useNetworkAPI": true,
+                        "queryType": "query_ego",
+                        "limit": 60,
+                        "optimize": 100.0,
+                        "preprocess": "preprocessEgo",
+                        "style": [
+                            {
+                                "selector": "node",
+                                "style": {
+                                    "shape": "ellipse",
+                                    "font-size": 10,
+                                    "background-color": "data(color)",
+                                    "label": "data(prefLabel)",
+                                    "height": "data(size)",
+                                    "width": "data(size)"
+                                }
+                            },
+                            {
+                                "selector": "edge",
+                                "style": {
+                                    "width": "data(weight)",
+                                    "line-color": "data(color)",
+                                    "curve-style": "bezier",
+                                    "content": "data(prefLabel)",
+                                    "color": "hsl(30, 64%, 35%)",
+                                    "target-arrow-shape": "none",
+                                    "target-arrow-color": "data(color)",
+                                    "font-size": "6",
+                                    "text-valign": "center",
+                                    "opacity": 0.5,
+                                    "edge-text-rotation": "autorotate",
+                                    "text-background-opacity": 1,
+                                    "text-background-color": "white",
+                                    "text-background-shape": "roundrectangle"
+                                }
+                            }
+                        ],
+                        "layout": {
+                            "name": "cose",
+                            "idealEdgeLength": 100,
+                            "nodeOverlap": 20,
+                            "refresh": 20,
+                            "fit": true,
+                            "padding": 30,
+                            "randomize": false,
+                            "componentSpacing": 100,
+                            "nodeRepulsion": 400000,
+                            "edgeElasticity": 100,
+                            "nestingFactor": 5,
+                            "gravity": 80,
+                            "numIter": 1347,
+                            "initialTemp": 200,
+                            "coolingFactor": 0.95,
+                            "minTemp": 1
+                        }
+                    },
                     "instancePageExport": {
                         "tabID": 4,
                         "component": "Export",

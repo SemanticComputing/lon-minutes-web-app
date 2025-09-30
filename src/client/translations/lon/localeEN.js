@@ -76,6 +76,7 @@ export default {
     map: 'map',
     migrations: 'migrations',
     network: 'network',
+    'person-network': 'network',
     export: 'export',
     'by-year': 'by year',
     'letters-by-year': 'timeline of letters',
