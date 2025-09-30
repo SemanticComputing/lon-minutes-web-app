@@ -1,32 +1,25 @@
 export const fullTextSearchProperties = `
 VALUES (?type__id ?type__label ?pagetype ?value_prop)
 {
-  (:ProvidedActor "Actor" "/actors" :out_degree)
-  #(crm:E21_Person "Person" "/actors" :out_degree)
-  #(crm:E74_Group "Group" "/actors" :out_degree)
-  #(:Family "Family" "/actors" :out_degree)
+  (crm:E21_Person "Person" "/actors" :number_of_references)
+  (crm:E74_Group "Group" "/actors" :number_of_references)
   (crm:E53_Place "Place" "/places" :number_of_references)
-  (:Fonds "Fonds" "/fonds" :number_of_letters)
+  (skos:Concept "Concept" "/concepts" :number_of_references)
 }
 
-?id a ?type__id .
-OPTIONAL { ?id :proxy_for ?provided }
-BIND (COALESCE(?provided, ?id) AS ?match)
+?id a ?type__id ; skos:prefLabel ?prefLabel__id .
 
-OPTIONAL { ?match portal:portal_class/skos:prefLabel ?type__class }
+OPTIONAL { ?id a/skos:prefLabel ?type__class }
 BIND (COALESCE(?type__class, ?type__label) AS ?type__prefLabel)
 
-?match skos:prefLabel ?prefLabel__id .
 BIND(?prefLabel__id as ?prefLabel__prefLabel)
-BIND(CONCAT(?pagetype, "/page/", REPLACE(STR(?match), "^.*\\\\/(.+)", "$1")) AS ?prefLabel__dataProviderUrl)
+BIND(CONCAT(?pagetype, "/page/", REPLACE(STR(?id), "^.*\\\\/(.+)", "$1")) AS ?prefLabel__dataProviderUrl)
 
-OPTIONAL { 
-  ?match ?value_prop ?_num .
-  BIND(REPLACE(CONCAT("     ", str(?_num)), "^.*(.{5})$", "$1")  AS ?number_of_activities)
-}
+?id ?value_prop ?_num .
+BIND(REPLACE(CONCAT("     ", str(?_num)), "^.*(.{5})$", "$1")  AS ?number_of_activities)
 
 OPTIONAL {
-  ?match ^:proxy_for? [ 
+  ?id ^:proxy_for? [ 
         sch:image ?image__id ;
     	skos:prefLabel ?image__description ;
     	skos:prefLabel ?image__title 
