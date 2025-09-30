@@ -25,7 +25,7 @@
             ],
             "zoom": 2
         },
-        "minutesHeatmapQuery": {
+        "placesMinutesHeatmap": {
             "center": [
                 22.43,
                 10.37
