@@ -91,7 +91,7 @@
             }
         },
         "minutesByProperty": {
-            "tabID": 1,
+            "tabID": 2,
             "component": "ApexCharts",
             "doNotRenderOnMount": true,
             "tabPath": "pie_chart",
@@ -107,6 +107,24 @@
                     "filterTarget": "minute__id",
                     "resultMapper": "mapPieChart",
                     "sliceVisibilityThreshold": 0.0,
+                    "dropdownForChartTypes": "true",
+                    "chartTypes": [
+                        {
+                            "id": "bar",
+                            "createChartData": "createApexBarChartData"
+                        },
+                        {
+                            "id": "pie",
+                            "createChartData": "createApexPieChartData"
+                        }
+                    ]
+                },
+                "OrganizationsInMinutes": {
+                    "sparqlQuery": "organizationsInMinutesQuery",
+                    "targetClass": ":Minute",
+                    "filterTarget": "minute__id",
+                    "resultMapper": "mapPieChart",
+                    "sliceVisibilityThreshold": 0.01,
                     "dropdownForChartTypes": "true",
                     "chartTypes": [
                         {
@@ -158,7 +176,7 @@
             }
         },
         "activitiesByPlace": {
-            "tabID": 2,
+            "tabID": 3,
             "component": "LeafletMap",
             "tabPath": "map",
             "tabIcon": "AddLocation",
@@ -173,7 +191,7 @@
             }
         },
         "placesMinutesHeatmap": {
-            "tabID": 3,
+            "tabID": 4,
             "tabPath": "heatmap",
             "tabIcon": "LocalFireDepartment",
             "component": "Deck",
@@ -184,7 +202,7 @@
             "resultMapper": "mapPlaces"
         },
         "csvActors": {
-            "tabID": 4,
+            "tabID": 5,
             "component": "ExportCSV",
             "tabPath": "csv",
             "tabIcon": "CloudDownload",
@@ -193,7 +211,7 @@
             "filterTarget": "id"
         },
         "sparql": {
-            "tabID": 5,
+            "tabID": 6,
             "component": "Export",
             "tabPath": "sparql",
             "tabIcon": "ArrowForward",
@@ -201,7 +219,7 @@
             "facetClass": "perspective1"
         },
         "share": {
-            "tabID": 6,
+            "tabID": 7,
             "component": "ExportLink",
             "tabPath": "share",
             "tabIcon": "IosShare",

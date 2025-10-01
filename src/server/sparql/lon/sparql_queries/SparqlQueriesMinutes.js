@@ -153,9 +153,22 @@ WHERE {
   ?minute__id linguistics:referenceToPerson/:refers_to ?category .
   ?category skos:prefLabel ?prefLabel ;
     a crm:E21_Person .
-} GROUPBY ?category ?prefLabel ORDERBY DESC(?instanceCount) LIMIT 30
+} GROUPBY ?category ?prefLabel ORDERBY DESC(?instanceCount) LIMIT 25
 `
 
+export const organizationsInMinutesQuery = `
+SELECT DISTINCT ?category ?prefLabel (COUNT(DISTINCT ?minute__id) AS ?instanceCount)
+WHERE {
+  ?minute__id a :Minute .
+  
+  <FILTER>
+  
+  ?minute__id linguistics:referenceToOrganization/:refers_to ?category .
+  ?category skos:prefLabel ?prefLabel ;
+    a crm:E74_Group .
+  # FILTER (LANG(?prefLabel)='en')
+} GROUPBY ?category ?prefLabel ORDERBY DESC(?instanceCount) LIMIT 25
+`
 export const locationsInMinutesQuery = `
 SELECT DISTINCT ?category ?prefLabel (COUNT(DISTINCT ?minute__id) AS ?instanceCount)
 WHERE {
@@ -167,7 +180,7 @@ WHERE {
   ?category skos:prefLabel ?prefLabel ;
     a crm:E53_Place .
   FILTER (LANG(?prefLabel)='en')
-} GROUPBY ?category ?prefLabel ORDERBY DESC(?instanceCount) LIMIT 30
+} GROUPBY ?category ?prefLabel ORDERBY DESC(?instanceCount) LIMIT 25
 `
 
 export const conceptsInMinutesQuery = `
@@ -180,7 +193,7 @@ WHERE {
   ?minute__id linguistics:referenceToMiscellaneous/:refers_to ?category .
   ?category skos:prefLabel ?prefLabel ;
     a skos:Concept .
-} GROUPBY ?category ?prefLabel ORDERBY DESC(?instanceCount) LIMIT 30
+} GROUPBY ?category ?prefLabel ORDERBY DESC(?instanceCount) LIMIT 25
 `
 
 export const placePropertiesInfoWindow = `

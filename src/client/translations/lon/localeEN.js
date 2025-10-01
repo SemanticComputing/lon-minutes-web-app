@@ -135,6 +135,7 @@ export default {
       "peopleByNationality": "Nationality",
       "peopleByOccupation": "Occupation",
       "PeopleInMinutes": "People",
+      "OrganizationsInMinutes": "Organizations",
       "LocationsInMinutes": "Locations",
       "ConceptsInMinutes": "Concepts",
     }
