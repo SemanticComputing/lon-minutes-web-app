@@ -221,7 +221,7 @@
             "facetClass": "people",
             "dropdownForResultClasses": true,
             "sortBy": null,
-            "defaultResultClass": "peopleByGender",
+            "defaultResultClass": "peopleByNationality",
             "resultClasses": {
                 "peopleByGender": {
                     "sparqlQuery": "peopleByGenderQuery",

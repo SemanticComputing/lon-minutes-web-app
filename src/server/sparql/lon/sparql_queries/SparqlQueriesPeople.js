@@ -180,7 +180,7 @@ WHERE {
     WHERE {
       ?_minute linguistics:referenceToPerson/:refers_to ?id, ?related__id .
       FILTER (?related__id != ?id)
-      ?related__id skos:prefLabel ?_label .
+      ?related__id skos:prefLabel ?_label ; a crm:E21_Person .
     } GROUP BY ?id ?related__id ?_label ORDER BY DESC (COUNT(?_minute))
   }
   UNION
@@ -198,11 +198,11 @@ WHERE {
   {
     SELECT DISTINCT ?id ?organization__id 
     (CONCAT(?_label, ' (', STR(COUNT(DISTINCT ?_minute)), ')') AS ?organization__prefLabel)
-    (CONCAT("/organizations/page/", REPLACE(STR(?organization__id), "^.*\\\\/(.+)", "$1")) AS ?organization__dataProviderUrl) 
+    (CONCAT("/organizations/page/", REPLACE(STR(?organization__id), "^.*\\\\/(.+)", "$1")) AS ?organization__dataProviderUrl)
     WHERE {
       ?_minute linguistics:referenceToPerson/:refers_to ?id;
       linguistics:referenceToOrganization/:refers_to ?organization__id .
-      ?organization__id skos:prefLabel ?_label .
+      ?organization__id skos:prefLabel ?_label ; a crm:E74_Group .
     } GROUP BY ?id ?organization__id ?_label ORDER BY DESC (COUNT(?_minute))
   }
   UNION

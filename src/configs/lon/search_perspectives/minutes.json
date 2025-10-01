@@ -90,6 +90,73 @@
                 "width": 2
             }
         },
+        "minutesByProperty": {
+            "tabID": 1,
+            "component": "ApexCharts",
+            "doNotRenderOnMount": true,
+            "tabPath": "pie_chart",
+            "tabIcon": "PieChart",
+            "facetClass": "minutes",
+            "dropdownForResultClasses": true,
+            "sortBy": null,
+            "defaultResultClass": "PeopleInMinutes",
+            "resultClasses": {
+                "PeopleInMinutes": {
+                    "sparqlQuery": "peopleInMinutesQuery",
+                    "targetClass": ":Minute",
+                    "filterTarget": "minute__id",
+                    "resultMapper": "mapPieChart",
+                    "sliceVisibilityThreshold": 0.0,
+                    "dropdownForChartTypes": "true",
+                    "chartTypes": [
+                        {
+                            "id": "bar",
+                            "createChartData": "createApexBarChartData"
+                        },
+                        {
+                            "id": "pie",
+                            "createChartData": "createApexPieChartData"
+                        }
+                    ]
+                },
+                "LocationsInMinutes": {
+                    "sparqlQuery": "locationsInMinutesQuery",
+                    "targetClass": ":Minute",
+                    "filterTarget": "minute__id",
+                    "resultMapper": "mapPieChart",
+                    "sliceVisibilityThreshold": 0.01,
+                    "dropdownForChartTypes": "true",
+                    "chartTypes": [
+                        {
+                            "id": "bar",
+                            "createChartData": "createApexBarChartData"
+                        },
+                        {
+                            "id": "pie",
+                            "createChartData": "createApexPieChartData"
+                        }
+                    ]
+                },
+                "ConceptsInMinutes": {
+                    "sparqlQuery": "conceptsInMinutesQuery",
+                    "targetClass": ":Minute",
+                    "filterTarget": "minute__id",
+                    "resultMapper": "mapPieChart",
+                    "sliceVisibilityThreshold": 0.01,
+                    "dropdownForChartTypes": "true",
+                    "chartTypes": [
+                        {
+                            "id": "bar",
+                            "createChartData": "createApexBarChartData"
+                        },
+                        {
+                            "id": "pie",
+                            "createChartData": "createApexPieChartData"
+                        }
+                    ]
+                }
+            }
+        },
         "activitiesByPlace": {
             "tabID": 2,
             "component": "LeafletMap",

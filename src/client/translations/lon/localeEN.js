@@ -134,12 +134,9 @@ export default {
       "peopleByGender": "Gender",
       "peopleByNationality": "Nationality",
       "peopleByOccupation": "Occupation",
-      "peopleByElectoralDistrict": "edustajat vaalipiireittäin",
-      "peopleByCommittee": "edustajat valiokunnittain",
-      "peopleByParliamentarygroup": "edustajat eduskuntaryhmittäin",
-      "peopleByParty": "edustajat puolueittain",
-      "ministersByElectoralterm": "ministerit vaalikausittain",
-      "ministersByGovernment": "ministerit hallituksittain"
+      "PeopleInMinutes": "People",
+      "LocationsInMinutes": "Locations",
+      "ConceptsInMinutes": "Concepts",
     }
   },
   exportToYasgui: 'open the result table query in LD browser',
