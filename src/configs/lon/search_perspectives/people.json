@@ -573,7 +573,7 @@
             "textQueryProperty": "skos:prefLabel"
         },
         "gender": {
-            "containerClass": "five",
+            "containerClass": "two",
             "facetType": "list",
             "predicate": "biocrm:has_gender",
             "filterType": "uriFilter",
