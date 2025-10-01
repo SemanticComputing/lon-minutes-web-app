@@ -387,8 +387,8 @@
                 "func": "linearScale",
                 "config": {
                     "variable": "instanceCount",
-                    "minAllowed": 3,
-                    "maxAllowed": 30
+                    "minAllowed": 2,
+                    "maxAllowed": 5
                 }
             }
         },
