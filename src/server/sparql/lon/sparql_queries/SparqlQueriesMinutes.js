@@ -36,6 +36,11 @@ UNION
 }
 UNION
 {
+  ?id dct:language/skos:prefLabel ?language
+  FILTER (LANG(?language)='en')
+}
+UNION
+{
   SELECT DISTINCT ?id (CONCAT('<div>', ?_content, '</div>') AS ?content) 
   WHERE {
     ?id :html ?_content
@@ -126,19 +131,6 @@ WHERE {
     :year ?category .
 } 
 GROUP BY ?category ORDER BY ?category
-`
-
-export const yearlyLettersFacetPageQuery_OLD = `
-SELECT DISTINCT (STR(?year) as ?category) (count(distinct ?id) AS ?letterCount)
-WHERE {
-  <FILTER>
-  
-  ?id a :Letter ;
-      :has_time-span/crm:P82a_begin_of_the_begin ?time_0 .
-  BIND (year(?time_0) AS ?year)
-} 
-GROUP BY ?year
-ORDER BY ?year
 `
 
 export const minutePlacesQuery = `

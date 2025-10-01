@@ -138,32 +138,8 @@
                             }
                         ]
                     },
-                    "lettersByYear": {
-                        "tabID": 2,
-                        "component": "ApexCharts",
-                        "tabPath": "letters-by-year",
-                        "tabIcon": "ShowChart",
-                        "sparqlQuery": "sentReceivedByPlaceQuery",
-                        "facetClass": "places",
-                        "filterTarget": "instance",
-                        "resultMapper": "mapLineChart",
-                        "resultMapperConfig": {
-                            "fillEmptyValues": false
-                        },
-                        "createChartData": "createSingleLineChartData",
-                        "title": "Letters by year",
-                        "xaxisTitle": "Year",
-                        "xaxisType": "category",
-                        "xaxisTickAmount": 20,
-                        "yaxisTitle": "Number of letters",
-                        "seriesTitle": "Number of letters",
-                        "stroke": {
-                            "curve": "straight",
-                            "width": 2
-                        }
-                    },
                     "actorInstancePageNetwork": {
-                        "tabID": 3,
+                        "tabID": 2,
                         "component": "Network",
                         "tabPath": "person-network",
                         "tabIcon": "BubbleChart",
@@ -227,7 +203,7 @@
                         }
                     },
                     "instancePageExport": {
-                        "tabID": 4,
+                        "tabID": 3,
                         "component": "Export",
                         "tabPath": "export",
                         "tabIcon": "CloudDownload",

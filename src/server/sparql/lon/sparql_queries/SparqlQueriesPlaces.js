@@ -174,21 +174,6 @@ WHERE {
 }
 `
 
-//  TODO add subplaces to counts
-// https://api.triplydb.com/s/gYYySP446
-export const sentReceivedByPlaceQuery = `
-  SELECT DISTINCT (STR(?year) as ?category)
-      (count(distinct ?evt) AS ?count)
-  WHERE {
-      BIND(<ID> as ?id)
-      ?sub skos:broader* ?id .
-      ?evt :was_sent_from ?sub ;
-        a :Letter ;
-        :has_time-span/crm:P82a_begin_of_the_begin ?time .
-      BIND (STR(year(?time)) AS ?year)
-  } GROUP BY ?year ORDER BY ?year 
-`
-
 export const csvQueryPlaces = `
 SELECT DISTINCT ?id ?label 
 	(xsd:decimal(?lat) AS ?latitude)

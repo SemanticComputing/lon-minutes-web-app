@@ -163,6 +163,17 @@
             "minWidth": 70
         },
         {
+            "id": "language",
+            "valueType": "string",
+            "makeLink": false,
+            "externalLink": false,
+            "sortValues": true,
+            "numberedList": false,
+            "minWidth": 70,
+            "onlyOnInstancePage": true,
+            "expandedOnInstancePage": false
+        },
+        {
             "id": "content",
             "valueType": "string",
             "makeLink": false,
