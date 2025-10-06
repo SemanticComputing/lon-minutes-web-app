@@ -1,7 +1,7 @@
 export const fullTextSearchProperties = `
 VALUES (?type__id ?type__label ?pagetype ?value_prop)
 {
-  (crm:E21_Person "Person" "/actors" :number_of_references)
+  (crm:E21_Person "Person" "/people" :number_of_references)
   (crm:E74_Group "Group" "/organizations" :number_of_references)
   (crm:E53_Place "Place" "/places" :number_of_references)
   (skos:Concept "Concept" "/concepts" :number_of_references)
