@@ -184,6 +184,14 @@
             "onlyOnInstancePage": true
         },
         {
+            "id": "broader",
+            "valueType": "object",
+            "makeLink": true,
+            "externalLink": false,
+            "sortValues": false,
+            "numberedList": false
+        },
+        {
             "id": "country",
             "valueType": "object",
             "makeLink": true,
@@ -192,12 +200,13 @@
             "numberedList": false
         },
         {
-            "id": "broader",
+            "id": "continent",
             "valueType": "object",
             "makeLink": true,
             "externalLink": false,
             "sortValues": false,
-            "numberedList": false
+            "numberedList": false,
+            "onlyOnInstancePage": true
         },
         {
             "id": "number_of_references",
@@ -259,6 +268,19 @@
             "sortButton": true,
             "barChartButton": true,
             "sortByPredicate": ":country/skos:prefLabel",
+            "facetLabelFilter": "FILTER(LANG(?prefLabel_) = 'en')"
+        },
+        "continent": {
+            "containerClass": "ten",
+            "facetType": "list",
+            "filterType": "uriFilter",
+            "predicate": ":continent",
+            "sortBy": "instanceCount",
+            "sortDirection": "desc",
+            "searchField": false,
+            "sortButton": true,
+            "barChartButton": true,
+            "sortByPredicate": ":continent/skos:prefLabel",
             "facetLabelFilter": "FILTER(LANG(?prefLabel_) = 'en')"
         },
         "broader": {

@@ -964,6 +964,12 @@ export default {
             Related country.
           `
         },
+        continent: {
+          label: 'Continent',
+          description: `
+            Related continent.
+          `
+        },
         location: {
           label: 'Coordinates',
           description: `

@@ -64,7 +64,17 @@ export const placePropertiesInstancePage = `
   {
       ?id :country ?country__id .
       ?country__id skos:prefLabel ?country__prefLabel .
+      FILTER (LANG(?country__prefLabel)!='en')
+
       BIND(CONCAT("/places/page/", REPLACE(STR(?country__id), "^.*\\\\/(.+)", "$1")) AS ?country__dataProviderUrl)
+  }
+  UNION
+  {
+      ?id :continent ?continent__id .
+      ?continent__id skos:prefLabel ?continent__prefLabel .
+      FILTER (LANG(?continent__prefLabel)!='en')
+
+      BIND(CONCAT("/places/page/", REPLACE(STR(?continent__id), "^.*\\\\/(.+)", "$1")) AS ?continent__dataProviderUrl)
   }
   UNION
   { 
