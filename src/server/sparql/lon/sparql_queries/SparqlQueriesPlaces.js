@@ -184,6 +184,48 @@ WHERE {
 }
 `
 
+export const placeMapQuery = `
+  SELECT *
+  WHERE {
+    
+    {
+      ?id :continent <ID> 
+      FILTER EXISTS { ?id :number_of_references [] }
+    }
+    UNION
+    {
+      ?id :country <ID> 
+      FILTER EXISTS { ?id :number_of_references [] }
+    }
+    UNION
+    {
+      ?id skos:broader+ <ID> 
+      FILTER EXISTS { ?id :number_of_references [] }
+    }
+    UNION
+    { 
+      VALUES ?id { <ID> }
+      BIND("red" AS ?markerColor)
+    }
+    
+    ?id skos:prefLabel ?prefLabel__id .
+    BIND(?prefLabel__id as ?prefLabel__prefLabel)
+    BIND(CONCAT("/places/page/", REPLACE(STR(?id), "^.*\\\\/(.+)", "$1")) AS ?prefLabel__dataProviderUrl)
+    OPTIONAL {
+      ?id geo:lat ?lat1 ;
+        geo:long ?long1
+    }
+    OPTIONAL {
+      ?id skos:broader [ geo:lat ?lat2 ; geo:long ?long2 ]
+    }
+    BIND (COALESCE(?lat1, ?lat2) AS ?lat)
+    BIND (COALESCE(?long1, ?long2) AS ?long)
+
+    # skip places with missing coordinates:
+    FILTER(BOUND(?lat) && BOUND(?long))
+  }
+`
+
 export const csvQueryPlaces = `
 SELECT DISTINCT ?id ?label 
 	(xsd:decimal(?lat) AS ?latitude)

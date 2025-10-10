@@ -16,6 +16,15 @@
     "defaultActiveFacets": [
         "prefLabel"
     ],
+    "maps": {
+        "placeMap": {
+            "center": [
+                22.43,
+                10.37
+            ],
+            "zoom": 2
+        }
+    },
     "defaultTab": "table",
     "defaultInstancePageTab": "table",
     "resultClasses": {
@@ -106,8 +115,21 @@
                             }
                         ]
                     },
-                    "instancePageExport": {
+                    "placeMap": {
                         "tabID": 2,
+                        "tabPath": "map",
+                        "tabIcon": "LocationOn",
+                        "component": "LeafletMap",
+                        "pageType": "instancePage",
+                        "mapMode": "marker",
+                        "showInstanceCountInClusters": false,
+                        "sparqlQuery": "placeMapQuery",
+                        "instanceConfig": {
+                            "createPopUpContent": "createPopUpContentAs"
+                        }
+                    },
+                    "instancePageExport": {
+                        "tabID": 3,
                         "component": "Export",
                         "tabPath": "export",
                         "tabIcon": "CloudDownload",
