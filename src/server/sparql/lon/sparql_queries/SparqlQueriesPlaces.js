@@ -74,9 +74,9 @@ export const placePropertiesInstancePage = `
       (CONCAT("/places/page/", REPLACE(STR(?narrower__id), "^.*\\\\/(.+)", "$1")) AS ?narrower__dataProviderUrl)
     WHERE
     {
-      ?narrower__id skos:broader ?id ; skos:prefLabel ?_label .
+      ?narrower__id skos:broader ?id ; skos:prefLabel ?_label ;
+        :number_of_references ?_num .
       FILTER (?narrower__id != ?id && LANG(?_label)='<LANG>')
-      OPTIONAL { ?narrower__id :number_of_references ?_num }
     } 
     ORDER BY DESC(COALESCE(?_num)) ?_label 
   }

@@ -338,7 +338,7 @@
             "facetType": "text",
             "filterType": "textFilter",
             "sortByPredicate": "skos:prefLabel",
-            "textQueryProperty": "skos:prefLabel"
+            "textQueryProperty": ":content"
         },
         "year": {
             "containerClass": "six",
