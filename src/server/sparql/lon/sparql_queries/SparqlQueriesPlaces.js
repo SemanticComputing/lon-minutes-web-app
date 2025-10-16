@@ -46,6 +46,7 @@ export const placePropertiesInstancePage = `
   {
     ?id skos:prefLabel ?prefLabel__id .
     BIND (?prefLabel__id as ?prefLabel__prefLabel)
+    FILTER (LANG(?prefLabel__prefLabel) = 'en')
   }
   UNION
   {
@@ -58,23 +59,25 @@ export const placePropertiesInstancePage = `
     ?id skos:broader ?broader__id .
     FILTER (?broader__id != ?id)
     ?broader__id skos:prefLabel ?broader__prefLabel .
+    FILTER (LANG(?broader__prefLabel) = 'en')
+
     BIND(CONCAT("/${perspectiveID}/page/", REPLACE(STR(?broader__id), "^.*\\\\/(.+)", "$1")) AS ?broader__dataProviderUrl)
   }
   UNION
   {
-      ?id :country ?country__id .
-      ?country__id skos:prefLabel ?country__prefLabel .
-      FILTER (LANG(?country__prefLabel)!='en')
+    ?id :country ?country__id .
+    ?country__id skos:prefLabel ?country__prefLabel .
+    FILTER (LANG(?country__prefLabel) = 'en')
 
-      BIND(CONCAT("/places/page/", REPLACE(STR(?country__id), "^.*\\\\/(.+)", "$1")) AS ?country__dataProviderUrl)
+    BIND(CONCAT("/places/page/", REPLACE(STR(?country__id), "^.*\\\\/(.+)", "$1")) AS ?country__dataProviderUrl)
   }
   UNION
   {
-      ?id :continent ?continent__id .
-      ?continent__id skos:prefLabel ?continent__prefLabel .
-      FILTER (LANG(?continent__prefLabel)!='en')
+    ?id :continent ?continent__id .
+    ?continent__id skos:prefLabel ?continent__prefLabel .
+    FILTER (LANG(?continent__prefLabel)!='en')
 
-      BIND(CONCAT("/places/page/", REPLACE(STR(?continent__id), "^.*\\\\/(.+)", "$1")) AS ?continent__dataProviderUrl)
+    BIND(CONCAT("/places/page/", REPLACE(STR(?continent__id), "^.*\\\\/(.+)", "$1")) AS ?continent__dataProviderUrl)
   }
   UNION
   { 
