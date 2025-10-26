@@ -39,7 +39,7 @@ export const personPropertiesFacetResults = `
     BIND (CONCAT("/places/page/", REPLACE(STR(?deathPlace__id), "^.*\\\\/(.+)", "$1")) AS ?deathPlace__dataProviderUrl)
   }
   UNION
-  { 
+  {
     ?id sch:nationality ?nationality__id .
     ?nationality__id skos:prefLabel ?nationality__prefLabel .
     FILTER(LANG(?nationality__prefLabel) = 'en')
@@ -316,6 +316,10 @@ WHERE {
   {
     ?person crm:P100i_died_in/crm:P7_took_place_at ?id
   }
+  UNION
+  { 
+    ?person crm:P74_has_current_or_former_residence ?id 
+  }
 
   ?id a crm:E53_Place ; geo:lat ?lat ; geo:long ?long .
 } GROUP BY ?id ?lat ?long
@@ -340,7 +344,7 @@ WHERE {
 } GROUP BY ?id ?lat ?long
 `
 
-export const minutesRelatedTo = `
+export const peopleRelatedTo = `
   OPTIONAL {
     <FILTER>
     { 
@@ -349,6 +353,10 @@ export const minutesRelatedTo = `
     UNION
     {
       ?related__id crm:P100i_died_in/crm:P7_took_place_at ?id
+    }
+    UNION
+    { 
+      ?related__id crm:P74_has_current_or_former_residence ?id 
     }
     FILTER EXISTS { [] :refers_to ?related__id }
     ?related__id skos:prefLabel ?related__prefLabel .
@@ -470,31 +478,6 @@ BIND (year(?date) AS ?year)
 } ORDER BY ?date
 `
 
-export const socialSignatureQuery = `
-SELECT (?source AS ?id) (?source__label as ?id__label)
-  ?target ?target__label
-  ?time_0
-WHERE 
-{
-  VALUES ?node { <ID> }
-  {
-    ?letter portal:sender ?node ;
-      a :Letter ;
-      portal:recipient ?target .
-  
-    BIND (?node AS ?source)
-  } UNION {
-    ?letter portal:recipient ?node ;
-      a :Letter ;
-      portal:sender ?source .
-    BIND (?node AS ?target)
-  }
-  ?target skos:prefLabel ?target__label .
-  ?source skos:prefLabel ?source__label .
-  ?letter :has_time-span/crm:P82a_begin_of_the_begin ?time_0 .
-}
-`
-
 export const networkNodesFacetQuery = `
  SELECT DISTINCT ?id ?prefLabel ?class ?href
  (COALESCE(?_out, 0)+COALESCE(?_in, 0) AS ?num_letters)
@@ -509,131 +492,6 @@ export const networkNodesFacetQuery = `
     BIND (REPLACE(?_label, ',[^,A-ZÜÅÄÖ]+$', '')AS ?prefLabel)
     BIND (CONCAT("../../people/page/", REPLACE(STR(?id), "^.*\\\\/(.+)", "$1"),"/letter-network") AS ?href)
   }
-`
-
-export const topCorrespondenceInstancePageQuery = `
-SELECT DISTINCT ?id 
-  (REPLACE(?source__label, ' [(][0-9-]+[)]$', '') AS ?from__label)
-  (REPLACE(?target__label, ' [(][0-9-]+[)]$', '') AS ?to__label)
-  (xsd:date(CONCAT(STR(?year), '-01-01')) AS ?date) 
-  ?type
-  ?year
-  (COUNT(DISTINCT ?letter) AS ?count)
-WHERE
-{
-  VALUES ?id { <ID> }
-  {
-    ?letter portal:sender ?id ;
-      a :Letter ;
-      portal:recipient ?target .
-    ?target skos:prefLabel ?_target__label .
-
-    BIND ("to" AS ?type)
-    BIND (?id AS ?source)
-  }
-  UNION
-  {
-    ?letter portal:recipient ?id ;
-      a :Letter ;
-      portal:sender ?source .
-    ?source skos:prefLabel ?_source__label .
-
-    BIND (?id AS ?target)
-    BIND ("from" AS ?type)
-
-  }
-  ?target skos:prefLabel ?target__label .
-  ?source skos:prefLabel ?source__label .
-  ?letter :estimated_year ?year .
-
-  OPTIONAL {
-    [] :proxy_for ?id ;
-       :birthDate/crm:P82b_end_of_the_end ?birth_end .
-    BIND (year(?birth_end) AS ?birth)
-  }
-  FILTER (!bound(?birth) || (bound(?birth) && ?birth<?year))
-
-  OPTIONAL {
-    [] :proxy_for ?id ; 
-      :deathDate/crm:P82b_end_of_the_end ?death_end .
-    BIND (year(?death_end) AS ?death)
-  }
-  FILTER (!bound(?death) || (bound(?death) && ?year<=?death))
-} GROUP BY ?id ?source__label ?target__label ?year ?type
-`
-
-export const sentReceivedQuery = `
-SELECT DISTINCT (STR(?year) as ?category) 
-  (count(distinct ?sent_letter) AS ?sentCount) 
-  (count(distinct ?received_letter) AS ?receivedCount) 
-  ((?sentCount + ?receivedCount) as ?allCount)
-WHERE {
-  BIND (<ID> as ?id)
-
-  {
-    ?sent_letter portal:sender ?id ; 
-                 :estimated_year ?year
-  } 
-  UNION 
-  {
-    ?received_letter portal:recipient ?id ;
-	                 :estimated_year ?year
-  }
-  FILTER (BOUND(?year))
-
-  OPTIONAL {
-    [] :proxy_for ?id ;
-        :birthDate/crm:P82a_begin_of_the_begin ?_birth .
-    BIND (year(?_birth) AS ?birth)
-  }
-  FILTER ((bound(?birth) && ?birth<?year) || !bound(?birth))
-
-  OPTIONAL {
-    [] :proxy_for ?id ;
-        :deathDate/crm:P82b_end_of_the_end ?_death .
-    BIND (year(?_death) AS ?death)
-  }
-  FILTER ((bound(?death) && ?year<=?death) || !bound(?death))
-} 
-GROUP BY ?year ORDER BY ?year
-`
-
-export const sentReceivedInstancePageQuery = `
-  SELECT DISTINCT (STR(?year) as ?category) 
-    (count(distinct ?sent_letter) AS ?sentCount) 
-    (count(distinct ?received_letter) AS ?receivedCount) 
-    ((?sentCount + ?receivedCount) as ?allCount)
-  WHERE {
-    BIND (<ID> as ?id)
-    {
-      ?sent_letter portal:sender ?id ; 
-        a :Letter ;
-        :estimated_year ?year .
-    } 
-    UNION 
-    {
-      ?received_letter portal:recipient ?id ;
-        a :Letter ;
-        :estimated_year ?year .
-    }
-    FILTER (BOUND(?year))
-
-    OPTIONAL {
-      [] :proxy_for ?id ;
-        :birthDate/crm:P82b_end_of_the_end ?birth_end .
-      BIND (year(?birth_end) AS ?birth)
-    }
-    FILTER (!bound(?birth) || (bound(?birth) && ?birth<?year))
-
-    OPTIONAL {
-      [] :proxy_for ?id ;
-       :deathDate/crm:P82b_end_of_the_end ?death_end .
-       BIND (year(?death_end) AS ?death)
-    }
-    FILTER (!bound(?death) || (bound(?death) && ?year<=?death))
-  }
-  GROUP BY ?year
-  ORDER BY ?year
 `
 
 export const csvQueryPeople = `
@@ -686,4 +544,5 @@ WHERE {
 GROUP BY ?id ?label ?type ?gender
   ?prefix ?family_name ?given_name
   ?number_of_sent_letters ?number_of_received_letters ?floruit 
-ORDER BY DESC(?number_of_sent_letters) ?label `
+ORDER BY DESC(?number_of_sent_letters) ?label 
+`

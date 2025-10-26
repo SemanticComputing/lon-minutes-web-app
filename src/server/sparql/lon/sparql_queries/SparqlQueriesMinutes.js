@@ -76,6 +76,22 @@ UNION
     ?referenced_miscellaneous__id skos:prefLabel ?referenced_miscellaneous__prefLabel 
     BIND(CONCAT("/places/page/", REPLACE(STR(?referenced_miscellaneous__id), "^.*\\\\/(.+)", "$1")) AS ?referenced_miscellaneous__dataProviderUrl)
 }
+UNION
+{
+  ?id foaf:page ?external__id .
+  BIND (?external__id AS ?external__dataProviderUrl)
+  BIND ("United Nations Library and Archives" AS ?external__prefLabel)
+}
+UNION
+{
+  SELECT DISTINCT ?id 
+    ?related__id ?related__prefLabel 
+    (CONCAT("/minutes/page/", REPLACE(STR(?related__id), "^.*\\\\/(.+)", "$1")) AS ?related__dataProviderUrl)
+  WHERE {
+    ?id :key ?key .
+    ?related__id :key ?key ; skos:prefLabel ?related__prefLabel .
+  } ORDER BY STR(?related__id)
+}
 `
 
 /**
@@ -210,7 +226,7 @@ SELECT DISTINCT ?id ?lat ?long
 WHERE {
   <FILTER>
   ?minute linguistics:referenceToLocation/:refers_to ?id .
-  ?id geo:lat ?lat ; geo:long ?long
+  ?id geo:lat ?lat ; geo:long ?long 
 } GROUP BY ?id ?lat ?long
 `
 

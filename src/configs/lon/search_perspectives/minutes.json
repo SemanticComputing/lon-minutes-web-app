@@ -320,6 +320,28 @@
             "expandedOnInstancePage": true
         },
         {
+            "id": "external",
+            "valueType": "object",
+            "makeLink": true,
+            "externalLink": true,
+            "sortValues": true,
+            "numberedList": false,
+            "minWidth": 70,
+            "onlyOnInstancePage": true,
+            "expandedOnInstancePage": false
+        },
+        {
+            "id": "related",
+            "valueType": "object",
+            "makeLink": true,
+            "externalLink": false,
+            "sortValues": false,
+            "numberedList": true,
+            "minWidth": 70,
+            "onlyOnInstancePage": true,
+            "expandedOnInstancePage": true
+        },
+        {
             "id": "uri",
             "valueType": "object",
             "makeLink": true,
@@ -333,7 +355,7 @@
         "sort_by_url": {
             "sortByPattern": "{ SELECT ?id (COALESCE(?_orderBy,0) AS ?orderBy) WHERE { VALUES ?facetClass { <FACET_CLASS> } ?id a ?facetClass . BIND (STR(?url) AS ?_orderBy) } }"
         },
-        "prefLabel": {
+        "search": {
             "containerClass": "one",
             "facetType": "text",
             "filterType": "textFilter",
@@ -350,6 +372,15 @@
             "searchField": false,
             "sortButton": true,
             "sortByPredicate": ":year"
+        },
+        "plenary_meeting": {
+            "containerClass": "six",
+            "facetType": "list",
+            "filterType": "uriFilter",
+            "barChartButton": true,
+            "predicate": ":key",
+            "sortDirection": "asc",
+            "sortByPredicate": ":key"
         },
         "language": {
             "containerClass": "three",

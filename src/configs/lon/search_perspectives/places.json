@@ -112,6 +112,16 @@
                                 "numberedList": true,
                                 "onlyOnInstancePage": true,
                                 "expandedOnInstancePage": true
+                            },
+                            {
+                                "id": "living",
+                                "valueType": "object",
+                                "makeLink": true,
+                                "externalLink": false,
+                                "sortValues": true,
+                                "numberedList": true,
+                                "onlyOnInstancePage": true,
+                                "expandedOnInstancePage": true
                             }
                         ]
                     },

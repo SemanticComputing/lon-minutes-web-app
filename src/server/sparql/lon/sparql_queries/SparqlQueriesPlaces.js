@@ -184,15 +184,19 @@ WHERE {
       skos:prefLabel ?deceased__prefLabel .
     BIND(CONCAT("/people/page/", REPLACE(STR(?deceased__id), "^.*\\\\/(.+)", "$1")) AS ?deceased__dataProviderUrl)
   }
+  UNION
+  {
+    ?living__id crm:P74_has_current_or_former_residence|sch:nationality ?id ;
+      skos:prefLabel ?living__prefLabel .
+    BIND(CONCAT("/people/page/", REPLACE(STR(?living__id), "^.*\\\\/(.+)", "$1")) AS ?living__dataProviderUrl)
+  }
 }
 `
 
 export const placeMapQuery = `
-  SELECT *
-  WHERE {
-    
+  SELECT DISTINCT * WHERE {
     {
-      ?id :continent <ID> 
+      ?id :continent <ID>
       FILTER EXISTS { ?id :number_of_references [] }
     }
     UNION
@@ -206,7 +210,7 @@ export const placeMapQuery = `
       FILTER EXISTS { ?id :number_of_references [] }
     }
     UNION
-    { 
+    {
       VALUES ?id { <ID> }
       BIND("red" AS ?markerColor)
     }

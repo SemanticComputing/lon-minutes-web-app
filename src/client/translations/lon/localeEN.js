@@ -266,10 +266,24 @@ export default {
           The result view can be selected using the tabs:
         <ul class="MuiTypography-root MuiTypography-body1">
           <li>
-            The <strong>TABLE</STRONG> tab lists all the actors in the data. One row of the table contains the information                related to one actor. Selecting the name of an actor takes you to a more detailed Actor instance page. Image(s):              Wikidata/Wikimedia Commons.
+            The <strong>TABLE</STRONG> tab lists all the people in the data. One row of the table contains the information related to one person. Selecting the name of a person takes you to a more detailed Person instance page. Image(s): Wikidata/Wikimedia Commons.
           </li>
           <li>
-            The <strong>MAP</strong> visualises the known locations associated with the actors (birth and death places, places             where letters are sent and received). If the location does not have precise geographical coordinates, it is                   displayed as part of the next larger unit. Clicking on the place markers will open a list of people associated                with the place, with explanations.
+            <strong>CHARTS</strong> column or bar charts visualizing the distributions of genders, nationalities, or occupations of the people.
+          </li>
+          <li>
+            <strong>LIFETIMES</strong> tab depicts a time series of the years of birth and death of the people.
+          </li>
+          <li>
+            <strong>TOP REFERENCES</strong> tab depicts a time series of the most frequently refered people in the minute speeches.
+          </li>
+          <li>
+            The <strong>MAP</strong> visualises the known locations associated with the actors (birth and death places, countries related to nationality). If the location does not have precise geographical coordinates, it is displayed as part of the next larger unit. Clicking on the place markers will open a list of people associated with the place.
+          </li><li>
+            The <strong>HEATMAP</strong> visualises the known locations associated with the actors (birth and death places, countries related to nationality).
+          </li>
+          </li><li>
+            The <strong>MIGRATIONS</strong> visualization tab the arcs are drawn between the places of birth and death. Notice that the visualization takes into account only the people out of whom this information is available.
           </li>
           <li>
             The <strong>NETWORK</strong> view visualises the correspondence network of the person under consideration. Due to             the large number of actors, often only a subset of actors is selected for the network. 
@@ -604,13 +618,19 @@ export default {
       </p>
       <ul class="MuiTypography-root MuiTypography-body1">
       <li>
-       The <strong>TABLE</STRONG> provides a list of all the letter collections. Each row represents one collection. Selecting the name of a collection displays more detailed information about it.
+       The <strong>TABLE</STRONG> provides a list of all minutes. Each row represents one minute. Selecting the name of a minute displays more detailed information about it.
       </li>
       <li>
-        The <strong>BY YEAR</strong> tab displays the annual number of letters held in collections in the form of a line graph. Please note that not all letters in the dataset are attached to a collection. Use the zoom tools in the top right corner to view more detailed periods on the graph.
+        The <strong>BY YEAR</strong> tab displays the annual number of minutes.
       </li>
       <li>
-        <strong>MAP</strong> visualises the locations (places of sending and receiving) of letters attached to collections.
+        <strong>CHARTS</strong> column or bar charts visualizing the people, organizations, locations, or concepts mentioned in the minutes.
+      </li>
+      <li>
+        <strong>MAP</strong> visualizes the locations referenced in the minutes.
+      </li>
+      <li>
+        <strong>HEATMAP</strong> visualization of the locations referenced in the minutes.
       </li>
       <li>
         The <strong>CSV</strong> tab allows you to download the results in tabular form to your own computer.
@@ -654,8 +674,12 @@ export default {
           description: 'Link to the information of fonds and collections as linked open data'
         },
         prefLabel: {
-          label: 'Minute',
-          description: 'The label of the Minute'
+          label: 'Title',
+          description: ''
+        },
+        search: {
+          label: 'Search content',
+          description: 'Search the content of the minutes'
         },
         year: {
           label: 'Year',
@@ -702,7 +726,23 @@ export default {
         language: {
           label: 'Language',
           description: `
-            Language of the minute. 
+            Language(s) of the minute. 
+          `
+        },
+        plenary_meeting: {
+          label: 'Plenary meeting',
+          description: ``
+        },
+        related: {
+          label: 'Related minutes',
+          description: `
+            All records from the same assembly plenary meetings. 
+          `
+        },
+        external: {
+          label: 'External link',
+          description: `
+            Link to an external datasource providing more information. 
           `
         }
       }
@@ -1030,6 +1070,12 @@ export default {
           label: 'People deceased',
           description: `
           List of people known to have deceased here.
+          `
+        },
+        living: {
+          label: 'People with known residence or nationality',
+          description: `
+          List of people known to have lived here or with a nationality in a case of a country.
           `
         },
         type: {
