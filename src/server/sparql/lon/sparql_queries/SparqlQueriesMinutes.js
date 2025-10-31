@@ -12,7 +12,7 @@ BIND(?id as ?uri__dataProviderUrl)
 }
 UNION
 {
-  ?id :year ?year
+  ?id crm:P4_has_time-span/skos:prefLabel ?year
 }
 UNION
 {
@@ -32,7 +32,7 @@ export const minutePropertiesInstancePage = `
 }
 UNION
 {
-  ?id :year ?year
+  ?id crm:P4_has_time-span/skos:prefLabel ?year
 }
 UNION
 {
@@ -94,57 +94,13 @@ UNION
 }
 `
 
-/**
- * Notice some optimization, both TOP CORRESPONDENCES queries
- * use only the precision of one year
- * 
- * Also the number of results is limited to 100000
- */
-export const topCorrespondenceFacetPageQuery = `
-SELECT DISTINCT 
-  (REPLACE(?_from__label, ' [(][fl. 0-9-]+[)]$', '') AS ?from__label)
-  (REPLACE(?_to__label, ' [(][fl. 0-9-]+[)]$', '') AS ?to__label)
-  ?type
-  ?year
-  (xsd:date(CONCAT(STR(?year),'-01-01')) AS ?date)
-  (COUNT(DISTINCT ?id) AS ?count)
-WHERE {
-
-  { SELECT DISTINCT ?id WHERE {
-      { 
-        SELECT DISTINCT ?actor WHERE {
-          ?id a :Letter .
-          <FILTER>
-          
-          ?id portal:recipient|portal:sender ?actor
-        }
-        GROUP BY ?actor
-        ORDER BY DESC(COUNT(?id))
-        LIMIT 25
-      }
-      ?id portal:recipient|portal:sender ?actor
-    } LIMIT 400000
-  }
-
-  <FILTER>
-
-  ?id portal:recipient/skos:prefLabel ?_to__label ; 
-      :estimated_year ?year ;
-      portal:sender/skos:prefLabel ?_from__label .
-
-  VALUES ?type { "from" "to" }
-} 
-GROUP BY ?_from__label ?_to__label ?type ?year
-ORDER BY DESC(?count)
-`
-
 export const minutesByYearQuery = `
 SELECT DISTINCT ?category (COUNT(DISTINCT ?minute) AS ?count)
 WHERE {
   <FILTER>
 
   ?minute a :Minute ;
-    :year ?category .
+    crm:P4_has_time-span/skos:prefLabel ?category .
 } 
 GROUP BY ?category ORDER BY ?category
 `

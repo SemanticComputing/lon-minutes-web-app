@@ -288,7 +288,7 @@ SELECT DISTINCT (COUNT(?minute) AS ?count) ?reference__label ("reference" AS ?ty
 
       ?minute a :Minute ;
               linguistics:referenceToPerson/:refers_to ?id ;
-              :year ?year .
+              crm:P4_has_time-span/skos:prefLabel ?year .
       ?id a crm:E21_Person ;
               skos:prefLabel ?_label .
     }
@@ -297,8 +297,8 @@ SELECT DISTINCT (COUNT(?minute) AS ?count) ?reference__label ("reference" AS ?ty
     LIMIT 25
   }
   ?minute a :Minute ;
-              linguistics:referenceToPerson/:refers_to ?id ;
-              :year ?year .
+          linguistics:referenceToPerson/:refers_to ?id ;
+          crm:P4_has_time-span/skos:prefLabel ?year .
 }
 GROUP BY ?year ?reference__label
 ORDER BY ?year

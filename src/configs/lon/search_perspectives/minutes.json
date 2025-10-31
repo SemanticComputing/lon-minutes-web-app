@@ -364,14 +364,14 @@
         },
         "year": {
             "containerClass": "six",
-            "facetType": "integer",
-            "filterType": "integerFilter",
+            "facetType": "list",
+            "filterType": "uriFilter",
             "barChartButton": true,
-            "predicate": ":year",
+            "predicate": "crm:P4_has_time-span",
             "sortDirection": "asc",
             "searchField": false,
             "sortButton": true,
-            "sortByPredicate": ":year"
+            "sortByPredicate": "crm:P4_has_time-span/skos:prefLabel"
         },
         "plenary_meeting": {
             "containerClass": "six",

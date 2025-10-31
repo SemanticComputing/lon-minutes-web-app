@@ -127,10 +127,6 @@ export default {
     "pie": "Pie chart",
     "bar": "Column chart",
     "resultClasses": {
-      "speechesByParty": "puhujan puolue",
-      "speechesByGender": "puhujan sukupuoli",
-      "speechesByLanguage": "puheen kieli",
-      "speechesByType": "puheen tyyppi",
       "peopleByGender": "Gender",
       "peopleByNationality": "Nationality",
       "peopleByOccupation": "Occupation",
@@ -603,7 +599,7 @@ export default {
       <a href="#" class="referenced_person">references to people</a>, 
       <a href="#" class="referenced_organization">organizations</a>,
       <a href="#" class="identified_location">identified locations</a>,
-      <a href="#" class="referenced_location">locations</a>,
+      <a href="#" class="referenced_location">references to locations</a>,
       <a href="#" class="referenced_date">times</a>, and 
       <a href="#" class="referenced_miscellaneous">miscellaneous references</a>.
         
@@ -1001,19 +997,20 @@ export default {
         country: {
           label: 'Country',
           description: `
-            Related country.
+            Related country (source: Wikidata)
           `
         },
         continent: {
           label: 'Continent',
           description: `
-            Related continent.
+            Related continent (source: Wikidata)
           `
         },
         location: {
           label: 'Coordinates',
           description: `
-            Latitude and longitude of the place.
+            Latitude and longitude of the place (source: Wikidata)
+
           `
         },
         broader: {
