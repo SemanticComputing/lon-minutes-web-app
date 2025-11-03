@@ -85,6 +85,16 @@
       "numberedList": true,
       "renderAsHTML": true,
       "expandedOnInstancePage": true
+    },
+    {
+        "id": "close_match",
+        "valueType": "object",
+        "makeLink": true,
+        "externalLink": false,
+        "sortValues": false,
+        "numberedList": true,
+        "expandedOnInstancePage": true,
+        "onlyOnInstancePage": true
     }
   ]
 }

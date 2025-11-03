@@ -807,7 +807,13 @@ export default {
           description: `
             The sentences refering to this person.
           `
-        }
+        },
+        close_match: {
+          label: 'References with similar labels',
+          description: `
+            A list of references with a similar label but not automatically grouped into one or more references. Disambiguating the references is an automatic process, so errors in deduplication may occur.
+          `
+        },
       }
     },
     organizations: {

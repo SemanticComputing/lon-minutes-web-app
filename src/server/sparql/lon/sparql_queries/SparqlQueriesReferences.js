@@ -81,4 +81,10 @@ export const referencePropertiesInstancePage = `
   { 
     ?id skos:altLabel ?altLabel 
   }
+  UNION
+  {
+    ?id skos:closeMatch ?close_match__id .
+    ?close_match__id skos:prefLabel ?close_match__prefLabel .
+    BIND(CONCAT("/references/page/", REPLACE(STR(?close_match__id), "^.*\\\\/(.+)", "$1")) AS ?close_match__dataProviderUrl)
+  }
 `
