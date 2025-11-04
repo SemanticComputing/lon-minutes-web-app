@@ -22,12 +22,12 @@ export default {
   mainPageLinkText: "Select example searches, visualizations, and linked information",
   mainPageLinks: [
       {
-        title: 'Example TBA ',
-        link: '/actors/page/p0000000000000000869/letters'
+        title: 'Minutes mentioning Åland Islands',
+        link: '/places/page/Q5689/minutes-and-references'
       },
       {
-        title: 'Example#2 TBA',
-        link: '/actors/page/p0000000000000000869/letters'
+        title: 'People born in Geneva',
+        link: '/en/people/faceted-search/table?page=0&constraints=%5B%7B%22facetId%22%3A%22birthPlace%22%2C%22filterType%22%3A%22uriFilter%22%2C%22value%22%3A%7B%22path%22%3A%5B2%5D%2C%22node%22%3A%7B%22id%22%3A%22http%3A%2F%2Fldf.fi%2Flon%2Fplaces%2FQ71%22%2C%22prefLabel%22%3A%22Geneva%22%2C%22instanceCount%22%3A27%7D%7D%7D%5D'
       }],
   mainPageDick: 'fehkufhekj',
   topBar: {
