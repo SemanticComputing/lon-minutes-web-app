@@ -105,6 +105,14 @@ export const personPropertiesInstancePage = `
   }
   UNION
   {
+    ?id crm:P74_has_current_or_former_residence ?residence__id .
+    ?residence__id skos:prefLabel ?residence__prefLabel .
+    FILTER(LANG(?residence__prefLabel) = 'en')
+
+    BIND (CONCAT("/places/page/", REPLACE(STR(?residence__id), "^.*\\\\/(.+)", "$1")) AS ?residence__dataProviderUrl)
+  }
+  UNION
+  {
     ?id crm:P100i_died_in/crm:P4_has_time-span/skos:prefLabel ?deathDate
   }
   UNION
@@ -251,6 +259,7 @@ WHERE {
   FILTER (LANG(?prefLabel) = "en")
 } GROUPBY ?category ?prefLabel ORDERBY DESC(?instanceCount)
 `
+
 export const peopleByOccupationQuery = `
 SELECT DISTINCT ?category ?prefLabel (COUNT(DISTINCT ?person__id) AS ?instanceCount)
 WHERE {
@@ -262,6 +271,32 @@ WHERE {
   ?category skos:prefLabel ?prefLabel .
   FILTER (LANG(?prefLabel) = "en")
 } GROUPBY ?category ?prefLabel ORDERBY DESC(?instanceCount)
+`
+
+export const peopleByBirthplaceQuery = `
+SELECT DISTINCT ?category ?prefLabel (COUNT(DISTINCT ?person__id) AS ?instanceCount)
+WHERE {
+  ?person__id a crm:E21_Person .
+  
+  <FILTER>
+  
+  ?person__id crm:P98i_was_born/crm:P7_took_place_at ?category .
+  ?category skos:prefLabel ?prefLabel .
+  FILTER (LANG(?prefLabel) = "en")
+} GROUPBY ?category ?prefLabel ORDERBY DESC(?instanceCount) LIMIT 30
+`
+
+export const peopleByDeathplaceQuery = `
+SELECT DISTINCT ?category ?prefLabel (COUNT(DISTINCT ?person__id) AS ?instanceCount)
+WHERE {
+  ?person__id a crm:E21_Person .
+  
+  <FILTER>
+  
+  ?person__id crm:P100i_died_in/crm:P7_took_place_at ?category .
+  ?category skos:prefLabel ?prefLabel .
+  FILTER (LANG(?prefLabel) = "en")
+} GROUPBY ?category ?prefLabel ORDERBY DESC(?instanceCount) LIMIT 30
 `
 
 export const ageQuery = `

@@ -276,6 +276,42 @@
                             "createChartData": "createApexPieChartData"
                         }
                     ]
+                },
+                "peopleByBirthplace": {
+                    "sparqlQuery": "peopleByBirthplaceQuery",
+                    "targetClass": "crm:E21_Person",
+                    "filterTarget": "person__id",
+                    "resultMapper": "mapPieChart",
+                    "sliceVisibilityThreshold": 0.0,
+                    "dropdownForChartTypes": "true",
+                    "chartTypes": [
+                        {
+                            "id": "bar",
+                            "createChartData": "createApexBarChartData"
+                        },
+                        {
+                            "id": "pie",
+                            "createChartData": "createApexPieChartData"
+                        }
+                    ]
+                },
+                "peopleByDeathplace": {
+                    "sparqlQuery": "peopleByDeathplaceQuery",
+                    "targetClass": "crm:E21_Person",
+                    "filterTarget": "person__id",
+                    "resultMapper": "mapPieChart",
+                    "sliceVisibilityThreshold": 0.0,
+                    "dropdownForChartTypes": "true",
+                    "chartTypes": [
+                        {
+                            "id": "bar",
+                            "createChartData": "createApexBarChartData"
+                        },
+                        {
+                            "id": "pie",
+                            "createChartData": "createApexPieChartData"
+                        }
+                    ]
                 }
             }
         },
@@ -419,8 +455,8 @@
             "component": "ExportLink",
             "tabPath": "share",
             "tabIcon": "IosShare",
-            "resultClass": "places",
-            "facetClass": "places"
+            "resultClass": "people",
+            "facetClass": "people"
         }
     },
     "properties": [
@@ -521,6 +557,17 @@
             "expandedOnInstancePage": true
         },
         {
+            "id": "residence",
+            "valueType": "object",
+            "makeLink": true,
+            "externalLink": false,
+            "sortValues": true,
+            "numberedList": false,
+            "onlyOnInstancePage": true,
+            "minWidth": 150,
+            "expandedOnInstancePage": true
+        },
+        {
             "id": "deathPlace",
             "valueType": "object",
             "makeLink": true,
@@ -573,7 +620,7 @@
             "textQueryProperty": "skos:prefLabel"
         },
         "gender": {
-            "containerClass": "two",
+            "containerClass": "three",
             "facetType": "list",
             "predicate": "biocrm:has_gender",
             "filterType": "uriFilter",
@@ -582,6 +629,20 @@
             "sortButton": true,
             "sortDirection": "desc",
             "sortByPredicate": "biocrm:has_gender/skos:prefLabel",
+            "hideUnknownValue": false
+        },
+        "nationality": {
+            "containerClass": "ten",
+            "facetType": "list",
+            "predicate": "sch:nationality",
+            "searchField": true,
+            "filterType": "uriFilter",
+            "sortBy": "instanceCount",
+            "barChartButton": true,
+            "sortButton": true,
+            "sortDirection": "desc",
+            "sortByPredicate": "sch:nationality/skos:prefLabel",
+            "facetLabelFilter": "FILTER(LANG(?prefLabel_) = 'en')",
             "hideUnknownValue": true
         },
         "birthDateTimespan": {
@@ -611,6 +672,20 @@
             "sortByPredicate": "crm:P98i_was_born/crm:P7_took_place_at/skos:prefLabel",
             "hideUnknownValue": true
         },
+        "residence": {
+            "containerClass": "seven",
+            "facetType": "list",
+            "filterType": "uriFilter",
+            "predicate": "crm:P74_has_current_or_former_residence",
+            "facetLabelFilter": "FILTER(LANG(?prefLabel_) = 'en')",
+            "searchField": true,
+            "sortBy": "instanceCount",
+            "sortDirection": "desc",
+            "sortButton": true,
+            "barChartButton": true,
+            "sortByPredicate": "crm:P74_has_current_or_former_residence/skos:prefLabel",
+            "hideUnknownValue": true
+        },
         "deathDateTimespan": {
             "containerClass": "four",
             "facetType": "timespan",
@@ -636,20 +711,6 @@
             "sortButton": true,
             "barChartButton": true,
             "sortByPredicate": "crm:P100i_died_in/crm:P7_took_place_at/skos:prefLabel",
-            "hideUnknownValue": true
-        },
-        "nationality": {
-            "containerClass": "ten",
-            "facetType": "list",
-            "predicate": "sch:nationality",
-            "searchField": true,
-            "filterType": "uriFilter",
-            "sortBy": "instanceCount",
-            "barChartButton": true,
-            "sortButton": true,
-            "sortDirection": "desc",
-            "sortByPredicate": "sch:nationality/skos:prefLabel",
-            "facetLabelFilter": "FILTER(LANG(?prefLabel_) = 'en')",
             "hideUnknownValue": true
         },
         "occupation": {

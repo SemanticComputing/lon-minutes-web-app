@@ -26,8 +26,8 @@ export default {
         link: '/places/page/Q5689/minutes-and-references'
       },
       {
-        title: 'People born in Geneva',
-        link: '/en/people/faceted-search/table?page=0&constraints=%5B%7B%22facetId%22%3A%22birthPlace%22%2C%22filterType%22%3A%22uriFilter%22%2C%22value%22%3A%7B%22path%22%3A%5B2%5D%2C%22node%22%3A%7B%22id%22%3A%22http%3A%2F%2Fldf.fi%2Flon%2Fplaces%2FQ71%22%2C%22prefLabel%22%3A%22Geneva%22%2C%22instanceCount%22%3A27%7D%7D%7D%5D'
+        title: 'People who died in Geneva',
+        link: '/en/people/faceted-search/table?page=0&constraints=%5B%7B%22facetId%22%3A%22deathPlace%22%2C%22filterType%22%3A%22uriFilter%22%2C%22value%22%3A%7B%22path%22%3A%5B4%5D%2C%22node%22%3A%7B%22id%22%3A%22http%3A%2F%2Fldf.fi%2Flon%2Fplaces%2FQ71%22%2C%22prefLabel%22%3A%22Geneva%22%2C%22instanceCount%22%3A23%7D%7D%7D%5D'
       }],
   mainPageDick: 'fehkufhekj',
   topBar: {
@@ -127,6 +127,8 @@ export default {
       "peopleByGender": "Gender",
       "peopleByNationality": "Nationality",
       "peopleByOccupation": "Occupation",
+      "peopleByBirthplace": "Place of birth",
+      "peopleByDeathplace": "Place of death",
       "PeopleInMinutes": "People",
       "OrganizationsInMinutes": "Organizations",
       "LocationsInMinutes": "Locations",
@@ -426,7 +428,11 @@ export default {
         },
         birthPlace: {
           label: 'Place of Birth',
-          description: `Place of birth of the persons concerned. The information is derived from external data sources. The superscript indicates the data sources from which the information was obtained.`
+          description: `Place of birth of the persons concerned. The information is derived from external data sources.`
+        },
+        residence: {
+          label: 'Place of Residency',
+          description: `Place of residency of the persons concerned. The information is derived from external data sources.`
         },
         deathDate: {
           label: 'Death time',
@@ -438,7 +444,7 @@ export default {
         },
         deathPlace: {
           label: 'Place of Death',
-          description: `Place of death of the persons concerned. The information is derived from external data sources. The superscript indicates the data sources from which the information was obtained.`
+          description: `Place of death of the persons concerned. The information is derived from external data sources.`
         },
         altLabel: {
           label: 'Alternative names',
