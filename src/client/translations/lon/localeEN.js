@@ -31,19 +31,16 @@ export default {
       }],
   mainPageDick: 'fehkufhekj',
   topBar: {
-    feedback: 'feedback',
+    feedback: 'feedback (TBA)',
     info: {
       info: 'Info',
       aboutTheProject: 'About the project',
-      aboutTheProjectUrl: 'https://seco.cs.aalto.fi/projects/coco/',
-      dataStatistics: 'Data overview / statistics'
+      aboutTheProjectUrl: 'https://seco.cs.aalto.fi/projects/minutes/'
     },
     searchBarPlaceHolder: 'Search metadata',
     searchBarPlaceHolderShort: 'Search',
-    instructions: 'instructions',
-    instructionsUrl: 'https://docs.google.com/document/d/e/2PACX-1vSe9eS4HrlH3iHZtXEFVoKAzUEYiURdLwWQUad3wBprr2fGrI3P2eiH5S2gOu1XvZlCXJ_HY0b_mttW/pub',
-    editionPerspectives: 'Digital editions'
-
+    instructions: 'instructions (TBA)',
+    instructionsUrl: '#'
   },
   facetBar: {
     results: 'Results',
@@ -1029,7 +1026,7 @@ export default {
           label: 'Places within',
           description: `
             Smaller places, e.g. towns and villages contained within the place.
-            The optional number in parenthesis is the number of letter sendings and mentions of that place. 
+            The optional number in parenthesis is the number of mentions of that place. 
           `
         },
         place: {
@@ -1059,7 +1056,7 @@ export default {
         number_of_references: {
           label: 'Number of references',
           description: `
-          Number of letter sendings and references related to this place. 
+          Number of references related to this place. 
           A detailed list about the letters can be seen on the instance page tab "LETTERS AND ACTORS"
           `
         },
@@ -1206,27 +1203,6 @@ export default {
       }
     }
   },
-  statistics: `
-  <h1 class=\"MuiTypography-root MuiTypography-h2 MuiTypography-gutterBottom\">Data Overview</h1>
-
-  <p class=\"MuiTypography-root MuiTypography-body1 MuiTypography-paragraph\"><i>The data analysis on this page is based on data from <strong>2025-05-18</strong>.<br />Some numbers may differ from the portal if the data has been updated after this date.</i></p>
-
-  <p class=\"MuiTypography-root MuiTypography-body1 MuiTypography-paragraph\">The League of Nations contains metadata for over 1 million letters and 100000 actors. The data is collected from multiple data sources belonging to different cultural heritage organizations. Although the data is harmonized between different data sources, the completeness and accuracy of the data varies as this brief overview of the data demonstrates. The quality of the letter metadata depends on the availability of the information in the original letters or biographies, how the letters are digitized and linked data transformation.</p>
-
-  <p class=\"MuiTypography-root MuiTypography-body1 MuiTypography-paragraph\">The table below shows the number of letters and actors in each data source. The five largest data sources contribute to over 97% of the letters in the League of Nations Finland data. Actors can have type Person, Family or Organization. Most of the actors are letter senders and receivers. Some actors have also had the role of \"Records creator\", and in the case of Albert Edelfelt Letters and J. V. Snellman Letters actors mentioned in the letters have a \"Referenced in letter content\" role which explains the relatively high number of actors compared to the number of letters.</p>
-
-  <p class=\"MuiTypography-root MuiTypography-body1 MuiTypography-paragraph\">The figure below shows the proportion of letters in each data source that have information about date, language, sending and receiving place. Almost all letters have some estimate about the time of sending but the exact sending date is rarely known. Availability to the language of the letter differs from source to source. The place of sending is known better in the smaller data sources, and the place of receiving the letter is usually not known. The sending places vary from residence of the sender to country, but is usually a village, town or city.</p>
-
-  <p class=\"MuiTypography-root MuiTypography-body1 MuiTypography-paragraph\">The data has estimated sending years of the letters available, but the original descriptions of the sending dates vary a lot in terms of accuracy and formats and have to be extracted using e.g. regular expressions. The sending date is rarely completely missing. The sending date descriptions that do not fit other categories or are uncertain are included in the type \"OTHER\". The five largest data sources have mostly a year or a range of years assigned to the sending date. In the smaller data sources, the exact sending date is usually known with some exceptions.</p>
-
-  <p class=\"MuiTypography-root MuiTypography-body1 MuiTypography-paragraph\">Each letter is assigned only to one data source. Because the information about the sending dates and places are lacking, it is difficult to say if there are possible duplicate letters between the data sources. There is possibly one shared letter between Albert Edelfelt Letters and Finnish National Gallery, and 18 between Elias Lönnrot Letters and J.V. Snellman Letters, where the sender and the receiver of the letter, and the sending date and place match.</p>
-
-  <p class=\"MuiTypography-root MuiTypography-body1 MuiTypography-paragraph\">Actors on the other hand can be present in multiple data sources, and the information about them is combined to the League of Nations Finland data using also external data sources like AcademySampo, BiographySampo and Wikidata. The number of possible actor duplicates depends on how well linking actors to themselves across data sources has succeeded. In many cases, there was not enough information to say with confidence if two actors in different sources are actually the same person. Actors who have more letters in the data appear more likely in multiple data sources.</p>
-
-  <p class=\"MuiTypography-root MuiTypography-body1 MuiTypography-paragraph\">In the figure below, each row shows the percentage of Person type actors who have sent and/or received  at least a certain amount of letters and have the metadata corresponding to the column available. The gender is usually known, but as the number of letters grows actors are more likely to have links to external sources and more detailed metadata.</p>
-
-  <p class=\"MuiTypography-root MuiTypography-body1 MuiTypography-paragraph\">In general, data sources have a quite big proportion of the actors unique to the source. For the Finnish National Gallery and larger data sources, over 70% of the actors are unique. There are a lot of actors who are associated with one or two letters and appear only in one source, whereas people who are associated with many letters are more likely shared between data sources. Especially letters the actor has sent might have ended up in different data sources. Figure below shows how actors are shared between data sources.</p>
-  `,
   exportLink: {
     viewLabel: "Tab",
     viewInstructions: "Choose the tab in which the query will open",

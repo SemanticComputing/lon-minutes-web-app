@@ -205,49 +205,6 @@ export const minutesRelatedTo = `
   }
 `
 
-export const csvQueryLetters = `
-  SELECT DISTINCT ?id ?label 
-  (GROUP_CONCAT(STR(?sender_id); separator="|") AS ?sender_ids)
-  (GROUP_CONCAT(?sender; separator="|") AS ?senders)
-  (GROUP_CONCAT(STR(?recipient_id); separator="|") AS ?recipient_ids)
-  (GROUP_CONCAT(?recipient; separator="|") AS ?recipients)
-  (GROUP_CONCAT(?timespan; separator="|") AS ?timespans)
-  ?datasource ?fonds
-  WHERE {
-    <FILTER>
-
-    FILTER(BOUND(?id))
-    ?id a :Letter ; 
-      skos:prefLabel ?label .
-    OPTIONAL
-    {
-      ?id portal:sender ?sender_id .
-      ?sender_id skos:prefLabel ?sender ; a []
-    }
-    OPTIONAL
-    {
-      ?id portal:recipient ?recipient_id . 
-      ?recipient_id skos:prefLabel ?recipient ; a []
-    }
-    OPTIONAL
-    {
-      ?id :has_time-span [ skos:prefLabel ?timespan ; a [] ]
-    }
-    OPTIONAL
-    {
-      ?id :fonds [ a [] ; skos:prefLabel ?fonds ]
-    }
-    OPTIONAL
-    { 
-      ?id :original_data_provider/skos:prefLabel ?datasource .
-      FILTER(LANG(?datasource)='en')
-    }
-  }
-  GROUP BY ?id ?label ?datasource ?fonds
-  # ORDER BY ?label
-  LIMIT 50000
-`
-
 export const letterEmbedInstancePageQuery = `
 SELECT ?id ?url 
   WHERE { 

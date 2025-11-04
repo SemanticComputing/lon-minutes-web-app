@@ -26,6 +26,8 @@ export const personPropertiesFacetResults = `
   {
     ?id crm:P98i_was_born/crm:P7_took_place_at ?birthPlace__id .
     ?birthPlace__id skos:prefLabel ?birthPlace__prefLabel .
+    FILTER(LANG(?birthPlace__prefLabel) = 'en')
+
     BIND (CONCAT("/places/page/", REPLACE(STR(?birthPlace__id), "^.*\\\\/(.+)", "$1")) AS ?birthPlace__dataProviderUrl)
   }
   UNION
@@ -36,6 +38,8 @@ export const personPropertiesFacetResults = `
   {
     ?id crm:P100i_died_in/crm:P7_took_place_at ?deathPlace__id .
     ?deathPlace__id skos:prefLabel ?deathPlace__prefLabel .
+    FILTER(LANG(?deathPlace__prefLabel) = 'en')
+
     BIND (CONCAT("/places/page/", REPLACE(STR(?deathPlace__id), "^.*\\\\/(.+)", "$1")) AS ?deathPlace__dataProviderUrl)
   }
   UNION
@@ -95,6 +99,8 @@ export const personPropertiesInstancePage = `
   {
     ?id crm:P98i_was_born/crm:P7_took_place_at ?birthPlace__id .
     ?birthPlace__id skos:prefLabel ?birthPlace__prefLabel .
+    FILTER(LANG(?birthPlace__prefLabel) = 'en')
+
     BIND (CONCAT("/places/page/", REPLACE(STR(?birthPlace__id), "^.*\\\\/(.+)", "$1")) AS ?birthPlace__dataProviderUrl)
   }
   UNION
@@ -105,6 +111,8 @@ export const personPropertiesInstancePage = `
   {
     ?id crm:P100i_died_in/crm:P7_took_place_at ?deathPlace__id .
     ?deathPlace__id skos:prefLabel ?deathPlace__prefLabel .
+    FILTER(LANG(?deathPlace__prefLabel) = 'en')
+
     BIND (CONCAT("/places/page/", REPLACE(STR(?deathPlace__id), "^.*\\\\/(.+)", "$1")) AS ?deathPlace__dataProviderUrl)
   }
   UNION
@@ -451,31 +459,6 @@ export const networkNodesQuery = `
     BIND (REPLACE(?_label, '^(.+) [0-9()–-]+$', '$1')AS ?prefLabel)
     BIND (CONCAT("../../page/", REPLACE(STR(?id), "^.*\\\\/(.+)", "$1"),"/person-network") AS ?href)
   }
-`
-
-export const correspondenceTimelineQuery = `
-SELECT DISTINCT ?id ?source ?source__label ?target ?target__label ?date ?type ?year
-WHERE 
-{
-VALUES ?node { <ID> } 
-{
-  ?node ^portal:sender ?letter .
-  ?letter a :Letter ;
-    portal:recipient ?target .
-  ?target skos:prefLabel ?_target__label . 
-  BIND (?node AS ?source)
-} UNION {
-  ?letter portal:recipient ?node ;
-    a :Letter .
-  ?source ^(portal:sender) ?letter ;
-    skos:prefLabel ?_source__label . 
-  BIND (?node AS ?target)
-}
-?target skos:prefLabel ?target__label .
-?source skos:prefLabel ?source__label .
-?letter :has_time-span/crm:P82a_begin_of_the_begin ?date .
-BIND (year(?date) AS ?year)
-} ORDER BY ?date
 `
 
 export const networkNodesFacetQuery = `
