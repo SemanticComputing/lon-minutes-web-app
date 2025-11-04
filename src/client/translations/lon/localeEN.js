@@ -11,7 +11,7 @@ export default {
     long: 'League of Nations',
     mobile: '',
     subheading: `
-      League of Nations minutes on the Semantic Web
+      Minutes of Multilateralism on the Semantic Web
     `
   },
   selectEditionPerpective: 'Digital editions',

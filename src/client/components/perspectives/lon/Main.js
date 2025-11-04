@@ -8,7 +8,7 @@ import has from 'lodash'
 import MainCard from './MainCard'
 import { getSpacing } from '../../../helpers/helpers'
 import Button from '@mui/material/Button'
-import bannerLogo from '../../../img/logos/LNS-header.png'
+import bannerLogo from '../../../img/logos/LNS-header3.png'
 
 /**
  * A component for generating a front page for a semantic portal.
@@ -91,7 +91,7 @@ const Main = props => {
           [theme.breakpoints.up('xl')]: {
             height: mainPage.bannerDefaultHeight
           },
-          boxShadow: '0 -15px 15px 0px #bdbdbd inset',
+          // boxShadow: '0 -15px 15px 0px #bdbdbd inset',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center'
@@ -102,37 +102,41 @@ const Main = props => {
             color: '#fff'
           }}
         >
-          <Box
-            sx={{
-              display: 'flex',
-              justifyContent: 'center'
-            }}
-          >
-            <Typography component='h1' variant={headingVariant} align='center'>
-              {intl.getHTML('appTitle.long')}
+        <Box sx={{
+            display: 'flex',
+            justifyContent: 'center'
+          }}>
+        <Box
+            component='img'
+            src={bannerLogo}
+            alt={`${intl.get('appTitle.short')} logo`}
+            sx={theme => ({
+              height: '40px',
+              [theme.breakpoints.up('md')]: {
+                height: '115px'
+              },
+              [theme.breakpoints.up('xl')]: {
+                height: '140px'
+              },
+              marginBottom: theme.spacing(1)
+            })}
+        />
+        </Box>
+                <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'center'
+          }}
+        >
+          <Box>
+            <Typography component='h3' variant={headingVariant}>
+            {intl.getHTML('appTitle.long')}
             </Typography>
           </Box>
-          {/* 
-            <Box
-              component='img'
-              src={bannerLogo}
-              alt={`${intl.get('appTitle.short')} logo`}
-              sx={theme => ({
-                height: '90px',
-                [theme.breakpoints.up('md')]: {
-                  height: '150px'
-                },
-                [theme.breakpoints.up('xl')]: {
-                  height: '240px'
-                },
-                marginBottom: theme.spacing(1),
-                justifyContent: 'center'
-              })}
-              />
-            */}
-          <Box
+        </Box>
+        <Box
             sx={theme => ({
-              marginTop: theme.spacing(1.5),
+              marginTop: theme.spacing(1),
               ...(mainPage.wrapSubheading) && {
                 [theme.breakpoints.up('md')]: {
                   display: 'flex',

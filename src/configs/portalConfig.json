@@ -80,11 +80,11 @@
             ]
         },
         "mainPage": {
-            "bannerImage": "main_page/lon_banner3.png",
+            "bannerImage": "main_page/lon_banner.png",
             "bannerBackround": "linear-gradient( rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45) ), url(<BANNER_IMAGE_URL)",
-            "bannerMobileHeight": 150,
-            "bannerReducedHeight": 200,
-            "bannerDefaultHeight": 250,
+            "bannerMobileHeight": 210,
+            "bannerReducedHeight": 300,
+            "bannerDefaultHeight": 340,
             "wrapSubheading": false
         },
         "infoHeader": {
@@ -114,7 +114,7 @@
         "yasguiParams": {
             "contentTypeConstruct": "text/turtle",
             "contentTypeSelect": "application/sparql-results+json",
-            "endpoint": "http://ldf.fi/lon/sparql",
+            "endpoint": "http://localhost:3030/leona/sparql",
             "requestMethod": "POST",
             "tabTitle": "Exported query"
         }
