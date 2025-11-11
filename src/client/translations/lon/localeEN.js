@@ -380,6 +380,12 @@ export default {
             Other people referred in the same minutes.
           `
         },
+        archive: {
+          label: 'United Nations Library and Archives',
+          description: `
+            Browse the related documents in the United Nations Library and Archives
+          `
+        },
         location: {
           label: 'Related locations',
           description: `

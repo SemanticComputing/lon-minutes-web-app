@@ -97,6 +97,16 @@
                                 "expandedOnInstancePage": true
                             },
                             {
+                                "id": "archive",
+                                "valueType": "object",
+                                "makeLink": true,
+                                "externalLink": true,
+                                "sortValues": true,
+                                "numberedList": false,
+                                "onlyOnInstancePage": true,
+                                "expandedOnInstancePage": true
+                            },
+                            {
                                 "id": "related",
                                 "valueType": "object",
                                 "makeLink": true,

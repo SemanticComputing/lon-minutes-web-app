@@ -181,11 +181,19 @@ WHERE {
     }
   }
   UNION
-  { SELECT DISTINCT ?id ?minute__id ?minute__prefLabel
+  { 
+    SELECT DISTINCT ?id ?minute__id ?minute__prefLabel
       (CONCAT("/minutes/page/", REPLACE(STR(?minute__id), "^.*\\\\/(.+)", "$1")) AS ?minute__dataProviderUrl) 
+    ?archive__id
+    ?archive__prefLabel
+    (?archive__id AS ?archive__dataProviderUrl)
     WHERE {
       ?minute__id linguistics:referenceToPerson/:refers_to ?id ;
       skos:prefLabel ?minute__prefLabel .
+      
+      OPTIONAL {
+        ?minute__id foaf:page ?archive__id ; :key/skos:prefLabel ?archive__prefLabel 
+      }
     } ORDER BY STR(?minute__id)
   }
   UNION
