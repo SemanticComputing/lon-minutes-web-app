@@ -95,13 +95,14 @@ export const generateConstraintsBlock = ({
   return filterStr
 }
 
-const generateTextFilter = ({
+export const generateTextFilter = ({
   backendSearchConfig,
   facetClass,
   facetID,
   filterTarget,
   queryString,
-  inverse
+  inverse,
+  literal
 }) => {
   const facetConfig = backendSearchConfig[facetClass].facets[facetID]
   const queryTargetVariable = facetConfig.textQueryPredicate
@@ -112,8 +113,12 @@ const generateTextFilter = ({
     : queryTargetVariable
   let queryObject = ''
   let textQueryMaxInstances = ''
+  let textQueryHiglightingOptions = ''
   if (facetConfig.textQueryMaxInstances) {
     textQueryMaxInstances = facetConfig.textQueryMaxInstances
+  }
+  if (facetConfig.textQueryHiglightingOptions && literal) {
+    textQueryHiglightingOptions = `"${facetConfig.textQueryHiglightingOptions}"`
   }
   if (has(facetConfig, 'textQueryProperty') && facetConfig.textQueryGetLiteral &&
       has(facetConfig, 'textQueryHiglightingOptions')) {

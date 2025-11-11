@@ -143,7 +143,7 @@ a, a:visited, a:hover, a:active {
 }
 
 .identified_location {
-    background-color: #27ae5fb0;
+    background-color: #27ae5f80;
 }
 
 .identified_organization, .referenced_organization {
@@ -159,7 +159,7 @@ a, a:visited, a:hover, a:active {
 }
 
 .identified_person {
-    background-color: #f39c12b0;
+    background-color: #f39c1280;
 }
 
 .referenced_date {

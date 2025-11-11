@@ -2,7 +2,7 @@ import { has } from 'lodash'
 import { runSelectQuery } from './SparqlApi'
 import { runNetworkQuery } from './NetworkApi'
 import { makeObjectList, mapCount } from './Mappers'
-import { generateConstraintsBlock } from './Filters'
+import { generateConstraintsBlock, generateTextFilter } from './Filters'
 import {
   countQuery,
   facetResultSetQuery,
@@ -51,6 +51,23 @@ export const getPaginatedResults = ({
       facetID: null
     }))
   }
+  let textFilter = ''
+  if (constraints) {
+    constraints.forEach(c => {
+      if (c.filterType === 'textFilter') {
+        textFilter = generateTextFilter({
+          backendSearchConfig,
+          facetClass: resultClass,
+          facetID: c.facetID,
+          filterTarget: 'id',
+          queryString: c.values,
+          literal: true
+        })
+      }
+    })
+  }
+  q = q.replace('<TEXTFILTER>', textFilter)
+
   if (sortBy == null) {
     q = q.replace('<ORDER_BY_TRIPLE>', '')
     q = q.replace('<ORDER_BY>', '# no sorting')
@@ -161,6 +178,9 @@ export const getAllResults = ({
       filterTarget,
       facetID: null
     }))
+  }
+  if (resultClassConfig.targetClass) {
+    q = q.replace(/<TARGET_CLASS>/g, resultClassConfig.targetClass)
   }
   q = q.replace(/<FACET_CLASS>/g, perspectiveConfig.facetClass)
   if (has(backendSearchConfig[resultClass], 'facetClassPredicate')) {

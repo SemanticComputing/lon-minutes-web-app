@@ -45,7 +45,10 @@
                 "paginatedResultsAlwaysExpandRows": true,
                 "paginatedResultsRowContentMaxHeight": 150,
                 "sortBy": "sort_by_url",
-                "sortDirection": "desc"
+                "sortDirection": "desc",
+                "postprocess": {
+                    "func": "processTextIndexHighlighting"
+                }
             },
             "instanceConfig": {
                 "propertiesQueryBlock": "minutePropertiesInstancePage",
@@ -359,8 +362,10 @@
             "containerClass": "one",
             "facetType": "text",
             "filterType": "textFilter",
-            "sortByPredicate": "skos:prefLabel",
-            "textQueryProperty": ":content"
+            "textQueryProperty": ":html",
+            "textQueryGetLiteral": true,
+            "textQueryHiglightingOptions": "highlight:s:<b> | e:</b> | z:27500",
+            "textQueryMaxInstances": 1000000
         },
         "year": {
             "containerClass": "six",
