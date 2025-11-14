@@ -14,12 +14,12 @@ PREFIX spatial: <http://jena.apache.org/spatial#>
 PREFIX text: <http://jena.apache.org/text#> 
 PREFIX wgs84: <http://www.w3.org/2003/01/geo/wgs84_pos#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-
+  
 PREFIX : <http://ldf.fi/schema/lon/>
 PREFIX actors: <http://ldf.fi/lon/actors/> 
 PREFIX letters: <http://ldf.fi/lon/letters/>
 PREFIX linguistics: <http://ldf.fi/schema/lon/linguistics/>
-PREFIX places: <http://ldf.fi/lon/places/> 
+PREFIX places: <http://ldf.fi/lon/places/>
 PREFIX sentences: <http://ldf.fi/lon/sentences/>
 PREFIX sources: <http://ldf.fi/lon/source/>
 `

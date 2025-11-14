@@ -522,6 +522,16 @@
             "expandedOnInstancePage": true
         },
         {
+            "id": "represented",
+            "valueType": "object",
+            "makeLink": true,
+            "externalLink": false,
+            "sortValues": true,
+            "numberedList": false,
+            "onlyOnInstancePage": true,
+            "expandedOnInstancePage": false
+        },
+        {
             "id": "occupation",
             "valueType": "object",
             "makeLink": true,
@@ -652,6 +662,20 @@
             "sortButton": true,
             "sortDirection": "desc",
             "sortByPredicate": "sch:nationality/skos:prefLabel",
+            "facetLabelFilter": "FILTER(LANG(?prefLabel_) = 'en')",
+            "hideUnknownValue": true
+        },
+        "represented": {
+            "containerClass": "ten",
+            "facetType": "list",
+            "predicate": ":represented",
+            "searchField": true,
+            "filterType": "uriFilter",
+            "sortBy": "instanceCount",
+            "barChartButton": true,
+            "sortButton": true,
+            "sortDirection": "desc",
+            "sortByPredicate": ":represented/skos:prefLabel",
             "facetLabelFilter": "FILTER(LANG(?prefLabel_) = 'en')",
             "hideUnknownValue": true
         },

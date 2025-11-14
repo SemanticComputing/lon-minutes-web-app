@@ -436,6 +436,10 @@ export default {
           label: 'Place of Birth',
           description: `Place of birth of the persons concerned. The information is derived from external data sources.`
         },
+        represented: {
+          label: 'Represented Country',
+          description: `The country which a person was representing (Source: LONSEA)`
+        },
         residence: {
           label: 'Place of Residency',
           description: `Place of residency of the persons concerned. The information is derived from external data sources.`

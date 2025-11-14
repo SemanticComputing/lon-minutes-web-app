@@ -129,7 +129,14 @@ export const personPropertiesInstancePage = `
     ?nationality__id skos:prefLabel ?nationality__prefLabel .
     BIND (CONCAT("/places/page/", REPLACE(STR(?nationality__id), "^.*\\\\/(.+)", "$1")) AS ?nationality__dataProviderUrl)
     FILTER(LANG(?nationality__prefLabel) = 'en')
-  } 
+  }
+  UNION
+  { 
+    ?id :represented ?represented__id .
+    ?represented__id skos:prefLabel ?represented__prefLabel .
+    BIND (CONCAT("/places/page/", REPLACE(STR(?represented__id), "^.*\\\\/(.+)", "$1")) AS ?represented__dataProviderUrl)
+    FILTER(LANG(?represented__prefLabel) = 'en')
+  }
   UNION
   {
     ?id biocrm:has_occupation ?occupation__id .
