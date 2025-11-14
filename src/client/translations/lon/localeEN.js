@@ -1076,6 +1076,10 @@ export default {
           A detailed list about the letters can be seen on the instance page tab "LETTERS AND ACTORS"
           `
         },
+        represented: {
+          label: 'Representatives',
+          description: `The representatives of this country (Source: LONSEA)`
+        },
         born: {
           label: 'People born',
           description: `

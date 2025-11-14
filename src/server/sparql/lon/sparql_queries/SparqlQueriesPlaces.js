@@ -171,7 +171,13 @@ WHERE {
         ?minute__id linguistics:referenceToLocation ?reference__id ;
             skos:prefLabel ?minute__prefLabel .
     } ORDER BY STR(?minute__id)
-  } 
+  }
+  UNION
+  {
+    ?represented__id :represented ?id ;
+      skos:prefLabel ?represented__prefLabel .
+    BIND(CONCAT("/people/page/", REPLACE(STR(?represented__id), "^.*\\\\/(.+)", "$1")) AS ?represented__dataProviderUrl)
+  }
   UNION
   {
     ?born__id crm:P98i_was_born/crm:P7_took_place_at ?id ;
