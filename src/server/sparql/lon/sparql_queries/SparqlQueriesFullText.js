@@ -15,8 +15,9 @@ BIND (COALESCE(?type__class, ?type__label) AS ?type__prefLabel)
 BIND(?prefLabel__id as ?prefLabel__prefLabel)
 BIND(CONCAT(?pagetype, "/page/", REPLACE(STR(?id), "^.*\\\\/(.+)", "$1")) AS ?prefLabel__dataProviderUrl)
 
-?id ?value_prop ?_num .
-BIND(REPLACE(CONCAT("     ", str(?_num)), "^.*(.{5})$", "$1")  AS ?number_of_activities)
+OPTIONAL { ?id ?value_prop ?_num }
+BIND (COALESCE(?_num, 0) AS ?num)
+BIND(REPLACE(CONCAT("     ", str(?num)), "^.*(.{5})$", "$1")  AS ?number_of_activities)
 
 OPTIONAL {
   ?id ^:proxy_for? [ 
