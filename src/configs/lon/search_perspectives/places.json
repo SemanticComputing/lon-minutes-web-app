@@ -92,7 +92,16 @@
                                 "onlyOnInstancePage": true,
                                 "expandedOnInstancePage": true
                             },
-                            
+                            {
+                                "id": "represented",
+                                "valueType": "object",
+                                "makeLink": true,
+                                "externalLink": false,
+                                "sortValues": true,
+                                "numberedList": true,
+                                "onlyOnInstancePage": true,
+                                "expandedOnInstancePage": true
+                            },
                             {
                                 "id": "born",
                                 "valueType": "object",
