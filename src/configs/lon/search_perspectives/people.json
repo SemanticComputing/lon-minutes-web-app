@@ -269,6 +269,24 @@
                         }
                     ]
                 },
+                "peopleByRepresented": {
+                    "sparqlQuery": "peopleByRepresentedQuery",
+                    "targetClass": "crm:E21_Person",
+                    "filterTarget": "person__id",
+                    "resultMapper": "mapPieChart",
+                    "sliceVisibilityThreshold": 0.01,
+                    "dropdownForChartTypes": "true",
+                    "chartTypes": [
+                        {
+                            "id": "bar",
+                            "createChartData": "createApexBarChartData"
+                        },
+                        {
+                            "id": "pie",
+                            "createChartData": "createApexPieChartData"
+                        }
+                    ]
+                },
                 "peopleByOccupation": {
                     "sparqlQuery": "peopleByOccupationQuery",
                     "targetClass": "crm:E21_Person",

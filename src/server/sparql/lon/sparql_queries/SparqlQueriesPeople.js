@@ -12,7 +12,7 @@ export const personPropertiesFacetResults = `
   }
   UNION
   {
-    ?id skos:altLabel ?altLabel 
+    ?id skos:altLabel ?altLabel
   }
   UNION
   {
@@ -120,7 +120,6 @@ export const personPropertiesInstancePage = `
     ?id crm:P100i_died_in/crm:P7_took_place_at ?deathPlace__id .
     ?deathPlace__id skos:prefLabel ?deathPlace__prefLabel .
     FILTER(LANG(?deathPlace__prefLabel) = 'en')
-
     BIND (CONCAT("/places/page/", REPLACE(STR(?deathPlace__id), "^.*\\\\/(.+)", "$1")) AS ?deathPlace__dataProviderUrl)
   }
   UNION
@@ -131,7 +130,7 @@ export const personPropertiesInstancePage = `
     FILTER(LANG(?nationality__prefLabel) = 'en')
   }
   UNION
-  { 
+  {
     ?id :represented ?represented__id .
     ?represented__id skos:prefLabel ?represented__prefLabel .
     BIND (CONCAT("/places/page/", REPLACE(STR(?represented__id), "^.*\\\\/(.+)", "$1")) AS ?represented__dataProviderUrl)
@@ -270,6 +269,19 @@ WHERE {
   <FILTER>
   
   ?person__id sch:nationality ?category .
+  ?category skos:prefLabel ?prefLabel .
+  FILTER (LANG(?prefLabel) = "en")
+} GROUPBY ?category ?prefLabel ORDERBY DESC(?instanceCount)
+`
+
+export const peopleByRepresentedQuery = `
+SELECT DISTINCT ?category ?prefLabel (COUNT(DISTINCT ?person__id) AS ?instanceCount)
+WHERE {
+  ?person__id a crm:E21_Person .
+  
+  <FILTER>
+  
+  ?person__id :represented ?category .
   ?category skos:prefLabel ?prefLabel .
   FILTER (LANG(?prefLabel) = "en")
 } GROUPBY ?category ?prefLabel ORDERBY DESC(?instanceCount)

@@ -126,6 +126,7 @@ export default {
     "resultClasses": {
       "peopleByGender": "Gender",
       "peopleByNationality": "Nationality",
+      "peopleByRepresented": "Represented country",
       "peopleByOccupation": "Occupation",
       "peopleByBirthplace": "Place of birth",
       "peopleByDeathplace": "Place of death",
