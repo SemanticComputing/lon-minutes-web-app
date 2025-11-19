@@ -76,6 +76,16 @@
       "sortValues": false,
       "numberedList": true,
       "expandedOnInstancePage": true
+    },
+    {
+      "id": "member",
+      "valueType": "object",
+      "makeLink": true,
+      "externalLink": false,
+      "sortValues": false,
+      "numberedList": true,
+      "onlyOnInstancePage": true,
+      "expandedOnInstancePage": true
     }
   ]
 }

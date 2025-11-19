@@ -560,6 +560,16 @@
             "expandedOnInstancePage": true
         },
         {
+            "id": "role",
+            "valueType": "object",
+            "makeLink": true,
+            "externalLink": false,
+            "sortValues": false,
+            "numberedList": false,
+            "onlyOnInstancePage": true,
+            "expandedOnInstancePage": true
+        },
+        {
             "id": "birthDate",
             "valueType": "string",
             "makeLink": false,
@@ -777,6 +787,19 @@
             "sortDirection": "desc",
             "sortByPredicate": "biocrm:has_occupation/skos:prefLabel",
             "facetLabelFilter": "FILTER(LANG(?prefLabel_) = 'en')",
+            "hideUnknownValue": true
+        },
+        "lonsea_organization": {
+            "containerClass": "ten",
+            "facetType": "list",
+            "predicate": "portal:related_organization",
+            "searchField": true,
+            "filterType": "uriFilter",
+            "barChartButton": true,
+            "sortButton": true,
+            "sortBy": "instanceCount",
+            "sortDirection": "desc",
+            "sortByPredicate": "portal:related_organization/skos:prefLabel",
             "hideUnknownValue": true
         },
         "external": {

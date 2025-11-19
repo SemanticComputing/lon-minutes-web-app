@@ -273,6 +273,24 @@
             "minWidth": 100
         },
         {
+            "id": "sidenote",
+            "valueType": "string",
+            "makeLink": false,
+            "externalLink": true,
+            "sortValues": true,
+            "numberedList": false,
+            "onlyOnInstancePage": true
+        },
+        {
+            "id": "pagenumber",
+            "valueType": "string",
+            "makeLink": false,
+            "externalLink": true,
+            "sortValues": true,
+            "numberedList": false,
+            "onlyOnInstancePage": true
+        },
+        {
             "id": "referenced_person",
             "valueType": "object",
             "makeLink": true,
@@ -406,13 +424,27 @@
             "containerClass": "seven",
             "facetType": "list",
             "filterType": "uriFilter",
-            "predicate": "linguistics:referenceToPerson/:refers_to",
+            "predicate": "portal:referenceToNamedPerson",
             "searchField": true,
             "sortBy": "instanceCount",
             "sortDirection": "desc",
             "sortButton": true,
             "barChartButton": true,
-            "sortByPredicate": "linguistics:referenceToPerson/:refers_to/skos:prefLabel"
+            "sortByPredicate": "portal:referenceToNamedPerson/skos:prefLabel",
+            "hideUnknownValue": true
+        },
+        "referenced_unknown_actor": {
+            "containerClass": "seven",
+            "facetType": "list",
+            "filterType": "uriFilter",
+            "predicate": "portal:referenceToUnknownPerson",
+            "searchField": true,
+            "sortBy": "instanceCount",
+            "sortDirection": "desc",
+            "sortButton": true,
+            "barChartButton": true,
+            "sortByPredicate": "portal:referenceToUnknownPerson/skos:prefLabel",
+            "hideUnknownValue": true
         },
         "referenced_location": {
             "containerClass": "seven",

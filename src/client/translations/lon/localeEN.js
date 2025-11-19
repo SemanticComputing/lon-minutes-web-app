@@ -420,10 +420,8 @@ export default {
           description: ''
         },
         role: {
-          label: 'Actor role',
-          description: `The actors derived from the source data are categorised as either senders or recipients of letters, or             as records creators. One actor can have several roles. Additionally, some datasets have been machine-searched for             actors mentioned in the letters' contents. 
-          
-          If you are only interested in the metadata of the letters, please exclude the actors mentioned in the letter                    contents from the search.`
+          label: 'Roles in organizations of the LoN',
+          description: `Source: LONSEA.`
         },
         birthDate: {
           label: 'Birth time',
@@ -472,6 +470,10 @@ export default {
         nationality: {
           label: 'Nationality',
           description: `Nationality data is only provided for actors for whom information is available in external sources (Wikidata, etc.). A single actor may have several nationalities.`
+        },
+        lonsea_organization: {
+          label: 'LoN organization',
+          description: `The organization(s) of the League of Nations to which the person belonged (Source: LONSEA).`
         },
         external: {
           label: 'External databases',
@@ -700,7 +702,14 @@ export default {
         referenced_person: {
           label: 'Referenced people',
           description: `
-            People referenced in the content of the minute. 
+            Identified people referenced in the content of the minute. 
+          `
+        },
+        referenced_unknown_actor: {
+          label: 'Referenced unknown actors',
+          description: `
+            Unidentified actors referenced in the content of the minute. 
+            These are references that could not be linked to a known person found in the data sources.
           `
         },
         referenced_location: {
@@ -737,6 +746,18 @@ export default {
           label: 'Language',
           description: `
             Language(s) of the minute. 
+          `
+        },
+        sidenote: {
+          label: 'Footnote',
+          description: `
+            Footnotes on the original page. 
+          `
+        },
+        pagenumber: {
+          label: 'Page number',
+          description: `
+            Page number in the original document. 
           `
         },
         plenary_meeting: {
@@ -887,7 +908,12 @@ export default {
         close_match: {
           label: 'Similar Organizations',
           description: 'A list of organizations having similar labels'
+        },
+        member: {
+          label: 'Members',
+          description: 'A list of members associated with this organization. Source LONSEA.'
         }
+        
       }
     },
     concepts: {

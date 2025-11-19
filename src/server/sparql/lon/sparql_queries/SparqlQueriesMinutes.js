@@ -92,6 +92,14 @@ UNION
     ?related__id :key ?key ; skos:prefLabel ?related__prefLabel .
   } ORDER BY STR(?related__id)
 }
+UNION
+{
+  ?id :sidenote ?sidenote .
+}
+UNION
+{
+  ?id :page_number ?pagenumber .
+}
 `
 
 export const minutesByYearQuery = `

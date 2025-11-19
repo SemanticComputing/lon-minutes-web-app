@@ -162,6 +162,21 @@ export const personPropertiesInstancePage = `
     ?close_match__id skos:prefLabel ?close_match__prefLabel .
     BIND(CONCAT("/people/page/", REPLACE(STR(?close_match__id), "^.*\\\\/(.+)", "$1")) AS ?close_match__dataProviderUrl)
   }
+  UNION
+  {
+    SELECT DISTINCT ?id 
+      ?role__id 
+      (CONCAT(?_label, ": ", ?event_label) AS ?role__prefLabel)
+      (CONCAT("/organizations/page/", REPLACE(STR(?organization__id), "^.*\\\\/(.+)", "$1")) AS ?role__dataProviderUrl)
+    WHERE {
+      ?id biocrm:bearer_of ?role__id .
+      ?role__id skos:prefLabel ?_label ;
+                crm:P11i_participated_in ?event__id .
+      ?event__id skos:prefLabel ?event_label .
+      OPTIONAL { ?event__id crm:P4_has_time-span/skos:prefLabel ?tspan }
+      OPTIONAL { ?event__id :organization ?organization__id }
+    } ORDER BY COALESCE(?tspan, "zzz")
+  }
 `
 
 export const peopleMinutesInstancePageQuery = `
