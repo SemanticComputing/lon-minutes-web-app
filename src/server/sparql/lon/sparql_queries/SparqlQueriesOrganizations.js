@@ -45,11 +45,11 @@ export const organizationPropertiesInstancePage = `
   {
     SELECT DISTINCT ?id
         ?member__id 
-        (CONCAT(COALESCE(?tspan, '?'), ': ', ?_label) AS ?member__prefLabel)
+        (CONCAT(COALESCE(?tspan, '?'), ', ', ?_label, ': ', ?role_label) AS ?member__prefLabel)
         (CONCAT("/people/page/", REPLACE(STR(?member__id), "^.*\\\\/(.+)", "$1")) AS ?member__dataProviderUrl)
     WHERE {
     	?evt__id :organization ?id ; skos:prefLabel ?evt__label .
-    	?role__id crm:P11i_participated_in ?evt__id .
+    	?role__id crm:P11i_participated_in ?evt__id ; skos:prefLabel ?role_label .
       OPTIONAL { ?evt__id crm:P4_has_time-span/skos:prefLabel ?tspan }
     	?member__id biocrm:bearer_of ?role__id ; skos:prefLabel ?_label 
     } 

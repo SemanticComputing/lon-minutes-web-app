@@ -904,7 +904,7 @@ export default {
         },
         member: {
           label: 'Members',
-          description: 'A list of members associated with this organization. Source LONSEA.'
+          description: 'A list of members associated with this organization including their roles. Source LONSEA.'
         }
         
       }

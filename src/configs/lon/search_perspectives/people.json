@@ -565,7 +565,7 @@
             "makeLink": true,
             "externalLink": false,
             "sortValues": false,
-            "numberedList": false,
+            "numberedList": true,
             "onlyOnInstancePage": true,
             "expandedOnInstancePage": true
         },
