@@ -193,12 +193,18 @@ WHERE {
   }
   UNION
   {
-    SELECT DISTINCT ?id (CONCAT('<p>', ?_sentence, '</p>') AS ?sentence) WHERE {
-    VALUES ?_prop { linguistics:referenceToDate linguistics:referenceToLocation linguistics:referenceToOrganization linguistics:referenceToPerson linguistics:referenceToMiscellaneous }
-    ?reference__id :refers_to ?id .
-    [] ?_prop ?reference__id ;
+    SELECT DISTINCT ?id (CONCAT('<p>', ?_sentence2, '</p>') AS ?sentence) WHERE {
+      ?reference__id :refers_to ?id .
+      [] linguistics:referenceToPerson ?reference__id ;
           a :Sentence ;
           :html ?_sentence
+      BIND (REPLACE(?_sentence,
+          CONCAT(
+            '(<a href[^<]+',
+            REPLACE(STR(?id), "^.*\\\\/(.+)$", "$1"), 
+            '"[^<]+</a>)'),
+          '<b>$1</b>') AS 
+          ?_sentence2)
     }
   }
   UNION

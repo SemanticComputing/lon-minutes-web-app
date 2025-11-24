@@ -35,12 +35,18 @@ export const referencePropertiesInstancePage = `
   }
   UNION
   {
-    SELECT DISTINCT ?id (CONCAT('<div>', ?_content, '</div>') AS ?sentence) 
+    SELECT DISTINCT ?id (CONCAT('<div>', ?_content2, '</div>') AS ?sentence) 
     WHERE {
       VALUES ?_prop { linguistics:referenceToDate linguistics:referenceToLocation linguistics:referenceToOrganization linguistics:referenceToPerson linguistics:referenceToMiscellaneous }
       [] ?_prop ?id ;
         a :Sentence ;
-        :html ?_content
+        :html ?_content .
+      BIND (REPLACE(?_content,
+        CONCAT(
+          '(<a href[^<]+',
+          REPLACE(STR(?id), "^.*\\\\/(.+)$", "$1"), '"[^<]+</a>)'),
+        '<b>$1</b>') AS 
+        ?_content2)
     }
   }
   UNION
