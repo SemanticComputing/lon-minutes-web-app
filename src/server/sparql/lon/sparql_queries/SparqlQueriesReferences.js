@@ -25,6 +25,14 @@ export const referencePropertiesInstancePage = `
   }
   UNION
   {
+    SELECT DISTINCT ?id (COUNT(?_minute) AS ?number_of_references)
+    WHERE {
+      VALUES ?_prop { linguistics:referenceToDate linguistics:referenceToLocation linguistics:referenceToOrganization linguistics:referenceToPerson linguistics:referenceToMiscellaneous }
+      ?_minute ?_prop ?id ; a :Minute .
+    } GROUP BY ?id
+  }
+  UNION
+  {
     VALUES ?_prop { linguistics:referenceToDate linguistics:referenceToLocation linguistics:referenceToOrganization linguistics:referenceToPerson linguistics:referenceToMiscellaneous }
     ?minute__id ?_prop ?id ;
                 skos:prefLabel ?minute__prefLabel .

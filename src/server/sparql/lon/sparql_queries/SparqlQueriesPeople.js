@@ -177,6 +177,10 @@ export const personPropertiesInstancePage = `
       OPTIONAL { ?event__id :organization ?organization__id }
     } ORDER BY COALESCE(?tspan, "zzz")
   }
+  UNION
+  {
+    ?id :number_of_references ?number_of_references
+  }
 `
 
 export const peopleMinutesInstancePageQuery = `
@@ -190,6 +194,10 @@ WHERE {
   {
     ?id skos:prefLabel ?label__id .
     BIND (?label__id as ?label__prefLabel)
+  }
+  UNION
+  {
+    ?id :number_of_references ?number_of_references
   }
   UNION
   {

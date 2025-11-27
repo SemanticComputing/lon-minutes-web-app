@@ -350,6 +350,12 @@ export default {
         Not applicable: family, organisation, association, society, company, magazine or other grouping or association.
         `
         },
+        number_of_references: {
+          label: 'Number of references',
+          description: `
+          Number of references in the minutes related to this person.
+          `
+        },
         reference: {
           label: 'Reference',
           description: `
@@ -560,27 +566,6 @@ export default {
           `
           
           
-        },
-        in_fonds: {
-          label: 'Fonds',
-          description: `
-            Fonds containing letters related to this actor. 
-            The name of the archival organization is shown in parenthesis after the name of the fonds,
-            as well as the number of (sent+received) letters. 
-            (Notice that all letters do not necessarily belong to a fonds.)
-          `
-        },
-        created_fonds: {
-          label: 'Created Fonds',
-          description: `
-            THe fonds where this actor is marked as the records creator.
-          `
-        },
-        fonds: {
-          label: 'Fonds',
-          description: `
-            All letter collections in the dataset .
-          `
         },
         datasource: {
           label: 'Data source',
@@ -811,6 +796,12 @@ export default {
           label: 'Reference',
           description: 'The label of reference in the minutes'
         },
+        number_of_references: {
+          label: 'Number of references',
+          description: `
+          Number of references in the minutes related to this resource.
+          `
+        },
         referenced: {
           label: 'Referenced entity',
           description: 'The label of reference in the minutes'
@@ -886,6 +877,12 @@ export default {
         altLabel: {
           label: 'Alternative labels'
         },
+        number_of_references: {
+          label: 'Number of references',
+          description: `
+          Number of references in the minutes related to this organization.
+          `
+        },
         minute: {
           label: 'Minutes',
           description: `
@@ -950,6 +947,12 @@ export default {
         },
         altLabel: {
           label: 'Alternative labels'
+        },
+        number_of_references: {
+          label: 'Number of references',
+          description: `
+          Number of references in the minutes related to this resource.
+          `
         },
         minute: {
           label: 'Minutes',
@@ -1092,8 +1095,7 @@ export default {
         number_of_references: {
           label: 'Number of references',
           description: `
-          Number of references related to this place. 
-          A detailed list about the letters can be seen on the instance page tab "LETTERS AND ACTORS"
+          Number of references in the minutes related to this place.
           `
         },
         represented: {

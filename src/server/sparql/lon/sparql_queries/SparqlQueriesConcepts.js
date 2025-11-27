@@ -14,6 +14,10 @@ export const conceptPropertiesInstancePage = `
     [] :refers_to ?id ; skos:prefLabel ?altLabel 
   }
   UNION
+  {
+    ?id :number_of_references ?number_of_references 
+  }
+  UNION
   { 
     ?id skos:closeMatch ?close_match__id .
     ?close_match__id skos:prefLabel ?close_match__prefLabel .

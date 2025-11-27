@@ -200,8 +200,12 @@ WHERE {
   UNION
   {
     ?living__id crm:P74_has_current_or_former_residence|sch:nationality ?id ;
-      skos:prefLabel ?living__prefLabel .
+    skos:prefLabel ?living__prefLabel .
     BIND(CONCAT("/people/page/", REPLACE(STR(?living__id), "^.*\\\\/(.+)", "$1")) AS ?living__dataProviderUrl)
+  }
+  UNION
+  {
+    ?id :number_of_references ?number_of_references
   }
 }
 `

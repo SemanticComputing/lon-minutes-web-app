@@ -50,6 +50,16 @@
       "expandedOnInstancePage": true
     },
     {
+      "id": "number_of_references",
+      "valueType": "string",
+      "makeLink": false,
+      "externalLink": false,
+      "sortValues": false,
+      "numberedList": true,
+      "onlyOnInstancePage": true,
+      "expandedOnInstancePage": false
+    },
+    {
       "id": "minute",
       "valueType": "object",
       "makeLink": true,

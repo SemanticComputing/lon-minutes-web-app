@@ -73,6 +73,16 @@
                         "sparqlQuery": "peopleMinutesInstancePageQuery",
                         "properties": [
                             {
+                                "id": "number_of_references",
+                                "valueType": "string",
+                                "makeLink": false,
+                                "externalLink": false,
+                                "sortValues": false,
+                                "numberedList": true,
+                                "onlyOnInstancePage": true,
+                                "expandedOnInstancePage": false
+                            },
+                            {
                                 "id": "sentence",
                                 "valueType": "string",
                                 "makeLink": false,

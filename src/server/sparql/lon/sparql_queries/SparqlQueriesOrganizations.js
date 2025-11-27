@@ -29,8 +29,9 @@ export const organizationPropertiesInstancePage = `
       VALUES ?_prop { linguistics:referenceToDate linguistics:referenceToLocation linguistics:referenceToOrganization linguistics:referenceToPerson linguistics:referenceToMiscellaneous }
       ?minute__id ?_prop  [ :refers_to ?id ] ;
       skos:prefLabel ?minute__prefLabel .
-      } ORDER BY STR(?minute__id)
-    }
+      } 
+    ORDER BY STR(?minute__id)
+  }
   UNION
   {
     SELECT DISTINCT ?id (CONCAT('<div>', ?_content2, '</div>') AS ?sentence) 
@@ -60,5 +61,9 @@ export const organizationPropertiesInstancePage = `
     	?member__id biocrm:bearer_of ?role__id ; skos:prefLabel ?_label 
     } 
     ORDER BY COALESCE(?tspan, 'zzz') ?_label
+  }
+  UNION
+  {
+    ?id :number_of_references ?number_of_references
   }
 `
