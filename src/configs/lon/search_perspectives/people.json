@@ -470,13 +470,13 @@
             "sparqlQuery": "peopleMigrationsDialogQuery",
             "filterTarget": "id"
         },
-        "csvPlaces": {
+        "csvPeople": {
             "tabID": 7,
             "component": "ExportCSV",
             "tabPath": "csv",
             "tabIcon": "CloudDownload",
-            "resultClass": "places",
-            "facetClass": "places",
+            "resultClass": "people",
+            "facetClass": "people",
             "sparqlQuery": "csvQueryPlaces",
             "filterTarget": "id"
         },

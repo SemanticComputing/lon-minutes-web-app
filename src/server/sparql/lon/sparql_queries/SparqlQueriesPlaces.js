@@ -251,27 +251,54 @@ export const placeMapQuery = `
 `
 
 export const csvQueryPlaces = `
-SELECT DISTINCT ?id ?label 
-	(xsd:decimal(?lat) AS ?latitude)
-	(xsd:decimal(?long) AS ?longitude)
-	?country ?country_id 
-	?broader ?broader_id 
+SELECT DISTINCT ?id ?label ?label_french
+	(xsd:decimal(?lat) AS ?latitude) (xsd:decimal(?long) AS ?longitude)
+
+  (GROUP_CONCAT(DISTINCT ?_broader;separator=";") AS ?broader)
+  (GROUP_CONCAT(DISTINCT ?_broader_id;separator="|") AS ?broader_id)
+
+  (GROUP_CONCAT(DISTINCT ?_country;separator=";") AS ?country)
+  (GROUP_CONCAT(DISTINCT ?_country_id;separator="|") AS ?country_id)
+
+  (GROUP_CONCAT(DISTINCT ?_continent;separator=";") AS ?continent)
+  (GROUP_CONCAT(DISTINCT ?_continent_id;separator="|") AS ?continent_id)
 WHERE {
   
   <FILTER>
   
-  FILTER(BOUND(?id))
-  ?id skos:prefLabel ?label .
+    FILTER(BOUND(?id))
+
+  ?id a crm:E53_Place .
+
+  OPTIONAL {
+    ?id skos:prefLabel ?label .
+    FILTER (LANG(?label)="en")
+  }
+
+  OPTIONAL {
+    ?id skos:prefLabel ?label_french .
+    FILTER (LANG(?label_french)="fr")
+  }
+
 
   OPTIONAL
   {
-    ?id skos:broader ?broader_id .
-    ?broader_id skos:prefLabel ?broader
+    ?id skos:broader ?_broader_id .
+    ?_broader_id skos:prefLabel ?_broader
+    FILTER (LANG(?_broader)="en")
   }
   OPTIONAL
   {
-    ?id :country ?country_id .
-    ?country_id skos:prefLabel ?country
+    ?id :country ?_country_id .
+    ?_country_id skos:prefLabel ?_country
+    FILTER (LANG(?_country)="en")
+  }
+  
+  OPTIONAL
+  {
+    ?id :continent ?_continent_id .
+    ?_continent_id skos:prefLabel ?_continent
+    FILTER (LANG(?_continent)="en")
   }
 
   OPTIONAL 
@@ -279,5 +306,7 @@ WHERE {
     ?id wgs84:lat ?lat ;
         wgs84:long ?long
   }
-}
+} 
+GROUP BY ?id ?label ?label_french ?lat ?long 
+ORDER BY STRLEN(STR(?id)) STR(?id)
 `
