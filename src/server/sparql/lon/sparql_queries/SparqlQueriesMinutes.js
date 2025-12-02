@@ -226,3 +226,32 @@ SELECT ?id ?url
 }
 `
 
+export const csvQueryMinutes = `
+SELECT DISTINCT ?id ?label ?content ?language ?year ?source
+	(GROUP_CONCAT(DISTINCT ?person_id; separator="|") AS ?people_references)
+	(GROUP_CONCAT(DISTINCT ?place_id; separator="|") AS ?place_references)
+WHERE {
+  
+  <FILTER>
+  
+  FILTER(BOUND(?id))
+
+  ?id a :Minute ;
+    skos:prefLabel ?label ;
+    :content ?content . 
+  
+  OPTIONAL { 
+    ?id dct:language/skos:prefLabel ?language .
+    FILTER (LANG(?language) = "en")
+  }
+        
+  OPTIONAL { ?id crm:P4_has_time-span/skos:prefLabel ?year }
+  OPTIONAL { ?id foaf:page ?source }
+  
+  OPTIONAL { ?id linguistics:referenceToPerson/:refers_to ?person_id }
+  OPTIONAL { ?id linguistics:referenceToLocation/:refers_to ?place_id }
+} GROUP BY ?id ?label ?content ?language ?year ?source
+ORDER BY STR(?id)
+`
+
+

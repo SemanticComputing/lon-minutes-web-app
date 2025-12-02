@@ -204,13 +204,14 @@
             "filterTarget": "minute",
             "resultMapper": "mapPlaces"
         },
-        "csvActors": {
+        "csvMinutes": {
             "tabID": 5,
             "component": "ExportCSV",
             "tabPath": "csv",
             "tabIcon": "CloudDownload",
+            "resultClass": "minutes",
             "facetClass": "minutes",
-            "sparqlQuery": "csvQueryminutes",
+            "sparqlQuery": "csvQueryMinutes",
             "filterTarget": "id"
         },
         "sparql": {
