@@ -266,7 +266,7 @@ WHERE {
   
   <FILTER>
   
-    FILTER(BOUND(?id))
+  FILTER(BOUND(?id))
 
   ?id a crm:E53_Place .
 

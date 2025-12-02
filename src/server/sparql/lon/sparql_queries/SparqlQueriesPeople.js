@@ -569,54 +569,53 @@ export const networkNodesFacetQuery = `
 `
 
 export const csvQueryPeople = `
-SELECT DISTINCT ?id ?label ?type ?gender 
-?prefix ?family_name ?given_name
-?number_of_sent_letters ?number_of_received_letters 
-(SAMPLE(?birth) AS ?birth_time) ?floruit
-(SAMPLE(?death) AS ?death_time)
-
+SELECT DISTINCT
+  ?id ?label ?gender 
+	?birthTime ?birthPlace ?birthPlace__id
+	?deathTime ?deathPlace ?deathPlace__id
+	?wikidata_id ?lonsea_id
 WHERE {
   
-  <FILTER> 
+  <FILTER>
+  FILTER EXISTS { [] :refers_to ?id }
   FILTER(BOUND(?id))
 
-  ?id skos:prefLabel ?label .
-
-  OPTIONAL {
-    ?id skosxl:prefLabel ?xl .
-    OPTIONAL { ?xl sch:familyName ?family_name }
-    OPTIONAL { ?xl sch:givenName ?given_name }
-    OPTIONAL { ?xl :name_addition ?prefix }
-  }
-  OPTIONAL {
-    ?id :out_degree ?number_of_sent_letters
-  }
-  OPTIONAL
-  {
-    ?id :in_degree ?number_of_received_letters
-  }
-  OPTIONAL
-  { 
-    ?id :floruit/skos:prefLabel ?floruit 
-  }
+  ?id skos:prefLabel ?label ; a crm:E21_Person .
+  
   OPTIONAL
   {
     ?id biocrm:has_gender/skos:prefLabel ?gender
   }
   
-  ?proxy :proxy_for ?id ; a/skos:prefLabel ?type
+  OPTIONAL
+  {
+    ?id crm:P98i_was_born/crm:P4_has_time-span/skos:prefLabel ?birthTime
+  }
+  OPTIONAL
+  {
+    ?id crm:P98i_was_born/crm:P7_took_place_at ?birthPlace__id .
+    ?birthPlace__id skos:prefLabel ?birthPlace .
+    FILTER(LANG(?birthPlace) = 'en')
+  }
+  OPTIONAL
+  {
+    ?id crm:P100i_died_in/crm:P4_has_time-span/skos:prefLabel ?deathTime
+  }
+  OPTIONAL
+  {
+    ?id crm:P100i_died_in/crm:P7_took_place_at ?deathPlace__id .
+    ?deathPlace__id skos:prefLabel ?deathPlace .
+    FILTER(LANG(?deathPlace) = 'en')
+  }
   
-  OPTIONAL
-  {
-    ?proxy :birthDate/skos:prefLabel ?birth
+  OPTIONAL 
+  { 
+    ?id owl:sameAs ?wikidata . ?wikidata a :Wikidata
   }
-  OPTIONAL
-  {
-    ?proxy :deathDate/skos:prefLabel ?death
+  
+  OPTIONAL 
+  { 
+    ?id foaf:page ?lonsea_id . ?lonsea_id a :Lonsea
   }
-} 
-GROUP BY ?id ?label ?type ?gender
-  ?prefix ?family_name ?given_name
-  ?number_of_sent_letters ?number_of_received_letters ?floruit 
-ORDER BY DESC(?number_of_sent_letters) ?label 
+} ORDER BY STR(?id) 
 `

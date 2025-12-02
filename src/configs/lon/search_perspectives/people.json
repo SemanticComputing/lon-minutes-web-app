@@ -477,7 +477,7 @@
             "tabIcon": "CloudDownload",
             "resultClass": "people",
             "facetClass": "people",
-            "sparqlQuery": "csvQueryPlaces",
+            "sparqlQuery": "csvQueryPeople",
             "filterTarget": "id"
         },
         "export": {
@@ -485,8 +485,8 @@
             "component": "Export",
             "tabPath": "sparql",
             "tabIcon": "ArrowForward",
-            "resultClass": "places",
-            "facetClass": "places"
+            "resultClass": "people",
+            "facetClass": "people"
         },
         "share": {
             "tabID": 9,
