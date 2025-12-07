@@ -33,6 +33,7 @@ export const occupationPropertiesInstancePage = `
     	   biocrm:has_occupation ?related__id .
       FILTER (?id != ?related__id)
      	?related__id skos:prefLabel ?_label.
+      FILTER (LANG(?_label) = 'en')
     } 
     GROUP BY ?id ?related__id ?_label 
     ORDER BY DESC(COUNT(DISTINCT ?_actor))

@@ -151,7 +151,7 @@ export default {
       <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
         This landing page provides a human-readable summary of the data points that link
         to this {entity}. The data included in this summary reflect only those data points
-        used in the CoCo Portal. Click the Open in Linked Data Browser on button on the
+        used in the LoN Portal. Click the Open in Linked Data Browser on button on the
         Export tab to view the complete set of classes and properties linked to this record.
       </p>
       <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
@@ -281,14 +281,14 @@ export default {
             The <strong>CSV</strong> tab allows you to download the results in tabular form to your own computer.
             </li>
             <li>
-            From the <strong>SPARQL QUERY</strong> tab,you can follow the link to the Yasgui service and see the query used              to retrieve the results from the database.
+            From the <strong>SPARQL</strong> query tab,you can follow the link to the Yasgui service and see the query used              to retrieve the results from the database.
             </li>
             <li>
            The <strong>SHARE</strong> tab provides a permanent link to the search you have made. You can use it to find the search later and to refer to the material.
           </li>
         </ul>
         <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-          General information about the project is available at the <a href="https://seco.cs.aalto.fi/projects/coco/"  target="_blank" rel="noopener noreferrer">project blog</a>.
+          General information about the project is available at the <a href="https://seco.cs.aalto.fi/projects/minutes/"  target="_blank" rel="noopener noreferrer">project blog</a>.
       `,
       instancePage: {
         label: 'Person',
@@ -298,27 +298,16 @@ export default {
           </h6>
           <ul class="MuiTypography-root MuiTypography-body1">
             <li>
-              <strong>GENERAL INFORMATION</STRONG> page presents biographical information about the person. The information has been enriched from external sources.
+              <strong>TABLE</STRONG> page presents biographical information about the person. The information has been enriched from external sources.
             </li>
             <li>
-              The <strong>LETTERS</strong> tab allows you to view the letters sent and received by the actor in more detail.                  Please note that not all actors mentioned in the dataset will have this information available (e.g. the                       persons mentioned in the letters). 
+              The <strong>MINUTES AND REFERENCES</strong> tab allows you to view the minutes and sentences with mentions to the person.
             </li>
             <li>
-              The <strong>TIMELINE</strong> presents letters sent and received by the actor in question as a line graph. The              zoom tools in the top right corner allow you to view more detailed time periods on the graph. shows time series of                 the letters sent or recieved by the actor.
-            
-              The letters known to have been sent over multiple years are evenly distributed throughout that period.
+              <strong>NETWORK</strong> visualises a person's network based on the LoN membership during the same periods. Note that the number of actors is limited: the network can contain up to 60 actors within three degrees of the network ego, the main actor.
             </li>
             <li>
-              <strong>TOP CORRESPONDENCE</strong> page shows the 20 largest sets of correspondence by an actor over a timeline                 . Note that the majority of correspondence only has start and end years (e.g. 1860-1895), in which case the                       letters of that correspondence are spread evenly over that time period. The zoom tools in the top right                       -hand corner allow you to view more detailed periods on the chart.
-            </li>
-            <li>
-              <strong>NETWORK OF LETTERS</strong> visualises an actor's correspondence network. Note that the number of actors is limited: the network can contain up to 60 actors within three degrees of the network ego, the main actor.
-            </li>
-            <li>
-             The <strong>SOCIAL SIGNATURES</strong> view shows the persistence of an actor's correspondence, i.e. the                         quantitative changes of the largest correspondence in different time periods over the total duration of the                   actor's correspondence. The horizontal axis indicates the extent of correspondence with the actor (1 = most                 letters) and the vertical axis the percentage. The visualisation takes into account both letters sent and                       received.
-            </li>
-            <li>
-              <strong>EXPORT</strong> view the SPARQL query used to generate the result table view into YASGUI query editor               and examine the letter data in the Saha editor.
+              On the <strong>EXPORT</strong> tab you can choose to view the SPARQL query used to generate the result table view into YASGUI query editor or to examine the letter data in the Saha editor.
             </li>
           </ul>
           <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph"></p>
@@ -464,7 +453,7 @@ export default {
         },
         occupation: {
           label: 'Occupation',
-          description: `Occupational data is only provided for actors for whom information is available in external sources               (Wikidata, Biografiasampo, Akatemiasampo, etc.). A single actor may have several occupations. Please note, however             , that the visualisation shows the occupational coverage of the whole dataset and the co-occurrence of occupations             , not the number of actors associated with an occupation.`
+          description: `Occupational data is only provided for actors for whom information is available in external sources (Wikidata, Biografiasampo, Akatemiasampo, etc.). A single actor may have several occupations. Please note, however             , that the visualisation shows the occupational coverage of the whole dataset and the co-occurrence of occupations, not the number of actors associated with an occupation.`
         },
         nationality: {
           label: 'Nationality',
@@ -641,18 +630,18 @@ export default {
           </h6>
           <ul class="MuiTypography-root MuiTypography-body1">
             <li>
-              The <strong>TABLE</strong> view displays the results in a list.
+              The <strong>TABLE</strong> view displays the results as a list.
+              The text content show the color coded named entities: 
+                <a href="#" class="identified_person">identified people</a>, 
+                <a href="#" class="referenced_person">references to people</a>, 
+                <a href="#" class="referenced_organization">organizations</a>,
+                <a href="#" class="identified_location">identified locations</a>,
+                <a href="#" class="referenced_location">references to locations</a>,
+                <a href="#" class="referenced_date">times</a>, and 
+                <a href="#" class="referenced_miscellaneous">miscellaneous references</a>.
             </li>
             <li>
               <strong>EXPORT</strong> view the SPARQL query used to generate the results, open the table view in the YASGUI query editor, and examine the letter data in the Saha editor.
-            </li>
-            <li>
-              The text content show the color coded named entities: 
-                <a href="#" class="referenced_person">people</a>, 
-                <a href="#" class="referenced_organization">organizations</a>,
-                <a href="#" class="referenced_location">locations</a>,
-                <a href="#" class="referenced_date">times</a>, and 
-                <a href="#" class="referenced_miscellaneous">miscellaneous entities</a>.
             </li>
           </ul>
           <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph"></p>
@@ -912,13 +901,13 @@ export default {
       shortDescription: 'Concept',
       longDescription: `
       <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-      In this view, you will find a summary of the organizations that have provided descriptive information on correspondence         .<br>         
+      In this view, you will find a summary of the organizations that have provided descriptive information on correspondence.<br>         
       
       In the Dataset Description document, you will find a description of the organization's collection profile and their             letter collections, written by each organization itself. It also includes information produced by                             researchers at Aalto University and the University of Helsinki on the formats in which the material was obtained and              how it was processed and transformed into linked open data.
       </p>
       `,
       instancePage: {
-        label: 'Concept',
+        label: "Concept",
         description: `
         <ul class="MuiTypography-root MuiTypography-body1">
           <li>
@@ -979,12 +968,12 @@ export default {
       longDescription: `
       
       <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-      This view allows you to view the geographic information in the data. The data are based on place ontology, which                includes countries, provinces, counties, towns, districts and villages, but also buildings such as churches, hospitals         and schools.<br>
-      The data (titles, coordinates, geographical hierarchy) are based on external sources such as WikipediA anD YSO.<br> 
+      This view allows you to view the geographic information in the data. The data are based on place ontology, which includes countries, provinces, counties, towns, districts and villages, but also buildings such as churches, hospitals and schools.<br>
+      The data (titles, coordinates, geographical hierarchy) are extracted from external sources such as Wikipedia.<br> 
       
-      Please note that the data concern only a small part of the total data in the League of Nations and include the places where           letters were sent and, in some rare cases, received, and, in the case of digital editions, the places                     mentioned in the letters. The data also include places required for the construction of a geographical hierarchy.<br>
+      Please note that the data concern only a small part of the total data in the League of Nations and include the places mentioned in the LoN minutes or that are known to be the places of birth or death of some of the people in the dataset. The data also include places required for the construction of a geographical hierarchy.<br>
       
-      Much of the data is generated through computation. Erroneous or repetitive records may be present due to errors in             the source data or the processing.<br>
+      Much of the data is generated through computation. Erroneous or repetitive records may be present due to errors in the source data or the processing.<br>
     </p>
     <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
       See <a target="_" href="https://docs.google.com/document/d/e/2PACX-1vSe9eS4HrlH3iHZtXEFVoKAzUEYiURdLwWQUad3wBprr2fGrI3P2eiH5S2gOu1XvZlCXJ_HY0b_mttW/pub">instructions</a> for using the
@@ -992,7 +981,7 @@ export default {
     </p>
     <ul class="MuiTypography-root MuiTypography-body1">
       <li>
-        The <strong>TABLE</STRONG> lists all the locations of the data. One row of the table contains the geographical                information related to a place and the total number of "correspondence events" (number of letters sent and mentions of             that place in the letters) that took place there. Selecting a place takes you to a more detailed instance page for             that place.
+        The <strong>TABLE</STRONG> lists all the locations of the data. Selecting a place takes you to a more detailed instance page for the place.
       </li>
      <li>
         The <strong>CSV</strong> tab allows you to download the results in tabular form to your own computer.
@@ -1164,30 +1153,10 @@ export default {
           </h6>
           <ul class="MuiTypography-root MuiTypography-body1">
             <li>
-              <strong>TABLE</STRONG> view provides detailed data about this actor.
+              <strong>TABLE</STRONG> view provides detailed data about this occupation, e.g., list of people related to this occupation as well as list of related occupations.
             </li>
             <li>
-              <strong>LETTERS</strong> show the available information about letters sent or received by this person.
-              NB some people may not have any letter information available.
-            </li>
-            <li>
-              <strong>TIMELINE OF LETTERS</strong> shows time series of the letters sent or recieved by the actor.
-              Howering or clicking on the bullets 'Sent', 'Received', or 'All' allows to hide/show e.g. only the sent or received letters.
-              The letters that are known to be sent during multiple years are spread evenly along that period.
-            </li>
-            <li>
-              <strong>TOP CORRESPONDENCES</strong> show a time series of the actor's correspondences with 10 ten other people.
-              Howering or clicking on the bullets 'to', 'from', 'Sent', 'Received', or 'All' allows to focus e.g. on only the sent or received letters.
-              The letters that are known to be sent during multiple years are spread evenly along that period.
-            </li>
-            <li>
-              <strong>NETWORK OF LETTERS</strong> shows this actors's relations to other actors connected by the correspondences. The network shown a maximum of 60 neighbors nodes within a distance of 3 degress from the network ego.
-            </li>
-            <li>
-              <strong>SOCIAL SIGNATURES</strong> view has a chart showing how much the actor has been in correspondence with the most, the second most, etc, important other actor during the different periods along the total time of activity. In connections both sent and recieved letters are taken into account.
-            </li>
-            <li>
-              <strong>EXPORT</strong> view the SPARQL query used to generate the result table view into YASGUI query editor and examine the letter data in the Saha editor.
+              <strong>EXPORT</strong> view the SPARQL query used to generate the result table view into YASGUI query editor and examine the occupation data in the Saha editor.
             </li>
           </ul>
           <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph"></p>
