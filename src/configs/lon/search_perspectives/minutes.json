@@ -271,7 +271,8 @@
             "numberedList": false,
             "renderAsHTML": true,
             "HTMLParserTask": "createReactRouterLinks",
-            "minWidth": 100
+            "minWidth": 100,
+            "expandedOnInstancePage": true
         },
         {
             "id": "sidenote",

@@ -41,7 +41,7 @@ UNION
 }
 UNION
 {
-  SELECT DISTINCT ?id (CONCAT('<div>', ?_content, '</div>') AS ?content) 
+  SELECT DISTINCT ?id (CONCAT('<p>', ?_content, '</p>') AS ?content) 
   WHERE {
     ?id :html ?_content
   }
