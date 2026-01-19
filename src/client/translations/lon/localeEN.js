@@ -1156,7 +1156,7 @@ export default {
               <strong>TABLE</STRONG> view provides detailed data about this occupation, e.g., list of people related to this occupation as well as list of related occupations.
             </li>
             <li>
-              <strong>EXPORT</strong> view the SPARQL query used to generate the result table view into YASGUI query editor and examine the occupation data in the Saha editor.
+              <strong>EXPORT</strong> view allows you to view the SPARQL query used to generate the result table view into YASGUI query editor or examine the occupation data in the Saha editor.
             </li>
           </ul>
           <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph"></p>

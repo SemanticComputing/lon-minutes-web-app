@@ -19,7 +19,7 @@ PREFIX : <http://ldf.fi/schema/lon/>
 PREFIX actors: <http://ldf.fi/lon/actors/>
 PREFIX linguistics: <http://ldf.fi/schema/lon/linguistics/>
 PREFIX portal: <http://ldf.fi/lon/portal/>
-PREFIX places: <http://ldf.fi/lon/places/>
+PREFIX places: <http://ldf.fi/lon/places/> 
 PREFIX sentences: <http://ldf.fi/lon/sentences/>
 PREFIX sources: <http://ldf.fi/lon/source/>
 `
