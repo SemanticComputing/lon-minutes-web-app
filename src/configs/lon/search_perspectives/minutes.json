@@ -102,8 +102,44 @@
             "facetClass": "minutes",
             "dropdownForResultClasses": true,
             "sortBy": null,
-            "defaultResultClass": "PeopleInMinutes",
+            "defaultResultClass": "SpeakersInMinutes",
             "resultClasses": {
+                "SpeakersInMinutes": {
+                    "sparqlQuery": "speakersInMinutesQuery",
+                    "targetClass": ":Minute",
+                    "filterTarget": "minute__id",
+                    "resultMapper": "mapPieChart",
+                    "sliceVisibilityThreshold": 0.0,
+                    "dropdownForChartTypes": "true",
+                    "chartTypes": [
+                        {
+                            "id": "bar",
+                            "createChartData": "createApexBarChartData"
+                        },
+                        {
+                            "id": "pie",
+                            "createChartData": "createApexPieChartData"
+                        }
+                    ]
+                }, 
+                "SpeakerCountriesInMinutes": {
+                    "sparqlQuery": "speakerCountriesInMinutesQuery",
+                    "targetClass": ":Minute",
+                    "filterTarget": "minute__id",
+                    "resultMapper": "mapPieChart",
+                    "sliceVisibilityThreshold": 0.0,
+                    "dropdownForChartTypes": "true",
+                    "chartTypes": [
+                        {
+                            "id": "bar",
+                            "createChartData": "createApexBarChartData"
+                        },
+                        {
+                            "id": "pie",
+                            "createChartData": "createApexPieChartData"
+                        }
+                    ]
+                },
                 "PeopleInMinutes": {
                     "sparqlQuery": "peopleInMinutesQuery",
                     "targetClass": ":Minute",

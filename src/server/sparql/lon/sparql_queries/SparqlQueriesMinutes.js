@@ -129,6 +129,32 @@ WHERE {
 GROUP BY ?id ?lat ?long
 `
 
+export const speakersInMinutesQuery = `
+SELECT DISTINCT ?category ?prefLabel (COUNT(DISTINCT ?minute__id) AS ?instanceCount)
+WHERE {
+  ?minute__id a :Minute .
+  
+  <FILTER>
+  
+  ?minute__id :has_speeches/:speaker ?category .
+  ?category skos:prefLabel ?prefLabel ;
+    a crm:E21_Person .
+} GROUP BY ?category ?prefLabel ORDER BY DESC(?instanceCount) LIMIT 25
+`
+
+export const speakerCountriesInMinutesQuery = `
+SELECT DISTINCT ?category ?prefLabel (COUNT(DISTINCT ?minute__id) AS ?instanceCount)
+WHERE {
+  ?minute__id a :Minute .
+  
+  <FILTER>
+  
+  ?minute__id :has_speeches/:speaker_country ?category .
+  ?category skos:prefLabel ?prefLabel .
+  FILTER (LANG(?prefLabel)='en')
+} GROUP BY ?category ?prefLabel ORDER BY DESC(?instanceCount) LIMIT 25
+`
+
 export const peopleInMinutesQuery = `
 SELECT DISTINCT ?category ?prefLabel (COUNT(DISTINCT ?minute__id) AS ?instanceCount)
 WHERE {

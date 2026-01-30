@@ -123,6 +123,8 @@ export default {
       "peopleByOccupation": "Occupation",
       "peopleByBirthplace": "Place of birth",
       "peopleByDeathplace": "Place of death",
+      "SpeakersInMinutes": "Speakers",
+      "SpeakerCountriesInMinutes": "Represented countries",
       "PeopleInMinutes": "People",
       "OrganizationsInMinutes": "Organizations",
       "LocationsInMinutes": "Locations",
