@@ -275,6 +275,17 @@
             "expandedOnInstancePage": true
         },
         {
+            "id": "speaker",
+            "valueType": "object",
+            "makeLink": true,
+            "externalLink": false,
+            "sortValues": true,
+            "numberedList": true,
+            "minWidth": 70,
+            "onlyOnInstancePage": true,
+            "expandedOnInstancePage": true
+        },
+        {
             "id": "sidenote",
             "valueType": "string",
             "makeLink": false,
@@ -420,6 +431,19 @@
             "barChartButton": true,
             "sortByPredicate": "dct:language/skos:prefLabel",
             "facetLabelFilter": "FILTER(LANG(?prefLabel_) = 'en')",
+            "hideUnknownValue": true
+        },
+        "speaker": {
+            "containerClass": "ten",
+            "facetType": "list",
+            "filterType": "uriFilter",
+            "predicate": ":has_speeches/:speaker",
+            "searchField": false,
+            "sortBy": "instanceCount",
+            "sortDirection": "desc",
+            "sortButton": true,
+            "barChartButton": true,
+            "sortByPredicate": ":has_speeches/:speaker/skos:prefLabel",
             "hideUnknownValue": true
         },
         "referenced_person": {

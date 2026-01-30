@@ -47,6 +47,12 @@ UNION
   }
 }
 UNION
+{ 
+  ?id :has_speeches/:speaker ?speaker__id .
+  ?speaker__id skos:prefLabel ?speaker__prefLabel 
+  BIND(CONCAT("/people/page/", REPLACE(STR(?speaker__id), "^.*\\\\/(.+)", "$1")) AS ?speaker__dataProviderUrl)
+}
+UNION
 {
     ?id linguistics:referenceToPerson/:refers_to ?referenced_person__id .
     ?referenced_person__id skos:prefLabel ?referenced_person__prefLabel 

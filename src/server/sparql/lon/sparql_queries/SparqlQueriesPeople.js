@@ -201,6 +201,25 @@ WHERE {
   }
   UNION
   {
+    ?id ^:speaker ?speech__id .
+    ?speech__id :content ?speech__prefLabel .
+    FILTER (STRLEN(?speech__prefLabel) > 10)
+  }
+  UNION
+  {
+    SELECT DISTINCT ?id ?mentioned_person__id (COUNT(?speech__id) AS ?count)
+    (CONCAT(?_label, ' [', STR(?count), ']') AS ?mentioned_person__prefLabel)
+    	(CONCAT("/people/page/", REPLACE(STR(?mentioned_person__id), "^.*\\\\/(.+)", "$1")) AS ?mentioned_person__dataProviderUrl)
+     WHERE {
+    
+        ?id ^:speaker ?speech__id .
+        ?speech__id  :referenceToActor ?mentioned_person__id .
+	    ?mentioned_person__id skos:prefLabel ?_label .
+    
+    } GROUP BY ?id ?mentioned_person__id ?_label ORDER BY DESC(?count) ?_label
+  }
+  UNION
+  {
     SELECT DISTINCT ?id (CONCAT('<p>', ?_sentence2, '</p>') AS ?sentence) WHERE {
       ?reference__id :refers_to ?id .
       [] linguistics:referenceToPerson ?reference__id ;
@@ -608,9 +627,9 @@ WHERE {
     FILTER(LANG(?deathPlace) = 'en')
   }
   
-  OPTIONAL 
-  { 
-    ?id owl:sameAs ?wikidata . ?wikidata a :Wikidata
+  OPTIONAL
+  {
+    ?id owl:sameAs ?wikidata_id . ?wikidata_id a :Wikidata
   }
   
   OPTIONAL 

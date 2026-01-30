@@ -339,6 +339,18 @@ export default {
         Not applicable: family, organisation, association, society, company, magazine or other grouping or association.
         `
         },
+        speech: {
+          label: 'Speeches',
+          description: `
+          The speeches given by this person in the minutes.
+          `
+        },
+        mentioned_person: {
+          label: 'Mentioned people',
+          description: `
+          People mentioned in the speeches given by this person in the minutes.
+          `
+        },
         number_of_references: {
           label: 'Number of references',
           description: `
@@ -664,6 +676,12 @@ export default {
           label: 'Year',
           description: `
             The year of the minute. 
+          `
+        },
+        speaker: {
+          label: 'Speaker',
+          description: `
+            Identified person speaking in the minute. 
           `
         },
         referenced_person: {

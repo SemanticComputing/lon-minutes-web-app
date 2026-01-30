@@ -83,6 +83,32 @@
                                 "expandedOnInstancePage": false
                             },
                             {
+                                "id": "speech",
+                                "valueType": "object",
+                                "makeLink": false,
+                                "externalLink": false,
+                                "sortValues": true,
+                                "numberedList": true,
+                                "showSource": false,
+                                "sourceExternalLink": false,
+                                "renderAsHTML": true,
+                                "minWidth": 90,
+                                "expandedOnInstancePage": true
+                            },
+                            {
+                                "id": "mentioned_person",
+                                "valueType": "object",
+                                "makeLink": true,
+                                "externalLink": false,
+                                "sortValues": false,
+                                "numberedList": true,
+                                "showSource": false,
+                                "sourceExternalLink": false,
+                                "renderAsHTML": true,
+                                "minWidth": 90,
+                                "expandedOnInstancePage": true
+                            },
+                            {
                                 "id": "sentence",
                                 "valueType": "string",
                                 "makeLink": false,
