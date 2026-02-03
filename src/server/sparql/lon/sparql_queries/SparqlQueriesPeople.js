@@ -213,7 +213,7 @@ WHERE {
      WHERE {
     
         ?id ^:speaker ?speech__id .
-        ?speech__id  :referenceToActor ?mentioned_person__id .
+        ?speech__id  linguistics:referenceToActor ?mentioned_person__id .
 	    ?mentioned_person__id skos:prefLabel ?_label .
     
     } GROUP BY ?id ?mentioned_person__id ?_label ORDER BY DESC(?count) ?_label
