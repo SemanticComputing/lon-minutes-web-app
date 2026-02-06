@@ -214,8 +214,51 @@
                 }
             }
         },
-        "activitiesByPlace": {
+        "actorTops": {
             "tabID": 3,
+            "component": "ApexCharts",
+            "tabPath": "top-speakers",
+            "tabIcon": "Tune",
+            "title": "Top {} speakers",
+            "height": "100%",
+            "facetClass": "minutes",
+            "filterTarget": "id",
+            "sparqlQuery": "topCorrespondenceFacetPageQuery",
+            "resultMapper": "createCorrespondenceChartData",
+            "resultMapperConfig": {
+                "types": ["speaker"],
+                "numberTopResults": 25,
+                "lastLabel": null
+            },
+            "createChartData": "createTopTimelineChartData",
+            "tooltip": { "x": { "format": "yyyy" } },
+            "fill": { "opacity": [0.7, 0.5] },
+            "markers": {
+                "strokeColors": "#777",
+                "strokeWidth": 1
+            },
+            "dataLabels": {
+                "enabled": false
+            },
+            "plotOptions": {
+                "bubble": {
+                    "zScaling": true,
+                    "minBubbleRadius": 2,
+                    "maxBubbleRadius": 20
+                }
+            },
+            "legend": { "position": "bottom" },
+            "grid": {
+                "row": {
+                    "colors": ["#d5d5d5", "transparent"], "opacity": 0.5
+                },
+                "column": { "colors": ["#a8a8a8", "transparent"] },
+                "xaxis": { "lines": { "show": true } },
+                "yaxis": { "lines": { "show": true } }
+            }
+        },
+        "activitiesByPlace": {
+            "tabID": 4,
             "component": "LeafletMap",
             "tabPath": "map",
             "tabIcon": "AddLocation",
@@ -230,7 +273,7 @@
             }
         },
         "placesMinutesHeatmap": {
-            "tabID": 4,
+            "tabID": 5,
             "tabPath": "heatmap",
             "tabIcon": "LocalFireDepartment",
             "component": "Deck",
@@ -241,7 +284,7 @@
             "resultMapper": "mapPlaces"
         },
         "csvMinutes": {
-            "tabID": 5,
+            "tabID": 6,
             "component": "ExportCSV",
             "tabPath": "csv",
             "tabIcon": "CloudDownload",
@@ -251,7 +294,7 @@
             "filterTarget": "id"
         },
         "sparql": {
-            "tabID": 6,
+            "tabID": 7,
             "component": "Export",
             "tabPath": "sparql",
             "tabIcon": "ArrowForward",
@@ -259,7 +302,7 @@
             "facetClass": "perspective1"
         },
         "share": {
-            "tabID": 7,
+            "tabID": 8,
             "component": "ExportLink",
             "tabPath": "share",
             "tabIcon": "IosShare",
@@ -481,6 +524,20 @@
             "barChartButton": true,
             "sortByPredicate": ":has_speeches/:speaker/skos:prefLabel",
             "hideUnknownValue": true
+        },
+        "speaker_country": {
+            "containerClass": "ten",
+            "facetType": "list",
+            "filterType": "uriFilter",
+            "predicate": ":has_speeches/:speaker_country",
+            "searchField": false,
+            "sortBy": "instanceCount",
+            "sortDirection": "desc",
+            "sortButton": true,
+            "barChartButton": true,
+            "sortByPredicate": ":has_speeches/:speaker_country/skos:prefLabel",
+            "hideUnknownValue": true,
+            "facetLabelFilter": "FILTER(LANG(?prefLabel_) = 'en')"
         },
         "referenced_person": {
             "containerClass": "seven",

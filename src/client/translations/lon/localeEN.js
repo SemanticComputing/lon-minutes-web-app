@@ -80,6 +80,7 @@ export default {
     'social-signatures': 'social signatures',
     'top-correspondences': 'top correspondences',
     'top-references': 'top references',
+    'top-speakers': 'speakers',
     lifetimes: "Lifetimes",
     pie_chart: "Charts",
     csv: 'csv',
@@ -684,6 +685,12 @@ export default {
           label: 'Speaker',
           description: `
             Identified person speaking in the minute. 
+          `
+        },
+        speaker_country: {
+          label: 'Country of the speaker',
+          description: `
+            Country represented by the person speaking in the minute. 
           `
         },
         referenced_person: {

@@ -192,7 +192,7 @@ export const createTopTimelineChartData = ({
       x: { format: "yyyy" },
       z: {
           formatter: function (val, opts) { return Math.round(val*val) },
-          title: "Number of references: "
+          title: "Number of speeches: "
       }
     },
     ...(dataLabels) && { dataLabels },
