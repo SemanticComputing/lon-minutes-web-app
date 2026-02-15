@@ -367,13 +367,13 @@ export default {
           `
         },
         minute: {
-          label: 'Minute',
+          label: 'Minutes',
           description: `
             The minutes refering to this person.
           `
         },
         sentence: {
-          label: 'Sentence',
+          label: 'Sentences',
           description: `
             The sentences refering to this person.
           `

@@ -84,7 +84,7 @@
                             },
                             {
                                 "id": "speech",
-                                "valueType": "object",
+                                "valueType": "string",
                                 "makeLink": false,
                                 "externalLink": false,
                                 "sortValues": true,
@@ -92,6 +92,7 @@
                                 "showSource": false,
                                 "sourceExternalLink": false,
                                 "renderAsHTML": true,
+                                "HTMLParserTask": "createReactRouterLinks",
                                 "minWidth": 90,
                                 "expandedOnInstancePage": true
                             },
