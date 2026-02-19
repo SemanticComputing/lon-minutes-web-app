@@ -196,16 +196,6 @@
     },
     "properties": [
         {
-            "id": "image",
-            "valueType": "image",
-            "previewImageHeight": 160,
-            "makeLink": false,
-            "externalLink": true,
-            "sortValues": true,
-            "numberedList": false,
-            "hideHeader": true
-        },
-        {
             "id": "prefLabel",
             "valueType": "object",
             "makeLink": true,

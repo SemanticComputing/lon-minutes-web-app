@@ -30,13 +30,6 @@ export const placePropertiesFacetResults = `
   {
     ?id :number_of_references ?number_of_references
   }
-  UNION
-  {
-    ?id sch:image ?image__id ;
-      skos:prefLabel ?image__description ;
-      skos:prefLabel ?image__title .
-    BIND(CONCAT(REPLACE(STR(?image__id), "https*:", ""), "?width=600") as ?image__url)
-  }
 `
 
 export const placePropertiesInstancePage = `
@@ -125,13 +118,6 @@ export const placePropertiesInstancePage = `
   {
     ?id :number_of_references ?number_of_references
   }
-  UNION
-  {
-    ?id sch:image ?image__id ;
-      skos:prefLabel ?image__description ;
-      skos:prefLabel ?image__title .
-      BIND(CONCAT(REPLACE(STR(?image__id), "https*:", ""), "?width=600") as ?image__url)
-    }
   `
 
 export const placeLinksInstancePageQuery = `

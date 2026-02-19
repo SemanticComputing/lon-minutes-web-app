@@ -3,6 +3,7 @@
     "rootUrl": "",
     "perspectives": {
         "searchPerspectives": [
+            "speeches",
             "minutes",
             "people",
             "places",

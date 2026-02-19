@@ -1,15 +1,16 @@
 {
-    "id": "minutes",
+    "id": "speeches",
     "endpoint": {
         "url": "http://ldf.fi/lon/sparql",
         "useAuth": true,
         "prefixesFile": "SparqlQueriesPrefixes.js"
     },
-    "sparqlQueriesFile": "SparqlQueriesMinutes.js",
+    "sparqlQueriesFile": "SparqlQueriesSpeeches.js",
     "baseURI": "http://ldf.fi/lon",
-    "URITemplate": "<BASE_URI>/minutes/<LOCAL_ID>",
-    "facetClass": ":Minute",
-    "frontPageImage": "main_page/minutes_lon.jpg",
+    "URITemplate": "<BASE_URI>/speeches/<LOCAL_ID>",
+    "facetClass": ":Speech",
+    "defaultConstraint": "FILTER EXISTS { <SUBJECT> portal:speaker/a crm:E21_Person }",
+    "frontPageImage": "main_page/speeches_lon.png",
     "searchMode": "faceted-search",
     "enableDynamicLanguageChange": true,
     "defaultActiveFacets": [
@@ -25,7 +26,7 @@
             ],
             "zoom": 2
         },
-        "placesMinutesHeatmap": {
+        "placesSpeechesHeatmap": {
             "center": [
                 22.43,
                 10.37
@@ -34,24 +35,24 @@
         }
     },
     "resultClasses": {
-        "minutes": {
+        "speeches": {
             "paginatedResultsConfig": {
                 "tabID": 0,
                 "component": "ResultTable",
                 "tabPath": "table",
                 "tabIcon": "CalendarViewDay",
-                "propertiesQueryBlock": "minutesPropertiesFacetResults",
+                "propertiesQueryBlock": "speechesPropertiesFacetResults",
                 "pagesize": 30,
                 "paginatedResultsAlwaysExpandRows": true,
                 "paginatedResultsRowContentMaxHeight": 150,
                 "sortBy": "sort_by_url",
-                "sortDirection": "desc",
+                "sortDirection": "asc",
                 "postprocess": {
                     "func": "processTextIndexHighlighting"
                 }
             },
             "instanceConfig": {
-                "propertiesQueryBlock": "minutePropertiesInstancePage",
+                "propertiesQueryBlock": "speechPropertiesInstancePage",
                 "instancePageResultClasses": {
                     "actorInstancePageTable": {
                         "tabID": 0,
@@ -69,45 +70,45 @@
                 }
             }
         },
-        "minutesByYear": {
+        "speechesByYear": {
             "tabID": 1,
             "component": "ApexCharts",
             "tabPath": "by-year",
             "tabIcon": "ShowChart",
-            "sparqlQuery": "minutesByYearQuery",
-            "facetClass": "minutes",
-            "filterTarget": "minute",
+            "sparqlQuery": "speechesByYearQuery",
+            "facetClass": "speeches",
+            "filterTarget": "speech",
             "resultMapper": "mapLineChart",
             "resultMapperConfig": {
                 "fillEmptyValues": false
             },
             "createChartData": "createSingleLineChartData",
-            "title": "Minutes by year",
+            "title": "Speeches by year",
             "xaxisTitle": "Year",
             "xaxisType": "category",
             "xaxisTickAmount": 20,
-            "yaxisTitle": "Number of minutes",
-            "seriesTitle": "Number of minutes",
+            "yaxisTitle": "Number of speeches",
+            "seriesTitle": "Number of speeches",
             "stroke": {
                 "curve": "straight",
                 "width": 2
             }
         },
-        "minutesByProperty": {
+        "speechesByProperty": {
             "tabID": 2,
             "component": "ApexCharts",
             "doNotRenderOnMount": true,
             "tabPath": "pie_chart",
             "tabIcon": "PieChart",
-            "facetClass": "minutes",
+            "facetClass": "speeches",
             "dropdownForResultClasses": true,
             "sortBy": null,
             "defaultResultClass": "Speakers",
             "resultClasses": {
                 "Speakers": {
-                    "sparqlQuery": "speakersInMinutesQuery",
-                    "targetClass": ":Minute",
-                    "filterTarget": "minute__id",
+                    "sparqlQuery": "speakersInSpeechesQuery",
+                    "targetClass": ":Speech",
+                    "filterTarget": "speech__id",
                     "resultMapper": "mapPieChart",
                     "sliceVisibilityThreshold": 0.0,
                     "dropdownForChartTypes": "true",
@@ -123,9 +124,9 @@
                     ]
                 },
                 "SpeakerCountries": {
-                    "sparqlQuery": "speakerCountriesInMinutesQuery",
-                    "targetClass": ":Minute",
-                    "filterTarget": "minute__id",
+                    "sparqlQuery": "speakerCountriesInSpeechesQuery",
+                    "targetClass": ":Speech",
+                    "filterTarget": "speech__id",
                     "resultMapper": "mapPieChart",
                     "sliceVisibilityThreshold": 0.0,
                     "dropdownForChartTypes": "true",
@@ -141,9 +142,9 @@
                     ]
                 },
                 "PeopleInMinutes": {
-                    "sparqlQuery": "peopleInMinutesQuery",
-                    "targetClass": ":Minute",
-                    "filterTarget": "minute__id",
+                    "sparqlQuery": "peopleInSpeechesQuery",
+                    "targetClass": ":Speech",
+                    "filterTarget": "speech__id",
                     "resultMapper": "mapPieChart",
                     "sliceVisibilityThreshold": 0.0,
                     "dropdownForChartTypes": "true",
@@ -159,9 +160,9 @@
                     ]
                 },
                 "OrganizationsInMinutes": {
-                    "sparqlQuery": "organizationsInMinutesQuery",
-                    "targetClass": ":Minute",
-                    "filterTarget": "minute__id",
+                    "sparqlQuery": "organizationsInSpeechesQuery",
+                    "targetClass": ":Speech",
+                    "filterTarget": "speech__id",
                     "resultMapper": "mapPieChart",
                     "sliceVisibilityThreshold": 0.01,
                     "dropdownForChartTypes": "true",
@@ -177,9 +178,9 @@
                     ]
                 },
                 "LocationsInMinutes": {
-                    "sparqlQuery": "locationsInMinutesQuery",
-                    "targetClass": ":Minute",
-                    "filterTarget": "minute__id",
+                    "sparqlQuery": "locationsInSpeechesQuery",
+                    "targetClass": ":Speech",
+                    "filterTarget": "speech__id",
                     "resultMapper": "mapPieChart",
                     "sliceVisibilityThreshold": 0.01,
                     "dropdownForChartTypes": "true",
@@ -194,10 +195,10 @@
                         }
                     ]
                 },
-                "ConceptsInMinutes": {
-                    "sparqlQuery": "conceptsInMinutesQuery",
-                    "targetClass": ":Minute",
-                    "filterTarget": "minute__id",
+                "ConceptsInSpeeches": {
+                    "sparqlQuery": "conceptsInSpeechesQuery",
+                    "targetClass": ":Speech",
+                    "filterTarget": "speech__id",
                     "resultMapper": "mapPieChart",
                     "sliceVisibilityThreshold": 0.01,
                     "dropdownForChartTypes": "true",
@@ -221,7 +222,7 @@
             "tabIcon": "Tune",
             "title": "Top {} speakers",
             "height": "100%",
-            "facetClass": "minutes",
+            "facetClass": "speeches",
             "filterTarget": "id",
             "sparqlQuery": "topCorrespondenceFacetPageQuery",
             "resultMapper": "createCorrespondenceChartData",
@@ -262,35 +263,35 @@
             "component": "LeafletMap",
             "tabPath": "map",
             "tabIcon": "AddLocation",
-            "sparqlQuery": "minutePlacesQuery",
-            "facetClass": "minutes",
-            "filterTarget": "minute",
+            "sparqlQuery": "speechPlacesQuery",
+            "facetClass": "speeches",
+            "filterTarget": "speech",
             "resultMapper": "mapPlaces",
             "instanceConfig": {
                 "propertiesQueryBlock": "placePropertiesInfoWindow",
-                "relatedInstances": "minutesRelatedTo",
+                "relatedInstances": "speechesRelatedTo",
                 "createPopUpContent": "createPopUpContentLoN"
             }
         },
-        "placesMinutesHeatmap": {
+        "placesSpeechesHeatmap": {
             "tabID": 5,
             "tabPath": "heatmap",
             "tabIcon": "LocalFireDepartment",
             "component": "Deck",
             "layerType": "heatmapLayer",
-            "sparqlQuery": "minutesHeatmapQuery",
-            "facetClass": "minutes",
-            "filterTarget": "minute",
+            "sparqlQuery": "speechesHeatmapQuery",
+            "facetClass": "speeches",
+            "filterTarget": "speech",
             "resultMapper": "mapPlaces"
         },
-        "csvMinutes": {
+        "csvSpeeches": {
             "tabID": 6,
             "component": "ExportCSV",
             "tabPath": "csv",
             "tabIcon": "CloudDownload",
-            "resultClass": "minutes",
-            "facetClass": "minutes",
-            "sparqlQuery": "csvQueryMinutes",
+            "resultClass": "speeches",
+            "facetClass": "speeches",
+            "sparqlQuery": "csvQuerySpeeches",
             "filterTarget": "id"
         },
         "sparql": {
@@ -306,11 +307,52 @@
             "component": "ExportLink",
             "tabPath": "share",
             "tabIcon": "IosShare",
-            "resultClass": "minutes",
-            "facetClass": "minutes"
+            "resultClass": "speeches",
+            "facetClass": "speeches"
         }
     },
     "properties": [
+        {
+            "id": "image",
+            "valueType": "image",
+            "previewImageHeight": 160,
+            "makeLink": false,
+            "externalLink": true,
+            "sortValues": true,
+            "numberedList": false,
+            "hideHeader": true
+        },
+        {
+            "id": "speaker",
+            "valueType": "object",
+            "makeLink": true,
+            "externalLink": false,
+            "sortValues": true,
+            "numberedList": true,
+            "minWidth": 180,
+            "onlyOnInstancePage": false,
+            "expandedOnInstancePage": false
+        },
+        {
+            "id": "speaker_country",
+            "valueType": "object",
+            "makeLink": true,
+            "externalLink": false,
+            "sortValues": true,
+            "numberedList": true,
+            "minWidth": 140,
+            "onlyOnInstancePage": false,
+            "expandedOnInstancePage": false
+        },
+        {
+            "id": "time",
+            "valueType": "string",
+            "makeLink": false,
+            "externalLink": false,
+            "sortValues": true,
+            "numberedList": false,
+            "minWidth": 120
+        },
         {
             "id": "prefLabel",
             "valueType": "object",
@@ -319,16 +361,7 @@
             "sortValues": true,
             "numberedList": false,
             "expandedOnInstancePage": true,
-            "minWidth": 120
-        },
-        {
-            "id": "year",
-            "valueType": "string",
-            "makeLink": false,
-            "externalLink": false,
-            "sortValues": true,
-            "numberedList": false,
-            "minWidth": 70
+            "minWidth": 180
         },
         {
             "id": "language",
@@ -354,33 +387,26 @@
             "expandedOnInstancePage": true
         },
         {
-            "id": "speaker",
+            "id": "previous",
             "valueType": "object",
             "makeLink": true,
             "externalLink": false,
             "sortValues": true,
-            "numberedList": true,
-            "minWidth": 70,
+            "numberedList": false,
+            "minWidth": 180,
             "onlyOnInstancePage": true,
-            "expandedOnInstancePage": true
+            "expandedOnInstancePage": false
         },
         {
-            "id": "sidenote",
-            "valueType": "string",
-            "makeLink": false,
-            "externalLink": true,
+            "id": "next",
+            "valueType": "object",
+            "makeLink": true,
+            "externalLink": false,
             "sortValues": true,
             "numberedList": false,
-            "onlyOnInstancePage": true
-        },
-        {
-            "id": "pagenumber",
-            "valueType": "string",
-            "makeLink": false,
-            "externalLink": true,
-            "sortValues": true,
-            "numberedList": false,
-            "onlyOnInstancePage": true
+            "minWidth": 180,
+            "onlyOnInstancePage": true,
+            "expandedOnInstancePage": false
         },
         {
             "id": "referenced_person",
@@ -466,7 +492,7 @@
     ],
     "facets": {
         "sort_by_url": {
-            "sortByPattern": "{ SELECT ?id (COALESCE(?_orderBy,0) AS ?orderBy) WHERE { VALUES ?facetClass { <FACET_CLASS> } ?id a ?facetClass . BIND (STR(?url) AS ?_orderBy) } }"
+            "sortByPattern": "{ SELECT ?id ?orderBy WHERE { VALUES ?facetClass { <FACET_CLASS> } ?id a ?facetClass ; :order ?orderBy. } }"
         },
         "search": {
             "containerClass": "one",
@@ -477,25 +503,32 @@
             "textQueryHiglightingOptions": "highlight:s:<b> | e:</b> | z:27500",
             "textQueryMaxInstances": 1000000
         },
-        "year": {
-            "containerClass": "six",
+        "speaker": {
+            "containerClass": "ten",
             "facetType": "list",
             "filterType": "uriFilter",
-            "barChartButton": true,
-            "predicate": "crm:P4_has_time-span",
-            "sortDirection": "asc",
+            "predicate": "portal:speaker",
             "searchField": false,
+            "sortBy": "instanceCount",
+            "sortDirection": "desc",
             "sortButton": true,
-            "sortByPredicate": "crm:P4_has_time-span/skos:prefLabel"
+            "barChartButton": true,
+            "sortByPredicate": "portal:speaker/skos:prefLabel",
+            "hideUnknownValue": true
         },
-        "plenary_meeting": {
-            "containerClass": "six",
+        "speaker_country": {
+            "containerClass": "ten",
             "facetType": "list",
             "filterType": "uriFilter",
+            "predicate": ":speaker_country/:refers_to",
+            "searchField": false,
+            "sortBy": "instanceCount",
+            "sortDirection": "desc",
+            "sortButton": true,
             "barChartButton": true,
-            "predicate": ":key",
-            "sortDirection": "asc",
-            "sortByPredicate": ":key"
+            "sortByPredicate": ":speaker_country/:refers_to/skos:prefLabel",
+            "hideUnknownValue": true,
+            "facetLabelFilter": "FILTER(LANG(?prefLabel_) = 'en')"
         },
         "language": {
             "containerClass": "three",
@@ -512,57 +545,42 @@
             "facetLabelFilter": "FILTER(LANG(?prefLabel_) = 'en')",
             "hideUnknownValue": true
         },
-        "speaker": {
-            "containerClass": "ten",
+        "speaker_gender": {
+            "containerClass": "three",
             "facetType": "list",
             "filterType": "uriFilter",
-            "predicate": ":has_speech/:speaker/:refers_to",
+            "predicate": "portal:speaker/biocrm:has_gender",
             "searchField": false,
             "sortBy": "instanceCount",
             "sortDirection": "desc",
             "sortButton": true,
             "barChartButton": true,
-            "sortByPredicate": ":has_speech/:speaker/:refers_to/skos:prefLabel",
-            "hideUnknownValue": true
-        },
-        "speaker_country": {
-            "containerClass": "ten",
-            "facetType": "list",
-            "filterType": "uriFilter",
-            "predicate": ":has_speech/:speaker_country/:refers_to",
-            "searchField": false,
-            "sortBy": "instanceCount",
-            "sortDirection": "desc",
-            "sortButton": true,
-            "barChartButton": true,
-            "sortByPredicate": ":has_speech/:speaker_country/:refers_to/skos:prefLabel",
+            "sortByPredicate": "portal:speaker/biocrm:has_gender/skos:prefLabel",
             "hideUnknownValue": true,
             "facetLabelFilter": "FILTER(LANG(?prefLabel_) = 'en')"
+        },
+        "time": {
+            "containerClass": "six",
+            "facetType": "list",
+            "filterType": "uriFilter",
+            "barChartButton": true,
+            "predicate": "crm:P4_has_time-span",
+            "sortDirection": "asc",
+            "searchField": false,
+            "sortButton": true,
+            "sortByPredicate": "crm:P4_has_time-span/skos:prefLabel"
         },
         "referenced_person": {
             "containerClass": "seven",
             "facetType": "list",
             "filterType": "uriFilter",
-            "predicate": "portal:referenceToNamedPerson",
+            "predicate": "linguistics:referenceToPerson/:refers_to",
             "searchField": true,
             "sortBy": "instanceCount",
             "sortDirection": "desc",
             "sortButton": true,
             "barChartButton": true,
-            "sortByPredicate": "portal:referenceToNamedPerson/skos:prefLabel",
-            "hideUnknownValue": true
-        },
-        "referenced_unknown_actor": {
-            "containerClass": "seven",
-            "facetType": "list",
-            "filterType": "uriFilter",
-            "predicate": "portal:referenceToUnknownPerson",
-            "searchField": true,
-            "sortBy": "instanceCount",
-            "sortDirection": "desc",
-            "sortButton": true,
-            "barChartButton": true,
-            "sortByPredicate": "portal:referenceToUnknownPerson/skos:prefLabel",
+            "sortByPredicate": "linguistics:referenceToPerson/:refers_to/skos:prefLabel",
             "hideUnknownValue": true
         },
         "referenced_location": {
@@ -576,7 +594,8 @@
             "sortButton": true,
             "barChartButton": true,
             "sortByPredicate": "linguistics:referenceToLocation/:refers_to/skos:prefLabel",
-            "facetLabelFilter": "FILTER(LANG(?prefLabel_) = 'en')"
+            "facetLabelFilter": "FILTER(LANG(?prefLabel_) = 'en')",
+            "hideUnknownValue": true
         },
         "referenced_organization": {
             "containerClass": "seven",
@@ -588,7 +607,8 @@
             "sortDirection": "desc",
             "sortButton": true,
             "barChartButton": true,
-            "sortByPredicate": "linguistics:referenceToOrganization/:refers_to/skos:prefLabel"
+            "sortByPredicate": "linguistics:referenceToOrganization/:refers_to/skos:prefLabel",
+            "hideUnknownValue": true
         },
         "referenced_date": {
             "containerClass": "seven",
@@ -600,7 +620,8 @@
             "sortDirection": "desc",
             "sortButton": true,
             "barChartButton": true,
-            "sortByPredicate": "linguistics:referenceToDate/:refers_to/skos:prefLabel"
+            "sortByPredicate": "linguistics:referenceToDate/:refers_to/skos:prefLabel",
+            "hideUnknownValue": true
         },
         "referenced_miscellaneous": {
             "containerClass": "seven",
@@ -612,7 +633,8 @@
             "sortDirection": "desc",
             "sortButton": true,
             "barChartButton": true,
-            "sortByPredicate": "linguistics:referenceToMiscellaneous/:refers_to/skos:prefLabel"
+            "sortByPredicate": "linguistics:referenceToMiscellaneous/:refers_to/skos:prefLabel",
+            "hideUnknownValue": true
         }
     }
 }

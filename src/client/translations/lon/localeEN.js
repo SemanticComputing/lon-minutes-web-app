@@ -3,7 +3,7 @@ import { constrainedMemory } from "process";
 export default {
   languageLabel: 'English',
   html: {
-    title: 'League of Nations',
+    title: 'Minutes of Multilateralism',
     description: 'This is a dataset and semantic portal which aggregates nineteenth-century epistolary metadata from major Finnish cultural heritage organisations. The dataset comprises information on over 1,200,000 letters and over 100,000 individuals and organisations. The data is available as linked open data.'
   },
   appTitle: {
@@ -124,12 +124,12 @@ export default {
       "peopleByOccupation": "Occupation",
       "peopleByBirthplace": "Place of birth",
       "peopleByDeathplace": "Place of death",
-      "SpeakersInMinutes": "Speakers",
-      "SpeakerCountriesInMinutes": "Represented countries",
-      "PeopleInMinutes": "People",
-      "OrganizationsInMinutes": "Organizations",
-      "LocationsInMinutes": "Locations",
-      "ConceptsInMinutes": "Concepts",
+      "Speakers": "Speakers",
+      "SpeakerCountries": "Represented countries",
+      "PeopleInMinutes": "Referenced people",
+      "OrganizationsInMinutes": "Referenced organizations",
+      "LocationsInMinutes": "Referenced locations",
+      "ConceptsInMinutes": "Referenced concepts",
     }
   },
   exportToYasgui: 'open the result table query in LD browser',
@@ -740,6 +740,209 @@ export default {
           label: 'Language',
           description: `
             Language(s) of the minute. 
+          `
+        },
+        sidenote: {
+          label: 'Footnote',
+          description: `
+            Footnotes on the original page. 
+          `
+        },
+        pagenumber: {
+          label: 'Page number',
+          description: `
+            Page number in the original document. 
+          `
+        },
+        plenary_meeting: {
+          label: 'Plenary meeting',
+          description: ``
+        },
+        related: {
+          label: 'Related minutes',
+          description: `
+            All records from the same assembly plenary meetings. 
+          `
+        },
+        external: {
+          label: 'External link',
+          description: `
+            Link to an external datasource providing more information. 
+          `
+        }
+      }
+    },
+    speeches: {
+      label: 'Speeches',
+      facetResultsType: 'speeches',
+      shortDescription: '',
+      longDescription: `
+      <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+      
+      This perspective enables you to browse the speeches in the data. The text content show the color coded named entities: 
+      <a href="#" class="identified_person">identified people</a>, 
+      <a href="#" class="referenced_person">references to people</a>, 
+      <a href="#" class="referenced_organization">organizations</a>,
+      <a href="#" class="identified_location">identified locations</a>,
+      <a href="#" class="referenced_location">references to locations</a>,
+      <a href="#" class="referenced_date">times</a>, and 
+      <a href="#" class="referenced_miscellaneous">miscellaneous references</a>.
+        
+        You can browse metadata using the filters or facets on the left (above the results in the mobile version).<br>
+            
+            Much of the data is generated through computation. Erroneous or repetitive records may be present due to errors in             the source data or the processing.<br>
+        
+      </p>
+      <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+        See <a target="_" href="https://docs.google.com/document/d/e/2PACX-1vSe9eS4HrlH3iHZtXEFVoKAzUEYiURdLwWQUad3wBprr2fGrI3P2eiH5S2gOu1XvZlCXJ_HY0b_mttW/pub">instructions</a> for using the
+        filters. The result view can be selected using the tabs:
+      </p>
+      <ul class="MuiTypography-root MuiTypography-body1">
+      <li>
+       The <strong>TABLE</STRONG> provides a list of all minutes. Each row represents one minute. Selecting the name of a minute displays more detailed information about it.
+      </li>
+      <li>
+        The <strong>BY YEAR</strong> tab displays the annual number of minutes.
+      </li>
+      <li>
+        <strong>CHARTS</strong> column or bar charts visualizing the people, organizations, locations, or concepts mentioned in the minutes.
+      </li>
+      <li>
+        <strong>MAP</strong> visualizes the locations referenced in the minutes.
+      </li>
+      <li>
+        <strong>HEATMAP</strong> visualization of the locations referenced in the minutes.
+      </li>
+      <li>
+        The <strong>CSV</strong> tab allows you to download the results in tabular form to your own computer.
+      </li>
+      <li>
+       From the <strong>SPARQL</strong> query tab, you can follow the link to the Yasgui service and see the query used to retrieve the results from the database.
+      </li>
+      <li>
+        The <strong>SHARE</strong> tab provides a permanent link to the search you have made. You can use it to find the search later and to refer to the material.
+      </li>
+    </ul>
+      `,
+      instancePage: {
+        label: 'Speeches',
+        description: `
+          <h6 class="MuiTypography-root MuiTypography-h6">
+            Page tabs
+          </h6>
+          <ul class="MuiTypography-root MuiTypography-body1">
+            <li>
+              The <strong>TABLE</strong> view displays the results as a list.
+              The text content show the color coded named entities: 
+                <a href="#" class="identified_person">identified people</a>, 
+                <a href="#" class="referenced_person">references to people</a>, 
+                <a href="#" class="referenced_organization">organizations</a>,
+                <a href="#" class="identified_location">identified locations</a>,
+                <a href="#" class="referenced_location">references to locations</a>,
+                <a href="#" class="referenced_date">times</a>, and 
+                <a href="#" class="referenced_miscellaneous">miscellaneous references</a>.
+            </li>
+            <li>
+              <strong>EXPORT</strong> view the SPARQL query used to generate the results, open the table view in the YASGUI query editor, and examine the letter data in the Saha editor.
+            </li>
+          </ul>
+          <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph"></p>
+        `
+      },
+      properties: {
+        uri: {
+          label: 'URI',
+          description: 'Link to the information of fonds and collections as linked open data'
+        },
+        prefLabel: {
+          label: 'Title',
+          description: ''
+        },
+        search: {
+          label: 'Search content',
+          description: 'Search the content of the speeches'
+        },
+        time: {
+          label: 'Time',
+          description: `
+            The time of the speech. 
+          `
+        },
+        speaker: {
+          label: 'Speaker',
+          description: `
+            Identified person as the speech. 
+          `
+        },
+        speaker_gender: {
+          label: 'Gender of the speaker',
+          description: ``
+        },
+        speaker_country: {
+          label: 'Country of the speaker',
+          description: `
+            Country represented by the speaker. 
+          `
+        },
+        previous: {
+          label: 'Previous speech',
+          description: `
+            Previous speech in the same minute. 
+          `
+        },
+        next: {
+          label: 'Next speech',
+          description: `
+            Next speech in the same minute. 
+          `
+        },
+        referenced_person: {
+          label: 'Referenced people',
+          description: `
+            Identified people referenced in the content of the speech. 
+          `
+        },
+        referenced_unknown_actor: {
+          label: 'Referenced unknown actors',
+          description: `
+            Unidentified actors referenced in the content of the speech. 
+            These are references that could not be linked to a known person found in the data sources.
+          `
+        },
+        referenced_location: {
+          label: 'Referenced location',
+          description: `
+            Locations referenced in the content of the speech. 
+          `
+        },
+        referenced_organization: {
+          label: 'Referenced organization',
+          description: `
+            Organizations referenced in the content of the speech. 
+          `
+        },
+        referenced_date: {
+          label: 'Referenced date',
+          description: `
+            Dates referenced in the content of the speech. 
+          `
+        },
+        referenced_miscellaneous: {
+          label: 'Miscellaneous references',
+          description: `
+            Miscellaneous references extracted from the speech contents. 
+          `
+        },
+        content: {
+          label: 'Content',
+          description: `
+            Content of the speech. 
+          `
+        },
+        language: {
+          label: 'Language',
+          description: `
+            Language(s) of the speech. 
           `
         },
         sidenote: {
