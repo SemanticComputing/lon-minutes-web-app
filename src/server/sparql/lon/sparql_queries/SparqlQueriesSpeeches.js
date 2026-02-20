@@ -31,7 +31,9 @@ UNION
 }
 UNION
 {
-  ?id crm:P4_has_time-span/skos:prefLabel ?time
+  ?id crm:P4_has_time-span ?speechTimespan__id .
+  ?speechTimespan__id skos:prefLabel ?speechTimespan__prefLabel .
+  BIND(CONCAT("/speeches/page/", REPLACE(STR(?id), "^.*\\\\/(.+)", "$1")) AS ?speechTimespan__dataProviderUrl)
 }
 UNION
 {
@@ -51,7 +53,9 @@ export const speechPropertiesInstancePage = `
 }
 UNION
 {
-  ?id crm:P4_has_time-span/skos:prefLabel ?year
+  ?id crm:P4_has_time-span ?speechTimespan__id .
+  ?speechTimespan__id skos:prefLabel ?speechTimespan__prefLabel .
+  # BIND(CONCAT("/speeches/page/", REPLACE(STR(?id), "^.*\\\\/(.+)", "$1")) AS ?speechTimespan__dataProviderUrl)
 }
 UNION
 {
@@ -60,7 +64,9 @@ UNION
 }
 UNION
 {
-  ?id crm:P4_has_time-span/skos:prefLabel ?time
+  ?minute__id :has_speech ?id .
+  ?minute__id skos:prefLabel ?minute__prefLabel .
+  BIND(CONCAT("/minutes/page/", REPLACE(STR(?minute__id), "^.*\\\\/(.+)", "$1")) AS ?minute__dataProviderUrl)
 }
 UNION
 {

@@ -195,7 +195,7 @@
                         "sparqlQueryNodes": "networkNodesQuery",
                         "useNetworkAPI": true,
                         "queryType": "query_ego",
-                        "limit": 60,
+                        "limit": 100,
                         "optimize": 100.0,
                         "preprocess": "preprocessEgo",
                         "style": [

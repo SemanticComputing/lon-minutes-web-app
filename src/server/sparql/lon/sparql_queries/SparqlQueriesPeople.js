@@ -534,23 +534,23 @@ SELECT * {
 `
 
 export const networkLinksQuery = `
-SELECT DISTINCT ?source ?target (COUNT(?minute) AS ?weight) (STR(?weight) AS ?prefLabel)
+SELECT DISTINCT ?source ?target (COUNT(?speech) AS ?weight) (STR(?weight) AS ?prefLabel)
 WHERE {
-  { 
-    SELECT DISTINCT ?id ?minute
-    WHERE {
-      VALUES ?id { <ID> }
-      ?minute linguistics:referenceToPerson/:refers_to ?id .
-    }
-  }
-
-  ?minute linguistics:referenceToPerson/:refers_to ?source ;
+  VALUES ?id { <ID> }
+  {
+  	?speech portal:speaker ?id ;
           linguistics:referenceToPerson/:refers_to ?target .
+    BIND (?id AS ?source)
+  } UNION
+  {
+    ?speech portal:speaker ?source ;
+          linguistics:referenceToPerson/:refers_to ?id .
+    BIND (?id AS ?target)
+  }
   
-  ?source a crm:E21_Person .
   ?target a crm:E21_Person .
-  
-  FILTER (STR(?source) < STR(?target))
+  ?source a crm:E21_Person .
+  FILTER (?source != ?target)
 
 } GROUP BY ?source ?target ORDER BY DESC(?weight)
 `

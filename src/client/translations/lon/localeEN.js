@@ -888,6 +888,12 @@ export default {
             Country represented by the speaker. 
           `
         },
+        minute: {
+          label: 'Minute',
+          description: `
+            The minute in which the speech was delivered. 
+          `
+        },
         previous: {
           label: 'Previous speech',
           description: `

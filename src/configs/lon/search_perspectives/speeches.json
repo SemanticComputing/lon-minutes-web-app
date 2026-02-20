@@ -345,9 +345,9 @@
             "expandedOnInstancePage": false
         },
         {
-            "id": "time",
-            "valueType": "string",
-            "makeLink": false,
+            "id": "speechTimespan",
+            "valueType": "object",
+            "makeLink": true,
             "externalLink": false,
             "sortValues": true,
             "numberedList": false,
@@ -379,6 +379,17 @@
             "id": "language",
             "valueType": "string",
             "makeLink": false,
+            "externalLink": false,
+            "sortValues": true,
+            "numberedList": false,
+            "minWidth": 70,
+            "onlyOnInstancePage": true,
+            "expandedOnInstancePage": false
+        },
+        {
+            "id": "minute",
+            "valueType": "object",
+            "makeLink": true,
             "externalLink": false,
             "sortValues": true,
             "numberedList": false,
