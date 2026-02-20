@@ -216,12 +216,15 @@ WHERE {
 `
 
 export const topCorrespondenceFacetPageQuery = `
-SELECT DISTINCT (COUNT(?id) AS ?count) ?speaker__label ("speaker" AS ?type) ?year (CONCAT(STR(?year), '-07-01') AS ?date) WHERE {
+SELECT DISTINCT (COUNT(?id) AS ?count) ?speaker__label ("speaker" AS ?type) 
+  (xsd:date(?_time) AS ?date)
+  (year(xsd:date(?_time)) AS ?year)
+WHERE {
     { SELECT DISTINCT ?speaker (REPLACE(STR(?_label), '^(.+) [0-9()–]+?$', '$1') AS ?speaker__label) WHERE {
-      <FILTER> 
+      <FILTER>
       ?id a :Speech ;
               :speaker/:refers_to ?speaker ;
-              crm:P4_has_time-span/skos:prefLabel ?year .
+              crm:P4_has_time-span/crm:P82a_begin_of_the_begin ?_time .
       
       ?speaker a crm:E21_Person ;
               skos:prefLabel ?_label .
@@ -231,13 +234,13 @@ SELECT DISTINCT (COUNT(?id) AS ?count) ?speaker__label ("speaker" AS ?type) ?yea
     LIMIT 25
 
   }
-  <FILTER>
+  <FILTER> 
   ?id a :Speech ;
           :speaker/:refers_to ?speaker ;
-          crm:P4_has_time-span/skos:prefLabel ?year .
+          crm:P4_has_time-span/crm:P82a_begin_of_the_begin ?_time .
 }
-GROUP BY ?year ?speaker__label
-ORDER BY ?year
+GROUP BY ?_time ?speaker__label
+ORDER BY ?_time
 `
 
 export const organizationsInSpeechesQuery = `

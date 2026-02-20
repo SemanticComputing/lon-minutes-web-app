@@ -232,7 +232,6 @@
                 "lastLabel": null
             },
             "createChartData": "createTopTimelineChartData",
-            "tooltip": { "x": { "format": "yyyy" } },
             "fill": { "opacity": [0.7, 0.5] },
             "markers": {
                 "strokeColors": "#777",
@@ -245,7 +244,7 @@
                 "bubble": {
                     "zScaling": true,
                     "minBubbleRadius": 2,
-                    "maxBubbleRadius": 20
+                    "maxBubbleRadius": 14
                 }
             },
             "legend": { "position": "bottom" },

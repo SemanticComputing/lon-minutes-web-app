@@ -189,7 +189,7 @@ export const createTopTimelineChartData = ({
       }
     },
     tooltip: {
-      x: { format: "yyyy" },
+      x: { format: "d MMM yyyy" },
       z: {
           formatter: function (val, opts) { return Math.round(val*val) },
           title: "Number of speeches: "
