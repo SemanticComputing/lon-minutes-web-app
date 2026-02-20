@@ -315,7 +315,7 @@
         {
             "id": "image",
             "valueType": "image",
-            "previewImageHeight": 160,
+            "previewImageHeight": 120,
             "makeLink": false,
             "externalLink": true,
             "sortValues": true,
@@ -364,17 +364,6 @@
             "minWidth": 180
         },
         {
-            "id": "language",
-            "valueType": "string",
-            "makeLink": false,
-            "externalLink": false,
-            "sortValues": true,
-            "numberedList": false,
-            "minWidth": 70,
-            "onlyOnInstancePage": true,
-            "expandedOnInstancePage": false
-        },
-        {
             "id": "content",
             "valueType": "string",
             "makeLink": false,
@@ -385,6 +374,17 @@
             "HTMLParserTask": "createReactRouterLinks",
             "minWidth": 100,
             "expandedOnInstancePage": true
+        },
+        {
+            "id": "language",
+            "valueType": "string",
+            "makeLink": false,
+            "externalLink": false,
+            "sortValues": true,
+            "numberedList": false,
+            "minWidth": 70,
+            "onlyOnInstancePage": true,
+            "expandedOnInstancePage": false
         },
         {
             "id": "previous",
@@ -559,16 +559,18 @@
             "hideUnknownValue": true,
             "facetLabelFilter": "FILTER(LANG(?prefLabel_) = 'en')"
         },
-        "time": {
-            "containerClass": "six",
-            "facetType": "list",
-            "filterType": "uriFilter",
-            "barChartButton": true,
+        "speechTimespan": {
+            "containerClass": "four",
+            "facetType": "timespan",
+            "filterType": "timespanFilter",
+            "dataType": "xsd:dateTime",
+            "max": null,
+            "min": null,
             "predicate": "crm:P4_has_time-span",
-            "sortDirection": "asc",
-            "searchField": false,
-            "sortButton": true,
-            "sortByPredicate": "crm:P4_has_time-span/skos:prefLabel"
+            "startProperty": "crm:P82a_begin_of_the_begin",
+            "endProperty": "crm:P82b_end_of_the_end",
+            "sortByAscPredicate": "crm:P4_has_time-span/crm:P82a_begin_of_the_begin",
+            "sortByDescPredicate": "crm:P4_has_time-span/crm:P82b_end_of_the_end"
         },
         "referenced_person": {
             "containerClass": "seven",

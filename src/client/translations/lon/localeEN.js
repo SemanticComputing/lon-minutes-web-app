@@ -23,7 +23,7 @@ export default {
   mainPageLinks: [
       {
         title: 'Minutes mentioning Åland Islands',
-        link: '/places/page/Q5689/minutes-and-references'
+        link: '/places/page/Q5689/speeches-and-references'
       },
       {
         title: 'People who died in Geneva',
@@ -87,7 +87,7 @@ export default {
     metadata: 'source data',
     view: 'digital edition view',
     tieNetwork: 'Network',
-    'minutes-and-references': 'minutes and references',
+    'speeches-and-references': 'speeches and references',
     heatmap: 'heatmap',
     statistics: 'statistics',
     download: 'download',
@@ -861,6 +861,10 @@ export default {
         search: {
           label: 'Search content',
           description: 'Search the content of the speeches'
+        },
+        speechTimespan: {
+          label: 'Speech time',
+          description: `The timestamp of the speech.`
         },
         time: {
           label: 'Time',

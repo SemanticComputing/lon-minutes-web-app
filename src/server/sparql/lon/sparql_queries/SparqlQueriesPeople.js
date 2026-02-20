@@ -89,7 +89,7 @@ export const personPropertiesInstancePage = `
   }
   UNION
   {
-    ?id biocrm:has_gender/skos:prefLabel ?gender 
+    ?id biocrm:has_gender/skos:prefLabel ?gender
   }
   UNION
   {

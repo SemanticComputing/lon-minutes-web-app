@@ -60,6 +60,10 @@ UNION
 }
 UNION
 {
+  ?id crm:P4_has_time-span/skos:prefLabel ?time
+}
+UNION
+{
   SELECT DISTINCT ?id (CONCAT('<p>', ?_content, '</p>') AS ?content) 
   WHERE {
     ?id :html ?_content
@@ -84,6 +88,18 @@ UNION
   ?id :speaker/:refers_to ?speaker__id .
   ?speaker__id skos:prefLabel ?speaker__prefLabel 
   BIND(CONCAT("/people/page/", REPLACE(STR(?speaker__id), "^.*\\\\/(.+)", "$1")) AS ?speaker__dataProviderUrl)
+
+  OPTIONAL { ?speaker__id sch:image ?image__id ;
+      skos:prefLabel ?image__description ;
+      skos:prefLabel ?image__title .
+    BIND(CONCAT(REPLACE(STR(?image__id), "https*:", ""), "?width=600") as ?image__url)
+  }
+}
+UNION
+{ 
+  ?id :speaker_country/:refers_to ?speaker_country__id .
+  ?speaker_country__id skos:prefLabel ?speaker_country__prefLabel 
+  BIND(CONCAT("/places/page/", REPLACE(STR(?speaker_country__id), "^.*\\\\/(.+)", "$1")) AS ?speaker_country__dataProviderUrl)
 }
 UNION
 {
@@ -130,14 +146,6 @@ UNION
     ?id :key ?key .
     ?related__id :key ?key ; skos:prefLabel ?related__prefLabel .
   } ORDER BY STR(?related__id)
-}
-UNION
-{
-  ?id :sidenote ?sidenote .
-}
-UNION
-{
-  ?id :page_number ?pagenumber .
 }
 `
 
