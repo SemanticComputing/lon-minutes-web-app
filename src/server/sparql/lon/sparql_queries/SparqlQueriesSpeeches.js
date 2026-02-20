@@ -161,7 +161,8 @@ WHERE {
   <FILTER>
 
   ?speech a :Speech ;
-    crm:P4_has_time-span/skos:prefLabel ?category .
+    crm:P4_has_time-span/crm:P82a_begin_of_the_begin ?tspan .
+  BIND(year(xsd:date(?tspan)) AS ?category)
 } 
 GROUP BY ?category ORDER BY ?category
 `

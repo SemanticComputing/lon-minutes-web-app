@@ -243,8 +243,8 @@
             "plotOptions": {
                 "bubble": {
                     "zScaling": true,
-                    "minBubbleRadius": 2,
-                    "maxBubbleRadius": 14
+                    "minBubbleRadius": 1,
+                    "maxBubbleRadius": 15
                 }
             },
             "legend": { "position": "bottom" },
