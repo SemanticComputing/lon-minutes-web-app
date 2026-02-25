@@ -34,8 +34,9 @@ export const referencePropertiesInstancePage = `
   UNION
   {
     VALUES ?_prop { linguistics:referenceToDate linguistics:referenceToLocation linguistics:referenceToOrganization linguistics:referenceToPerson linguistics:referenceToMiscellaneous }
-    ?minute__id ?_prop ?id ;
-                skos:prefLabel ?minute__prefLabel .
+    ?minute__id ?_prop ?id ; 
+          a :Minute ;
+          skos:prefLabel ?minute__prefLabel .
     
     BIND(CONCAT("/minutes/page/", REPLACE(STR(?minute__id), "^.*\\\\/(.+)", "$1")) AS ?minute__dataProviderUrl)
     

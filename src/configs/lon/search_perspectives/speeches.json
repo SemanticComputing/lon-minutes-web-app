@@ -9,7 +9,7 @@
     "baseURI": "http://ldf.fi/lon",
     "URITemplate": "<BASE_URI>/speeches/<LOCAL_ID>",
     "facetClass": ":Speech",
-    "defaultConstraint": "FILTER EXISTS { <SUBJECT> portal:speaker/a crm:E21_Person }",
+    "defaultConstraint": "FILTER EXISTS { <SUBJECT> skos:prefLabel [] }",
     "frontPageImage": "main_page/speeches_lon.png",
     "searchMode": "faceted-search",
     "enableDynamicLanguageChange": true,
@@ -338,8 +338,9 @@
             "makeLink": true,
             "externalLink": false,
             "sortValues": true,
+            "searchField": true,
             "numberedList": true,
-            "minWidth": 140,
+            "minWidth": 150,
             "onlyOnInstancePage": false,
             "expandedOnInstancePage": false
         },
@@ -350,7 +351,7 @@
             "externalLink": false,
             "sortValues": true,
             "numberedList": false,
-            "minWidth": 120
+            "minWidth": 80
         },
         {
             "id": "prefLabel",
@@ -359,8 +360,9 @@
             "externalLink": false,
             "sortValues": true,
             "numberedList": false,
-            "expandedOnInstancePage": true,
-            "minWidth": 180
+            "onlyOnInstancePage": true,
+            "expandedOnInstancePage": false,
+            "minWidth": 100
         },
         {
             "id": "content",
@@ -423,6 +425,7 @@
             "valueType": "object",
             "makeLink": true,
             "externalLink": false,
+            "searchField": true,
             "sortValues": true,
             "numberedList": true,
             "onlyOnInstancePage": true,
@@ -433,6 +436,7 @@
             "valueType": "object",
             "makeLink": true,
             "externalLink": false,
+            "searchField": true,
             "sortValues": true,
             "numberedList": true,
             "onlyOnInstancePage": true,
@@ -443,6 +447,7 @@
             "valueType": "object",
             "makeLink": true,
             "externalLink": false,
+            "searchField": true,
             "sortValues": true,
             "numberedList": true,
             "onlyOnInstancePage": true,
@@ -453,6 +458,7 @@
             "valueType": "object",
             "makeLink": true,
             "externalLink": false,
+            "searchField": true,
             "sortValues": true,
             "numberedList": true,
             "onlyOnInstancePage": true,

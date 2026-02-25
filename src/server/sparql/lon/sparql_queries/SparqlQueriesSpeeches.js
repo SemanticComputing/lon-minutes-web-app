@@ -17,6 +17,12 @@ BIND(?id as ?uri__dataProviderUrl)
   }
 }
 UNION
+{ # TODO remove later
+  FILTER NOT EXISTS { ?id portal:speaker [] }
+  ?id :speaker/skos:prefLabel ?speaker__prefLabel .
+  FILTER (LANG(?speaker__prefLabel) = 'en')
+}
+UNION
 { 
   ?id :speaker_country/:refers_to ?speaker_country__id .
   ?speaker_country__id skos:prefLabel ?speaker_country__prefLabel .
@@ -37,9 +43,10 @@ UNION
 }
 UNION
 {
-  SELECT DISTINCT ?id (CONCAT('<p>', ?_content, '</p>') AS ?content) 
+  SELECT DISTINCT ?id (CONCAT('<p><a href="/speeches/page/', REPLACE(STR(?id), "^.*\\\\/(.+)", "$1"),'">', COALESCE(?_label, 'SPEECH'), ':</a><br>', ?_content, '</p>') AS ?content)
   WHERE {
-    ?id :html ?_content
+    ?id :html ?_content 
+    OPTIONAL { ?id skos:prefLabel ?_label }
   }
 }
 `
