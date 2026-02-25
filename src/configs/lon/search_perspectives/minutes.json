@@ -269,7 +269,7 @@
             "instanceConfig": {
                 "propertiesQueryBlock": "placePropertiesInfoWindow",
                 "relatedInstances": "minutesRelatedTo",
-                "createPopUpContent": "createPopUpContentLoN"
+                "createPopUpContent": "createPopUpContentMinutes"
             }
         },
         "placesMinutesHeatmap": {

@@ -78,7 +78,7 @@ export const createPopUpContentLetterSampo = ({ data, resultClass }) => {
   return container
 }
 
-export const createPopUpContentLoN = ({ data, resultClass }) => {
+export const createPopUpContentMinutes = ({ data, resultClass }) => {
   if (Array.isArray(data.prefLabel)) {
     data.prefLabel = data.prefLabel[0]
   }
@@ -98,7 +98,7 @@ export const createPopUpContentLoN = ({ data, resultClass }) => {
   console.log(resultClass)
   if (resultClass === 'activitiesByPlace') {
     const p = document.createElement('p')
-    p.textContent = 'Minutes:'
+    p.textContent = 'Mentions:'
     container.appendChild(p)
     container.appendChild(createInstanceListing(data.related))
   }

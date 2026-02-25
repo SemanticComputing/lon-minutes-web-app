@@ -201,9 +201,25 @@ WHERE {
   }
   UNION
   {
-    ?speech__id :speaker/:refers_to ?id ; :html ?_speech .
-    BIND (CONCAT('<p>', ?_speech, '</p>') AS ?speech__prefLabel)
-    BIND (CONCAT('<p>', ?_speech, '</p>') AS ?speech)
+    SELECT DISTINCT ?id 
+      (CONCAT('<p><a href="/speeches/page/', 
+          REPLACE(STR(?speech__id), "^.*\\\\/(.+)", "$1"),
+          '">', 
+          REPLACE(COALESCE(?_label, 'SPEECH'), " [0-9()–]+$",""),
+          ' ',
+          COALESCE(?_time, ''),
+          ':</a><br>',
+          ?_content,
+          '</p>') 
+        AS ?speech)
+    WHERE {
+      ?speech__id portal:speaker ?id ; 
+        :html ?_content ;
+        :order ?sort_by .
+      
+      OPTIONAL { ?speech__id crm:P4_has_time-span/skos:prefLabel ?_time }
+      OPTIONAL { ?id skos:prefLabel ?_label }
+    } ORDER BY ?sort_by
   }
   UNION
   {

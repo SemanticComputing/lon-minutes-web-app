@@ -775,7 +775,7 @@ export default {
     speeches: {
       label: 'Speeches',
       facetResultsType: 'speeches',
-      shortDescription: '',
+      shortDescription: 'Speech',
       longDescription: `
       <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
       
@@ -825,7 +825,7 @@ export default {
     </ul>
       `,
       instancePage: {
-        label: 'Speeches',
+        label: 'Speech',
         description: `
           <h6 class="MuiTypography-root MuiTypography-h6">
             Page tabs

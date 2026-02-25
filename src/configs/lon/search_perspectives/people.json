@@ -87,7 +87,7 @@
                                 "valueType": "string",
                                 "makeLink": false,
                                 "externalLink": false,
-                                "sortValues": true,
+                                "sortValues": false,
                                 "numberedList": true,
                                 "showSource": false,
                                 "sourceExternalLink": false,

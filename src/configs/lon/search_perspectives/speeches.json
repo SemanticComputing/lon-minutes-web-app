@@ -269,7 +269,7 @@
             "instanceConfig": {
                 "propertiesQueryBlock": "placePropertiesInfoWindow",
                 "relatedInstances": "speechesRelatedTo",
-                "createPopUpContent": "createPopUpContentLoN"
+                "createPopUpContent": "createPopUpContentMinutes"
             }
         },
         "placesSpeechesHeatmap": {
@@ -525,7 +525,7 @@
             "facetType": "list",
             "filterType": "uriFilter",
             "predicate": "portal:speaker",
-            "searchField": false,
+            "searchField": true,
             "sortBy": "instanceCount",
             "sortDirection": "desc",
             "sortButton": true,
