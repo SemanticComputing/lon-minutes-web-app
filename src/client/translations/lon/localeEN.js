@@ -888,6 +888,12 @@ export default {
             Country represented by the speaker. 
           `
         },
+        image: {
+          label: 'Image',
+          description: `
+            A possible image of the person. Source: Wikimedia Commons.
+          `
+        },
         minute: {
           label: 'Minute',
           description: `
