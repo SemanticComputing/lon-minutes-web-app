@@ -227,7 +227,8 @@ WHERE {
   
   <FILTER>
   
-  ?minute__id linguistics:referenceToMiscellaneous/:refers_to ?category .
+  ?minute__id a :Minute ; 
+    linguistics:referenceToMiscellaneous/:refers_to ?category .
   ?category skos:prefLabel ?prefLabel ;
     a skos:Concept .
 } GROUPBY ?category ?prefLabel ORDERBY DESC(?instanceCount) LIMIT 25
@@ -246,7 +247,7 @@ SELECT DISTINCT ?id ?lat ?long
   (1 AS ?instanceCount)
 WHERE {
   <FILTER>
-  ?minute linguistics:referenceToLocation/:refers_to ?id .
+  ?minute a :Minute ; linguistics:referenceToLocation/:refers_to ?id .
   ?id geo:lat ?lat ; geo:long ?long 
 } GROUP BY ?id ?lat ?long
 `
@@ -268,19 +269,6 @@ export const minutesRelatedTo = `
     } GROUP BY ?id ?related__id ?_plabel
     ORDER BY DESC(COUNT(DISTINCT ?sent_letter))
   }
-`
-
-export const letterEmbedInstancePageQuery = `
-SELECT ?id ?url 
-  WHERE { 
-  BIND (<ID> as ?id)
-  {
-    ?id :metadata ?_metadata .
-    {
-      ?_metadata foaf:page ?url .
-    }
-  }
-}
 `
 
 export const csvQueryMinutes = `

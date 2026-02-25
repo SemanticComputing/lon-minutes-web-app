@@ -8,7 +8,7 @@ BIND(?id as ?uri__dataProviderUrl)
 {
   ?id portal:speaker ?speaker__id .
   ?speaker__id skos:prefLabel ?speaker__prefLabel .
-  BIND(CONCAT("/people/page/", REPLACE(STR(?speaker__id), "^.*\\\\/(.+)", "$1")) AS ?speaker__dataProviderUrl)
+  BIND(CONCAT("/speeches/page/", REPLACE(STR(?id), "^.*\\\\/(.+)", "$1")) AS ?speaker__dataProviderUrl)
 
   OPTIONAL { ?speaker__id sch:image ?image__id ;
       skos:prefLabel ?image__description ;
@@ -178,8 +178,10 @@ export const speechPlacesQuery = `
 SELECT DISTINCT ?id ?lat ?long (COUNT(DISTINCT ?speech) AS ?instanceCount)
 WHERE {
   <FILTER>
-  ?speech linguistics:referenceToLocation/:refers_to ?id .
-  ?id geo:lat ?lat ; geo:long ?long
+  ?speech a :Speech ; 
+    linguistics:referenceToLocation/:refers_to ?id .
+  ?id geo:lat ?lat ;
+    geo:long ?long
 } 
 GROUP BY ?id ?lat ?long
 `
@@ -304,7 +306,7 @@ SELECT DISTINCT ?id ?lat ?long
   (COUNT(DISTINCT ?speech) AS ?instanceCount)
 WHERE {
   <FILTER>
-  ?speech linguistics:referenceToLocation/:refers_to ?id .
+  ?speech a :Speech ; linguistics:referenceToLocation/:refers_to ?id .
   ?id geo:lat ?lat ; geo:long ?long 
 } GROUP BY ?id ?lat ?long
 `
@@ -312,33 +314,21 @@ WHERE {
 export const speechesRelatedTo = `
 {
   SELECT DISTINCT ?id ?related__id
-  (CONCAT(?_plabel, ' (', STR(COUNT(DISTINCT ?sent_letter)), ')') AS ?related__prefLabel) 
+  (COALESCE(?_label1, ?_label2, '<speech>') AS ?related__prefLabel) 
   (CONCAT("/speeches/page/", REPLACE(STR(?related__id), "^.*\\\\/(.+)", "$1")) AS ?related__dataProviderUrl)
   WHERE {
 
       BIND (<ID> as ?id)
       # no filters
       
-      ?related__id linguistics:referenceToLocation/:refers_to ?id ;
-                             skos:prefLabel ?_plabel .
-      BIND (?related__id AS ?sent_letter)
+      ?related__id a :Speech ;
+        linguistics:referenceToLocation/:refers_to ?id .
+      OPTIONAL { ?related__id portal:speaker/skos:prefLabel ?_label1}
+      OPTIONAL { ?related__id skos:prefLabel ?_label2}
+      BIND (?related__id AS ?mention)
       
-    } GROUP BY ?id ?related__id ?_plabel
-    ORDER BY DESC(COUNT(DISTINCT ?sent_letter))
+    } 
   }
-`
-
-export const letterEmbedInstancePageQuery = `
-SELECT ?id ?url 
-  WHERE { 
-  BIND (<ID> as ?id)
-  {
-    ?id :metadata ?_metadata .
-    {
-      ?_metadata foaf:page ?url .
-    }
-  }
-}
 `
 
 export const csvQuerySpeeches = `

@@ -319,7 +319,8 @@
             "externalLink": true,
             "sortValues": true,
             "numberedList": false,
-            "hideHeader": true
+            "hideHeader": true,
+            "expandedOnInstancePage": true
         },
         {
             "id": "speaker",
@@ -537,7 +538,7 @@
             "facetType": "list",
             "filterType": "uriFilter",
             "predicate": ":speaker_country/:refers_to",
-            "searchField": false,
+            "searchField": true,
             "sortBy": "instanceCount",
             "sortDirection": "desc",
             "sortButton": true,
