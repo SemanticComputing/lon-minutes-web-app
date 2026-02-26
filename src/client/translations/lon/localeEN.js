@@ -307,7 +307,7 @@ export default {
               The <strong>MINUTES AND REFERENCES</strong> tab allows you to view the minutes and sentences with mentions to the person.
             </li>
             <li>
-              <strong>NETWORK</strong> visualises a person's network based on the LoN membership during the same periods. Note that the number of actors is limited: the network can contain up to 60 actors within three degrees of the network ego, the main actor.
+              <strong>NETWORK</strong> visualises a network based on the references in the speeches. Note that if the person does not have speeches or does not refer to any other person, the visualization show only a single node.
             </li>
             <li>
               On the <strong>EXPORT</strong> tab you can choose to view the SPARQL query used to generate the result table view into YASGUI query editor or to examine the letter data in the Saha editor.
