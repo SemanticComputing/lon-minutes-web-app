@@ -12,7 +12,6 @@ export default class HTMLParser {
   }
 
   parseHTML (html) {
-    console.log(html)
     let transform
     let preprocessNodes
     switch (this.props.HTMLParserTask) {

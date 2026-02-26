@@ -799,19 +799,25 @@ export default {
       </p>
       <ul class="MuiTypography-root MuiTypography-body1">
       <li>
-       The <strong>TABLE</STRONG> provides a list of all minutes. Each row represents one minute. Selecting the name of a minute displays more detailed information about it.
+       The <strong>TABLE</STRONG> provides a list of all speeches. Each row represents one speech. Selecting the name of a speech displays more detailed information about it.
       </li>
       <li>
-        The <strong>BY YEAR</strong> tab displays the annual number of minutes.
+        The <strong>BY YEAR</strong> tab displays the annual number of speeches.
       </li>
       <li>
-        <strong>CHARTS</strong> column or bar charts visualizing the people, organizations, locations, or concepts mentioned in the minutes.
+        <strong>CHARTS</strong> column or bar charts visualizing the people, organizations, locations, or concepts mentioned in the speeches.
       </li>
       <li>
-        <strong>MAP</strong> visualizes the locations referenced in the minutes.
+        <strong>SPEAKERS</strong> visualizes the most active speakers on a timeline.
       </li>
       <li>
-        <strong>HEATMAP</strong> visualization of the locations referenced in the minutes.
+        <strong>NETWORK</strong> tab displays a network of connections based on people mentioning each other.
+      </li>
+      <li>
+        <strong>MAP</strong> visualizes the locations referenced in the speeches.
+      </li>
+      <li>
+        <strong>HEATMAP</strong> visualization of the locations referenced in the speeches.
       </li>
       <li>
         The <strong>CSV</strong> tab allows you to download the results in tabular form to your own computer.

@@ -257,8 +257,71 @@
                 "yaxis": { "lines": { "show": true } }
             }
         },
-        "activitiesByPlace": {
+        "actorNetwork": {
             "tabID": 4,
+            "component": "Network",
+            "tabPath": "network",
+            "tabIcon": "BubbleChart",
+            "sparqlQuery": "networkLinksQuery",
+            "facetClass": "speeches",
+            "sparqlQueryNodes": "networkNodesFacetQuery",
+            "filterTarget": "speech",
+            "useNetworkAPI": true,
+            "limit": 200,
+            "optimize": 2.0,
+            "preprocess": "preprocessMinutes",
+            "style": [
+                {
+                    "selector": "node",
+                    "style": {
+                        "shape": "ellipse",
+                        "font-size": 10,
+                        "background-color": "data(color)",
+                        "label": "data(prefLabel)",
+                        "height": "data(size)",
+                        "width": "data(size)"
+                    }
+                },
+                {
+                    "selector": "edge",
+                    "style": {
+                        "width": "data(weight)",
+                        "line-color": "data(color)",
+                        "curve-style": "bezier",
+                        "content": "data(prefLabel)",
+                        "color": "hsl(30, 64%, 35%)",
+                        "target-arrow-shape": "triangle",
+                        "target-arrow-color": "data(color)",
+                        "font-size": "8",
+                        "text-valign": "center",
+                        "edge-text-rotation": "autorotate",
+                        "text-background-opacity": 1,
+                        "text-background-color": "white",
+                        "text-background-shape": "roundrectangle"
+                    }
+                }
+            ],
+            "layout": {
+                "name": "cose",
+                "idealEdgeLength": 100,
+                "nodeOverlap": 20,
+                "refresh": 20,
+                "fit": true,
+                "padding": 30,
+                "randomize": false,
+                "componentSpacing": 100,
+                "nodeRepulsion": 400000,
+                "edgeElasticity": 100,
+                "nestingFactor": 5,
+                "gravity": 80,
+                "numIter": 1347,
+                "initialTemp": 200,
+                "coolingFactor": 0.95,
+                "minTemp": 1
+            }
+        },
+        "activitiesByPlace": {
+            "tabID": 5,
             "component": "LeafletMap",
             "tabPath": "map",
             "tabIcon": "AddLocation",
@@ -273,7 +336,7 @@
             }
         },
         "placesSpeechesHeatmap": {
-            "tabID": 5,
+            "tabID": 6,
             "tabPath": "heatmap",
             "tabIcon": "LocalFireDepartment",
             "component": "Deck",
@@ -284,7 +347,7 @@
             "resultMapper": "mapPlaces"
         },
         "csvSpeeches": {
-            "tabID": 6,
+            "tabID": 7,
             "component": "ExportCSV",
             "tabPath": "csv",
             "tabIcon": "CloudDownload",
@@ -294,7 +357,7 @@
             "filterTarget": "id"
         },
         "sparql": {
-            "tabID": 7,
+            "tabID": 8,
             "component": "Export",
             "tabPath": "sparql",
             "tabIcon": "ArrowForward",
@@ -302,7 +365,7 @@
             "facetClass": "perspective1"
         },
         "share": {
-            "tabID": 8,
+            "tabID": 9,
             "component": "ExportLink",
             "tabPath": "share",
             "tabIcon": "IosShare",

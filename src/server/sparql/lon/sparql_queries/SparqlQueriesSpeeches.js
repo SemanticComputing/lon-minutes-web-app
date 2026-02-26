@@ -331,6 +331,51 @@ export const speechesRelatedTo = `
   }
 `
 
+export const networkLinksQuery = `
+SELECT DISTINCT ?source 
+    ?target 
+    (COUNT(?speech) AS ?weight) 
+    (STR(?weight) AS ?prefLabel)
+WHERE {
+  { 
+    SELECT DISTINCT ?speech WHERE {
+      
+      <FILTER>
+      
+      FILTER EXISTS { ?speech linguistics:referenceToPerson/:refers_to [] }
+      {
+       ?speech portal:speaker ?id 
+      }
+      UNION
+      {
+        ?id (^portal:speaker)/linguistics:referenceToPerson/:refers_to/(^portal:speaker) ?speech
+      }
+    }
+  }
+  
+  ?speech portal:speaker ?source ;
+          linguistics:referenceToPerson/:refers_to ?target .
+  
+  ?target a crm:E21_Person .
+  ?source a crm:E21_Person .
+  FILTER (?source != ?target)
+
+} GROUP BY ?source ?target ORDER BY DESC(?weight)
+`
+
+export const networkNodesFacetQuery = `
+ SELECT DISTINCT ?id ?prefLabel ?class ?href
+ WHERE {
+   VALUES ?class { crm:E21_Person }
+    VALUES ?id { <ID_SET> }
+    ?id a ?class ;
+    skos:prefLabel ?_label .
+    
+    BIND (REPLACE(?_label, '^(.+) [0-9()–-]+$', '$1') AS ?prefLabel)
+    BIND (CONCAT("../../people/page/", REPLACE(STR(?id), "^.*\\\\/(.+)", "$1"),"/person-network") AS ?href)
+  }
+`
+
 export const csvQuerySpeeches = `
 SELECT DISTINCT ?id ?label ?content ?language ?year ?source
 	(GROUP_CONCAT(DISTINCT ?person_id; separator="|") AS ?people_references)
