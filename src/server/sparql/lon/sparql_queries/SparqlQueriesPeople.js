@@ -553,17 +553,22 @@ SELECT * {
 export const networkLinksQuery = `
 SELECT DISTINCT ?source ?target (COUNT(?speech) AS ?weight) (STR(?weight) AS ?prefLabel)
 WHERE {
-  VALUES ?id { <ID> }
-  {
-  	?speech portal:speaker ?id ;
-          linguistics:referenceToPerson/:refers_to ?target .
-    BIND (?id AS ?source)
-  } UNION
-  {
-    ?speech portal:speaker ?source ;
-          linguistics:referenceToPerson/:refers_to ?id .
-    BIND (?id AS ?target)
+  { 
+    SELECT DISTINCT ?speech WHERE {
+      VALUES ?id { <ID> }
+      {
+       ?speech portal:speaker ?id ;
+              linguistics:referenceToPerson/:refers_to []
+      }
+      UNION
+      {
+        ?id (^portal:speaker)/linguistics:referenceToPerson/:refers_to/(^portal:speaker) ?speech
+      }
+    }
   }
+  
+  ?speech portal:speaker ?source ;
+          linguistics:referenceToPerson/:refers_to ?target .
   
   ?target a crm:E21_Person .
   ?source a crm:E21_Person .

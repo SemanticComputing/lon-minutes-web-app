@@ -218,7 +218,7 @@
                                     "curve-style": "bezier",
                                     "content": "data(prefLabel)",
                                     "color": "hsl(30, 64%, 35%)",
-                                    "target-arrow-shape": "none",
+                                    "target-arrow-shape": "triangle",
                                     "target-arrow-color": "data(color)",
                                     "font-size": "6",
                                     "text-valign": "center",

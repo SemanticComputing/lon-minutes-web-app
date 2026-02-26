@@ -319,7 +319,7 @@ export const speechesRelatedTo = `
   WHERE {
 
       BIND (<ID> as ?id)
-      # no filters
+      <FILTER>
       
       ?related__id a :Speech ;
         linguistics:referenceToLocation/:refers_to ?id .
