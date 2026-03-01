@@ -60,6 +60,16 @@
       "expandedOnInstancePage": false
     },
     {
+      "id": "speech",
+      "valueType": "string",
+      "makeLink": false,
+      "externalLink": false,
+      "sortValues": true,
+      "numberedList": true,
+      "renderAsHTML": true,
+      "expandedOnInstancePage": true
+    },
+    {
       "id": "minute",
       "valueType": "object",
       "makeLink": true,

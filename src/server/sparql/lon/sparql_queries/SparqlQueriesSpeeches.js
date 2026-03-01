@@ -142,7 +142,7 @@ UNION
 {
     ?id linguistics:referenceToMiscellaneous/:refers_to ?referenced_miscellaneous__id .
     ?referenced_miscellaneous__id skos:prefLabel ?referenced_miscellaneous__prefLabel 
-    BIND(CONCAT("/places/page/", REPLACE(STR(?referenced_miscellaneous__id), "^.*\\\\/(.+)", "$1")) AS ?referenced_miscellaneous__dataProviderUrl)
+    BIND(CONCAT("/concepts/page/", REPLACE(STR(?referenced_miscellaneous__id), "^.*\\\\/(.+)", "$1")) AS ?referenced_miscellaneous__dataProviderUrl)
 }
 UNION
 {
@@ -196,7 +196,7 @@ WHERE {
   ?speech__id portal:speaker ?category .
   ?category skos:prefLabel ?prefLabel ;
     a crm:E21_Person .
-} GROUP BY ?category ?prefLabel ORDER BY DESC(?instanceCount) LIMIT 25
+} GROUP BY ?category ?prefLabel ORDER BY DESC(?instanceCount) LIMIT 40
 `
 
 export const speakerCountriesInSpeechesQuery = `

@@ -31,9 +31,36 @@ export const conceptPropertiesInstancePage = `
       (CONCAT("/minutes/page/", REPLACE(STR(?minute__id), "^.*\\\\/(.+)", "$1")) AS ?minute__dataProviderUrl)
     WHERE {
       VALUES ?_prop { linguistics:referenceToDate linguistics:referenceToLocation linguistics:referenceToOrganization linguistics:referenceToPerson linguistics:referenceToMiscellaneous }
-      ?minute__id ?_prop  [ :refers_to ?id ] ;
-      skos:prefLabel ?minute__prefLabel .
+      ?minute__id ?_prop [ :refers_to ?id ] ;
+        a :Minute ;
+        skos:prefLabel ?minute__prefLabel .
       } ORDER BY STR(?minute__id)
+    }
+  UNION
+  {
+    SELECT DISTINCT 
+      ?id 
+      (CONCAT('<p><a href="/speeches/page/', 
+          REPLACE(STR(?speech__id), "^.*\\\\/(.+)", "$1"),
+          '">', 
+          REPLACE(COALESCE(?_label, 'SPEECH'), " [0-9()–]+$",""),
+          ' ',
+          COALESCE(?_time, ''),
+          ':</a><br>',
+          ?_content,
+          '</p>')
+        AS ?speech)
+    WHERE {
+      VALUES ?_prop { linguistics:referenceToDate linguistics:referenceToLocation linguistics:referenceToOrganization linguistics:referenceToPerson linguistics:referenceToMiscellaneous }
+      ?speech__id ?_prop [ :refers_to ?id ] ;
+        a :Speech ;
+        skos:prefLabel ?_label ;
+        :html ?_content ;
+        :order ?sort_by .
+      
+      OPTIONAL { ?speech__id crm:P4_has_time-span/skos:prefLabel ?_time }
+
+      } ORDER BY ?sort_by
     }
   UNION
   {

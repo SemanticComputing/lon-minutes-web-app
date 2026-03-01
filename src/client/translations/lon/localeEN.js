@@ -402,10 +402,10 @@ export default {
             Organizations referred in the same minutes.
           `
         },
-        miscellaneous: {
-          label: 'Miscellaneous references',
+        concept: {
+          label: 'Related concepts',
           description: `
-            Miscellaneous references mentioned in the same minutes.
+            Miscellaneous concepts mentioned in the same minutes.
           `
         },
         image: {
@@ -894,6 +894,10 @@ export default {
             Country represented by the speaker. 
           `
         },
+        speaker_role: {
+          label: 'Role of the speaker',
+          description: ``
+        },
         image: {
           label: 'Image',
           description: `
@@ -1193,6 +1197,12 @@ export default {
           label: 'Number of references',
           description: `
           Number of references in the minutes related to this resource.
+          `
+        },
+        speech: {
+          label: 'Speeches',
+          description: `
+          The speeches refering to this concept.
           `
         },
         minute: {

@@ -162,6 +162,7 @@ WHERE {
             skos:prefLabel ?reference__prefLabel .
         
         ?minute__id linguistics:referenceToLocation ?reference__id ;
+            a :Minute ;
             skos:prefLabel ?minute__prefLabel .
     } ORDER BY STR(?minute__id)
   }

@@ -174,7 +174,7 @@
                                 "expandedOnInstancePage": true
                             },
                             {
-                                "id": "miscellaneous",
+                                "id": "concept",
                                 "valueType": "object",
                                 "makeLink": true,
                                 "externalLink": false,

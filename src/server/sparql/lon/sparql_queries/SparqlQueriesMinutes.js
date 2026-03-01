@@ -80,7 +80,7 @@ UNION
 {
     ?id linguistics:referenceToMiscellaneous/:refers_to ?referenced_miscellaneous__id .
     ?referenced_miscellaneous__id skos:prefLabel ?referenced_miscellaneous__prefLabel 
-    BIND(CONCAT("/places/page/", REPLACE(STR(?referenced_miscellaneous__id), "^.*\\\\/(.+)", "$1")) AS ?referenced_miscellaneous__dataProviderUrl)
+    BIND(CONCAT("/concepts/page/", REPLACE(STR(?referenced_miscellaneous__id), "^.*\\\\/(.+)", "$1")) AS ?referenced_miscellaneous__dataProviderUrl)
 }
 UNION
 {
@@ -263,7 +263,8 @@ export const minutesRelatedTo = `
       # no filters
       
       ?related__id linguistics:referenceToLocation/:refers_to ?id ;
-                             skos:prefLabel ?_plabel .
+          a :Minute ;
+          skos:prefLabel ?_plabel .
       BIND (?related__id AS ?sent_letter)
       
     } GROUP BY ?id ?related__id ?_plabel

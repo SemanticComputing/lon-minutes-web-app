@@ -452,6 +452,17 @@
             "expandedOnInstancePage": false
         },
         {
+            "id": "speaker_role",
+            "valueType": "string",
+            "makeLink": false,
+            "externalLink": false,
+            "sortValues": false,
+            "numberedList": false,
+            "minWidth": 70,
+            "onlyOnInstancePage": true,
+            "expandedOnInstancePage": false
+        },
+        {
             "id": "minute",
             "valueType": "object",
             "makeLink": true,
@@ -612,7 +623,7 @@
         },
         "language": {
             "containerClass": "three",
-            "facetType": "list",
+            "facetType": "text",
             "filterType": "uriFilter",
             "predicate": "dct:language",
             "searchField": false,
@@ -624,6 +635,19 @@
             "sortByPredicate": "dct:language/skos:prefLabel",
             "facetLabelFilter": "FILTER(LANG(?prefLabel_) = 'en')",
             "hideUnknownValue": true
+        },
+        "speaker_role": {
+            "containerClass": "three",
+            "facetType": "list",
+            "filterType": "uriFilter",
+            "predicate": ":speaker_role",
+            "searchField": false,
+            "sortBy": "instanceCount",
+            "sortDirection": "desc",
+            "sortButton": true,
+            "barChartButton": true,
+            "sortByPredicate": ":speaker_role/skos:prefLabel",
+            "hideUnknownValue": false
         },
         "speaker_gender": {
             "containerClass": "three",

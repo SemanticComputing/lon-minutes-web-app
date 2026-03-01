@@ -210,7 +210,7 @@ WHERE {
           COALESCE(?_time, ''),
           ':</a><br>',
           ?_content,
-          '</p>') 
+          '</p>')
         AS ?speech)
     WHERE {
       ?speech__id portal:speaker ?id ; 
@@ -301,14 +301,14 @@ WHERE {
   }
   UNION
   {
-    SELECT DISTINCT ?id ?miscellaneous__id 
-    (CONCAT(?_label, ' (', STR(COUNT(DISTINCT ?_minute)), ')') AS ?miscellaneous__prefLabel)
-    (CONCAT("/references/page/", REPLACE(STR(?miscellaneous__id), "^.*\\\\/(.+)", "$1")) AS ?miscellaneous__dataProviderUrl)
+    SELECT DISTINCT ?id ?concept__id
+    (CONCAT(?_label, ' (', STR(COUNT(DISTINCT ?_minute)), ')') AS ?concept__prefLabel)
+    (CONCAT("/concepts/page/", REPLACE(STR(?concept__id), "^.*\\\\/(.+)", "$1")) AS ?concept__dataProviderUrl)
     WHERE {
       ?_minute linguistics:referenceToPerson/:refers_to ?id;
-      linguistics:referenceToMiscellaneous ?miscellaneous__id .
-      ?miscellaneous__id skos:prefLabel ?_label .
-    } GROUP BY ?id ?miscellaneous__id ?_label ORDER BY DESC (COUNT(?_minute))
+        linguistics:referenceToMiscellaneous ?concept__id .
+      ?concept__id skos:prefLabel ?_label .
+    } GROUP BY ?id ?concept__id ?_label ORDER BY DESC (COUNT(?_minute))
   }
 }
 `
