@@ -60,8 +60,9 @@ export const conceptPropertiesInstancePage = `
       
       OPTIONAL { ?speech__id crm:P4_has_time-span/skos:prefLabel ?_time }
 
-      } ORDER BY ?sort_by
-    }
+    } 
+    ORDER BY ?sort_by
+  }
   UNION
   {
     SELECT DISTINCT ?id (CONCAT('<div>', ?_content2, '</div>') AS ?sentence) 

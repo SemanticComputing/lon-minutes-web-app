@@ -1377,6 +1377,12 @@ export default {
             The type of the specific place(s) associated with the event.
           `
         },
+        speech: {
+          label: 'Speeches',
+          description: `
+          The speeches refering to this place.
+          `
+        },
         minute: {
           label: 'Minutes',
           description: `

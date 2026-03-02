@@ -147,8 +147,31 @@ WHERE {
             REPLACE(STR(?id), "^.*\\\\/(.+)$", "$1"), '"[^<]+</a>)'),
           '<b>$1</b>') AS 
           ?_content2)
-        
     }
+  }
+  UNION
+    {
+    SELECT DISTINCT 
+      ?id 
+      (CONCAT('<p><a href="/speeches/page/', 
+          REPLACE(STR(?speech__id), "^.*\\\\/(.+)", "$1"),
+          '">', 
+          REPLACE(COALESCE(?_label, 'SPEECH'), " [0-9()–]+$",""),
+          ' ',
+          COALESCE(?_time, ''),
+          ':</a><br>',
+          ?_content,
+          '</p>')
+        AS ?speech)
+    WHERE {
+      ?speech__id linguistics:referenceToLocation [ :refers_to ?id ] ;
+        a :Speech ;
+        skos:prefLabel ?_label ;
+        :html ?_content ;
+        :order ?sort_by .
+      OPTIONAL { ?speech__id crm:P4_has_time-span/skos:prefLabel ?_time }
+    } 
+    ORDER BY ?sort_by
   }
   UNION
   {
