@@ -22,13 +22,18 @@ export default {
   mainPageLinkText: "Select example searches, visualizations, and linked information",
   mainPageLinks: [
       {
-        title: 'Minutes mentioning Åland Islands',
+        title: 'Speeches and minutes mentioning Åland Islands',
         link: '/places/page/Q5689/speeches-and-references'
       },
       {
         title: 'People who died in Geneva',
         link: '/en/people/faceted-search/table?page=0&constraints=%5B%7B%22facetId%22%3A%22deathPlace%22%2C%22filterType%22%3A%22uriFilter%22%2C%22value%22%3A%7B%22path%22%3A%5B4%5D%2C%22node%22%3A%7B%22id%22%3A%22http%3A%2F%2Fldf.fi%2Flon%2Fplaces%2FQ71%22%2C%22prefLabel%22%3A%22Geneva%22%2C%22instanceCount%22%3A23%7D%7D%7D%5D'
-      }],
+      },
+      {
+        title: 'Heatmap showing events of 1932 and 1935',
+        link: '/en/minutes/faceted-search/heatmap?constraints=%5B%7B%22facetId%22%3A%22year%22%2C%22filterType%22%3A%22uriFilter%22%2C%22value%22%3A%7B%22path%22%3A%5B14%5D%2C%22node%22%3A%7B%22id%22%3A%22http%3A%2F%2Fldf.fi%2Flon%2Ftimes%2Ftime_1935-01-01T00%3A00%3A00-1935-12-31T23%3A59%3A59%22%2C%22prefLabel%22%3A%221935%22%2C%22instanceCount%22%3A356%7D%7D%7D%2C%7B%22facetId%22%3A%22year%22%2C%22filterType%22%3A%22uriFilter%22%2C%22value%22%3A%7B%22path%22%3A%5B11%5D%2C%22node%22%3A%7B%22id%22%3A%22http%3A%2F%2Fldf.fi%2Flon%2Ftimes%2Ftime_1932-01-01T00%3A00%3A00-1932-12-31T23%3A59%3A59%22%2C%22prefLabel%22%3A%221932%22%2C%22instanceCount%22%3A561%7D%7D%7D%5D'
+      }
+    ],
   mainPageDick: 'fehkufhekj',
   topBar: {
     feedback: 'feedback (TBA)',

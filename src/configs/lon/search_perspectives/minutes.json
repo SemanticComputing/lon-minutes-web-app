@@ -12,9 +12,7 @@
     "frontPageImage": "main_page/minutes_lon.jpg",
     "searchMode": "faceted-search",
     "enableDynamicLanguageChange": true,
-    "defaultActiveFacets": [
-        "prefLabel"
-    ],
+    "defaultActiveFacets": [],
     "defaultTab": "table",
     "defaultInstancePageTab": "table",
     "maps": {
