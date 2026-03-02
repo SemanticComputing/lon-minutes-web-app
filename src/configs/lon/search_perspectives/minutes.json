@@ -18,17 +18,17 @@
     "maps": {
         "activitiesByPlace": {
             "center": [
-                22.43,
-                10.37
+                22,
+                22
             ],
-            "zoom": 2
+            "zoom": 1
         },
         "placesMinutesHeatmap": {
             "center": [
-                22.43,
-                10.37
+                22,
+                22
             ],
-            "zoom": 2
+            "zoom": 1
         }
     },
     "resultClasses": {
