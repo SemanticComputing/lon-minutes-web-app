@@ -11,16 +11,20 @@ BIND(?id as ?uri__dataProviderUrl)
   BIND(CONCAT("/speeches/page/", REPLACE(STR(?id), "^.*\\\\/(.+)", "$1")) AS ?speaker__dataProviderUrl)
 
   OPTIONAL { ?speaker__id sch:image ?image__id ;
-      skos:prefLabel ?image__description ;
-      skos:prefLabel ?image__title .
+    skos:prefLabel ?image__description ;
+    skos:prefLabel ?image__title .
     BIND(CONCAT(REPLACE(STR(?image__id), "https*:", ""), "?width=600") as ?image__url)
   }
 }
 UNION
 { # TODO remove later
   FILTER NOT EXISTS { ?id portal:speaker [] }
-  ?id :speaker/skos:prefLabel ?speaker__prefLabel .
-  FILTER (LANG(?speaker__prefLabel) = 'en')
+  ?id a :Speech .
+  OPTIONAL { ?id skos:prefLabel ?_label2 }
+  OPTIONAL {
+  ?id :speaker/skos:prefLabel ?_label1 .
+  }
+  BIND (COALESCE(?_label1, ?_label2) AS ?speaker__prefLabel)
 }
 UNION
 { 
@@ -345,17 +349,23 @@ WHERE {
       FILTER EXISTS { ?speech linguistics:referenceToPerson/:refers_to [] }
       {
        ?speech portal:speaker ?id 
-      }
-      UNION
+      
+   
+       UNION
+       }
       {
-        ?id (^portal:speaker)/linguistics:referenceToPerson/:refers_to/(^portal:speaker) ?speech
-      }
+        ?id (^portal:speaker)/linguistics:referenceToPerson/:refers_to/(^portal:speaker) ?speec
+    
+        }
+        h
     }
   }
   
   ?speech portal:speaker ?source ;
-          linguistics:referenceToPerson/:refers_to ?target .
-  
+          lingu
+      
+          
+          istics:referenceToPerson/:refers_to ?target .
   ?target a crm:E21_Person .
   ?source a crm:E21_Person .
   FILTER (?source != ?target)
