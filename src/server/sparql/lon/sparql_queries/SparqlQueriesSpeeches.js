@@ -330,7 +330,6 @@ export const speechesRelatedTo = `
       OPTIONAL { ?related__id portal:speaker/skos:prefLabel ?_label1}
       OPTIONAL { ?related__id skos:prefLabel ?_label2}
       BIND (?related__id AS ?mention)
-      
     } 
   }
 `
@@ -347,25 +346,19 @@ WHERE {
       <FILTER>
       
       FILTER EXISTS { ?speech linguistics:referenceToPerson/:refers_to [] }
-      {
-       ?speech portal:speaker ?id 
       
-   
-       UNION
-       }
       {
-        ?id (^portal:speaker)/linguistics:referenceToPerson/:refers_to/(^portal:speaker) ?speec
-    
-        }
-        h
+        ?speech portal:speaker ?id 
+      }
+      UNION
+      {
+        ?id (^portal:speaker)/linguistics:referenceToPerson/:refers_to/(^portal:speaker) ?speech
+      }
     }
   }
   
   ?speech portal:speaker ?source ;
-          lingu
-      
-          
-          istics:referenceToPerson/:refers_to ?target .
+          linguistics:referenceToPerson/:refers_to ?target .
   ?target a crm:E21_Person .
   ?source a crm:E21_Person .
   FILTER (?source != ?target)

@@ -817,7 +817,7 @@ export default {
         <strong>SPEAKERS</strong> visualizes the most active speakers on a timeline.
       </li>
       <li>
-        <strong>NETWORK</strong> tab displays a network of connections based on people mentioning each other.
+        <strong>NETWORK</strong> tab displays a network of connections based on people mentioning each other. NB. due to the large network size the number of shown nodes is limited to 300.
       </li>
       <li>
         <strong>MAP</strong> visualizes the locations referenced in the speeches.

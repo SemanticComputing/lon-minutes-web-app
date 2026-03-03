@@ -267,7 +267,7 @@
             "sparqlQueryNodes": "networkNodesFacetQuery",
             "filterTarget": "speech",
             "useNetworkAPI": true,
-            "limit": 200,
+            "limit": 300,
             "optimize": 2.0,
             "preprocess": "preprocessMinutes",
             "style": [
