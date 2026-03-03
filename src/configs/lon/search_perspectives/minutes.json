@@ -594,8 +594,8 @@
             "filterType": "uriFilter",
             "predicate": "linguistics:referenceToDate/:refers_to",
             "searchField": true,
-            "sortBy": "instanceCount",
-            "sortDirection": "desc",
+            "sortBy": "prefLabel",
+            "sortDirection": "asc",
             "sortButton": true,
             "barChartButton": true,
             "sortByPredicate": "linguistics:referenceToDate/:refers_to/skos:prefLabel"

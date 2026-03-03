@@ -318,7 +318,10 @@ WHERE {
 export const speechesRelatedTo = `
 {
   SELECT DISTINCT ?id ?related__id
-  (COALESCE(?_label1, ?_label2, '<speech>') AS ?related__prefLabel) 
+    (CONCAT(
+        REPLACE(COALESCE(?_label1, ?_label2, '<speech>'), " [0-9()–]+$", ''),
+        (IF (BOUND(?_time), CONCAT(': ', STR(?_time)), '')))
+    AS ?related__prefLabel)
   (CONCAT("/speeches/page/", REPLACE(STR(?related__id), "^.*\\\\/(.+)", "$1")) AS ?related__dataProviderUrl)
   WHERE {
 
@@ -329,6 +332,7 @@ export const speechesRelatedTo = `
         linguistics:referenceToLocation/:refers_to ?id .
       OPTIONAL { ?related__id portal:speaker/skos:prefLabel ?_label1}
       OPTIONAL { ?related__id skos:prefLabel ?_label2}
+      OPTIONAL { ?related__id crm:P4_has_time-span/skos:prefLabel ?_time }
       BIND (?related__id AS ?mention)
     } 
   }
