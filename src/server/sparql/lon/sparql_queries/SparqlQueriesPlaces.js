@@ -16,14 +16,14 @@ export const placePropertiesFacetResults = `
     ?id skos:broader ?broader__id .
     FILTER (?broader__id != ?id)
     ?broader__id skos:prefLabel ?broader__prefLabel .
-    FILTER (LANG(?broader__prefLabel)='<LANG>')
+    FILTER (?id != ?broader__id && LANG(?broader__prefLabel)='<LANG>')
     BIND(CONCAT("/${perspectiveID}/page/", REPLACE(STR(?broader__id), "^.*\\\\/(.+)", "$1")) AS ?broader__dataProviderUrl)
   }
   UNION
   {
     ?id :country ?country__id .
     ?country__id skos:prefLabel ?country__prefLabel .
-    FILTER (LANG(?country__prefLabel)='<LANG>')
+    FILTER (?id != ?country__id && LANG(?country__prefLabel)='<LANG>')
     BIND(CONCAT("/places/page/", REPLACE(STR(?country__id), "^.*\\\\/(.+)", "$1")) AS ?country__dataProviderUrl)
   }
   UNION
