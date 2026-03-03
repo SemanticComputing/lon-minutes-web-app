@@ -272,7 +272,7 @@ export default {
             <strong>LIFETIMES</strong> tab depicts a time series of the years of birth and death of the people.
           </li>
           <li>
-            <strong>TOP REFERENCES</strong> tab depicts a time series of the most frequently refered people in the minute speeches.
+            <strong>TOP REFERENCES</strong> tab depicts a time series of the most frequently referred people in the minute speeches.
           </li>
           <li>
             The <strong>MAP</strong> visualises the known locations associated with the actors (birth and death places, countries related to nationality). If the location does not have precise geographical coordinates, it is displayed as part of the next larger unit. Clicking on the place markers will open a list of people associated with the place.
