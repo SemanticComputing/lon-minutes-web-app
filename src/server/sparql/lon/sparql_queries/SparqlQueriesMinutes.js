@@ -48,7 +48,7 @@ UNION
 }
 UNION
 { 
-  ?id :has_speech/:speaker/:refers_to ?speaker__id .
+  ?id (^:in_minute)/:speaker/:refers_to ?speaker__id .
   ?speaker__id skos:prefLabel ?speaker__prefLabel 
   BIND(CONCAT("/people/page/", REPLACE(STR(?speaker__id), "^.*\\\\/(.+)", "$1")) AS ?speaker__dataProviderUrl)
 }
@@ -149,7 +149,7 @@ WHERE {
   
   <FILTER>
   
-  ?minute__id :has_speech/:speaker_country/:refers_to ?category .
+  ?minute__id (^:in_minute)/:speaker_country/:refers_to ?category .
   ?category skos:prefLabel ?prefLabel .
   FILTER (LANG(?prefLabel)='en')
 } GROUP BY ?category ?prefLabel ORDER BY DESC(?instanceCount) LIMIT 25
@@ -168,13 +168,15 @@ WHERE {
 } GROUPBY ?category ?prefLabel ORDERBY DESC(?instanceCount) LIMIT 25
 `
 
-export const topCorrespondenceFacetPageQuery = `
+export const topReferenceFacetPageQuery = `
 SELECT DISTINCT (COUNT(?id) AS ?count) ?speaker__label ("speaker" AS ?type) ?year (CONCAT(STR(?year), '-07-01') AS ?date) WHERE {
     { SELECT DISTINCT ?speaker (REPLACE(STR(?_label), '^(.+) [0-9()–]+?$', '$1') AS ?speaker__label) WHERE {
-      <FILTER> 
+      <FILTER>
       ?id a :Minute ;
-              :has_speech/:speaker/:refers_to ?speaker ;
-              crm:P4_has_time-span/skos:prefLabel ?year .
+            ^:in_minute [
+              a :Speech ;
+              :speaker/:refers_to ?speaker ;
+              crm:P4_has_time-span/skos:prefLabel ?year ] .
       
       ?speaker a crm:E21_Person ;
               skos:prefLabel ?_label .

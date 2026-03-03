@@ -412,7 +412,7 @@
             "height": "100%",
             "facetClass": "people",
             "filterTarget": "id",
-            "sparqlQuery": "topCorrespondenceFacetPageQuery",
+            "sparqlQuery": "topReferenceFacetPageQuery",
             "resultMapper": "createCorrespondenceChartData",
             "resultMapperConfig": {
                 "types": ["reference"],

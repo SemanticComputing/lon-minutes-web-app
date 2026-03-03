@@ -413,25 +413,25 @@ WHERE {
 } GROUPBY ?category ORDER BY ?category
 `
 
-export const topCorrespondenceFacetPageQuery = `
-SELECT DISTINCT (COUNT(?minute) AS ?count) ?reference__label ("reference" AS ?type) ?year (CONCAT(STR(?year), '-07-01') AS ?date) WHERE {
+export const topReferenceFacetPageQuery = `
+SELECT DISTINCT (COUNT(?speech) AS ?count) ?reference__label ("reference" AS ?type) ?year (CONCAT(STR(?year), '-07-01') AS ?date) WHERE {
   <FILTER>
 
   { SELECT DISTINCT ?id (REPLACE(STR(?_label), '^(.+) [0-9()–]+?$', '$1') AS ?reference__label) WHERE {
       <FILTER>
 
-      ?minute a :Minute ;
-              :has_speech/:speaker/:refers_to ?id ;
+      ?speech a :Speech ;
+              linguistics:referenceToPerson/:refers_to ?id ;
               crm:P4_has_time-span/skos:prefLabel ?year .
       ?id a crm:E21_Person ;
               skos:prefLabel ?_label .
     }
     GROUP BY ?id ?_label
-    ORDER BY DESC(COUNT(?minute))
+    ORDER BY DESC(COUNT(?speech))
     LIMIT 25
   }
-  ?minute a :Minute ;
-          :has_speech/:speaker/:refers_to ?id ;
+  ?speech a :Speech ;
+          linguistics:referenceToPerson/:refers_to ?id ;
           crm:P4_has_time-span/skos:prefLabel ?year .
 }
 GROUP BY ?year ?reference__label

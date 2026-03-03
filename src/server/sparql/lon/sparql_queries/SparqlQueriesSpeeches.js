@@ -229,7 +229,7 @@ WHERE {
 } GROUPBY ?category ?prefLabel ORDERBY DESC(?instanceCount) LIMIT 25
 `
 
-export const topCorrespondenceFacetPageQuery = `
+export const topReferenceFacetPageQuery = `
 SELECT DISTINCT (COUNT(?id) AS ?count) ?speaker__label ("speaker" AS ?type) 
   (xsd:date(?_time) AS ?date)
   (year(xsd:date(?_time)) AS ?year)
@@ -387,30 +387,39 @@ export const networkNodesFacetQuery = `
 `
 
 export const csvQuerySpeeches = `
-SELECT DISTINCT ?id ?label ?content ?language ?year ?source
-	(GROUP_CONCAT(DISTINCT ?person_id; separator="|") AS ?people_references)
-	(GROUP_CONCAT(DISTINCT ?place_id; separator="|") AS ?place_references)
+SELECT DISTINCT ?id ?label 
+?speaker_id ?speaker 
+?language ?time ?content 
+?minute_id 
+(GROUP_CONCAT(DISTINCT ?person_id; separator="|") AS ?people_references)
+(GROUP_CONCAT(DISTINCT ?place_id; separator="|") AS ?place_references)
 WHERE {
   
   <FILTER>
   
-  FILTER(BOUND(?id))
+  FILTER (BOUND(?id))
 
   ?id a :Speech ;
     skos:prefLabel ?label ;
     :content ?content . 
   
+  OPTIONAL { ?id :speaker ?_speaker0 .
+    OPTIONAL { ?_speaker0 :refers_to ?_speaker1 }
+    BIND (COALESCE(?_speaker1, ?_speaker0) AS ?speaker_id)
+    
+    OPTIONAL { ?speaker_id skos:prefLabel ?speaker }
+  }
+  
   OPTIONAL { 
     ?id dct:language/skos:prefLabel ?language .
     FILTER (LANG(?language) = "en")
   }
-        
-  OPTIONAL { ?id crm:P4_has_time-span/skos:prefLabel ?year }
-  OPTIONAL { ?id foaf:page ?source }
+  OPTIONAL { ?id :in_minute ?minute_id }
+  OPTIONAL { ?id crm:P4_has_time-span/skos:prefLabel ?time }
   
   OPTIONAL { ?id linguistics:referenceToPerson/:refers_to ?person_id }
   OPTIONAL { ?id linguistics:referenceToLocation/:refers_to ?place_id }
-} GROUP BY ?id ?label ?content ?language ?year ?source
+} GROUP BY ?id ?speaker_id ?speaker ?minute_id ?label ?content ?language ?time ?source
 ORDER BY STR(?id)
 `
 

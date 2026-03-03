@@ -224,7 +224,7 @@
             "height": "100%",
             "facetClass": "speeches",
             "filterTarget": "id",
-            "sparqlQuery": "topCorrespondenceFacetPageQuery",
+            "sparqlQuery": "topReferenceFacetPageQuery",
             "resultMapper": "createCorrespondenceChartData",
             "resultMapperConfig": {
                 "types": ["speaker"],
