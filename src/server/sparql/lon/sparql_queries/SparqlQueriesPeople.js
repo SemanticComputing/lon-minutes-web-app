@@ -390,6 +390,25 @@ WHERE {
 } GROUPBY ?category ?prefLabel ORDERBY DESC(?instanceCount) LIMIT 30
 `
 
+export const peopleByOrganizationQuery = `
+SELECT DISTINCT ?category ?prefLabel (COUNT(DISTINCT ?person__id) AS ?instanceCount)
+?_tspan
+WHERE {
+  ?person__id a crm:E21_Person .
+  
+  <FILTER>
+  
+  ?person__id biocrm:bearer_of/crm:P11i_participated_in ?category .
+  ?category skos:prefLabel ?_label .
+  ?category crm:P4_has_time-span/crm:P82a_begin_of_the_begin ?_tspan .
+  
+  FILTER (LANG(?_label) = "en" && CONTAINS(?_label, 'LoN General Assembly'))
+  BIND (REPLACE(?_label, 'LoN General Assembly: ', '') AS ?prefLabel)
+} 
+GROUP BY ?category ?prefLabel ?_tspan
+ORDER BY ?_tspan 
+`
+
 export const ageQuery = `
 SELECT ?category (count(?born) AS ?Births) (count(?deceased) AS ?Deaths)
 WHERE {

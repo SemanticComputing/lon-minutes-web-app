@@ -126,6 +126,7 @@ export default {
       "peopleByGender": "Gender",
       "peopleByNationality": "Nationality",
       "peopleByRepresented": "Represented country",
+      "peopleByOrganization": "General Assemblies",
       "peopleByOccupation": "Occupation",
       "peopleByBirthplace": "Place of birth",
       "peopleByDeathplace": "Place of death",
