@@ -195,7 +195,7 @@
                         }
                     ]
                 },
-                "ConceptsInSpeeches": {
+                "ConceptsInMinutes": {
                     "sparqlQuery": "conceptsInSpeechesQuery",
                     "targetClass": ":Speech",
                     "filterTarget": "speech__id",
