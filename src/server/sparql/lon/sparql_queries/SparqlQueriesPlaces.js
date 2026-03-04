@@ -290,25 +290,24 @@ WHERE {
     FILTER (LANG(?label_french)="fr")
   }
 
-
   OPTIONAL
   {
     ?id skos:broader ?_broader_id .
     ?_broader_id skos:prefLabel ?_broader
-    FILTER (LANG(?_broader)="en")
+    FILTER (LANG(?_broader)="en" && ?id != ?_broader_id)
   }
   OPTIONAL
   {
     ?id :country ?_country_id .
     ?_country_id skos:prefLabel ?_country
-    FILTER (LANG(?_country)="en")
+    FILTER (LANG(?_country)="en" && ?id != ?_country_id)
   }
   
   OPTIONAL
   {
     ?id :continent ?_continent_id .
     ?_continent_id skos:prefLabel ?_continent
-    FILTER (LANG(?_continent)="en")
+    FILTER (LANG(?_continent)="en" && ?id != ?_continent_id)
   }
 
   OPTIONAL 
