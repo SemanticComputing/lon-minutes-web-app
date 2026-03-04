@@ -33,6 +33,7 @@ export default {
         title: 'Heatmap showing events of 1932 and 1935',
         link: '/en/minutes/faceted-search/heatmap?constraints=%5B%7B%22facetId%22%3A%22year%22%2C%22filterType%22%3A%22uriFilter%22%2C%22value%22%3A%7B%22path%22%3A%5B14%5D%2C%22node%22%3A%7B%22id%22%3A%22http%3A%2F%2Fldf.fi%2Flon%2Ftimes%2Ftime_1935-01-01T00%3A00%3A00-1935-12-31T23%3A59%3A59%22%2C%22prefLabel%22%3A%221935%22%2C%22instanceCount%22%3A356%7D%7D%7D%2C%7B%22facetId%22%3A%22year%22%2C%22filterType%22%3A%22uriFilter%22%2C%22value%22%3A%7B%22path%22%3A%5B11%5D%2C%22node%22%3A%7B%22id%22%3A%22http%3A%2F%2Fldf.fi%2Flon%2Ftimes%2Ftime_1932-01-01T00%3A00%3A00-1932-12-31T23%3A59%3A59%22%2C%22prefLabel%22%3A%221932%22%2C%22instanceCount%22%3A561%7D%7D%7D%5D'
       }
+
     ],
   mainPageDick: 'fehkufhekj',
   topBar: {
@@ -244,7 +245,7 @@ export default {
     people: {
       label: 'People',
       facetResultsType: 'People',
-      shortDescription: '',
+      shortDescription: 'Representatives and other related people',
       longDescription: `
         <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
          
@@ -594,7 +595,7 @@ export default {
     minutes: {
       label: 'Minutes',
       facetResultsType: 'minutes',
-      shortDescription: '',
+      shortDescription: 'Archival records',
       longDescription: `
       <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
       
@@ -781,7 +782,7 @@ export default {
     speeches: {
       label: 'Speeches',
       facetResultsType: 'speeches',
-      shortDescription: 'Speech',
+      shortDescription: 'Speeches held at the assemblies',
       longDescription: `
       <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
       
@@ -1232,7 +1233,7 @@ export default {
     places: {
       label: 'Places',
       facetResultsType: 'Places',
-      shortDescription: '',
+      shortDescription: 'Countries, nationalities, and mentioned places',
       longDescription: `
       
       <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
