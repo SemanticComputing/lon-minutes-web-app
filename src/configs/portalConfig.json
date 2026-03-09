@@ -4,9 +4,9 @@
     "perspectives": {
         "searchPerspectives": [
             "speeches",
-            "minutes",
             "people",
             "places",
+            "minutes",
             "fullTextSearch"
         ],
         "onlyInstancePages": [
