@@ -2,7 +2,7 @@
   "id": "organizations",
   "endpoint": {
     "url": "http://ldf.fi/lon/sparql",
-    "useAuth": true,
+    "useAuth": false,
     "prefixesFile": "SparqlQueriesPrefixes.js"
   },
   "sparqlQueriesFile": "SparqlQueriesOrganizations.js",

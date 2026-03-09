@@ -2,7 +2,7 @@
   "id": "references",
   "endpoint": {
     "url": "http://ldf.fi/lon/sparql",
-    "useAuth": true,
+    "useAuth": false,
     "prefixesFile": "SparqlQueriesPrefixes.js"
   },
   "sparqlQueriesFile": "SparqlQueriesReferences.js",
