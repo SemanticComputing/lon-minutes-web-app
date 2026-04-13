@@ -39,7 +39,7 @@ export default {
       },
       {
         title: 'How was Palestine mentioned?',
-        link: 'https://minutes.ldf.fi/en/places/page/Q23792/speeches-and-references'
+        link: '/en/places/page/Q23792/speeches-and-references'
       },
       {
         title: 'Women with most speeches',
@@ -56,6 +56,18 @@ export default {
       {
         title: 'Historical speech by Haile Selassie',
         link: '/en/speeches/page/s1935010653_fr/table'
+      },
+      {
+        title: 'When establishing a «federal link» was proposed?',
+        link: '/en/speeches/page/s1929003220_en/table'
+      },
+      {
+        title: 'Who talked on behalf of China?',
+        link: '/en/speeches/faceted-search/top-speakers?constraints=%5B%7B%22facetId%22%3A%22speaker_country%22%2C%22filterType%22%3A%22uriFilter%22%2C%22value%22%3A%7B%22path%22%3A%5B22%5D%2C%22node%22%3A%7B%22id%22%3A%22http%3A%2F%2Fldf.fi%2Flon%2Fplaces%2FQ148%22%2C%22prefLabel%22%3A%22China%22%2C%22instanceCount%22%3A66%7D%7D%7D%5D'
+      },
+      {
+        title: 'Egocentric network of Fridtjof Nansen',
+        link: '/en/people/page/p1789044088392048865/person-network'
       }
     ],
   mainPageDick: 'fehkufhekj',
