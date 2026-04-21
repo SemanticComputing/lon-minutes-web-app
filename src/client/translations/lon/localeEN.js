@@ -59,7 +59,7 @@ export default {
       },
       {
         title: 'When establishing a «federal link» was proposed?',
-        link: '/en/speeches/page/s1929003220_en/table'
+        link: '/en/concepts/page/r8547554013790599657/table'
       },
       {
         title: 'Who talked on behalf of China?',
