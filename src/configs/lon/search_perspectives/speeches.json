@@ -41,7 +41,7 @@
                 "tabIcon": "CalendarViewDay",
                 "propertiesQueryBlock": "speechesPropertiesFacetResults",
                 "pagesize": 30,
-                "paginatedResultsAlwaysExpandRows": true,
+                "paginatedResultsAlwaysExpandRows": false,
                 "paginatedResultsRowContentMaxHeight": 150,
                 "sortBy": "sort_by_url",
                 "sortDirection": "asc",
@@ -395,6 +395,18 @@
             "expandedOnInstancePage": false
         },
         {
+            "id": "content",
+            "valueType": "string",
+            "makeLink": false,
+            "externalLink": false,
+            "sortValues": false,
+            "numberedList": false,
+            "collapsedMaxWords": 120,
+            "showExtraCollapseButton": true,
+            "expandedOnInstancePage": true,
+            "renderAsHTML": true
+        },
+        {
             "id": "speaker_country",
             "valueType": "object",
             "makeLink": true,
@@ -425,18 +437,6 @@
             "onlyOnInstancePage": true,
             "expandedOnInstancePage": false,
             "minWidth": 100
-        },
-        {
-            "id": "content",
-            "valueType": "string",
-            "makeLink": false,
-            "externalLink": false,
-            "sortValues": true,
-            "numberedList": false,
-            "renderAsHTML": true,
-            "HTMLParserTask": "createReactRouterLinks",
-            "minWidth": 100,
-            "expandedOnInstancePage": true
         },
         {
             "id": "language",
