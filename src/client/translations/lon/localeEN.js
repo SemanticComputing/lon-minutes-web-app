@@ -39,7 +39,7 @@ export default {
       },
       {
         title: 'How was Palestine mentioned?',
-        link: '/en/places/page/Q23792/speeches-and-references'
+        link: '/en/places/page/Q219060/speeches-and-references'
       },
       {
         title: 'Women with most speeches',
