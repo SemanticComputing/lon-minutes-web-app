@@ -1,0 +1,110 @@
+# https://docs.google.com/presentation/d/1OFEbg3NQAufj8Dv_tH7gF74JvRZRupaf6vHSjzd1HT0/edit?usp=sharing
+# 
+# awk '!/#/' speech.txt | say -v Daniel -o audio.aiff
+# ffmpeg -y -i screens/Screen\ Recording\ 3.mov -i audio.aiff -c:v copy -c:a aac SEMPARL_actors.mp4
+# 
+[[slnc 2000]]
+I will introduce the League of Nations Sampo web portal, build on the linked Open Data Service
+
+# page 1+1
+[[slnc 1500]]
+This is the entry page of the portal. 
+From here the user can choose between four different perspective views to the data;
+the speeches, the people, the places, and the minute records. 
+
+# page 2+1 
+[[slnc 1000]]
+Choosing the speeches perspective opens a semantic view to the eleven thousend and six hundred speeches held at the League of Nations between the years nineteen twenty and nineteen fourty six. 
+
+The facets on the left allow the user to filter the results by some chosen criteria,
+and the result table on the right gets automatically updated. 
+[[slnc 600]]
+The speeches can be limited to a specific speaker, 
+[[slnc 600]]
+by the language used in the speech, which are English or French in the data.
+[[slnc 600]]
+by the represented country,
+[[slnc 600]]
+by the gender of the speaker,
+[[slnc 600]]
+by the time of the speech,
+[[slnc 600]]
+or by the content, like for instance, when some specific location or topic is mentioned.
+
+[[slnc 1500]]
+In addition to the main result table, the other tabs in the speeches perspective allow the used to view the results as, like for instance, 
+Pie or column charts,
+[[slnc 600]]
+Time series showing the most active speakers,
+[[slnc 600]]
+or as a visualization on a map.
+[[slnc 200]]
+where the user can zoom in and out, 
+[[slnc 1500]]
+and clicking on a marker opens up a pop up window showing a list of all speeches 
+where the particular location was mentioned.
+[[slnc 2000]]
+# https://minutes.ldf.fi/en/speeches/page/s1935010653_fr/table
+Among these speeches is the one held by Ethiopian Emperor Haile Selassie on the tenth of October in nineteen thirty five
+[[slnc 1000]] 
+At this instance page of a speech, you can see the entire content of the speech, 
+and, in addition the time when the speech was held and well as lists of the people, locations, organizations, and general concepts mentioned in the speech.
+
+# People perspective
+[[slnc 1500]]
+In addition to the speeches, from the main page the user can the user can choose to browse the people data in the League of nations Sampo. 
+The person data contains biographical information of altogether three thousend three hundred people linked to the League of Nations minutes. 
+[[slnc 1500]]
+The people information includes like for instance the dates and places of their birth and death which is enriched from external sources such as Wikidata or Lonsea project. 
+[[slnc 1500]]
+On the perspective the user can filter the results based on their represented country, gender, or occupation.
+[[slnc 2000]]
+# https://minutes.ldf.fi/en/people/faceted-search/top-references
+The other tabs in the person perspective allows the user to study, like for instance, who where the most referenced people in the speeches, 
+[[slnc 2000]]
+# https://minutes.ldf.fi/en/people/faceted-search/migrations
+and a migration map showing arches connecting the places of birth and death,
+[[slnc 2500]]
+# https://minutes.ldf.fi/en/people/page/p1789044088392048865/table
+The instance page of a person shows the biographical information, the related occupations, and a listing of the different roles in the organizations in the League of Nations.
+[[slnc 1500]]
+The second tab on the instance page lists all the speeches by the particular person, as well as the speeches mentioning her or him. 
+[[slnc 1500]]
+# https://minutes.ldf.fi/en/people/page/p1789044088392048865/person-network
+The egocentric network is built based on the person references in the speeches.
+
+[[slnc 2000]]
+# https://minutes.ldf.fi/en/places/faceted-search/table?page=0
+The places perspective shows all the locations in the dataset. 
+
+[[slnc 1500]]
+# https://minutes.ldf.fi/en/places/page/Q71/speeches-and-references
+On the instance page you can see all the speeches and minutes mentioning the particular location. 
+[[slnc 1500]]
+The map on the instance page shows the location, as well as places within the main location. 
+
+[[slnc 2000]]
+The fourth data perspective, minutes, allows the user to browse all the records from the League of Nations minutes.
+
+[[slnc 1500]]
+In addition to reading the texts, you can, like for instance, view the most mentioned location of each year as a heatmap.
+
+[[slnc 1500]]
+# https://minutes.ldf.fi/en/minutes/faceted-search/heatmap?constraints=%5B%7B%22facetId%22%3A%22year%22%2C%22filterType%22%3A%22uriFilter%22%2C%22value%22%3A%7B%22path%22%3A%5B12%5D%2C%22node%22%3A%7B%22id%22%3A%22http%3A%2F%2Fldf.fi%2Flon%2Ftimes%2Ftime_1933-01-01T00%3A00%3A00-1933-12-31T23%3A59%3A59%22%2C%22prefLabel%22%3A%221933%22%2C%22instanceCount%22%3A868%7D%7D%7D%5D
+By filtering the results to the year nineteen thirty three, you will see a clear focus in Mantchuria.
+
+[[slnc 1500]]
+# https://minutes.ldf.fi/en/minutes/faceted-search/heatmap?constraints=%5B%7B%22facetId%22%3A%22year%22%2C%22filterType%22%3A%22uriFilter%22%2C%22value%22%3A%7B%22path%22%3A%5B14%5D%2C%22node%22%3A%7B%22id%22%3A%22http%3A%2F%2Fldf.fi%2Flon%2Ftimes%2Ftime_1935-01-01T00%3A00%3A00-1935-12-31T23%3A59%3A59%22%2C%22prefLabel%22%3A%221935%22%2C%22instanceCount%22%3A356%7D%7D%7D%5D
+while in the year nineteen thirty five, Ethiopia is among the most referenced locations. 
+
+[[slnc 2000]]
+This was a brief introduction to the functionalities available at the League of Nations Sampo portal.
+
+[[slnc 1000]]
+From the main page you will also find shortcut links to some predefined results,
+like speeches by certain key people, or minutes mentioning locations of interest. 
+
+[[slnc 1000]]
+Thank you for your interest, and happy browsing with our latest addition to the Sampo portal series.
+
+
