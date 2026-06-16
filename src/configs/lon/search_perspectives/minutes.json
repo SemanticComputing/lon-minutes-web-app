@@ -40,7 +40,7 @@
                 "tabIcon": "CalendarViewDay",
                 "propertiesQueryBlock": "minutesPropertiesFacetResults",
                 "pagesize": 30,
-                "paginatedResultsAlwaysExpandRows": true,
+                "paginatedResultsAlwaysExpandRows": false,
                 "paginatedResultsRowContentMaxHeight": 150,
                 "sortBy": "sort_by_url",
                 "sortDirection": "desc",
@@ -349,7 +349,9 @@
             "renderAsHTML": true,
             "HTMLParserTask": "createReactRouterLinks",
             "minWidth": 100,
-            "expandedOnInstancePage": true
+            "expandedOnInstancePage": true,
+            "collapsedMaxWords": 250,
+            "showExtraCollapseButton": true
         },
         {
             "id": "speaker",
@@ -488,12 +490,13 @@
         },
         "plenary_meeting": {
             "containerClass": "six",
-            "facetType": "list",
+            "facetType": "hierarchical",
             "filterType": "uriFilter",
             "barChartButton": true,
             "predicate": ":key",
             "sortDirection": "asc",
-            "sortByPredicate": ":key"
+            "sortByPredicate": ":key",
+            "parentProperty": "skos:broader"
         },
         "language": {
             "containerClass": "three",

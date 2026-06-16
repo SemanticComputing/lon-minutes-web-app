@@ -603,7 +603,7 @@
             "sortButton": true,
             "barChartButton": true,
             "sortByPredicate": "portal:speaker/skos:prefLabel",
-            "hideUnknownValue": true
+            "hideUnknownValue": false
         },
         "speaker_country": {
             "containerClass": "ten",
@@ -616,7 +616,7 @@
             "sortButton": true,
             "barChartButton": true,
             "sortByPredicate": ":speaker_country/:refers_to/skos:prefLabel",
-            "hideUnknownValue": true,
+            "hideUnknownValue": false,
             "facetLabelFilter": "FILTER(LANG(?prefLabel_) = 'en')"
         },
         "language": {
