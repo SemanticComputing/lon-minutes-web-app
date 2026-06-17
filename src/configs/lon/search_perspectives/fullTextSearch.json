@@ -1,8 +1,8 @@
 {
     "id": "fullTextSearch",
     "endpoint": {
-        "url": "http://ldf.fi/lon/sparql",
-        "useAuth": false,
+        "url": "https://ldf.fi/lon-dev/sparql",
+        "useAuth": true,
         "prefixesFile": "SparqlQueriesPrefixes.js"
     },
     "sparqlQueriesFile": "SparqlQueriesFullText.js",
