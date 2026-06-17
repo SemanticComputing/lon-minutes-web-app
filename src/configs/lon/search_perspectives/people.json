@@ -14,7 +14,7 @@
     "searchMode": "faceted-search",
     "enableDynamicLanguageChange": true,
     "defaultActiveFacets": [
-        "prefLabel"
+        "prefLabel", "dataset"
     ],
     "defaultTab": "table",
     "defaultInstancePageTab": "table",
@@ -711,6 +711,18 @@
             "filterType": "textFilter",
             "sortByPredicate": "skos:prefLabel",
             "textQueryProperty": "skos:prefLabel"
+        },
+        "dataset": {
+            "containerClass": "three",
+            "facetType": "list",
+            "predicate": ":in_dataset",
+            "filterType": "uriFilter",
+            "sortBy": "instanceCount",
+            "pieChartButton": true,
+            "sortButton": true,
+            "sortDirection": "desc",
+            "sortByPredicate": ":in_dataset/skos:prefLabel",
+            "hideUnknownValue": true
         },
         "gender": {
             "containerClass": "three",

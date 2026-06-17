@@ -8,10 +8,10 @@ export default {
   },
   appTitle: {
     short: '',
-    long: 'League of Nations',
+    long: 'Minutes of Multilateralism',
     mobile: '',
     subheading: `
-      Minutes of Multilateralism on the Semantic Web
+      League of Nations, United Nations, and Inter-Parliamentary Union
     `
   },
   selectEditionPerpective: 'Digital editions',
@@ -154,7 +154,7 @@ export default {
   },
   "apexCharts": {
     "grouping": "Sort by:",
-    "property": "Ominaisuus:",
+    "property": "Property:",
     "chartType": "Chart type:",
     "pie": "Pie chart",
     "bar": "Column chart",
@@ -370,6 +370,10 @@ export default {
         label: {
           label: 'Name'
         },
+        dataset: {
+          label: 'International Organization',
+          description: 'League of Nations, United Nations, or Inter-Parliamentary Union'
+        },
         gender: {
           label: 'Gender',
           description: `
@@ -546,7 +550,7 @@ export default {
         metrics: {
           label: 'Network metrics',
           description: `
-            The degree of centrality of the actor in the letter network. Each row corresponds to one centrality metric and                shows the centrality of the actor and, in brackets, their position in the overall network (# = number of actors               with higher centrality).
+            The degree of centrality of the actor in the letter network. Each row corresponds to one centrality metric and shows the centrality of the actor and, in brackets, their position in the overall network (# = number of actors with higher centrality).
           `
         },
         numLetters: {
@@ -712,6 +716,10 @@ export default {
         prefLabel: {
           label: 'Title',
           description: ''
+        },
+        dataset: {
+          label: 'International Organization',
+          description: 'League of Nations, United Nations, or Inter-Parliamentary Union'
         },
         search: {
           label: 'Search content',
@@ -905,6 +913,10 @@ export default {
         prefLabel: {
           label: 'Title',
           description: ''
+        },
+        dataset: {
+          label: 'International Organization',
+          description: 'League of Nations (LoN), United Nations (UN), or Inter-Parliamentary Union (IPU)'
         },
         search: {
           label: 'Search content',

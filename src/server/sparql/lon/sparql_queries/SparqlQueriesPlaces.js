@@ -27,8 +27,11 @@ export const placePropertiesFacetResults = `
     BIND(CONCAT("/places/page/", REPLACE(STR(?country__id), "^.*\\\\/(.+)", "$1")) AS ?country__dataProviderUrl)
   }
   UNION
-  {
-    ?id :number_of_references ?number_of_references
+  { 
+    SELECT DISTINCT ?id (SUM(?_value) AS ?number_of_references) 
+    WHERE {
+      ?id :number_of_references ?_value
+    } GROUP BY ?id 
   }
 `
 
@@ -81,7 +84,7 @@ export const placePropertiesInstancePage = `
     WHERE
     {
       ?narrower__id skos:broader ?id ; skos:prefLabel ?_label ;
-        :number_of_references ?_num .
+          :number_of_references ?_num .
       FILTER (?narrower__id != ?id && LANG(?_label)='<LANG>')
     } 
     ORDER BY DESC(COALESCE(?_num)) ?_label 
@@ -116,7 +119,10 @@ export const placePropertiesInstancePage = `
   }
   UNION
   {
-    ?id :number_of_references ?number_of_references
+    SELECT DISTINCT ?id (SUM(?_value) AS ?number_of_references) 
+    WHERE {
+      ?id :number_of_references ?_value
+    } GROUP BY ?id 
   }
   `
 

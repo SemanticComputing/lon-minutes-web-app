@@ -12,7 +12,7 @@
     "frontPageImage": "main_page/minutes_lon.jpg",
     "searchMode": "faceted-search",
     "enableDynamicLanguageChange": true,
-    "defaultActiveFacets": [],
+    "defaultActiveFacets": ["dataset"],
     "defaultTab": "table",
     "defaultInstancePageTab": "table",
     "maps": {
@@ -476,6 +476,18 @@
             "textQueryGetLiteral": true,
             "textQueryHiglightingOptions": "highlight:s:<b> | e:</b> | z:27500",
             "textQueryMaxInstances": 1000000
+        },
+        "dataset": {
+            "containerClass": "three",
+            "facetType": "list",
+            "predicate": ":in_dataset",
+            "filterType": "uriFilter",
+            "sortBy": "instanceCount",
+            "pieChartButton": true,
+            "sortButton": true,
+            "sortDirection": "desc",
+            "sortByPredicate": ":in_dataset/skos:prefLabel",
+            "hideUnknownValue": true
         },
         "year": {
             "containerClass": "six",
