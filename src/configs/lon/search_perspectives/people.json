@@ -83,6 +83,16 @@
                                 "expandedOnInstancePage": false
                             },
                             {
+                                "id": "dataset",
+                                "valueType": "string",
+                                "makeLink": false,
+                                "externalLink": false,
+                                "sortValues": false,
+                                "numberedList": true,
+                                "onlyOnInstancePage": true,
+                                "expandedOnInstancePage": true
+                            },
+                            {
                                 "id": "speech",
                                 "valueType": "string",
                                 "makeLink": false,

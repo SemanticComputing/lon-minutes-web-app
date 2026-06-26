@@ -196,8 +196,13 @@ WHERE {
     BIND (?label__id as ?label__prefLabel)
   }
   UNION
+  { ?id :in_dataset/skos:prefLabel ?dataset }
+  UNION
   {
-    ?id :number_of_references ?number_of_references
+    SELECT DISTINCT ?id (SUM(?_value) AS ?number_of_references) 
+    WHERE {
+      ?id :number_of_references ?_value
+    } GROUP BY ?id 
   }
   UNION
   {
