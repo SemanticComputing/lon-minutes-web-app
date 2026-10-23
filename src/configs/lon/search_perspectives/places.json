@@ -69,14 +69,15 @@
                                 "expandedOnInstancePage": false
                             },
                             {
-                            "id": "speech",
-                            "valueType": "string",
-                            "makeLink": false,
-                            "externalLink": false,
-                            "sortValues": true,
-                            "numberedList": true,
-                            "renderAsHTML": true,
-                            "expandedOnInstancePage": true
+                                "id": "speech",
+                                "valueType": "string",
+                                "makeLink": false,
+                                "externalLink": false,
+                                "sortValues": true,
+                                "numberedList": true,
+                                "renderAsHTML": true,
+                                "HTMLParserTask": "createReactRouterLinks",
+                                "expandedOnInstancePage": true
                             },
                             {
                                 "id": "minute",
@@ -93,23 +94,13 @@
                                 "valueType": "string",
                                 "makeLink": false,
                                 "externalLink": false,
-                                "sortValues": true,
+                                "sortValues": false,
                                 "numberedList": true,
                                 "showSource": false,
                                 "sourceExternalLink": false,
                                 "renderAsHTML": true,
                                 "HTMLParserTask": "createReactRouterLinks",
                                 "minWidth": 90,
-                                "expandedOnInstancePage": true
-                            },
-                            {
-                                "id": "reference",
-                                "valueType": "object",
-                                "makeLink": true,
-                                "externalLink": false,
-                                "sortValues": false,
-                                "numberedList": true,
-                                "onlyOnInstancePage": true,
                                 "expandedOnInstancePage": true
                             },
                             {

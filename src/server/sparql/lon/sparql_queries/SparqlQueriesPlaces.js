@@ -140,50 +140,57 @@ WHERE {
   }
   UNION
   {
-    SELECT DISTINCT ?id (CONCAT('<div>', ?_content2, '</div>') AS ?sentence) 
+    SELECT DISTINCT ?id (CONCAT('<div><b><a href="/minutes/page/',
+          REPLACE(STR(?minute__id), "^.*\\\\/(.+)", "$1"),
+        '">', ?_abr, ', ', ?_label, '</a></b>: ', ?_content2, '</div>') AS ?sentence) 
       WHERE {
         VALUES ?_prop { linguistics:referenceToDate linguistics:referenceToLocation linguistics:referenceToOrganization linguistics:referenceToPerson linguistics:referenceToMiscellaneous }
         ?reference__id :refers_to ?id .
         [] ?_prop ?reference__id ;
             a :Sentence ;
-            :html ?_content
+            :html ?_content ;
+            :in_minute ?minute__id .
+        ?minute__id :in_dataset/skos:altLabel ?_abr ; skos:prefLabel ?_label .
+
+        OPTIONAL { ?minute__id crm:P4_has_time-span/skos:prefLabel ?_time }
+
         BIND (REPLACE(?_content,
           CONCAT(
             '(<a href[^<]+',
             REPLACE(STR(?id), "^.*\\\\/(.+)$", "$1"), '"[^<]+</a>)'),
-          '<b>$1</b>') AS 
-          ?_content2)
-    }
+            '<b>$1</b>')
+          AS ?_content2)
+    } ORDER BY STR(?_time)
   }
   UNION
     {
-    SELECT DISTINCT 
+    SELECT DISTINCT
       ?id 
       (CONCAT('<p><a href="/speeches/page/', 
           REPLACE(STR(?speech__id), "^.*\\\\/(.+)", "$1"),
-          '">', 
-          REPLACE(COALESCE(?_label, 'SPEECH'), " [0-9()–]+$",""),
-          ' ',
+          '">(',
           COALESCE(?_time, ''),
-          ':</a><br>',
-          ?_content,
-          '</p>')
+          ', ',
+          ?_abr,
+          ') ',
+          REPLACE(COALESCE(?_label, 'SPEECH'), " [0-9()–]+$",""),
+          '</a>: ',
+          SUBSTR(?_content, 1, 60),
+          ' ...</span>')
         AS ?speech)
     WHERE {
       ?speech__id linguistics:referenceToLocation [ :refers_to ?id ] ;
         a :Speech ;
         skos:prefLabel ?_label ;
-        :html ?_content ;
+        :content ?_content ;
+        :in_dataset/skos:altLabel ?_abr ;
         :order ?sort_by .
       OPTIONAL { ?speech__id crm:P4_has_time-span/skos:prefLabel ?_time }
-    } 
-    ORDER BY ?sort_by
+    } ORDER BY ?sort_by
   }
   UNION
   {
-    SELECT DISTINCT ?id 
-      ?reference__id ?reference__prefLabel
-      (CONCAT("/references/page/", REPLACE(STR(?reference__id), "^.*\\\\/(.+)", "$1")) AS ?reference__dataProviderUrl)
+    SELECT DISTINCT ?id
       ?minute__id
       (CONCAT(?_abr, ': ', ?_label) as ?minute__prefLabel)
       (CONCAT("/minutes/page/", REPLACE(STR(?minute__id), "^.*\\\\/(.+)", "$1")) AS ?minute__dataProviderUrl)

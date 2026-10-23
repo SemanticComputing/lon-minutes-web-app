@@ -215,7 +215,7 @@ WHERE {
           ?_abr,
           ') ',
           REPLACE(COALESCE(?_label, 'SPEECH'), " [0-9()–]+$",""),
-          ': </a>',
+          '</a>: ',
           SUBSTR(?_content, 1, 70),
           ' ...</span>')
         AS ?speech)
@@ -242,20 +242,27 @@ WHERE {
     } GROUP BY ?id ?mentioned_person__id ?_label ORDER BY DESC(?count) ?_label
   }
   UNION
-  {
-    SELECT DISTINCT ?id (CONCAT('<p>', ?_sentence2, '</p>') AS ?sentence) WHERE {
-      ?reference__id :refers_to ?id .
-      [] linguistics:referenceToPerson ?reference__id ;
-          a :Sentence ;
-          :html ?_sentence
-      BIND (REPLACE(?_sentence,
+{
+    SELECT DISTINCT ?id (CONCAT('<div><b><a href="/minutes/page/',
+          REPLACE(STR(?minute__id), "^.*\\\\/(.+)", "$1"),
+        '">', ?_abr, ', ', ?_label, '</a></b>: ', ?_content2, '</div>') AS ?sentence) 
+      WHERE {
+        ?reference__id :refers_to ?id .
+        [] linguistics:referenceToPerson ?reference__id ;
+            a :Sentence ;
+            :html ?_content ;
+            :in_minute ?minute__id .
+        ?minute__id :in_dataset/skos:altLabel ?_abr ; skos:prefLabel ?_label .
+
+        OPTIONAL { ?minute__id crm:P4_has_time-span/skos:prefLabel ?_time }
+
+        BIND (REPLACE(?_content,
           CONCAT(
             '(<a href[^<]+',
-            REPLACE(STR(?id), "^.*\\\\/(.+)$", "$1"), 
-            '"[^<]+</a>)'),
-          '<b>$1</b>') AS 
-          ?_sentence2)
-    }
+            REPLACE(STR(?id), "^.*\\\\/(.+)$", "$1"), '"[^<]+</a>)'),
+            '<b>$1</b>')
+          AS ?_content2)
+    } ORDER BY STR(?_time)
   }
   UNION
   { 
