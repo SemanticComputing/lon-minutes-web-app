@@ -184,7 +184,8 @@ WHERE {
     SELECT DISTINCT ?id 
       ?reference__id ?reference__prefLabel
       (CONCAT("/references/page/", REPLACE(STR(?reference__id), "^.*\\\\/(.+)", "$1")) AS ?reference__dataProviderUrl)
-      ?minute__id ?minute__prefLabel
+      ?minute__id
+      (CONCAT(?_abr, ': ', ?_label) as ?minute__prefLabel)
       (CONCAT("/minutes/page/", REPLACE(STR(?minute__id), "^.*\\\\/(.+)", "$1")) AS ?minute__dataProviderUrl)
     WHERE {
         ?reference__id :refers_to ?id ;
@@ -192,7 +193,8 @@ WHERE {
         
         ?minute__id linguistics:referenceToLocation ?reference__id ;
             a :Minute ;
-            skos:prefLabel ?minute__prefLabel .
+            skos:prefLabel ?_label ;
+            :in_dataset/skos:altLabel ?_abr
     } ORDER BY STR(?minute__id)
   }
   UNION

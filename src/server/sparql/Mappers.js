@@ -377,6 +377,22 @@ export const toPolygonLayerFormat = ({ data, config }) => {
   return data
 }
 
+export const toPolygonLayerFormatMinutes = ({ data, config }) => {
+  // const scaledData = linearScale({ data, config })
+  const valuesDict = {}
+  data.forEach(item => {
+    valuesDict[item.place_id] = parseInt(item.instanceCount)
+    item.polygon = eval(item.polygon)
+  })
+  // Ckmeans algorithm: https://journal.r-project.org/archive/2011-2/RJournal_2011-2_Wang+Song.pdf
+  // console.log(`valuesDict: ${Object.values(valuesDict)}`)
+  const clusters = ckmeans(Object.values(valuesDict), 8)
+  data.forEach(item => {
+    item.choroplethColor = getChoroplethMapColor({ value: parseInt(item.instanceCount), clusters })
+  })
+  return data
+}
+
 const getChoroplethMapColor = ({ value, clusters }) => {
   // https://colorbrewer2.org/#type=sequential&scheme=YlOrRd&n=8
   const colors = [

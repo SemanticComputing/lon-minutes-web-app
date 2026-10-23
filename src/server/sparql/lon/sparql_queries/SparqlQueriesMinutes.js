@@ -249,8 +249,20 @@ SELECT DISTINCT ?id ?lat ?long
 WHERE {
   <FILTER>
   ?minute a :Minute ; linguistics:referenceToLocation/:refers_to ?id .
-  ?id geo:lat ?lat ; geo:long ?long 
+  ?id geo:lat ?lat ; geo:long ?long
 } GROUP BY ?id ?lat ?long
+`
+
+export const minutesPolygonmapQuery = `
+SELECT DISTINCT (MD5(?polygon) AS ?id) ?place_id ?polygon ?prefLabel (COUNT(DISTINCT ?minute) AS ?instanceCount)
+WHERE { 
+  <FILTER>
+  ?minute a :Minute ; linguistics:referenceToLocation/:refers_to/skos:broader* ?place_id .
+  ?place_id :polygon ?polygon ;
+    skos:prefLabel ?prefLabel .
+  FILTER (LANG(?prefLabel)='en')
+} GROUP BY ?place_id ?polygon ?prefLabel
+ORDER BY ASC (?instanceCount)
 `
 
 export const minutesRelatedTo = `

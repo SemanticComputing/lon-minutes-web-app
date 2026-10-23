@@ -30,6 +30,13 @@
                 10.37
             ],
             "zoom": 2
+        },
+        "placesSpeechesPolygonmap": {
+            "center": [
+                22,
+                22
+            ],
+            "zoom": 1
         }
     },
     "resultClasses": {
@@ -344,8 +351,24 @@
             "filterTarget": "speech",
             "resultMapper": "mapPlaces"
         },
-        "csvSpeeches": {
+        "placesSpeechesPolygonmap": {
             "tabID": 7,
+            "tabPath": "countries",
+            "tabIcon": "Language",
+            "component": "Deck",
+            "layerType": "polygonLayer",
+            "sparqlQuery": "speechesPolygonmapQuery",
+            "facetClass": "speeches",
+            "filterTarget": "speech",
+            "postprocess": {
+                "func": "toPolygonLayerFormatMinutes",
+                "config": {
+                    "ckmeansClustering": true
+                }
+            }
+        },
+        "csvSpeeches": {
+            "tabID": 8,
             "component": "ExportCSV",
             "tabPath": "csv",
             "tabIcon": "CloudDownload",
@@ -355,7 +378,7 @@
             "filterTarget": "id"
         },
         "sparql": {
-            "tabID": 8,
+            "tabID": 9,
             "component": "Export",
             "tabPath": "sparql",
             "tabIcon": "ArrowForward",
@@ -363,7 +386,7 @@
             "facetClass": "perspective1"
         },
         "share": {
-            "tabID": 9,
+            "tabID": 10,
             "component": "ExportLink",
             "tabPath": "share",
             "tabIcon": "IosShare",
@@ -395,16 +418,12 @@
             "expandedOnInstancePage": false
         },
         {
-            "id": "content",
+            "id": "dataset",
             "valueType": "string",
             "makeLink": false,
             "externalLink": false,
-            "sortValues": false,
-            "numberedList": false,
-            "collapsedMaxWords": 120,
-            "showExtraCollapseButton": true,
-            "expandedOnInstancePage": true,
-            "renderAsHTML": true
+            "onlyOnInstancePage": true,
+            "expandedOnInstancePage": false
         },
         {
             "id": "speaker_country",
@@ -470,6 +489,18 @@
             "minWidth": 70,
             "onlyOnInstancePage": true,
             "expandedOnInstancePage": false
+        },
+        {
+            "id": "content",
+            "valueType": "string",
+            "makeLink": false,
+            "externalLink": false,
+            "sortValues": false,
+            "numberedList": false,
+            "collapsedMaxWords": 120,
+            "showExtraCollapseButton": true,
+            "expandedOnInstancePage": true,
+            "renderAsHTML": true
         },
         {
             "id": "previous",

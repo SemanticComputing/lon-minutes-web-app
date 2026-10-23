@@ -70,8 +70,18 @@ UNION
 }
 UNION
 {
+  ?id :in_dataset/skos:prefLabel ?dataset 
+  FILTER (LANG(?dataset)='en')
+}
+UNION
+{
   ?id dct:language/skos:prefLabel ?language
   FILTER (LANG(?language)='en')
+}
+UNION
+{ 
+  ?id :speaker_role/skos:prefLabel ?speaker_role
+  FILTER (LANG(?speaker_role)='en')
 }
 UNION
 {
@@ -313,6 +323,17 @@ WHERE {
   ?speech a :Speech ; linguistics:referenceToLocation/:refers_to ?id .
   ?id geo:lat ?lat ; geo:long ?long 
 } GROUP BY ?id ?lat ?long
+`
+
+export const speechesPolygonmapQuery = `
+SELECT DISTINCT (MD5(?polygon) AS ?id) ?place_id ?polygon ?prefLabel (COUNT(DISTINCT ?speech) AS ?instanceCount)
+WHERE {
+  <FILTER> 
+  ?speech a :Speech ; linguistics:referenceToLocation/:refers_to/skos:broader* ?place_id .
+  ?place_id :polygon ?polygon ; skos:prefLabel ?prefLabel .
+  FILTER (LANG(?prefLabel)='en')
+} GROUP BY ?place_id ?polygon ?prefLabel
+ORDER BY ASC (?instanceCount)
 `
 
 export const speechesRelatedTo = `

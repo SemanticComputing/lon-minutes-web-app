@@ -130,6 +130,7 @@ export default {
     tieNetwork: 'Network',
     'speeches-and-references': 'speeches and references',
     heatmap: 'heatmap',
+    countries: 'countries',
     statistics: 'statistics',
     download: 'download',
     sparql: 'sparql',

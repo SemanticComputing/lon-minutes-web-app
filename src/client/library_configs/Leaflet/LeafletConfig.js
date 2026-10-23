@@ -94,8 +94,8 @@ export const createPopUpContentMinutes = ({ data, resultClass }) => {
     h3.textContent = data.prefLabel.prefLabel
   }
   container.appendChild(h3)
-  console.log(data)
-  console.log(resultClass)
+  // console.log(data)
+  // console.log(resultClass)
   if (resultClass === 'activitiesByPlace') {
     const p = document.createElement('p')
     p.textContent = 'Mentions:'

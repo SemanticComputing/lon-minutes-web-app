@@ -207,19 +207,22 @@ WHERE {
   UNION
   {
     SELECT DISTINCT ?id 
-      (CONCAT('<p><a href="/speeches/page/', 
+      (CONCAT('<span><a href="/speeches/page/', 
           REPLACE(STR(?speech__id), "^.*\\\\/(.+)", "$1"),
-          '">', 
-          REPLACE(COALESCE(?_label, 'SPEECH'), " [0-9()–]+$",""),
-          ' ',
+          '">(',
           COALESCE(?_time, ''),
-          ':</a><br>',
-          ?_content,
-          '</p>')
+          ', ',
+          ?_abr,
+          ') ',
+          REPLACE(COALESCE(?_label, 'SPEECH'), " [0-9()–]+$",""),
+          ': </a>',
+          SUBSTR(?_content, 1, 70),
+          ' ...</span>')
         AS ?speech)
     WHERE {
       ?speech__id portal:speaker ?id ; 
-        :html ?_content ;
+        :content ?_content ;
+        :in_dataset/skos:altLabel ?_abr ;
         :order ?sort_by .
       
       OPTIONAL { ?speech__id crm:P4_has_time-span/skos:prefLabel ?_time }
@@ -261,9 +264,9 @@ WHERE {
     WHERE {
       ?minute__id linguistics:referenceToPerson/:refers_to ?id ;
         a :Minute ;
-        skos:prefLabel ?minute__prefLabel .
-      
-      
+        :in_dataset/skos:altLabel ?_abr ;
+        skos:prefLabel ?_label .
+        BIND (CONCAT(?_abr, ': ', ?_label) as ?minute__prefLabel)
     } ORDER BY STR(?minute__id)
   }
   UNION
