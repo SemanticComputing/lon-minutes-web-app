@@ -197,7 +197,7 @@ export default {
       <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
         This landing page provides a human-readable summary of the data points that link
         to this {entity}. The data included in this summary reflect only those data points
-        used in the LoN Portal. Click the Open in Linked Data Browser on button on the
+        used in the Minutes of Multilateralism Portal. Click the Open in Linked Data Browser on button on the
         Export tab to view the complete set of classes and properties linked to this record.
       </p>
       <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
@@ -285,13 +285,13 @@ export default {
       longDescription: `
         <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
          
-        From this perspective, you can search for information about the authors and recipients of the letters, the records            creators and, for certain materials, individuals mentioned in the letters themselves.<br>
+        From this perspective, you can search for information about the people in the Minutes of Multilateralism dataset. The data contains both the people who have been active in the international organizations as well as those mentioned in the minutes.<br>
 
-        Different organisations and collections hold correspondence from the same individuals. These actors have been                 aggregated computationally, but there are still both wrongly aggregated and unaggregated actors in the data.                  Additionally, almost all letter collections contain letters from unidentified individuals, and the large number of            these is typical of mass metadata produced from letter collections.<br>
+        These actors have been aggregated computationally, but there are still both wrongly aggregated and unaggregated actors in the data.<br>
 
-        You can browse the metadata using the filters on the left (above the results in the mobile version) or the facets. As         well as searching by name, you can limit your search by the gender or profession of the actor. Please note that               occupation information is only provided for individuals for whom additional information is available from external            data sources. The 'External data source' facet shows the proportion of actors linked to external data sources.<br>
+        You can browse the data using the filters on the left (above the results in the mobile version) or the facets. As well as searching by name, you can limit your search by the gender or profession of the actor. Please note that some pieces of information are only provided for individuals for whom additional information is available from external data sources. The 'External databases' facet shows the proportion of actors linked to external data sources.<br>
         
-        Much of the data is generated through computation. Erroneous or repetitive records may be present due to errors in             the source data or the processing.<br>
+        Much of the data is generated through computation. Erroneous or repetitive records may be present due to errors in the source data or the processing.<br>
         
         </p>
         <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
@@ -321,13 +321,13 @@ export default {
             The <strong>MIGRATIONS</strong> visualization tab the arcs are drawn between the places of birth and death. Notice that the visualization takes into account only the people out of whom this information is available.
           </li>
           <li>
-            The <strong>NETWORK</strong> view visualises the correspondence network of the person under consideration. Due to             the large number of actors, often only a subset of actors is selected for the network. 
+            The <strong>NETWORK</strong> view visualises the correspondence network of the person under consideration. Due to the large number of actors, often only a subset of actors is selected for the network. 
           </li>
           <li>
             The <strong>CSV</strong> tab allows you to download the results in tabular form to your own computer.
             </li>
             <li>
-            From the <strong>SPARQL</strong> query tab,you can follow the link to the Yasgui service and see the query used              to retrieve the results from the database.
+            From the <strong>SPARQL</strong> query tab,you can follow the link to the Yasgui service and see the query used to retrieve the results from the database.
             </li>
             <li>
            The <strong>SHARE</strong> tab provides a permanent link to the search you have made. You can use it to find the search later and to refer to the material.
@@ -865,10 +865,13 @@ export default {
         <strong>NETWORK</strong> tab displays a network of connections based on people mentioning each other. NB. due to the large network size the number of shown nodes is limited to 300.
       </li>
       <li>
-        <strong>MAP</strong> visualizes the locations referenced in the speeches.
+        <strong>MAP</strong> visualizes the locations referenced in the speeches as markers on a map.
       </li>
       <li>
-        <strong>HEATMAP</strong> visualization of the locations referenced in the speeches.
+        <strong>HEATMAP</strong> visualizes the locations referenced in the speeches as a heatmap.
+      </li>
+      <li>
+        <strong>COUNTRIES</strong> visualization of the locations referenced in the speeches by countries, NB. the map is based on the contemporary borders.
       </li>
       <li>
         The <strong>CSV</strong> tab allows you to download the results in tabular form to your own computer.
@@ -1288,7 +1291,7 @@ export default {
       This view allows you to view the geographic information in the data. The data are based on place ontology, which includes countries, provinces, counties, towns, districts and villages, but also buildings such as churches, hospitals and schools.<br>
       The data (titles, coordinates, geographical hierarchy) are extracted from external sources such as Wikipedia.<br> 
       
-      Please note that the data concern only a small part of the total data in the League of Nations and include the places mentioned in the LoN minutes or that are known to be the places of birth or death of some of the people in the dataset. The data also include places required for the construction of a geographical hierarchy.<br>
+      The place ontology included the places mentioned in the minutes or that are known to be the places of birth or death of some of the people in the dataset. The data also include places required for the construction of a geographical hierarchy.<br>
       
       Much of the data is generated through computation. Erroneous or repetitive records may be present due to errors in the source data or the processing.<br>
     </p>
