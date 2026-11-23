@@ -1,7 +1,7 @@
 {
     "id": "minutes",
     "endpoint": {
-        "url": "https://ldf.fi/lon-dev/sparql",
+        "url": "http://ldf.fi/minutes-dev/sparql",
         "useAuth": true,
         "prefixesFile": "SparqlQueriesPrefixes.js"
     },
@@ -512,16 +512,18 @@
             "sortByPredicate": ":in_dataset/skos:prefLabel",
             "hideUnknownValue": true
         },
-        "year": {
-            "containerClass": "six",
-            "facetType": "list",
-            "filterType": "uriFilter",
-            "barChartButton": true,
+        "minuteTimespan": {
+            "containerClass": "four",
+            "facetType": "timespan",
+            "filterType": "timespanFilter",
+            "dataType": "xsd:dateTime",
+            "max": null,
+            "min": null,
             "predicate": "crm:P4_has_time-span",
-            "sortDirection": "asc",
-            "searchField": false,
-            "sortButton": true,
-            "sortByPredicate": "crm:P4_has_time-span/skos:prefLabel"
+            "startProperty": "crm:P82a_begin_of_the_begin",
+            "endProperty": "crm:P82b_end_of_the_end",
+            "sortByAscPredicate": "crm:P4_has_time-span/crm:P82a_begin_of_the_begin",
+            "sortByDescPredicate": "crm:P4_has_time-span/crm:P82b_end_of_the_end"
         },
         "plenary_meeting": {
             "containerClass": "six",

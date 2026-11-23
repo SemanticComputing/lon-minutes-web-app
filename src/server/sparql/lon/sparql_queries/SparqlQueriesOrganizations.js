@@ -1,20 +1,23 @@
 const perspectiveID = 'organizations'
 
 export const organizationPropertiesInstancePage = `
-  BIND(?id as ?uri__id)
-  BIND(?id as ?uri__prefLabel)
-  BIND(?id as ?uri__dataProviderUrl)
+  BIND (?id as ?uri__id)
+  BIND (?id as ?uri__prefLabel)
+  BIND (?id as ?uri__dataProviderUrl)
 
   {
+    BIND (<ID> AS ?id)
     ?id skos:prefLabel ?prefLabel__id .
     BIND (?prefLabel__id as ?prefLabel__prefLabel)
   }
   UNION
   {
+    BIND (<ID> AS ?id)
     [] :refers_to ?id ; skos:prefLabel ?altLabel 
   }
   UNION
-  { 
+  {
+    BIND (<ID> AS ?id)
     ?id skos:closeMatch ?close_match__id .
     ?close_match__id skos:prefLabel ?close_match__prefLabel .
     BIND(CONCAT("/organizations/page/", REPLACE(STR(?close_match__id), "^.*\\\\/(.+)", "$1")) AS ?close_match__dataProviderUrl)
@@ -26,6 +29,7 @@ export const organizationPropertiesInstancePage = `
       ?minute__id ?minute__prefLabel 
       (CONCAT("/minutes/page/", REPLACE(STR(?minute__id), "^.*\\\\/(.+)", "$1")) AS ?minute__dataProviderUrl)
     WHERE {
+      BIND (<ID> AS ?id)
       VALUES ?_prop { linguistics:referenceToDate linguistics:referenceToLocation linguistics:referenceToOrganization linguistics:referenceToPerson linguistics:referenceToMiscellaneous }
       ?minute__id ?_prop  [ :refers_to ?id ] ;
       skos:prefLabel ?minute__prefLabel .
@@ -36,6 +40,7 @@ export const organizationPropertiesInstancePage = `
   {
     SELECT DISTINCT ?id (CONCAT('<div>', ?_content2, '</div>') AS ?sentence) 
     WHERE {
+      BIND (<ID> AS ?id)
       VALUES ?_prop { linguistics:referenceToDate linguistics:referenceToLocation linguistics:referenceToOrganization linguistics:referenceToPerson linguistics:referenceToMiscellaneous }
       [] ?_prop [ :refers_to ?id ] ;
                   a :Sentence ;
@@ -55,6 +60,7 @@ export const organizationPropertiesInstancePage = `
         (CONCAT(COALESCE(?tspan, '?'), ', ', ?_label, ': ', ?role_label) AS ?member__prefLabel)
         (CONCAT("/people/page/", REPLACE(STR(?member__id), "^.*\\\\/(.+)", "$1")) AS ?member__dataProviderUrl)
     WHERE {
+      BIND (<ID> AS ?id)
     	?evt__id :organization ?id ; skos:prefLabel ?evt__label .
     	?role__id crm:P11i_participated_in ?evt__id ; skos:prefLabel ?role_label .
       OPTIONAL { ?evt__id crm:P4_has_time-span/skos:prefLabel ?tspan }
@@ -64,6 +70,7 @@ export const organizationPropertiesInstancePage = `
   }
   UNION
   {
+    BIND (<ID> AS ?id)
     ?id :number_of_references ?number_of_references
   }
 `

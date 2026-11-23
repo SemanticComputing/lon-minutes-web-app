@@ -1,7 +1,7 @@
 {
     "id": "places",
     "endpoint": {
-        "url": "https://ldf.fi/lon-dev/sparql",
+        "url": "http://ldf.fi/minutes-dev/sparql",
         "useAuth": true,
         "prefixesFile": "SparqlQueriesPrefixes.js"
     },
@@ -214,7 +214,7 @@
             "sortValues": false,
             "numberedList": false,
             "onlyOnInstancePage": true,
-            "expandedOnInstancePage": true
+            "expandedOnInstancePage": false
         },
         {
             "id": "location",

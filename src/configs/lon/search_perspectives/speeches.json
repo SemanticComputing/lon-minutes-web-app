@@ -1,7 +1,7 @@
 {
     "id": "speeches",
     "endpoint": {
-        "url": "https://ldf.fi/lon-dev/sparql",
+        "url": "http://ldf.fi/minutes-dev/sparql",
         "useAuth": true,
         "prefixesFile": "SparqlQueriesPrefixes.js"
     },

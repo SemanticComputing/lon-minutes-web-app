@@ -1,11 +1,12 @@
 const perspectiveID = 'places'
 
 export const placePropertiesFacetResults = `
-  BIND(?id as ?uri__id)
-  BIND(?id as ?uri__prefLabel)
-  BIND(?id as ?uri__dataProviderUrl)
+  BIND (?id as ?uri__id)
+  BIND (?id as ?uri__prefLabel)
+  BIND (?id as ?uri__dataProviderUrl)
   
   {
+    <SUBQUERY>
     ?id skos:prefLabel ?prefLabel__id .
     FILTER (LANG(?prefLabel__id)='<LANG>')
     BIND (?prefLabel__id as ?prefLabel__prefLabel)
@@ -13,6 +14,7 @@ export const placePropertiesFacetResults = `
   }
   UNiON
   {
+    <SUBQUERY>
     ?id skos:broader ?broader__id .
     FILTER (?broader__id != ?id)
     ?broader__id skos:prefLabel ?broader__prefLabel .
@@ -21,6 +23,7 @@ export const placePropertiesFacetResults = `
   }
   UNION
   {
+    <SUBQUERY>
     ?id :country ?country__id .
     ?country__id skos:prefLabel ?country__prefLabel .
     FILTER (?id != ?country__id && LANG(?country__prefLabel)='<LANG>')
@@ -30,6 +33,7 @@ export const placePropertiesFacetResults = `
   { 
     SELECT DISTINCT ?id (SUM(?_value) AS ?number_of_references) 
     WHERE {
+      <SUBQUERY>
       ?id :number_of_references ?_value
     } GROUP BY ?id 
   }
@@ -40,18 +44,21 @@ export const placePropertiesInstancePage = `
   BIND(?id as ?uri__prefLabel)
   BIND(?id as ?uri__dataProviderUrl)
   {
+    BIND (<ID> AS ?id)
     ?id skos:prefLabel ?prefLabel__id .
     BIND (?prefLabel__id as ?prefLabel__prefLabel)
     FILTER (LANG(?prefLabel__prefLabel) = 'en')
   }
   UNION
   {
+    BIND (<ID> AS ?id)
     ?id a ?type__id .
     ?type__id skos:prefLabel ?type__prefLabel .
     BIND (?type__id as ?type_dataProviderUrl)
   }
   UNION
   {
+    BIND (<ID> AS ?id)
     ?id skos:broader ?broader__id .
     FILTER (?broader__id != ?id)
     ?broader__id skos:prefLabel ?broader__prefLabel .
@@ -61,6 +68,7 @@ export const placePropertiesInstancePage = `
   }
   UNION
   {
+    BIND (<ID> AS ?id)
     ?id :country ?country__id .
     ?country__id skos:prefLabel ?country__prefLabel .
     FILTER (LANG(?country__prefLabel) = 'en')
@@ -69,6 +77,7 @@ export const placePropertiesInstancePage = `
   }
   UNION
   {
+    BIND (<ID> AS ?id)
     ?id :continent ?continent__id .
     ?continent__id skos:prefLabel ?continent__prefLabel .
     FILTER (LANG(?continent__prefLabel)!='en')
@@ -83,6 +92,7 @@ export const placePropertiesInstancePage = `
       (CONCAT("/places/page/", REPLACE(STR(?narrower__id), "^.*\\\\/(.+)", "$1")) AS ?narrower__dataProviderUrl)
     WHERE
     {
+      BIND (<ID> AS ?id)
       ?narrower__id skos:broader ?id ; skos:prefLabel ?_label ;
           :number_of_references ?_num .
       FILTER (?narrower__id != ?id && LANG(?_label)='<LANG>')
@@ -90,14 +100,9 @@ export const placePropertiesInstancePage = `
     ORDER BY DESC(COALESCE(?_num)) ?_label 
   }
   UNION
-  { ?id owl:sameAs ?external__id .
-    ?external__id a/skos:prefLabel ?external__classlabel .
-    OPTIONAL { ?external__id skos:prefLabel ?external__label }
-    BIND(COALESCE(?external__label, ?external__classlabel, ?external__id) AS ?external__prefLabel)
-    BIND(?external__id AS ?external__dataProviderUrl)
-  }
-  UNION
-  { ?id foaf:page ?external__id .
+  {
+    BIND (<ID> AS ?id)
+    ?id owl:sameAs ?external__id .
     ?external__id a/skos:prefLabel ?external__classlabel .
     OPTIONAL { ?external__id skos:prefLabel ?external__label }
     BIND(COALESCE(?external__label, ?external__classlabel, ?external__id) AS ?external__prefLabel)
@@ -105,15 +110,27 @@ export const placePropertiesInstancePage = `
   }
   UNION
   {
+    BIND (<ID> AS ?id)
+    ?id foaf:page ?external__id .
+    ?external__id a/skos:prefLabel ?external__classlabel .
+    OPTIONAL { ?external__id skos:prefLabel ?external__label }
+    BIND(COALESCE(?external__label, ?external__classlabel, ?external__id) AS ?external__prefLabel)
+    BIND(?external__id AS ?external__dataProviderUrl)
+  }
+  UNION
+  {
+    BIND (<ID> AS ?id)
     ?id skos:prefLabel ?altLabel 
     FILTER (LANG(?altLabel)!='<LANG>')
   }
   UNION
   {
+    BIND (<ID> AS ?id)
     ?id skos:altLabel ?altLabel .
   }
   UNION
   {
+    BIND (<ID> AS ?id)
     ?id geo:lat ?lat ; geo:long ?long .
     BIND (CONCAT('lat ', STR(xsd:decimal(?lat)), ', long ',STR(xsd:decimal(?long))) as ?location)
   }
@@ -121,6 +138,7 @@ export const placePropertiesInstancePage = `
   {
     SELECT DISTINCT ?id (SUM(?_value) AS ?number_of_references) 
     WHERE {
+      BIND (<ID> AS ?id)
       ?id :number_of_references ?_value
     } GROUP BY ?id 
   }
@@ -135,15 +153,17 @@ WHERE {
   BIND(?id as ?uri__dataProviderUrl)
 
   {
+    BIND(<ID> as ?id)
     ?id skos:prefLabel ?prefLabel__id .
     BIND (?prefLabel__id as ?prefLabel__prefLabel)
   }
   UNION
   {
-    SELECT DISTINCT ?id (CONCAT('<div><b><a href="/minutes/page/',
-          REPLACE(STR(?minute__id), "^.*\\\\/(.+)", "$1"),
+    SELECT DISTINCT ?id 
+        (CONCAT('<div><b><a href="/minutes/page/', REPLACE(STR(?minute__id), "^.*\\\\/(.+)", "$1"),
         '">', ?_abr, ', ', ?_label, '</a></b>: ', ?_content2, '</div>') AS ?sentence) 
       WHERE {
+        BIND(<ID> as ?id)
         VALUES ?_prop { linguistics:referenceToDate linguistics:referenceToLocation linguistics:referenceToOrganization linguistics:referenceToPerson linguistics:referenceToMiscellaneous }
         ?reference__id :refers_to ?id .
         [] ?_prop ?reference__id ;
@@ -179,6 +199,7 @@ WHERE {
           ' ...</span>')
         AS ?speech)
     WHERE {
+      BIND(<ID> as ?id)
       ?speech__id linguistics:referenceToLocation [ :refers_to ?id ] ;
         a :Speech ;
         skos:prefLabel ?_label ;
@@ -195,42 +216,54 @@ WHERE {
       (CONCAT(?_abr, ': ', ?_label) as ?minute__prefLabel)
       (CONCAT("/minutes/page/", REPLACE(STR(?minute__id), "^.*\\\\/(.+)", "$1")) AS ?minute__dataProviderUrl)
     WHERE {
-        ?reference__id :refers_to ?id ;
-            skos:prefLabel ?reference__prefLabel .
-        
-        ?minute__id linguistics:referenceToLocation ?reference__id ;
-            a :Minute ;
-            skos:prefLabel ?_label ;
-            :in_dataset/skos:altLabel ?_abr
+      BIND(<ID> as ?id)
+      ?reference__id :refers_to ?id ;
+          skos:prefLabel ?reference__prefLabel .
+      
+      ?minute__id linguistics:referenceToLocation ?reference__id ;
+          a :Minute ;
+          skos:prefLabel ?_label ;
+          :in_dataset/skos:altLabel ?_abr
     } ORDER BY STR(?minute__id)
   }
   UNION
   {
+    BIND(<ID> as ?id)
     ?represented__id :represented ?id ;
       skos:prefLabel ?represented__prefLabel .
     BIND(CONCAT("/people/page/", REPLACE(STR(?represented__id), "^.*\\\\/(.+)", "$1")) AS ?represented__dataProviderUrl)
   }
   UNION
   {
+    BIND(<ID> as ?id)
     ?born__id crm:P98i_was_born/crm:P7_took_place_at ?id ;
       skos:prefLabel ?born__prefLabel .
     BIND(CONCAT("/people/page/", REPLACE(STR(?born__id), "^.*\\\\/(.+)", "$1")) AS ?born__dataProviderUrl)
   }
   UNION
   {
+    BIND(<ID> as ?id)
     ?deceased__id crm:P100i_died_in/crm:P7_took_place_at ?id ;
       skos:prefLabel ?deceased__prefLabel .
     BIND(CONCAT("/people/page/", REPLACE(STR(?deceased__id), "^.*\\\\/(.+)", "$1")) AS ?deceased__dataProviderUrl)
   }
   UNION
   {
+    BIND(<ID> as ?id)
     ?living__id crm:P74_has_current_or_former_residence|sch:nationality ?id ;
     skos:prefLabel ?living__prefLabel .
     BIND(CONCAT("/people/page/", REPLACE(STR(?living__id), "^.*\\\\/(.+)", "$1")) AS ?living__dataProviderUrl)
   }
   UNION
   {
-    ?id :number_of_references ?number_of_references
+    SELECT DISTINCT ?id (CONCAT(?g_label, ': ', STR(SUM(?_num))) AS ?number_of_references)
+    WHERE {
+      GRAPH ?g {
+        BIND(<ID> as ?id)
+        ?id :number_of_references ?_num
+      }
+      ?g skos:altLabel ?g_label
+    } GROUP BY ?id ?g ?g_label 
   }
 }
 `

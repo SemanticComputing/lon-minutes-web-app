@@ -1,23 +1,26 @@
 const perspectiveID = 'minutes'
 
 export const minutesPropertiesFacetResults = `
-BIND(?id as ?uri__id)
-BIND(STR(?id) as ?uri__prefLabel)
-BIND(?id as ?uri__dataProviderUrl)
+BIND (?id as ?uri__id)
+BIND (STR(?id) as ?uri__prefLabel)
+BIND (?id as ?uri__dataProviderUrl)
 
 {
+  <SUBQUERY>
   ?id skos:prefLabel ?prefLabel__id ; :in_dataset/skos:altLabel ?_abr .
   BIND (CONCAT(?_abr, ': ', ?prefLabel__id) as ?prefLabel__prefLabel)
   BIND(CONCAT("/${perspectiveID}/page/", REPLACE(STR(?id), "^.*\\\\/(.+)", "$1")) AS ?prefLabel__dataProviderUrl)
 }
 UNION
 {
+  <SUBQUERY>
   ?id crm:P4_has_time-span/skos:prefLabel ?year
 }
 UNION
 {
   SELECT DISTINCT ?id (CONCAT('<p>', ?_content, '</p>') AS ?content) 
   WHERE {
+    <SUBQUERY>
     ?id :html ?_content
   }
 }
@@ -25,16 +28,19 @@ UNION
 
 export const minutePropertiesInstancePage = `
 {
+  BIND (<ID> AS ?id)
   ?id skos:prefLabel ?prefLabel__id ; :in_dataset/skos:prefLabel ?_ds .
   BIND (CONCAT(?_ds, ': ', ?prefLabel__id) as ?prefLabel__prefLabel)
   BIND(CONCAT("/${perspectiveID}/page/", REPLACE(STR(?id), "^.*\\\\/(.+)", "$1")) AS ?prefLabel__dataProviderUrl)
 }
 UNION
 {
+  BIND (<ID> AS ?id)
   ?id crm:P4_has_time-span/skos:prefLabel ?year
 }
 UNION
 {
+  BIND (<ID> AS ?id)
   ?id dct:language/skos:prefLabel ?language
   FILTER (LANG(?language)='en')
 }
@@ -42,47 +48,55 @@ UNION
 {
   SELECT DISTINCT ?id (CONCAT('<p>', ?_content, '</p>') AS ?content) 
   WHERE {
+    BIND (<ID> AS ?id)
     ?id :html ?_content
   }
 }
 UNION
-{ 
+{
+  BIND (<ID> AS ?id)
   ?id (^:in_minute)/:speaker/:refers_to ?speaker__id .
   ?speaker__id skos:prefLabel ?speaker__prefLabel 
   BIND(CONCAT("/people/page/", REPLACE(STR(?speaker__id), "^.*\\\\/(.+)", "$1")) AS ?speaker__dataProviderUrl)
 }
 UNION
 {
-    ?id linguistics:referenceToPerson/:refers_to ?referenced_person__id .
-    ?referenced_person__id skos:prefLabel ?referenced_person__prefLabel 
-    BIND(CONCAT("/people/page/", REPLACE(STR(?referenced_person__id), "^.*\\\\/(.+)", "$1")) AS ?referenced_person__dataProviderUrl)
+  BIND (<ID> AS ?id)
+  ?id linguistics:referenceToPerson/:refers_to ?referenced_person__id .
+  ?referenced_person__id skos:prefLabel ?referenced_person__prefLabel 
+  BIND(CONCAT("/people/page/", REPLACE(STR(?referenced_person__id), "^.*\\\\/(.+)", "$1")) AS ?referenced_person__dataProviderUrl)
 }
 UNION
 {
-    ?id linguistics:referenceToOrganization/:refers_to ?referenced_organization__id .
-    ?referenced_organization__id skos:prefLabel ?referenced_organization__prefLabel 
-    BIND(CONCAT("/organizations/page/", REPLACE(STR(?referenced_organization__id), "^.*\\\\/(.+)", "$1")) AS ?referenced_organization__dataProviderUrl)
+  BIND (<ID> AS ?id)
+  ?id linguistics:referenceToOrganization/:refers_to ?referenced_organization__id .
+  ?referenced_organization__id skos:prefLabel ?referenced_organization__prefLabel 
+  BIND(CONCAT("/organizations/page/", REPLACE(STR(?referenced_organization__id), "^.*\\\\/(.+)", "$1")) AS ?referenced_organization__dataProviderUrl)
 }
 UNION
 {
-    ?id linguistics:referenceToLocation/:refers_to ?referenced_location__id .
-    ?referenced_location__id skos:prefLabel ?referenced_location__prefLabel 
-    BIND(CONCAT("/places/page/", REPLACE(STR(?referenced_location__id), "^.*\\\\/(.+)", "$1")) AS ?referenced_location__dataProviderUrl)
+  BIND (<ID> AS ?id)
+  ?id linguistics:referenceToLocation/:refers_to ?referenced_location__id .
+  ?referenced_location__id skos:prefLabel ?referenced_location__prefLabel 
+  BIND(CONCAT("/places/page/", REPLACE(STR(?referenced_location__id), "^.*\\\\/(.+)", "$1")) AS ?referenced_location__dataProviderUrl)
 }
 UNION
 {
-    ?id linguistics:referenceToDate/:refers_to ?referenced_date__id .
-    ?referenced_date__id skos:prefLabel ?referenced_date__prefLabel 
-    BIND(CONCAT("/times/page/", REPLACE(STR(?referenced_date__id), "^.*\\\\/(.+)", "$1")) AS ?referenced_date__dataProviderUrl)
+  BIND (<ID> AS ?id)
+  ?id linguistics:referenceToDate/:refers_to ?referenced_date__id .
+  ?referenced_date__id skos:prefLabel ?referenced_date__prefLabel 
+  BIND(CONCAT("/times/page/", REPLACE(STR(?referenced_date__id), "^.*\\\\/(.+)", "$1")) AS ?referenced_date__dataProviderUrl)
 }
 UNION
 {
-    ?id linguistics:referenceToMiscellaneous/:refers_to ?referenced_miscellaneous__id .
-    ?referenced_miscellaneous__id skos:prefLabel ?referenced_miscellaneous__prefLabel 
-    BIND(CONCAT("/concepts/page/", REPLACE(STR(?referenced_miscellaneous__id), "^.*\\\\/(.+)", "$1")) AS ?referenced_miscellaneous__dataProviderUrl)
+  BIND (<ID> AS ?id)
+  ?id linguistics:referenceToMiscellaneous/:refers_to ?referenced_miscellaneous__id .
+  ?referenced_miscellaneous__id skos:prefLabel ?referenced_miscellaneous__prefLabel 
+  BIND(CONCAT("/concepts/page/", REPLACE(STR(?referenced_miscellaneous__id), "^.*\\\\/(.+)", "$1")) AS ?referenced_miscellaneous__dataProviderUrl)
 }
 UNION
 {
+  BIND (<ID> AS ?id)
   ?id foaf:page ?external__id .
   BIND (?external__id AS ?external__dataProviderUrl)
   BIND ("United Nations Library and Archives" AS ?external__prefLabel)
@@ -93,16 +107,19 @@ UNION
     ?related__id ?related__prefLabel 
     (CONCAT("/minutes/page/", REPLACE(STR(?related__id), "^.*\\\\/(.+)", "$1")) AS ?related__dataProviderUrl)
   WHERE {
+    BIND (<ID> AS ?id)
     ?id :key ?key .
     ?related__id :key ?key ; skos:prefLabel ?related__prefLabel .
   } ORDER BY STR(?related__id)
 }
 UNION
 {
+  BIND (<ID> AS ?id)
   ?id :sidenote ?sidenote .
 }
 UNION
 {
+  BIND (<ID> AS ?id)
   ?id :page_number ?pagenumber .
 }
 `
@@ -164,7 +181,7 @@ WHERE {
   ?minute__id linguistics:referenceToPerson/:refers_to ?category .
   ?category skos:prefLabel ?prefLabel ;
     a crm:E21_Person .
-} GROUPBY ?category ?prefLabel ORDERBY DESC(?instanceCount) LIMIT 25
+} GROUP BY ?category ?prefLabel ORDER BY DESC(?instanceCount) LIMIT 25
 `
 
 export const topReferenceFacetPageQuery = `
@@ -205,7 +222,7 @@ WHERE {
   ?category skos:prefLabel ?prefLabel ;
     a crm:E74_Group .
   # FILTER (LANG(?prefLabel)='en')
-} GROUPBY ?category ?prefLabel ORDERBY DESC(?instanceCount) LIMIT 25
+} GROUP BY ?category ?prefLabel ORDER BY DESC(?instanceCount) LIMIT 25
 `
 export const locationsInMinutesQuery = `
 SELECT DISTINCT ?category ?prefLabel (COUNT(DISTINCT ?minute__id) AS ?instanceCount)
@@ -218,7 +235,7 @@ WHERE {
   ?category skos:prefLabel ?prefLabel ;
     a crm:E53_Place .
   FILTER (LANG(?prefLabel)='en')
-} GROUPBY ?category ?prefLabel ORDERBY DESC(?instanceCount) LIMIT 25
+} GROUP BY ?category ?prefLabel ORDER BY DESC(?instanceCount) LIMIT 25
 `
 
 export const conceptsInMinutesQuery = `
@@ -232,7 +249,7 @@ WHERE {
     linguistics:referenceToMiscellaneous/:refers_to ?category .
   ?category skos:prefLabel ?prefLabel ;
     a skos:Concept .
-} GROUPBY ?category ?prefLabel ORDERBY DESC(?instanceCount) LIMIT 25
+} GROUP BY ?category ?prefLabel ORDER BY DESC(?instanceCount) LIMIT 25
 `
 
 export const placePropertiesInfoWindow = `

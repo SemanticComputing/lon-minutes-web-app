@@ -1,7 +1,7 @@
 {
     "id": "people",
     "endpoint": {
-        "url": "https://ldf.fi/lon-dev/sparql",
+        "url": "http://ldf.fi/minutes-dev/sparql",
         "useAuth": true,
         "prefixesFile": "SparqlQueriesPrefixes.js"
     },
@@ -9,7 +9,6 @@
     "baseURI": "http://ldf.fi/lon",
     "URITemplate": "<BASE_URI>/actors/<LOCAL_ID>",
     "facetClass": "crm:E21_Person",
-    "defaultConstraint": "FILTER EXISTS { [] :refers_to <SUBJECT> }",
     "frontPageImage": "main_page/people_lon2.jpg",
     "searchMode": "faceted-search",
     "enableDynamicLanguageChange": true,

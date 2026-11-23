@@ -1,29 +1,34 @@
 const perspectiveID = 'people'
 
 export const personPropertiesFacetResults = `
-  BIND(?id as ?uri__id)
-  BIND(?id as ?uri__prefLabel)
-  BIND(?id as ?uri__dataProviderUrl)
+  BIND (?id as ?uri__id)
+  BIND (?id as ?uri__prefLabel)
+  BIND (?id as ?uri__dataProviderUrl)
   
   {
+    <SUBQUERY>
     ?id skos:prefLabel ?prefLabel__id
     BIND (?prefLabel__id as ?prefLabel__prefLabel)
     BIND(CONCAT("/${perspectiveID}/page/", REPLACE(STR(?id), "^.*\\\\/(.+)", "$1")) AS ?prefLabel__dataProviderUrl)
   }
   UNION
   {
+    <SUBQUERY>
     ?id skos:altLabel ?altLabel
   }
   UNION
   {
+    <SUBQUERY>
     ?id biocrm:has_gender/skos:prefLabel ?gender 
   }
   UNION
   {
+    <SUBQUERY>
     ?id crm:P98i_was_born/crm:P4_has_time-span/skos:prefLabel ?birthDate
   }
   UNION
   {
+    <SUBQUERY>
     ?id crm:P98i_was_born/crm:P7_took_place_at ?birthPlace__id .
     ?birthPlace__id skos:prefLabel ?birthPlace__prefLabel .
     FILTER(LANG(?birthPlace__prefLabel) = 'en')
@@ -32,10 +37,12 @@ export const personPropertiesFacetResults = `
   }
   UNION
   {
+    <SUBQUERY>
     ?id crm:P100i_died_in/crm:P4_has_time-span/skos:prefLabel ?deathDate
   }
   UNION
   {
+    <SUBQUERY>
     ?id crm:P100i_died_in/crm:P7_took_place_at ?deathPlace__id .
     ?deathPlace__id skos:prefLabel ?deathPlace__prefLabel .
     FILTER(LANG(?deathPlace__prefLabel) = 'en')
@@ -44,6 +51,7 @@ export const personPropertiesFacetResults = `
   }
   UNION
   {
+    <SUBQUERY>
     ?id sch:nationality ?nationality__id .
     ?nationality__id skos:prefLabel ?nationality__prefLabel .
     FILTER(LANG(?nationality__prefLabel) = 'en')
@@ -51,6 +59,7 @@ export const personPropertiesFacetResults = `
   } 
   UNION
   {
+    <SUBQUERY>
     ?id biocrm:has_occupation ?occupation__id .
     ?occupation__id skos:prefLabel ?occupation__prefLabel .
     FILTER(LANG(?occupation__prefLabel) = 'en')
@@ -58,19 +67,15 @@ export const personPropertiesFacetResults = `
   }
   UNION
   {
+    <SUBQUERY>
     ?id sch:image ?image__id ;
       skos:prefLabel ?image__description ;
       skos:prefLabel ?image__title .
     BIND(CONCAT(REPLACE(STR(?image__id), "https*:", ""), "?width=600") as ?image__url)
   }
-  # UNION
-  # {
-  #  ?id foaf:page ?external__id .
-  #  ?external__id a/skos:prefLabel ?external__prefLabel .
-  #  BIND (?external__id AS ?external__dataProviderUrl)
-  #}
   UNION
   {
+    <SUBQUERY>
     ?reference__id :refers_to ?id ;
     skos:prefLabel ?reference__prefLabel .
     BIND(CONCAT("/references/page/", REPLACE(STR(?reference__id), "^.*\\\\/(.+)", "$1")) AS ?reference__dataProviderUrl)
@@ -83,20 +88,24 @@ export const personPropertiesInstancePage = `
   BIND(?id as ?uri__dataProviderUrl)
   
   {
+    BIND (<ID> AS ?id)
     ?id skos:prefLabel ?prefLabel__id
     BIND (?prefLabel__id as ?prefLabel__prefLabel)
     BIND(CONCAT("/${perspectiveID}/page/", REPLACE(STR(?id), "^.*\\\\/(.+)", "$1")) AS ?prefLabel__dataProviderUrl)
   }
   UNION
   {
+    BIND (<ID> AS ?id)
     ?id biocrm:has_gender/skos:prefLabel ?gender
   }
   UNION
   {
+    BIND (<ID> AS ?id)
     ?id crm:P98i_was_born/crm:P4_has_time-span/skos:prefLabel ?birthDate
   }
   UNION
   {
+    BIND (<ID> AS ?id)
     ?id crm:P98i_was_born/crm:P7_took_place_at ?birthPlace__id .
     ?birthPlace__id skos:prefLabel ?birthPlace__prefLabel .
     FILTER(LANG(?birthPlace__prefLabel) = 'en')
@@ -105,6 +114,7 @@ export const personPropertiesInstancePage = `
   }
   UNION
   {
+    BIND (<ID> AS ?id)
     ?id crm:P74_has_current_or_former_residence ?residence__id .
     ?residence__id skos:prefLabel ?residence__prefLabel .
     FILTER(LANG(?residence__prefLabel) = 'en')
@@ -113,10 +123,12 @@ export const personPropertiesInstancePage = `
   }
   UNION
   {
+    BIND (<ID> AS ?id)
     ?id crm:P100i_died_in/crm:P4_has_time-span/skos:prefLabel ?deathDate
   }
   UNION
   {
+    BIND (<ID> AS ?id)
     ?id crm:P100i_died_in/crm:P7_took_place_at ?deathPlace__id .
     ?deathPlace__id skos:prefLabel ?deathPlace__prefLabel .
     FILTER(LANG(?deathPlace__prefLabel) = 'en')
@@ -124,6 +136,7 @@ export const personPropertiesInstancePage = `
   }
   UNION
   { 
+    BIND (<ID> AS ?id)
     ?id sch:nationality ?nationality__id .
     ?nationality__id skos:prefLabel ?nationality__prefLabel .
     BIND (CONCAT("/places/page/", REPLACE(STR(?nationality__id), "^.*\\\\/(.+)", "$1")) AS ?nationality__dataProviderUrl)
@@ -131,6 +144,7 @@ export const personPropertiesInstancePage = `
   }
   UNION
   {
+    BIND (<ID> AS ?id)
     ?id :represented ?represented__id .
     ?represented__id skos:prefLabel ?represented__prefLabel .
     BIND (CONCAT("/places/page/", REPLACE(STR(?represented__id), "^.*\\\\/(.+)", "$1")) AS ?represented__dataProviderUrl)
@@ -138,6 +152,7 @@ export const personPropertiesInstancePage = `
   }
   UNION
   {
+    BIND (<ID> AS ?id)
     ?id biocrm:has_occupation ?occupation__id .
     ?occupation__id skos:prefLabel ?occupation__prefLabel .
     BIND (CONCAT("/occupations/page/", REPLACE(STR(?occupation__id), "^.*\\\\/(.+)", "$1")) AS ?occupation__dataProviderUrl)
@@ -145,6 +160,7 @@ export const personPropertiesInstancePage = `
   }
   UNION
   {
+    BIND (<ID> AS ?id)
     ?id sch:image ?image__id ;
       skos:prefLabel ?image__description ;
       skos:prefLabel ?image__title .
@@ -152,12 +168,14 @@ export const personPropertiesInstancePage = `
   }
   UNiON
   {
+    BIND (<ID> AS ?id)
   	?id owl:sameAs|foaf:page ?external__id .
     ?external__id a/skos:prefLabel ?external__prefLabel .
     BIND (?external__id AS ?external__dataProviderUrl)
   }
   UNION
   {
+    BIND (<ID> AS ?id)
     ?id skos:closeMatch ?close_match__id .
     ?close_match__id skos:prefLabel ?close_match__prefLabel .
     BIND(CONCAT("/people/page/", REPLACE(STR(?close_match__id), "^.*\\\\/(.+)", "$1")) AS ?close_match__dataProviderUrl)
@@ -169,6 +187,7 @@ export const personPropertiesInstancePage = `
       (CONCAT(?_label, ": ", ?event_label) AS ?role__prefLabel)
       (CONCAT("/organizations/page/", REPLACE(STR(?organization__id), "^.*\\\\/(.+)", "$1")) AS ?role__dataProviderUrl)
     WHERE {
+      BIND (<ID> AS ?id)
       ?id biocrm:bearer_of ?role__id .
       ?role__id skos:prefLabel ?_label ;
                 crm:P11i_participated_in ?event__id .
@@ -179,6 +198,7 @@ export const personPropertiesInstancePage = `
   }
   UNION
   {
+    BIND (<ID> AS ?id)
     ?id :number_of_references ?number_of_references
   }
 `
@@ -190,17 +210,20 @@ WHERE {
   BIND (?id as ?uri__id)
   BIND (?id as ?uri__prefLabel)
   BIND (?id as ?uri__dataProviderUrl)
-
   {
+    BIND (<ID> as ?id)
     ?id skos:prefLabel ?label__id .
     BIND (?label__id as ?label__prefLabel)
   }
   UNION
-  { ?id :in_dataset/skos:prefLabel ?dataset }
+  { BIND (<ID> as ?id)
+    ?id :in_dataset/skos:prefLabel ?dataset
+  }
   UNION
   {
     SELECT DISTINCT ?id (SUM(?_value) AS ?number_of_references) 
     WHERE {
+      BIND (<ID> as ?id)
       ?id :number_of_references ?_value
     } GROUP BY ?id 
   }
@@ -220,6 +243,7 @@ WHERE {
           ' ...</span>')
         AS ?speech)
     WHERE {
+      BIND (<ID> as ?id)
       ?speech__id portal:speaker ?id ; 
         :content ?_content ;
         :in_dataset/skos:altLabel ?_abr ;
@@ -235,6 +259,7 @@ WHERE {
     (CONCAT(?_label, ' [', STR(?count), ']') AS ?mentioned_person__prefLabel)
     	(CONCAT("/people/page/", REPLACE(STR(?mentioned_person__id), "^.*\\\\/(.+)", "$1")) AS ?mentioned_person__dataProviderUrl)
      WHERE {
+      BIND (<ID> as ?id)
       ?speech__id :speaker/:refers_to ?id ;
           linguistics:referenceToPerson/:refers_to ?mentioned_person__id .
 	    ?mentioned_person__id a crm:E21_Person ; skos:prefLabel ?_label .
@@ -247,6 +272,7 @@ WHERE {
           REPLACE(STR(?minute__id), "^.*\\\\/(.+)", "$1"),
         '">', ?_abr, ', ', ?_label, '</a></b>: ', ?_content2, '</div>') AS ?sentence) 
       WHERE {
+        BIND (<ID> as ?id)
         ?reference__id :refers_to ?id .
         [] linguistics:referenceToPerson ?reference__id ;
             a :Sentence ;
@@ -269,6 +295,7 @@ WHERE {
     SELECT DISTINCT ?id ?minute__id ?minute__prefLabel
       (CONCAT("/minutes/page/", REPLACE(STR(?minute__id), "^.*\\\\/(.+)", "$1")) AS ?minute__dataProviderUrl)
     WHERE {
+      BIND (<ID> as ?id)
       ?minute__id linguistics:referenceToPerson/:refers_to ?id ;
         a :Minute ;
         :in_dataset/skos:altLabel ?_abr ;
@@ -282,6 +309,7 @@ WHERE {
     (CONCAT(?_label, ' (', STR(COUNT(DISTINCT ?_minute)), ')') AS ?related__prefLabel)
     (CONCAT("/people/page/", REPLACE(STR(?related__id), "^.*\\\\/(.+)", "$1")) AS ?related__dataProviderUrl) 
     WHERE {
+      BIND (<ID> as ?id)
       ?_minute linguistics:referenceToPerson/:refers_to ?id, ?related__id .
       FILTER (?related__id != ?id)
       ?related__id skos:prefLabel ?_label ; a crm:E21_Person .
@@ -293,6 +321,7 @@ WHERE {
     (CONCAT(?_label, ' (', STR(COUNT(DISTINCT ?_minute)), ')') AS ?location__prefLabel)
     (CONCAT("/places/page/", REPLACE(STR(?location__id), "^.*\\\\/(.+)", "$1")) AS ?location__dataProviderUrl) 
     WHERE {
+      BIND (<ID> as ?id)
       ?_minute linguistics:referenceToPerson/:refers_to ?id;
       linguistics:referenceToLocation/:refers_to ?location__id .
       ?location__id skos:prefLabel ?_label .
@@ -304,6 +333,7 @@ WHERE {
     (CONCAT(?_label, ' (', STR(COUNT(DISTINCT ?_minute)), ')') AS ?organization__prefLabel)
     (CONCAT("/organizations/page/", REPLACE(STR(?organization__id), "^.*\\\\/(.+)", "$1")) AS ?organization__dataProviderUrl)
     WHERE {
+      BIND (<ID> as ?id)
       ?_minute linguistics:referenceToPerson/:refers_to ?id;
       linguistics:referenceToOrganization/:refers_to ?organization__id .
       ?organization__id skos:prefLabel ?_label ; a crm:E74_Group .
@@ -315,6 +345,7 @@ WHERE {
     (CONCAT(?_label, ' (', STR(COUNT(DISTINCT ?_minute)), ')') AS ?concept__prefLabel)
     (CONCAT("/concepts/page/", REPLACE(STR(?concept__id), "^.*\\\\/(.+)", "$1")) AS ?concept__dataProviderUrl)
     WHERE {
+      BIND (<ID> as ?id)
       ?_minute linguistics:referenceToPerson/:refers_to ?id;
         linguistics:referenceToMiscellaneous ?concept__id .
       ?concept__id skos:prefLabel ?_label .
@@ -332,7 +363,7 @@ WHERE {
   
   ?person__id biocrm:has_gender ?category .
   ?category skos:prefLabel ?prefLabel .
-} GROUPBY ?category ?prefLabel ORDERBY DESC(?instanceCount)
+} GROUP BY ?category ?prefLabel ORDER BY DESC(?instanceCount)
 `
 
 export const peopleByNationalityQuery = `
@@ -345,7 +376,7 @@ WHERE {
   ?person__id sch:nationality ?category .
   ?category skos:prefLabel ?prefLabel .
   FILTER (LANG(?prefLabel) = "en")
-} GROUPBY ?category ?prefLabel ORDERBY DESC(?instanceCount)
+} GROUP BY ?category ?prefLabel ORDER BY DESC(?instanceCount)
 `
 
 export const peopleByRepresentedQuery = `
@@ -358,7 +389,7 @@ WHERE {
   ?person__id :represented ?category .
   ?category skos:prefLabel ?prefLabel .
   FILTER (LANG(?prefLabel) = "en")
-} GROUPBY ?category ?prefLabel ORDERBY DESC(?instanceCount)
+} GROUP BY ?category ?prefLabel ORDER BY DESC(?instanceCount)
 `
 
 export const peopleByOccupationQuery = `
@@ -371,7 +402,7 @@ WHERE {
   ?person__id biocrm:has_occupation ?category .
   ?category skos:prefLabel ?prefLabel .
   FILTER (LANG(?prefLabel) = "en")
-} GROUPBY ?category ?prefLabel ORDERBY DESC(?instanceCount)
+} GROUP BY ?category ?prefLabel ORDER BY DESC(?instanceCount)
 `
 
 export const peopleByBirthplaceQuery = `
@@ -384,7 +415,7 @@ WHERE {
   ?person__id crm:P98i_was_born/crm:P7_took_place_at ?category .
   ?category skos:prefLabel ?prefLabel .
   FILTER (LANG(?prefLabel) = "en")
-} GROUPBY ?category ?prefLabel ORDERBY DESC(?instanceCount) LIMIT 30
+} GROUP BY ?category ?prefLabel ORDER BY DESC(?instanceCount) LIMIT 30
 `
 
 export const peopleByDeathplaceQuery = `
@@ -397,7 +428,7 @@ WHERE {
   ?person__id crm:P100i_died_in/crm:P7_took_place_at ?category .
   ?category skos:prefLabel ?prefLabel .
   FILTER (LANG(?prefLabel) = "en")
-} GROUPBY ?category ?prefLabel ORDERBY DESC(?instanceCount) LIMIT 30
+} GROUP BY ?category ?prefLabel ORDER BY DESC(?instanceCount) LIMIT 30
 `
 
 export const peopleByOrganizationQuery = `
@@ -439,7 +470,7 @@ WHERE {
   
   BIND (STR(year(?time)) AS ?category)
   
-} GROUPBY ?category ORDER BY ?category
+} GROUP BY ?category ORDER BY ?category
 `
 
 export const topReferenceFacetPageQuery = `

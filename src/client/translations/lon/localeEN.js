@@ -728,9 +728,11 @@ export default {
         },
         year: {
           label: 'Year',
-          description: `
-            The year of the minute. 
-          `
+          description: `The year of the minute.`
+        },
+        minuteTimespan: {
+          label: 'Year',
+          description: `The year of the minute.`
         },
         speaker: {
           label: 'Speaker',

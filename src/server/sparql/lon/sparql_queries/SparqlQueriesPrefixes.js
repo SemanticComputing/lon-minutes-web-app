@@ -12,6 +12,7 @@ PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 PREFIX skosxl: <http://www.w3.org/2008/05/skos-xl#>
 PREFIX spatial: <http://jena.apache.org/spatial#>
 PREFIX text: <http://jena.apache.org/text#>
+PREFIX textSearch: <https://qlever.cs.uni-freiburg.de/textSearch/>
 PREFIX wgs84: <http://www.w3.org/2003/01/geo/wgs84_pos#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
  
